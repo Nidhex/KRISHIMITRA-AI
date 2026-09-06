@@ -1,0 +1,22 @@
+{
+  "name": "KrishiMitra AI - Offline AI Assistance for Farmers",
+  "short_name": "KrishiMitra",
+  "description": "True Offline AI Vision & Smart Agricultural Guidance for Every Farmer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F7F4",
+  "theme_color": "#2E7D32",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

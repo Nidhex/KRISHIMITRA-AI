@@ -7,7 +7,7 @@ const ollama  = require('../services/ollamaService');
 // POST /api/gemini/generateContent
 router.post('/generateContent', async (req, res, next) => {
   try {
-    const { model = 'gemini-2.5-flash', contents, tools } = req.body;
+    const { model = 'gemini-3.5-flash', contents, tools } = req.body;
     
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
@@ -30,6 +30,14 @@ router.post('/generateContent', async (req, res, next) => {
       timeout: 30000 // 30s timeout
     };
     
+    let fallbackTriggered = false;
+    const triggerFallback = async (reason) => {
+      if (fallbackTriggered || res.headersSent) return;
+      fallbackTriggered = true;
+      logger.info(`[GEMINI PROXY] Triggering Ollama fallback. Reason: ${reason}`);
+      await handleOllamaFallback(contents, res);
+    };
+
     const proxyReq = https.request(options, (proxyRes) => {
       let responseBody = '';
       
@@ -41,31 +49,30 @@ router.post('/generateContent', async (req, res, next) => {
         const statusCode = proxyRes.statusCode;
         if (statusCode !== 200) {
           logger.error(`[GEMINI PROXY] Gemini API returned error status ${statusCode}. Response: ${responseBody}`);
-          logger.info('[GEMINI PROXY] Attempting Ollama fallback...');
-          return await handleOllamaFallback(contents, res);
+          return await triggerFallback(`non-200 status code ${statusCode}`);
         }
         
         try {
           const parsed = JSON.parse(responseBody);
-          res.status(statusCode).json(parsed);
+          if (!res.headersSent) {
+            res.status(statusCode).json(parsed);
+          }
         } catch (e) {
           logger.error('[GEMINI PROXY] Failed to parse Gemini response JSON:', responseBody);
-          return await handleOllamaFallback(contents, res);
+          return await triggerFallback('JSON parse failure');
         }
       });
     });
     
     proxyReq.on('error', async (err) => {
       logger.error('[GEMINI PROXY] Request to Gemini API failed:', err.message);
-      logger.info('[GEMINI PROXY] Attempting Ollama fallback due to connection error...');
-      return await handleOllamaFallback(contents, res);
+      return await triggerFallback(`connection error: ${err.message}`);
     });
     
     proxyReq.on('timeout', async () => {
       proxyReq.destroy();
       logger.error('[GEMINI PROXY] Gemini API request timed out.');
-      logger.info('[GEMINI PROXY] Attempting Ollama fallback due to timeout...');
-      return await handleOllamaFallback(contents, res);
+      return await triggerFallback('timeout');
     });
     
     proxyReq.write(requestData);

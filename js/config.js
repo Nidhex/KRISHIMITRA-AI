@@ -20,7 +20,7 @@ if (typeof module !== 'undefined' && module.exports) {
   
   // Extend/Define window.KrishiMitraConfig for backward compatibility
   window.KrishiMitraConfig = window.KrishiMitraConfig || {
-    API_BASE_URL: 'http://localhost:5000/api',
+    API_BASE_URL: window.location.origin + '/api',
     OLLAMA_MODEL: 'gemma3',
     CONVERSATION_HISTORY_LIMIT: 5,
     CHAT_TIMEOUT_MS: 120000,
@@ -41,7 +41,7 @@ if (typeof module !== 'undefined' && module.exports) {
     const urlStr = typeof url === 'string' ? url : (url instanceof URL ? url.toString() : '');
     
     if (urlStr.includes('generativelanguage.googleapis.com')) {
-      let model = 'gemini-2.5-flash';
+      let model = 'gemini-3.5-flash';
       try {
         const urlObj = new URL(urlStr);
         const pathParts = urlObj.pathname.split('/');
@@ -53,7 +53,7 @@ if (typeof module !== 'undefined' && module.exports) {
         console.warn('[Proxy Interceptor] Failed to parse model from URL:', e);
       }
 
-      const apiBaseUrl = window.KrishiMitraConfig.API_BASE_URL || 'http://localhost:5000/api';
+      const apiBaseUrl = window.KrishiMitraConfig.API_BASE_URL || (window.location.origin + '/api');
       const proxyUrl = `${apiBaseUrl}/gemini/generateContent`;
       
       let originalBody = {};

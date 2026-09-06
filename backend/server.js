@@ -18,6 +18,7 @@ const { errorHandler }  = require('./middleware/errorHandler');
 
 // ── Routes ──────────────────────────────────────────────────────────────────
 const chatRoutes    = require('./routes/chat');
+const voiceRoutes   = require('./routes/voice');
 const visionRoutes  = require('./routes/vision');
 const weatherRoutes = require('./routes/weather');
 const schemesRoutes = require('./routes/schemes');
@@ -64,12 +65,20 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
+const { createRateLimiter } = require('./middleware/rateLimiter');
+
+// Rate Limiters
+const chatLimiter   = createRateLimiter({ windowMs: 60000, maxHits: 60, message: 'Chat rate limit exceeded. Please wait a minute.' });
+const voiceLimiter  = createRateLimiter({ windowMs: 60000, maxHits: 30, message: 'Voice API rate limit exceeded. Please wait a minute.' });
+const visionLimiter = createRateLimiter({ windowMs: 60000, maxHits: 30, message: 'Vision API rate limit exceeded. Please wait a minute.' });
+
 // ── API Routes ────────────────────────────────────────────────────────────────
-app.use('/api/chat',    chatRoutes);
-app.use('/api/vision',  visionRoutes);
+app.use('/api/chat',    chatLimiter,   chatRoutes);
+app.use('/api/voice',   voiceLimiter,  voiceRoutes);
+app.use('/api/vision',  visionLimiter, visionRoutes);
 app.use('/api/weather', weatherRoutes);
 app.use('/api/schemes', schemesRoutes);
-app.use('/api/gemini',  geminiRoutes);
+app.use('/api/gemini',  chatLimiter,   geminiRoutes);
 
 // ── Feed Caching Routes ──────────────────────────────────────────────────────
 const NEWS_CACHE_FILE = path.join(__dirname, '..', 'database', 'news', 'news_cache.json');
@@ -156,52 +165,51 @@ app.use(errorHandler);
 // ── Start ─────────────────────────────────────────────────────────────────────
 const ollama = require('./services/ollamaService');
 
-app.listen(PORT, async () => {
-  console.log('');
-  console.log('╔══════════════════════════════════════════════════╗');
-  console.log('║      KrishiMitra AI — Backend Server             ║');
-  console.log('╠══════════════════════════════════════════════════╣');
-  console.log(`║  🌐 App      : http://localhost:${PORT}                ║`);
-  console.log(`║  🔧 API      : http://localhost:${PORT}/api/health     ║`);
-  console.log(`║  🤖 Ollama   : ${process.env.OLLAMA_BASE_URL || 'http://localhost:11434'}      ║`);
-  console.log(`║  🌱 Model    : ${process.env.OLLAMA_MODEL || 'gemma3'}                      ║`);
-  console.log(`║  ⚙️  Mode     : ${process.env.NODE_ENV || 'development'}                 ║`);
-  console.log('╚══════════════════════════════════════════════════╝');
-  console.log('');
+if (require.main === module) {
+  app.listen(PORT, async () => {
+    console.log('');
+    console.log('╔══════════════════════════════════════════════════╗');
+    console.log('║      KrishiMitra AI — Backend Server             ║');
+    console.log('╠══════════════════════════════════════════════════╣');
+    console.log(`║  🌐 App      : http://localhost:${PORT}                ║`);
+    console.log(`║  🔧 API      : http://localhost:${PORT}/api/health     ║`);
+    console.log(`║  🤖 Ollama   : ${process.env.OLLAMA_BASE_URL || 'http://localhost:11434'}      ║`);
+    console.log(`║  🌱 Model    : ${process.env.OLLAMA_MODEL || 'gemma3'}                      ║`);
+    console.log(`║  ⚙️  Mode     : ${process.env.NODE_ENV || 'development'}                 ║`);
+    console.log('╚══════════════════════════════════════════════════╝');
+    console.log('');
 
-  // ── Startup Diagnostics & Validation ─────────────────────────────────────────
-  const hasGemini = !!process.env.GEMINI_API_KEY;
-  const hasWeather = !!process.env.WEATHER_API_KEY;
-  const hasNews = !!process.env.NEWS_API_KEY;
+    // ── Startup Diagnostics & Validation ─────────────────────────────────────────
+    const sarvam = require('./services/sarvamService');
+    const hasSarvam = sarvam.isConfigured();
+    const hasGemini = !!process.env.GEMINI_API_KEY;
+    const hasWeather = !!process.env.WEATHER_API_KEY;
+    const hasNews = !!process.env.NEWS_API_KEY;
 
-  let ollamaAvailable = false;
-  try {
-    const health = await ollama.checkOllamaHealth();
-    ollamaAvailable = health.available;
-  } catch (e) {
-    ollamaAvailable = false;
-  }
+    let ollamaAvailable = false;
+    try {
+      const health = await ollama.checkOllamaHealth();
+      ollamaAvailable = health.available;
+    } catch (e) {
+      ollamaAvailable = false;
+    }
 
-  console.log('KrishiMitra AI Configuration');
-  if (hasGemini) {
-    console.log('Gemini API   : Loaded ✅');
-  } else {
-    console.log('Gemini API   : Missing ❌');
-    console.log('Switching to Offline Mode...');
-  }
-  console.log(`Ollama       : ${ollamaAvailable ? 'Available ✅' : 'Unavailable ❌'}`);
-  console.log(`Weather API  : ${hasWeather ? 'Loaded ✅' : 'Missing ❌'}`);
-  console.log(`News API     : ${hasNews ? 'Loaded ✅' : 'Missing ❌'}`);
-  console.log(`Offline Mode : Ready ✅`);
+    console.log('KrishiMitra AI Configuration');
+    console.log(`Sarvam AI    : ${hasSarvam ? 'Loaded ✅ (Model: ' + (process.env.SARVAM_MODEL || 'sarvam-105b') + ')' : 'Missing ⚠️ (Set SARVAM_API_KEY in .env)'}`);
+    if (hasGemini) {
+      console.log('Gemini API   : Loaded ✅');
+    } else {
+      console.log('Gemini API   : Missing ❌');
+    }
+    console.log(`Ollama       : ${ollamaAvailable ? 'Available ✅' : 'Unavailable ❌'}`);
+    console.log(`Weather API  : ${hasWeather ? 'Loaded ✅' : 'Missing ❌'}`);
+    console.log(`News API     : ${hasNews ? 'Loaded ✅' : 'Missing ❌'}`);
+    console.log(`Offline Mode : Ready ✅`);
 
-  if (!hasGemini) {
-    console.log('\nMissing GEMINI_API_KEY.');
-    console.log('Running in Offline Mode.');
-  }
-
-  console.log('');
-  console.log(`  Open your browser → http://localhost:${PORT}`);
-  console.log('');
-});
+    console.log('');
+    console.log(`  Open your browser → http://localhost:${PORT}`);
+    console.log('');
+  });
+}
 
 module.exports = app;

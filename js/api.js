@@ -7,7 +7,7 @@
 'use strict';
 
 // ── Configuration ─────────────────────────────────────────────────────────────
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = (typeof window !== 'undefined' && window.location) ? (window.location.origin + '/api') : 'http://localhost:5000/api';
 const REQUEST_TIMEOUT_MS = 20000; // 20 seconds
 
 // ── Error messages (user-facing) ──────────────────────────────────────────────
@@ -73,25 +73,34 @@ async function checkBackendHealth() {
   }
 }
 
-// ── Phase 8, Phase 9: sendChat ────────────────────────────────────────────────
+// ── sendChat: Multilingual Sarvam AI Chatbot ─────────────────────────────────
 /**
- * Send a chat message to KrishiMitra AI.
+ * Send a chat message to KrishiMitra AI (Sarvam AI sarvam-105b / Ollama backend).
  *
- * @param {string} message        - farmer's question
+ * @param {string} message                 - farmer's question
  * @param {Object} [options={}]
- * @param {string} [options.language='en']  - response language
- * @param {boolean} [options.useAI=false]   - enable Gemma inference
+ * @param {string} [options.language='en'] - response language
+ * @param {Array} [options.history=[]]     - conversation history
+ * @param {Object} [options.farmerContext] - farmer profile & scan context
+ * @param {string} [options.context='']    - extra context
  * @returns {Promise<{
  *   success: boolean,
  *   reply?: string,
  *   source?: string,
+ *   model?: string,
+ *   language?: string,
  *   domains?: string[],
  *   error?: string,
  *   userError?: string
  * }>}
  */
 async function sendChat(message, options = {}) {
-  const { language = 'en', useAI = false } = options;
+  const {
+    language = 'en',
+    history = [],
+    farmerContext = null,
+    context = ''
+  } = options;
 
   try {
     const res = await fetchWithTimeout(
@@ -99,8 +108,9 @@ async function sendChat(message, options = {}) {
       {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ message, language, useAI })
-      }
+        body:    JSON.stringify({ message, language, history, farmerContext, context })
+      },
+      30000 // 30s timeout for AI inference
     );
 
     const data = await res.json();
@@ -109,7 +119,7 @@ async function sendChat(message, options = {}) {
       return {
         success:   false,
         error:     data.error || `Server error ${res.status}`,
-        userError: classifyError(null, data)
+        userError: data.userError || classifyError(null, data)
       };
     }
 

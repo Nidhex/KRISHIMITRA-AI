@@ -2894,3 +2894,153 @@ textarea {
   background-color: rgba(192, 57, 43, 0.15);
   color: var(--color-alert);
 }
+
+/* ==========================================================================
+   CALL SARVAM AI — IN-BROWSER VOICE ASSISTANT STYLES
+   ========================================================================== */
+.color-call-ai {
+  border-left: 4px solid #2e7d32 !important;
+  background: linear-gradient(135deg, #ffffff 0%, #f1f8e9 100%) !important;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.color-call-ai:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(46, 125, 50, 0.2);
+}
+
+.call-modal-content {
+  animation: callModalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes callModalPop {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Soundwaves animation around the avatar */
+.call-soundwaves {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.wave-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(46, 125, 50, 0.6);
+  animation: soundwavePulse 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.speaker-theme .wave-ring {
+  border-color: rgba(2, 136, 209, 0.65);
+}
+
+.wave-ring.ring2 {
+  animation-delay: 0.6s;
+}
+
+.wave-ring.ring3 {
+  animation-delay: 1.2s;
+}
+
+@keyframes soundwavePulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.pulse-listening {
+  animation: avatarListening 1.5s infinite ease-in-out;
+  background: #e8f5e9 !important;
+}
+
+@keyframes avatarListening {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+  50% { transform: scale(1.06); box-shadow: 0 0 0 12px rgba(76, 175, 80, 0); }
+}
+
+.pulse-speaking {
+  animation: avatarSpeaking 1s infinite alternate ease-in-out;
+  background: #e1f5fe !important;
+}
+
+@keyframes avatarSpeaking {
+  0% { transform: scale(1) rotate(-2deg); }
+  100% { transform: scale(1.08) rotate(2deg); }
+}
+
+.pulse-processing {
+  animation: avatarSpin 2s infinite linear;
+}
+
+@keyframes avatarSpin {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.call-transcript-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: fadeIn 0.2s ease-in;
+}
+
+.call-transcript-row.farmer-row {
+  align-items: flex-end;
+}
+
+.call-transcript-row.farmer-row .transcript-speaker {
+  font-size: 11px;
+  font-weight: 700;
+  color: #555;
+  margin-right: 6px;
+}
+
+.call-transcript-row.farmer-row .transcript-bubble {
+  background: #dcf8c6;
+  color: #111;
+  padding: 8px 12px;
+  border-radius: 14px 14px 2px 14px;
+  max-width: 85%;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.call-transcript-row.ai-row {
+  align-items: flex-start;
+}
+
+.call-transcript-row.ai-row .transcript-speaker {
+  font-size: 11px;
+  font-weight: 700;
+  color: #2e7d32;
+  margin-left: 6px;
+}
+
+.call-transcript-row.ai-row .transcript-bubble {
+  background: #f1f3f4;
+  color: #222;
+  padding: 8px 12px;
+  border-radius: 14px 14px 14px 2px;
+  max-width: 85%;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.btn-push-speak.recording {
+  animation: pulseRecordingBtn 1.2s infinite;
+}
+
+@keyframes pulseRecordingBtn {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(0.98); }
+}

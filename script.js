@@ -819,7 +819,7 @@ const SAMPLE_PHOTOS = {
 // --------------------------------------------------------------------------
 const translateUI = () => {
   const lang = appState.currentLanguage;
-  const trans = i18n[lang];
+  const trans = i18n[lang] || i18n.en;
 
   // Update HTML language attribute
   document.documentElement.lang = lang;
@@ -827,7 +827,7 @@ const translateUI = () => {
   // Scan and translate components using data-i18n attribute
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (trans[key]) {
+    if (trans && trans[key]) {
       // If it's an input or textarea, translate placeholder
       if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
         el.placeholder = trans[key];
@@ -845,6 +845,12 @@ const translateUI = () => {
     else if (lang === 'gu') searchInput.placeholder = "પાકની શોધ કરો (ઉદા. ડાંગર, ઘઉં, ટામેટા)...";
     else if (lang === 'mr') searchInput.placeholder = "पीक शोधा (उदा. धान, गहू, टोमॅटो)...";
     else if (lang === 'pa') searchInput.placeholder = "ਫ਼ਸਲ ਖੋਜੋ (ਜਿਵੇਂ ਝੋਨਾ, ਕਣਕ, ਟਮਾਟਰ)...";
+    else if (lang === 'bn') searchInput.placeholder = "ফসল খুঁজুন (যেমন: ধান, গম, টমেটো, আলু)...";
+    else if (lang === 'ta') searchInput.placeholder = "பயிர் தேடவும் (எ.கா. நெல், கோதுமை)...";
+    else if (lang === 'te') searchInput.placeholder = "పంటను శోధించండి (ఉదా. వరి, గోధుమ)...";
+    else if (lang === 'kn') searchInput.placeholder = "ಬೆಳೆಯನ್ನು ಹುಡುಕಿ (ಉದಾ: ಭತ್ತ, ಗೋಧಿ)...";
+    else if (lang === 'ml') searchInput.placeholder = "വിള തിരയുക (ഉദാ: നെല്ല്, ഗോതമ്പ്)...";
+    else if (lang === 'or') searchInput.placeholder = "ଫସଲ ଖୋଜନ୍ତୁ (ଯେପରି ଧାନ, ଗହମ)...";
     else searchInput.placeholder = "Search crop (e.g. Paddy, Wheat, Tomato, Potato)...";
   }
 
@@ -923,11 +929,12 @@ const setupAccessibility = () => {
     // Also sync the voice assistant language to match
     const voiceLang = document.getElementById('voice-lang-select');
     if (voiceLang) {
-      if (appState.currentLanguage === 'hi') voiceLang.value = 'hi-IN';
-      else if (appState.currentLanguage === 'gu') voiceLang.value = 'gu-IN';
-      else if (appState.currentLanguage === 'mr') voiceLang.value = 'mr-IN';
-      else if (appState.currentLanguage === 'pa') voiceLang.value = 'pa-IN';
-      else voiceLang.value = 'en-IN';
+      const codeMap = {
+        hi: 'hi-IN', gu: 'gu-IN', mr: 'mr-IN', pa: 'pa-IN',
+        bn: 'bn-IN', ta: 'ta-IN', te: 'te-IN', kn: 'kn-IN',
+        ml: 'ml-IN', or: 'or-IN', en: 'en-IN'
+      };
+      voiceLang.value = codeMap[appState.currentLanguage] || 'en-IN';
     }
 
     translateUI();
@@ -1337,6 +1344,90 @@ const SOIL_DATABASE = {
   }
 };
 
+const callGeminiVision = async (imageSource, prompt) => {
+  try {
+    let base64Data = '';
+    let mimeType = 'image/jpeg';
+
+    if (imageSource instanceof File || imageSource instanceof Blob) {
+      mimeType = imageSource.type || 'image/jpeg';
+      base64Data = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = (e) => reject(e);
+        reader.readAsDataURL(imageSource);
+      });
+    } else if (typeof imageSource === 'string') {
+      if (imageSource.startsWith('data:')) {
+        const parts = imageSource.split(',');
+        mimeType = parts[0].split(';')[0].split(':')[1] || 'image/jpeg';
+        base64Data = parts[1];
+      } else {
+        // It's a URL
+        const res = await fetch(imageSource);
+        if (!res.ok) throw new Error(`Failed to fetch image URL: ${res.status}`);
+        const blob = await res.blob();
+        mimeType = blob.type || 'image/jpeg';
+        base64Data = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result.split(',')[1]);
+          reader.onerror = (e) => reject(e);
+          reader.readAsDataURL(blob);
+        });
+      }
+    } else {
+      throw new Error("Invalid image source for Gemini Vision");
+    }
+
+    const apiBase = (window.KrishiMitraConfig && window.KrishiMitraConfig.API_BASE_URL) || (window.location.origin + '/api');
+    const proxyUrl = apiBase.endsWith('/api') ? `${apiBase}/gemini/generateContent` : `${apiBase}/api/gemini/generateContent`;
+
+    const payload = {
+      model: 'gemini-3.5-flash',
+      contents: [
+        {
+          parts: [
+            { text: prompt },
+            {
+              inlineData: {
+                mimeType: mimeType,
+                data: base64Data
+              }
+            }
+          ]
+        }
+      ]
+    };
+
+    const res = await fetch(proxyUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) {
+      throw new Error(`Gemini Proxy returned ${res.status}`);
+    }
+
+    const data = await res.json();
+    if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
+      const responseText = data.candidates[0].content.parts[0].text;
+      const cleanJson = responseText
+        .replace(/```json/g, '')
+        .replace(/```/g, '')
+        .trim();
+      return JSON.parse(cleanJson);
+    } else {
+      throw new Error("Invalid Gemini API response structure");
+    }
+  } catch (error) {
+    console.error("Gemini Vision AI call failed:", error);
+    throw error;
+  }
+};
+
 const triggerSimulatedAIAnalysis = async () => {
   const loading = document.getElementById('analysis-loading');
   const resultsArea = document.getElementById('vision-results-area');
@@ -1347,17 +1438,114 @@ const triggerSimulatedAIAnalysis = async () => {
   if (mod !== 'disease' && mod !== 'soil') {
     if (loading) loading.classList.remove('hidden');
     if (uploadPanel) uploadPanel.classList.add('hidden');
-    setTimeout(() => {
-      if (loading) loading.classList.add('hidden');
+    if (resultsArea) resultsArea.classList.add('hidden');
+
+    const sampleName = appState.selectedSampleImage || 'default';
+    const sampleImg = previewImg ? previewImg.src : '';
+    const imageSource = appState.selectedFile || sampleImg;
+
+    try {
       let res = null;
-      const sampleName = appState.selectedSampleImage || 'default';
-      const sampleImg = previewImg ? previewImg.src : '';
-      if (mod === 'growth') res = mockAnalyzeGrowth(sampleName, sampleImg);
+      if (mod === 'grade') {
+        const prompt = `You are a professional agricultural quality grading AI assistant.
+Analyze the uploaded image of harvested crop produce and perform a strict quality inspection.
+
+Identify:
+1. What produce is visible in the image (e.g., tomatoes, potatoes, onions, grain, etc.).
+2. The overall quality grade: "Grade A (Premium Export Quality)" or "Grade B (Medium Table Quality)" or "Grade C (Low Processing Quality)" or "Rejected (Unfit for Sale)".
+3. Ripeness and physical profile: size, color uniformity, firmness, presence of blemishes/cuts/disease.
+4. Estimated market value range in Indian Rupees (e.g., "₹25 - ₹30 per kg" or "₹1,200 - ₹1,500 per quintal").
+5. Recommended buyer mandi or market (e.g. "Laxmipur APMC", "Local Mandi", etc.).
+6. Actionable advice on storage, packaging, and transport to maximize value.
+
+You MUST output your response as a valid, parsable JSON object in the language of translation. Do not include markdown code block syntax (like \`\`\`json) in your response, return raw JSON string only.
+The JSON object must have these exact keys:
+{
+  "grade": "AI quality grade (e.g. Grade A (Premium Export Quality))",
+  "profile": "ripness/size/physical profile details (1-2 sentences)",
+  "marketValue": "expected market value range in Rupees (e.g. ₹24 - ₹27 per kg)",
+  "recommendedMandi": "recommended buyer mandi or market name",
+  "advice": "actionable storage, packaging, and transport advice (1-2 sentences)"
+}`;
+
+        try {
+          const geminiRes = await callGeminiVision(imageSource, prompt);
+          res = {
+            id: "GRD-" + Date.now().toString().slice(-6),
+            type: "AI Quality Grader (Gemini 2.5)",
+            date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
+            img: sampleImg,
+            details: [
+              { label: "AI Quality Grade", value: geminiRes.grade, isAccent: true, type: geminiRes.grade.includes("Grade A") ? "green" : (geminiRes.grade.includes("Grade B") ? "yellow" : "red") },
+              { label: "Expected Market Value", value: geminiRes.marketValue, type: "green" },
+              { label: "Recommended Buyer Mandi", value: geminiRes.recommendedMandi, type: "info" },
+              { label: "Size & Ripeness Profile", value: geminiRes.profile, type: "info" }
+            ],
+            recommendations: [
+              { title: "Transport & Storage Advice", text: geminiRes.advice }
+            ]
+          };
+        } catch (err) {
+          console.warn("Gemini Quality Grader failed. Falling back to local mock...", err);
+          res = mockGradeProduce(sampleName, sampleImg);
+        }
+
+      } else if (mod === 'insurance') {
+        const prompt = `You are a professional crop insurance surveyor AI.
+Analyze the uploaded image of crop damage (e.g. field flooding, hailstorm, drought, pest outbreak, etc.) and generate a surveyor damage report.
+
+Identify:
+1. The estimated overall damage percentage (e.g. "72% Total Damage").
+2. The primary cause of damage.
+3. A detailed summary of the observed crop damage and field condition.
+4. Whether the claim is ready for insurance submission, and generate a claim code (format: KM-BIMA-XXXXX where XXXXX are 5 digits).
+
+You MUST output your response as a valid, parsable JSON object. Do not include markdown code block syntax (like \`\`\`json) in your response, return raw JSON string only.
+The JSON object must have these exact keys:
+{
+  "damagePercent": "estimated damage percentage (e.g. 68% Total Damage)",
+  "cause": "primary cause of damage (written in native language or English)",
+  "summary": "detailed summary of field inspection and damage assessment (1-2 sentences)",
+  "claimCode": "generated claim code (format: KM-BIMA-XXXXX)"
+}`;
+
+        try {
+          const geminiRes = await callGeminiVision(imageSource, prompt);
+          res = {
+            id: "INS-" + Date.now().toString().slice(-6),
+            type: "AI Insurance Claim Assessment (Gemini 2.5)",
+            date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
+            img: sampleImg,
+            details: [
+              { label: "Evaluated Field Damage", value: geminiRes.damagePercent, isAccent: true, type: parseInt(geminiRes.damagePercent) > 60 ? "red" : "yellow" },
+              { label: "Identified Cause", value: geminiRes.cause, type: "red" },
+              { label: "Claim Status", value: `Yes - Insurance Ready (Claim Code: ${geminiRes.claimCode})`, type: "green" },
+              { label: "Damage Assessment Summary", value: geminiRes.summary, type: "info" }
+            ],
+            recommendations: [
+              { title: "Immediate Mitigation Action", text: "Submit this report to your PMFBY state coordinator. Prevent further water accumulation or secure boundary fences." }
+            ]
+          };
+        } catch (err) {
+          console.warn("Gemini Insurance claim assessment failed. Falling back to local mock...", err);
+          res = mockInsuranceReport(sampleName, sampleImg);
+        }
+
+      } else {
+        res = mockAnalyzeGrowth(sampleName, sampleImg);
+      }
+
+      if (loading) loading.classList.add('hidden');
       if (resultsArea && res) {
         renderVisionResults(res);
         resultsArea.classList.remove('hidden');
       }
-    }, 1500);
+    } catch (e) {
+      console.error("AI analysis execution error:", e);
+      if (loading) loading.classList.add('hidden');
+      if (uploadPanel) uploadPanel.classList.remove('hidden');
+      alert("AI analysis failed: " + e.message);
+    }
     return;
   }
 
@@ -1380,20 +1568,51 @@ const triggerSimulatedAIAnalysis = async () => {
 
     const formData = new FormData();
     formData.append('image', imageFile);
+    formData.append('module', mod);
 
-    const apiBase = (window.KrishiMitraConfig && window.KrishiMitraConfig.API_BASE_URL) || 'http://localhost:5000/api';
+    const apiBase = (window.KrishiMitraConfig && window.KrishiMitraConfig.API_BASE_URL) || (window.location.origin + '/api');
     const endpoint = apiBase.endsWith('/api') ? `${apiBase}/vision` : `${apiBase}/api/vision`;
 
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      body: formData
-    });
+    let data;
+    let usedOfflineModel = false;
 
-    const data = await res.json();
-
-    if (!res.ok || !data || !data.success) {
-      throw new Error(data?.error || 'KrishiMitra AI analysis failed.');
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        body: formData
+      });
+      data = await res.json();
+      if (!res.ok || !data || !data.success) {
+        throw new Error(data?.error || 'KrishiMitra AI backend vision analysis failed.');
+      }
+    } catch (netErr) {
+      console.warn('[Vision Lab] Backend API call failed or offline. Attempting browser-side TensorFlow.js inference...', netErr);
+      
+      if (window.OfflineVision && previewImg) {
+        usedOfflineModel = true;
+        if (mod === 'soil') {
+          const offlineRes = await window.OfflineVision.predictSoil(previewImg);
+          data = {
+            success: true,
+            disease: offlineRes.soilType,
+            confidence: offlineRes.confidence * 100,
+            probabilities: offlineRes.classProbabilities ? Object.fromEntries(offlineRes.classProbabilities.map(cp => [cp.className, cp.probability * 100])) : null,
+            offline: true
+          };
+        } else {
+          const offlineRes = await window.OfflineVision.predictDisease(previewImg);
+          data = {
+            success: true,
+            disease: offlineRes.disease,
+            confidence: offlineRes.confidence * 100,
+            offline: true
+          };
+        }
+      } else {
+        throw netErr;
+      }
     }
+
 
     const label = data.disease;
     const confValue = parseFloat(data.confidence) || 0;
@@ -1641,14 +1860,19 @@ const renderVisionResults = (report) => {
   const accentDetail = report.details.find(d => d.isAccent) || report.details[0];
   const accentClass = accentDetail.type === 'red' ? 'score-accent-yellow' : '';
 
+  const aiBadge = report.offline 
+    ? `<span class="badge-score-pill" style="background:#1B5E20; color:white; font-weight:600; padding:4px 10px; font-size:0.85rem;">⚡ True Offline AI (Browser ML)</span>`
+    : `<span class="badge-score-pill" style="background:#0277BD; color:white; font-weight:600; padding:4px 10px; font-size:0.85rem;">🌐 Online AI (Backend Python)</span>`;
+
   header.innerHTML = `
     <div>
       <span class="detail-label">${report.type}</span>
-      <h3 class="result-title-main">${report.date}</h3>
+      <h3 class="result-title-main">${report.date} ${aiBadge}</h3>
     </div>
     <div class="badge-score-pill ${accentClass}">${accentDetail.value}</div>
   `;
   container.appendChild(header);
+
 
   // Result Grid 2 column
   const grid = document.createElement('div');
@@ -2390,7 +2614,7 @@ const renderSchemes = (filter = 'all') => {
 // --------------------------------------------------------------------------
 const callGeminiAPI = async (prompt) => {
   const API_KEY = CONFIG.GEMINI_API_KEY;
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${API_KEY}`;
   
   try {
     const response = await fetch(url, {
@@ -2754,6 +2978,27 @@ const simulateApplyFlow = (schemeId) => {
   const container = document.getElementById('wizard-container');
   const profile = JSON.parse(localStorage.getItem('km_profile')) || defaultProfile;
   const phoneNum = profile.phone || '+91 98765 43210';
+
+  if (!navigator.onLine) {
+    const draftId = 'DRAFT-' + Math.floor(100000 + Math.random() * 900000);
+    const drafts = JSON.parse(localStorage.getItem('km_scheme_drafts') || '[]');
+    drafts.push({ id: draftId, schemeId, date: new Date().toISOString(), profile });
+    localStorage.setItem('km_scheme_drafts', JSON.stringify(drafts));
+
+    container.innerHTML = `
+      <div style="text-align: center; color: #d97706;">
+        <span style="font-size: 32px;">🌐</span>
+        <h4 style="font-weight:700; margin-bottom: 4px;">Internet Connection Required to Submit</h4>
+        <p style="font-size: 0.85rem; color: var(--text-primary); margin-bottom: var(--spacing-sm);">
+          Your application draft (ID: <strong>${draftId}</strong>) has been saved offline in your browser.
+        </p>
+        <div class="alert-banner alert-yellow" style="font-size: 0.8rem; text-align: left; padding: var(--spacing-sm);">
+          ⚡ Please connect to the internet to submit your application to the official government portal.
+        </div>
+      </div>
+    `;
+    return;
+  }
   
   container.innerHTML = `
     <div class="analysis-loading" style="padding: var(--spacing-md) 0;">

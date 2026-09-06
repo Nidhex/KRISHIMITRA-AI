@@ -13,15 +13,15 @@ const rag    = require('../services/ragService');
 const ollama = require('../services/ollamaService');
 
 /**
- * POST /api/schemes
+ * GET /api/schemes & POST /api/schemes
  *
- * Body:
+ * Query / Body:
  *   { query?: string, language?: string, state?: string, useAI?: boolean }
  *
  * Response:
  *   { success, schemes, summary, total, source }
  */
-router.post('/', async (req, res, next) => {
+const handleSchemes = async (req, res, next) => {
   try {
     const {
       query    = 'government scheme farmer subsidy',
@@ -79,6 +79,9 @@ router.post('/', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-});
+};
+
+router.get('/', handleSchemes);
+router.post('/', handleSchemes);
 
 module.exports = router;

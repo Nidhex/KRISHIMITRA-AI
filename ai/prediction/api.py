@@ -29,6 +29,10 @@ def main():
 
         image_path = sys.argv[1]
         
+        mode = "disease"
+        if len(sys.argv) > 2:
+            mode = sys.argv[2]
+        
         if not os.path.exists(image_path):
             print(json.dumps({
                 "success": False,
@@ -36,22 +40,33 @@ def main():
             }))
             return
             
-        # Call the V3 soil predictor
-        soil, confidence, class_probs = predict_soil(image_path, verbose=False)
-        
-        # Build probabilities dictionary with numeric percentages
-        probabilities_dict = {
-            cls_name: round(float(prob) * 100, 2)
-            for cls_name, prob in class_probs
-        }
-        
-        result = {
-            "success": True,
-            "disease": soil, # keeping "disease" for backwards compatibility
-            "soil": soil,
-            "confidence": round(float(confidence) * 100, 2),
-            "probabilities": probabilities_dict
-        }
+        if mode == "soil":
+            # Call the soil predictor
+            soil, confidence, class_probs = predict_soil(image_path, verbose=False)
+            
+            # Build probabilities dictionary with numeric percentages
+            probabilities_dict = {
+                cls_name: round(float(prob) * 100, 2)
+                for cls_name, prob in class_probs
+            }
+            
+            result = {
+                "success": True,
+                "disease": soil, # keeping "disease" for backwards compatibility
+                "soil": soil,
+                "confidence": round(float(confidence) * 100, 2),
+                "probabilities": probabilities_dict
+            }
+        else:
+            # Call the plant disease predictor
+            from prediction.predictor import predict
+            disease, confidence = predict(image_path)
+            
+            result = {
+                "success": True,
+                "disease": disease,
+                "confidence": round(float(confidence) * 100, 2)
+            }
         
         print(json.dumps(result))
 

@@ -6,7 +6,7 @@
 
 window.KrishiNewsAI = (function () {
   const cfg = window.KrishiMitraConfig || {
-    API_BASE_URL: 'http://localhost:5000/api',
+    API_BASE_URL: window.location.origin + '/api',
     OLLAMA_MODEL: 'gemma3',
     OLLAMA_BASE_URL: 'http://localhost:11434',
     CHAT_TIMEOUT_MS: 120000,

@@ -7,7 +7,7 @@
 window.KrishiNewsCache = (function () {
   const BOOKMARKS_KEY = 'km_news_bookmarks';
   const LOCAL_CACHE_KEY = 'km_news_cache';
-  const API_URL = (window.KrishiMitraConfig && window.KrishiMitraConfig.API_BASE_URL) || 'http://localhost:5000/api';
+  const API_URL = (window.KrishiMitraConfig && window.KrishiMitraConfig.API_BASE_URL) || (window.location.origin + '/api');
 
   /**
    * Load cached news articles from the local backend API.

@@ -10,7 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="css/feed.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2E7D32">
 </head>
+
 <body class="theme-default font-normal text-medium">
 
   <!-- Accessibility Toolbar -->
@@ -35,7 +38,13 @@
           <option value="hi">हिन्दी (Hindi)</option>
           <option value="gu">ગુજરાતી (Gujarati)</option>
           <option value="mr">मराठी (Marathi)</option>
+          <option value="bn">বাংলা (Bengali)</option>
+          <option value="ta">தமிழ் (Tamil)</option>
+          <option value="te">తెలుగు (Telugu)</option>
+          <option value="kn">ಕನ್ನಡ (Kannada)</option>
+          <option value="ml">മലയാളം (Malayalam)</option>
           <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+          <option value="or">ଓଡ଼ିଆ (Odia)</option>
         </select>
       </div>
     </div>
@@ -130,6 +139,15 @@
             <div class="action-card-text">
               <span class="action-title" data-i18n="action_schemes">Govt Schemes</span>
               <span class="action-desc" data-i18n="action_schemes_desc">Apply for financial support</span>
+            </div>
+          </button>
+
+          <!-- Call Sarvam AI Card -->
+          <button class="action-card color-call-ai" onclick="if(window.SarvamCall)window.SarvamCall.startCall();" aria-label="Call Sarvam AI">
+            <span class="action-icon">📞</span>
+            <div class="action-card-text">
+              <span class="action-title" style="color:#1b5e20;font-weight:700;">Call Sarvam AI</span>
+              <span class="action-desc">Live voice call with AI assistant</span>
             </div>
           </button>
 
@@ -285,16 +303,27 @@
         <h2 class="voice-title" data-i18n="voice_title">Ask KrishiMitra voice AI</h2>
         <p class="voice-desc" data-i18n="voice_desc">Hold the microphone and ask your questions. Speak in your native language.</p>
         
-        <!-- Assistant Language Selector -->
-        <div class="voice-lang-bar">
-          <span data-i18n="speaking_in">Speaking:</span>
-          <select id="voice-lang-select" class="voice-lang-select">
-            <option value="en-IN">English</option>
-            <option value="hi-IN">हिन्दी (Hindi)</option>
-            <option value="gu-IN">ગુજરાતી (Gujarati)</option>
-            <option value="mr-IN">मराठी (Marathi)</option>
-            <option value="pa-IN">ਪੰਜਾਬੀ (Punjabi)</option>
-          </select>
+        <!-- Assistant Language Selector & Actions -->
+        <div class="voice-lang-bar" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span data-i18n="speaking_in">Speaking:</span>
+            <select id="voice-lang-select" class="voice-lang-select" aria-label="Speaking Language">
+              <option value="en-IN">English</option>
+              <option value="hi-IN">हिन्दी (Hindi)</option>
+              <option value="gu-IN">ગુજરાતી (Gujarati)</option>
+              <option value="mr-IN">मराठी (Marathi)</option>
+              <option value="bn-IN">বাংলা (Bengali)</option>
+              <option value="ta-IN">தமிழ் (Tamil)</option>
+              <option value="te-IN">తెలుగు (Telugu)</option>
+              <option value="kn-IN">ಕನ್ನಡ (Kannada)</option>
+              <option value="ml-IN">മലയാളം (Malayalam)</option>
+              <option value="pa-IN">ਪੰਜਾਬੀ (Punjabi)</option>
+              <option value="or-IN">ଓଡ଼ିଆ (Odia)</option>
+            </select>
+          </div>
+          <button id="btn-clear-chat" onclick="if(window.clearKrishiChat)window.clearKrishiChat();" class="btn-clear-chat" title="Clear conversation history and start new chat" style="background:#e8f5e9;color:#2e7d32;border:1px solid #c8e6c9;border-radius:16px;padding:5px 12px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:background 0.2s;">
+            <span>🔄</span> <span>New Chat</span>
+          </button>
         </div>
       </div>
 
@@ -967,20 +996,119 @@
     </div>
   </div>
 
+  <!-- MODAL: Call Sarvam AI Voice Interface -->
+  <div id="sarvam-call-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-call-title">
+    <div class="modal-backdrop" onclick="window.SarvamCall && window.SarvamCall.endCall()"></div>
+    <div class="modal-content card call-modal-content" style="max-width:520px;padding:0;overflow:hidden;border-radius:24px;box-shadow:0 12px 40px rgba(0,0,0,0.3);background:#fff;">
+      
+      <!-- Call Header -->
+      <div class="call-modal-header" style="background:linear-gradient(135deg, #1b5e20, #2e7d32);color:#fff;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:24px;">📞</span>
+          <div>
+            <h3 id="modal-call-title" style="margin:0;font-size:18px;font-weight:700;color:#fff;">KrishiMitra Voice Line</h3>
+            <span id="call-timer" style="font-size:13px;opacity:0.9;font-family:monospace;color:#c8e6c9;">00:00</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <select id="call-lang-select" class="call-lang-select" aria-label="Call Language" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.4);border-radius:14px;padding:5px 10px;font-size:13px;outline:none;cursor:pointer;">
+            <option value="en-IN" style="color:#000;">English</option>
+            <option value="hi-IN" style="color:#000;">हिन्दी (Hindi)</option>
+            <option value="gu-IN" style="color:#000;">ગુજરાતી (Gujarati)</option>
+            <option value="mr-IN" style="color:#000;">मराठी (Marathi)</option>
+            <option value="bn-IN" style="color:#000;">বাংলা (Bengali)</option>
+            <option value="ta-IN" style="color:#000;">தமிழ் (Tamil)</option>
+            <option value="te-IN" style="color:#000;">తెలుగు (Telugu)</option>
+            <option value="kn-IN" style="color:#000;">ಕನ್ನಡ (Kannada)</option>
+            <option value="ml-IN" style="color:#000;">മലയാളം (Malayalam)</option>
+            <option value="pa-IN" style="color:#000;">ਪੰਜਾਬੀ (Punjabi)</option>
+            <option value="od-IN" style="color:#000;">ଓଡ଼ିଆ (Odia)</option>
+          </select>
+          <button class="btn-close-modal" onclick="window.SarvamCall && window.SarvamCall.endCall()" aria-label="End and close" style="color:#fff;background:rgba(0,0,0,0.25);border-radius:50%;width:32px;height:32px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;">✕</button>
+        </div>
+      </div>
+
+      <!-- Call Body / Avatar & Status -->
+      <div class="call-modal-body" style="padding:24px 20px;text-align:center;background:#fafbfc;">
+        <div id="call-error-banner" class="hidden" style="background:#ffebee;color:#c62828;padding:8px 12px;border-radius:8px;font-size:13px;margin-bottom:14px;text-align:left;"></div>
+
+        <!-- Center Interactive Avatar with Waves -->
+        <div class="call-avatar-wrapper" style="position:relative;width:110px;height:110px;margin:0 auto 16px;">
+          <div id="call-mic-waves" class="call-soundwaves hidden">
+            <span class="wave-ring ring1"></span>
+            <span class="wave-ring ring2"></span>
+            <span class="wave-ring ring3"></span>
+          </div>
+          <div id="call-speaker-waves" class="call-soundwaves speaker-theme hidden">
+            <span class="wave-ring ring1"></span>
+            <span class="wave-ring ring2"></span>
+            <span class="wave-ring ring3"></span>
+          </div>
+          <div id="call-avatar-container" class="call-avatar-container" style="width:110px;height:110px;border-radius:50%;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:50px;box-shadow:0 8px 24px rgba(46,125,50,0.25);position:relative;z-index:2;transition:transform 0.3s;">
+            🤖
+          </div>
+        </div>
+
+        <h4 id="call-status-text" style="font-size:19px;font-weight:700;color:#1b5e20;margin:0 0 4px 0;">🎙️ Listening... Speak now</h4>
+        <p id="call-substatus-text" style="font-size:13px;color:#666;margin:0 0 16px 0;">Say your farming question in your native language</p>
+
+        <!-- Live Subtitle / Transcript Drawer -->
+        <div id="call-transcript-box" class="call-transcript-box" style="background:#fff;border:1.5px solid #e0e0e0;border-radius:16px;padding:12px 14px;height:130px;overflow-y:auto;text-align:left;font-size:13.5px;box-shadow:inset 0 1px 3px rgba(0,0,0,0.04);margin-bottom:18px;">
+          <div id="call-transcript-feed" style="display:flex;flex-direction:column;gap:8px;">
+            <!-- Appended dynamically -->
+          </div>
+        </div>
+
+        <!-- Call Actions Toolbar -->
+        <div class="call-controls-row" style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
+          <button id="btn-push-speak" class="btn-push-speak" onclick="window.SarvamCall && window.SarvamCall.togglePushToSpeak()" style="background:#2e7d32;color:#fff;border:none;border-radius:24px;padding:12px 22px;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 4px 12px rgba(46,125,50,0.3);transition:background 0.2s;">
+            <span>⏹️</span> <span>Done Speaking</span>
+          </button>
+          <button id="btn-end-call" class="btn-end-call" onclick="window.SarvamCall && window.SarvamCall.endCall()" style="background:#d32f2f;color:#fff;border:none;border-radius:24px;padding:12px 22px;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 4px 12px rgba(211,47,47,0.35);transition:background 0.2s;">
+            <span>🔴</span> <span>End Call</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Audio elements for assistive sound feedback -->
   <audio id="snd-click" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav" preload="auto"></audio>
   <audio id="snd-success" src="https://assets.mixkit.co/active_storage/sfx/951/951-84.wav" preload="auto"></audio>
   <audio id="snd-chime" src="https://assets.mixkit.co/active_storage/sfx/2019/2019-84.wav" preload="auto"></audio>
 
   <script src="js/config.js"></script>
+  <script src="js/offlineStorage.js"></script>
+  <script src="js/offlineStatus.js"></script>
+  <script src="js/lib/tf.min.js"></script>
+  <script src="js/offlineVision.js"></script>
+
+
   <script src="weatherService.js"></script>
   <script src="weatherAIService.js"></script>
   <script src="script.js"></script>
   <script src="js/gemmaChat.js"></script>
+  <script src="js/sarvamCall.js"></script>
   <script src="js/newsCache.js"></script>
   <script src="js/newsAI.js"></script>
   <script src="js/feedService.js"></script>
   <script src="js/feed.js"></script>
+
+  <!-- Service Worker Registration for PWA Offline Capability -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(function(reg) {
+            console.log('[PWA] KrishiMitra Service Worker registered with scope:', reg.scope);
+          })
+          .catch(function(err) {
+            console.warn('[PWA] Service Worker registration failed:', err);
+          });
+      });
+    }
+  </script>
 
   <!-- ── kmSendText: called by the text input box ───────────────────────── -->
   <script>
@@ -1026,3 +1154,4 @@
 
 </body>
 </html>
+

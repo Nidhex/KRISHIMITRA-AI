@@ -22,7 +22,18 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
-  limits: { fileSize: 10 * 1024 * 1024 }
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (_req, file, cb) => {
+    const allowedTypes = /jpeg|jpg|png|webp|gif|bmp/;
+    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = allowedTypes.test(file.mimetype);
+    if (extname && mimetype) {
+      return cb(null, true);
+    }
+    const err = new Error('Invalid file format. Only JPEG, JPG, PNG, WEBP, GIF, and BMP image formats are accepted.');
+    err.status = 400;
+    cb(err);
+  }
 });
 
 // ======================================================
@@ -38,9 +49,10 @@ router.post('/', upload.single('image'), async (req, res, next) => {
     }
 
     const imagePath = req.file.path;
+    const moduleType = req.body.module || 'disease';
 
     // Call TensorFlow Model via visionService
-    const result = await visionService.analyseImage(imagePath);
+    const result = await visionService.analyseImage(imagePath, moduleType);
 
     if (!result || !result.success) {
       return res.status(500).json({

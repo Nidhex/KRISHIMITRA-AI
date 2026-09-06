@@ -15,7 +15,7 @@ const { spawn } = require('child_process');
  *   error?: string
  * }>}
  */
-async function analyseImage(imagePath) {
+async function analyseImage(imagePath, moduleType = 'disease') {
   if (!imagePath || !fs.existsSync(imagePath)) {
     return {
       success: false,
@@ -37,7 +37,7 @@ async function analyseImage(imagePath) {
 
     const python = spawn(
       PYTHON,
-      ['-m', 'prediction.api', imagePath],
+      ['-m', 'prediction.api', imagePath, moduleType],
       {
         cwd: AI_DIR,
         env: {

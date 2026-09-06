@@ -8,10 +8,10 @@ window.KrishiFeedService = (function () {
   // ── All Gemini calls go through the backend proxy so the real API key
   //    never touches the browser.
   const API_BASE = (window.KrishiMitraConfig && window.KrishiMitraConfig.API_BASE_URL)
-    || 'http://localhost:5000/api';
+    || (window.location.origin + '/api');
 
   const GEMINI_PROXY_URL = `${API_BASE}/gemini/generateContent`;
-  const GEMINI_MODEL     = 'gemini-2.5-flash';
+  const GEMINI_MODEL     = 'gemini-3.5-flash';
 
   // ── Helper: fetch with a hard timeout (ms). Rejects with Error on timeout.
   function fetchWithTimeout(url, options, timeoutMs = 15000) {
@@ -187,8 +187,8 @@ Importance: "🔴 Urgent" | "🟠 Important" | "🟢 Useful".`;
         category    : 'Organic',
         importance  : '🟢 Useful',
         source      : 'KrishiMitra AI',
-        readMoreURL : 'http://localhost:5000/',
-        sourceUrl   : 'http://localhost:5000/',
+        readMoreURL : window.location.origin + '/',
+        sourceUrl   : window.location.origin + '/',
         publishedDate: new Date().toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' }),
         date        : new Date().toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' }),
         image       : 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=600&q=80',
