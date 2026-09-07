@@ -50,7 +50,14 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 const FRONTEND_ROOT = path.join(__dirname, '..');
 app.use(express.static(FRONTEND_ROOT, {
   // Don't serve hidden files or node_modules
-  dotfiles: 'ignore'
+  dotfiles: 'ignore',
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.bin')) {
+      res.setHeader('Content-Type', 'application/octet-stream');
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+    }
+  }
 }));
 
 
@@ -202,8 +209,35 @@ if (require.main === module) {
       console.log('Gemini API   : Missing ❌');
     }
     console.log(`Ollama       : ${ollamaAvailable ? 'Available ✅' : 'Unavailable ❌'}`);
+    // Validate Browser Vision Model Shards (Float32 alignment & existence)
+    const browserModelShards = [
+      'ai/browser-models/disease/model.json',
+      'ai/browser-models/disease/group1-shard1of3.bin',
+      'ai/browser-models/disease/group1-shard2of3.bin',
+      'ai/browser-models/disease/group1-shard3of3.bin',
+      'ai/browser-models/soil/model.json',
+      'ai/browser-models/soil/group1-shard1of3.bin',
+      'ai/browser-models/soil/group1-shard2of3.bin',
+      'ai/browser-models/soil/group1-shard3of3.bin'
+    ];
+    let tfjsShardsValid = true;
+    for (const relPath of browserModelShards) {
+      const fullPath = path.join(FRONTEND_ROOT, relPath);
+      if (!fs.existsSync(fullPath)) {
+        console.error(`[Vision Startup] ERROR: Missing model file ${relPath}`);
+        tfjsShardsValid = false;
+      } else if (relPath.endsWith('.bin')) {
+        const stat = fs.statSync(fullPath);
+        if (stat.size % 4 !== 0) {
+          console.error(`[Vision Startup] ERROR: Model shard ${relPath} size (${stat.size} bytes) is not a multiple of 4!`);
+          tfjsShardsValid = false;
+        }
+      }
+    }
+
     console.log(`Weather API  : ${hasWeather ? 'Loaded ✅' : 'Missing ❌'}`);
     console.log(`News API     : ${hasNews ? 'Loaded ✅' : 'Missing ❌'}`);
+    console.log(`TF.js Vision : ${tfjsShardsValid ? 'Ready & Validated ✅ (6/6 shards verified)' : 'Invalid ❌'}`);
     console.log(`Offline Mode : Ready ✅`);
 
     console.log('');

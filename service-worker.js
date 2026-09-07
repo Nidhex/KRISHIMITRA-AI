@@ -3,8 +3,8 @@
    Provides true offline shell capability and caches AI browser model assets.
    ========================================================================== */
 
-const CACHE_NAME_STATIC = 'krishimitra-static-v1';
-const CACHE_NAME_MODELS = 'krishimitra-models-v1';
+const CACHE_NAME_STATIC = 'krishimitra-static-v2';
+const CACHE_NAME_MODELS = 'krishimitra-models-v2';
 
 const STATIC_ASSETS = [
   '/',
@@ -94,7 +94,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       caches.open(CACHE_NAME_MODELS).then(async (cache) => {
         const cachedResponse = await cache.match(event.request);
-        if (cachedResponse) {
+        if (cachedResponse && cachedResponse.status === 200) {
           return cachedResponse;
         }
         try {

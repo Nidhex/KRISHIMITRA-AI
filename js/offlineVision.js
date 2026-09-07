@@ -78,7 +78,8 @@
         diseaseModel = await tf.loadGraphModel(MODEL_PATHS.disease.indexedDB);
         console.log('[OfflineVision] ✓ Disease Model loaded from IndexedDB cache.');
       } catch (e) {
-        console.log('[OfflineVision] IndexedDB cache miss, downloading Disease Model from server...');
+        console.warn('[OfflineVision] IndexedDB cache miss or corrupted, downloading Disease Model from server...', e.message);
+        try { await tf.io.removeModel(MODEL_PATHS.disease.indexedDB); } catch (_) {}
         if (onProgress) onProgress(0.1);
         
         diseaseModel = await tf.loadGraphModel(MODEL_PATHS.disease.model, {
@@ -134,7 +135,8 @@
         soilModel = await tf.loadGraphModel(MODEL_PATHS.soil.indexedDB);
         console.log('[OfflineVision] ✓ Soil Model loaded from IndexedDB cache.');
       } catch (e) {
-        console.log('[OfflineVision] IndexedDB cache miss, downloading Soil Model from server...');
+        console.warn('[OfflineVision] IndexedDB cache miss or corrupted, downloading Soil Model from server...', e.message);
+        try { await tf.io.removeModel(MODEL_PATHS.soil.indexedDB); } catch (_) {}
         if (onProgress) onProgress(0.1);
         
         soilModel = await tf.loadGraphModel(MODEL_PATHS.soil.model, {

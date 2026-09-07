@@ -27,6 +27,7 @@ dataset/
 *.onnx
 *.safetensors
 *.bin
+!ai/browser-models/**/*.bin
 *.pt
 
 # Outputs & Temporary Logs
