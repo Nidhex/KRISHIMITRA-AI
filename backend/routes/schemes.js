@@ -43,18 +43,23 @@ const handleSchemes = async (req, res, next) => {
         `Explain government schemes for farmers: ${query}`,
         { language }
       );
-      const prompt = rag.buildPrompt(
-        `Summarise the most important government schemes for a farmer. Query: ${query}`,
-        context
-      );
-      const result = await ollama.askGemma(prompt);
 
-      if (result.success) {
-        summary  = result.response;
-        aiSource = 'gemma3';
+      const isProduction = process.env.NODE_ENV === 'production';
+      if (isProduction) {
+        summary = context ? context.substring(0, 400) : null;
+        aiSource = 'rag';
       } else {
-        ollamaError = result.error;
-        aiSource    = 'rag';
+        const prompt = `Summarise the most important government schemes for a farmer. Query: ${query}\n${context}`;
+        const result = await ollama.askGemma(prompt);
+
+        if (result.success) {
+          summary  = result.response;
+          aiSource = 'gemma3';
+        } else {
+          ollamaError = result.error;
+          summary  = context ? context.substring(0, 400) : null;
+          aiSource = 'rag';
+        }
       }
     }
 

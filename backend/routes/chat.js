@@ -153,85 +153,105 @@ router.post('/', async (req, res, next) => {
         model = sarvamResult.model;
         inferenceMs = sarvamResult.inferenceMs;
       } else {
-        logger.warn(`[CHAT] Sarvam AI call unsuccessful (${sarvamResult.errorCode}). Trying local/fallback provider...`, {
-          error: sarvamResult.error
+        logger.warn('[LLM] Sarvam unavailable: Sarvam AI call failed.', {
+          error: sarvamResult.error,
+          errorCode: sarvamResult.errorCode
         });
       }
     } else {
-      logger.info('[CHAT] SARVAM_API_KEY not configured. Falling back to local Ollama/Gemma.');
+      logger.info('[LLM] Sarvam unavailable: SARVAM_API_KEY is not configured.');
     }
 
-    // ── 6. Fallback to Gemini 3.5 Flash if Sarvam/Ollama not available ─────
-    if (!reply && process.env.GEMINI_API_KEY) {
-      try {
-        const geminiPrompt = `${systemPrompt}\n\nFarmer Question:\n${trimmedMessage}\n\nAnswer in ${detectedLang.toUpperCase()}:`;
-        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
-        const geminiPayload = JSON.stringify({
-          contents: [{ parts: [{ text: geminiPrompt }] }]
-        });
+    // ── 6. Fallback to Gemini 3.5 Flash ──────────────────────────────────────
+    if (!reply) {
+      if (process.env.GEMINI_API_KEY) {
+        try {
+          const geminiPrompt = `${systemPrompt}\n\nFarmer Question:\n${trimmedMessage}\n\nAnswer in ${detectedLang.toUpperCase()}:`;
+          const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
+          const geminiPayload = JSON.stringify({
+            contents: [{ parts: [{ text: geminiPrompt }] }]
+          });
 
-        const geminiRes = await new Promise((resolve) => {
-          const gUrlObj = new URL(geminiUrl);
-          const gReq = require('https').request({
-            hostname: gUrlObj.hostname,
-            path: gUrlObj.pathname + gUrlObj.search,
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Content-Length': Buffer.byteLength(geminiPayload)
-            },
-            timeout: 20000
-          }, (gRes) => {
-            let gBody = '';
-            gRes.on('data', c => gBody += c);
-            gRes.on('end', () => {
-              if (gRes.statusCode === 200) {
-                try {
-                  const parsed = JSON.parse(gBody);
-                  const gText = parsed.candidates?.[0]?.content?.parts?.[0]?.text || '';
-                  resolve(gText);
-                } catch (_) {
+          const geminiRes = await new Promise((resolve) => {
+            const gUrlObj = new URL(geminiUrl);
+            const gReq = require('https').request({
+              hostname: gUrlObj.hostname,
+              path: gUrlObj.pathname + gUrlObj.search,
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(geminiPayload)
+              },
+              timeout: 20000
+            }, (gRes) => {
+              let gBody = '';
+              gRes.on('data', c => gBody += c);
+              gRes.on('end', () => {
+                if (gRes.statusCode === 200) {
+                  try {
+                    const parsed = JSON.parse(gBody);
+                    const gText = parsed.candidates?.[0]?.content?.parts?.[0]?.text || '';
+                    resolve(gText);
+                  } catch (_) {
+                    resolve('');
+                  }
+                } else {
                   resolve('');
                 }
-              } else {
-                resolve('');
-              }
+              });
             });
+            gReq.on('error', () => resolve(''));
+            gReq.on('timeout', () => { gReq.destroy(); resolve(''); });
+            gReq.write(geminiPayload);
+            gReq.end();
           });
-          gReq.on('error', () => resolve(''));
-          gReq.on('timeout', () => { gReq.destroy(); resolve(''); });
-          gReq.write(geminiPayload);
-          gReq.end();
-        });
 
-        if (geminiRes && geminiRes.trim()) {
-          reply = geminiRes.trim();
-          source = 'gemini';
-          model = 'gemini-3.5-flash';
-          inferenceMs = Date.now() - requestStart;
+          if (geminiRes && geminiRes.trim()) {
+            reply = geminiRes.trim();
+            source = 'gemini';
+            model = 'gemini-3.5-flash';
+            inferenceMs = Date.now() - requestStart;
+          } else {
+            logger.warn('[LLM] Gemini unavailable: Gemini API call did not return valid text.');
+          }
+        } catch (e) {
+          logger.warn('[LLM] Gemini unavailable: Exception during Gemini call:', e.message);
         }
-      } catch (_) {}
+      } else {
+        logger.info('[LLM] Gemini unavailable: GEMINI_API_KEY is not configured.');
+      }
     }
 
-    // ── 7. Fallback to Ollama (Gemma 3) ──────────────────────────────────────
+    // ── 7. Fallback to Ollama (Gemma 3) — Development Only ──────────────────
     if (!reply) {
-      const fallbackPrompt = `${systemPrompt}\n\nFarmer Question:\n${trimmedMessage}\n\nAnswer in ${detectedLang.toUpperCase()}:`;
-      const gemmaResult = await ollama.askGemma(fallbackPrompt);
+      const isProduction = process.env.NODE_ENV === 'production';
+      if (isProduction) {
+        logger.info('[LLM] Production mode: skipping Ollama');
+      } else {
+        logger.info('[LLM] Development mode: attempting Ollama fallback');
+        const fallbackPrompt = `${systemPrompt}\n\nFarmer Question:\n${trimmedMessage}\n\nAnswer in ${detectedLang.toUpperCase()}:`;
+        const gemmaResult = await ollama.askGemma(fallbackPrompt);
 
-      if (gemmaResult.success && gemmaResult.response) {
-        reply = gemmaResult.response;
-        source = 'gemma3';
-        model = gemmaResult.model;
-        inferenceMs = gemmaResult.inferenceMs;
+        if (gemmaResult.success && gemmaResult.response) {
+          reply = gemmaResult.response;
+          source = 'gemma3';
+          model = gemmaResult.model;
+          inferenceMs = gemmaResult.inferenceMs;
+        } else {
+          logger.warn('[LLM] Ollama unavailable:', gemmaResult.error);
+        }
       }
     }
 
     // ── 8. Ground-Truth Direct RAG Knowledge Base Fallback ───────────────────
-    if (!reply && combinedContext) {
-      reply = `Based on agricultural knowledge for ${detectedLang.toUpperCase()}: ${combinedContext.substring(0, 300)}. Please consult your local agriculture officer for specific recommendations.`;
-      source = 'rag_direct';
-      model = 'krishi_kb';
-      inferenceMs = Date.now() - requestStart;
+    if (!reply) {
+      logger.info('[LLM] Falling back to local RAG');
+      if (combinedContext && combinedContext.trim()) {
+        reply = `Based on verified KrishiMitra agricultural knowledge:\n\n${combinedContext.substring(0, 500)}`;
+        source = 'rag_direct';
+        model = 'krishi_kb';
+        inferenceMs = Date.now() - requestStart;
+      }
     }
 
     const totalMs = Date.now() - requestStart;

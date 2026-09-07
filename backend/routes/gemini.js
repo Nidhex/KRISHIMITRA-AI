@@ -3,6 +3,7 @@ const router  = express.Router();
 const https   = require('https');
 const { logger } = require('../middleware/logger');
 const ollama  = require('../services/ollamaService');
+const rag     = require('../services/ragService');
 
 // POST /api/gemini/generateContent
 router.post('/generateContent', async (req, res, next) => {
@@ -11,8 +12,8 @@ router.post('/generateContent', async (req, res, next) => {
     
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      logger.warn('[GEMINI PROXY] GEMINI_API_KEY is missing. Falling back to Ollama.');
-      return await handleOllamaFallback(contents, res);
+      logger.warn('[LLM] Gemini unavailable: GEMINI_API_KEY is missing. Triggering LLM fallback.');
+      return await handleLLMFallback(contents, res);
     }
     
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
@@ -34,8 +35,8 @@ router.post('/generateContent', async (req, res, next) => {
     const triggerFallback = async (reason) => {
       if (fallbackTriggered || res.headersSent) return;
       fallbackTriggered = true;
-      logger.info(`[GEMINI PROXY] Triggering Ollama fallback. Reason: ${reason}`);
-      await handleOllamaFallback(contents, res);
+      logger.warn(`[LLM] Gemini unavailable. Reason: ${reason}`);
+      await handleLLMFallback(contents, res);
     };
 
     const proxyReq = https.request(options, (proxyRes) => {
@@ -48,7 +49,7 @@ router.post('/generateContent', async (req, res, next) => {
       proxyRes.on('end', async () => {
         const statusCode = proxyRes.statusCode;
         if (statusCode !== 200) {
-          logger.error(`[GEMINI PROXY] Gemini API returned error status ${statusCode}. Response: ${responseBody}`);
+          logger.error(`[GEMINI PROXY] Gemini API returned error status ${statusCode}.`);
           return await triggerFallback(`non-200 status code ${statusCode}`);
         }
         
@@ -58,7 +59,7 @@ router.post('/generateContent', async (req, res, next) => {
             res.status(statusCode).json(parsed);
           }
         } catch (e) {
-          logger.error('[GEMINI PROXY] Failed to parse Gemini response JSON:', responseBody);
+          logger.error('[GEMINI PROXY] Failed to parse Gemini response JSON.');
           return await triggerFallback('JSON parse failure');
         }
       });
@@ -83,8 +84,8 @@ router.post('/generateContent', async (req, res, next) => {
   }
 });
 
-// Helper function to map contents back to a prompt and call Ollama (Gemma 3)
-async function handleOllamaFallback(contents, res) {
+// Environment-aware fallback handler (Ollama in Dev, Local RAG in Prod/Fallback)
+async function handleLLMFallback(contents, res) {
   try {
     let promptText = '';
     if (contents && contents[0] && contents[0].parts && contents[0].parts[0]) {
@@ -93,11 +94,50 @@ async function handleOllamaFallback(contents, res) {
     
     if (!promptText) {
       return res.status(400).json({
-        error: { message: "No prompt text found for fallback" }
+        error: { message: "No prompt text found for fallback", code: "INVALID_PROMPT" }
       });
     }
-    
-    logger.info(`[GEMINI PROXY FALLBACK] Calling Ollama for prompt: "${promptText.substring(0, 60)}..."`);
+
+    const isProduction = process.env.NODE_ENV === 'production';
+
+    // 1. In Production: Skip Ollama completely and use local RAG
+    if (isProduction) {
+      logger.info('[LLM] Production mode: skipping Ollama');
+      logger.info('[LLM] Falling back to local RAG');
+
+      const ragResult = await rag.retrieveContext(promptText);
+      if (ragResult && ragResult.context) {
+        const geminiFormatResponse = {
+          candidates: [
+            {
+              content: {
+                parts: [{ text: ragResult.context }],
+                role: "model"
+              },
+              finishReason: "STOP",
+              index: 0
+            }
+          ],
+          usageMetadata: {
+            promptTokenCount: 0,
+            candidatesTokenCount: 0,
+            totalTokenCount: 0
+          },
+          modelVersion: "krishi_rag"
+        };
+        return res.json(geminiFormatResponse);
+      }
+
+      return res.status(503).json({
+        error: {
+          message: "AI services are currently unavailable. Please try again later.",
+          code: "SERVICE_UNAVAILABLE"
+        }
+      });
+    }
+
+    // 2. In Development: Try local Ollama first
+    logger.info(`[LLM] Development mode: attempting Ollama fallback for prompt: "${promptText.substring(0, 60)}..."`);
     const ollamaResult = await ollama.askGemma(promptText);
     
     if (ollamaResult.success) {
@@ -105,11 +145,7 @@ async function handleOllamaFallback(contents, res) {
         candidates: [
           {
             content: {
-              parts: [
-                {
-                  text: ollamaResult.response
-                }
-              ],
+              parts: [{ text: ollamaResult.response }],
               role: "model"
             },
             finishReason: "STOP",
@@ -123,20 +159,46 @@ async function handleOllamaFallback(contents, res) {
         },
         modelVersion: ollamaResult.model || "gemma3"
       };
-      
       return res.json(geminiFormatResponse);
-    } else {
-      logger.error('[GEMINI PROXY FALLBACK] Ollama fallback failed:', ollamaResult.error);
-      return res.status(503).json({
-        error: {
-          message: `Both Gemini and Ollama are offline. Ollama error: ${ollamaResult.error}`
-        }
-      });
     }
+
+    // 3. In Development: If Ollama fails, fall back to local RAG
+    logger.warn(`[LLM] Ollama unavailable (${ollamaResult.error}). Falling back to local RAG`);
+    const ragResult = await rag.retrieveContext(promptText);
+
+    if (ragResult && ragResult.context) {
+      const geminiFormatResponse = {
+        candidates: [
+          {
+            content: {
+              parts: [{ text: ragResult.context }],
+              role: "model"
+            },
+            finishReason: "STOP",
+            index: 0
+          }
+        ],
+        usageMetadata: {
+          promptTokenCount: 0,
+          candidatesTokenCount: 0,
+          totalTokenCount: 0
+        },
+        modelVersion: "krishi_rag"
+      };
+      return res.json(geminiFormatResponse);
+    }
+
+    return res.status(503).json({
+      error: {
+        message: `Both Gemini and Ollama are unavailable: ${ollamaResult.error}`,
+        code: "SERVICE_UNAVAILABLE"
+      }
+    });
+
   } catch (e) {
-    logger.error('[GEMINI PROXY FALLBACK] Unexpected error during fallback:', e.message);
+    logger.error('[LLM] Unexpected error during fallback:', e.message);
     return res.status(500).json({
-      error: { message: "Unexpected error during fallback to Ollama" }
+      error: { message: "Unexpected error during LLM fallback", code: "INTERNAL_ERROR" }
     });
   }
 }

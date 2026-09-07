@@ -138,6 +138,14 @@ async function checkOllamaHealth() {
  * }>}
  */
 async function askGemma(prompt, options = {}) {
+  if (process.env.NODE_ENV === 'production') {
+    return {
+      success: false,
+      error: 'Ollama is disabled in production environment.',
+      errorCode: 'OLLAMA_DISABLED_IN_PRODUCTION'
+    };
+  }
+
   const model     = options.model   || OLLAMA_MODEL;
   const timeoutMs = options.timeout || OLLAMA_TIMEOUT;
 

@@ -38,18 +38,23 @@ router.post('/', async (req, res, next) => {
         `Weather advisory for ${location}`,
         { language }
       );
-      const prompt = rag.buildPrompt(
-        `What is the weather advisory for farmers in ${location}?`,
-        context
-      );
-      const result = await ollama.askGemma(prompt);
 
-      if (result.success) {
-        advisory = result.response;
-        aiSource = 'gemma3';
+      const isProduction = process.env.NODE_ENV === 'production';
+      if (isProduction) {
+        advisory = context ? `Weather Advisory for ${location}: ${context.substring(0, 300)}` : null;
+        aiSource = 'rag';
       } else {
-        ollamaError = result.error;
-        aiSource    = 'mock';
+        const prompt = `What is the weather advisory for farmers in ${location}?\n${context}`;
+        const result = await ollama.askGemma(prompt);
+
+        if (result.success) {
+          advisory = result.response;
+          aiSource = 'gemma3';
+        } else {
+          ollamaError = result.error;
+          advisory = context ? `Weather Advisory for ${location}: ${context.substring(0, 300)}` : null;
+          aiSource = 'rag';
+        }
       }
     }
 
