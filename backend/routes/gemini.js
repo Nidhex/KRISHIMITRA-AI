@@ -4,6 +4,7 @@ const https   = require('https');
 const { logger } = require('../middleware/logger');
 const ollama  = require('../services/ollamaService');
 const rag     = require('../services/ragService');
+const textExtractor = require('../services/textExtractionService');
 
 // POST /api/gemini/generateContent
 router.post('/generateContent', async (req, res, next) => {
@@ -106,12 +107,13 @@ async function handleLLMFallback(contents, res) {
       logger.info('[LLM] Falling back to local RAG');
 
       const ragResult = await rag.retrieveContext(promptText);
-      if (ragResult && ragResult.context) {
+      if (ragResult) {
+        const cleanAnswer = textExtractor.buildFarmerFacingRAGAnswer(ragResult, ragResult.detectedLanguage);
         const geminiFormatResponse = {
           candidates: [
             {
               content: {
-                parts: [{ text: ragResult.context }],
+                parts: [{ text: cleanAnswer }],
                 role: "model"
               },
               finishReason: "STOP",
@@ -145,7 +147,7 @@ async function handleLLMFallback(contents, res) {
         candidates: [
           {
             content: {
-              parts: [{ text: ollamaResult.response }],
+              parts: [{ text: textExtractor.sanitizeAssistantText(ollamaResult.response) }],
               role: "model"
             },
             finishReason: "STOP",
@@ -166,12 +168,13 @@ async function handleLLMFallback(contents, res) {
     logger.warn(`[LLM] Ollama unavailable (${ollamaResult.error}). Falling back to local RAG`);
     const ragResult = await rag.retrieveContext(promptText);
 
-    if (ragResult && ragResult.context) {
+    if (ragResult) {
+      const cleanAnswer = textExtractor.buildFarmerFacingRAGAnswer(ragResult, ragResult.detectedLanguage);
       const geminiFormatResponse = {
         candidates: [
           {
             content: {
-              parts: [{ text: ragResult.context }],
+              parts: [{ text: cleanAnswer }],
               role: "model"
             },
             finishReason: "STOP",

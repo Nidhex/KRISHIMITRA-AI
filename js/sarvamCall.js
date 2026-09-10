@@ -416,18 +416,53 @@
         console.log('[VOICE] Audio received');
       }
 
+  // ── Helper: Extract & Sanitize Assistant Text (Browser Safety Layer) ─────────
+  function cleanAssistantText(raw, languageCode = 'en') {
+    if (!raw) return '';
+    let str = typeof raw === 'string' ? raw : (raw.reply || raw.text || raw.content || '');
+
+    // Remove internal prompt leak blocks
+    str = str.replace(/===\s*FARMER\s+PROFILE\s+CONTEXT\s*===[\s\S]*?(?=\n\n|===\s*|\n[A-Z\u0900-\u0D7F]|$)/gi, '');
+    str = str.replace(/Farmer\s+Name:[\s\S]*?(?=\n\n|\n[A-Z\u0900-\u0D7F]|$)/gi, '');
+    str = str.replace(/Location:\s*.*$/gm, '');
+    str = str.replace(/Land\s+Size:\s*.*$/gm, '');
+    str = str.replace(/Soil\s+Type:\s*.*$/gm, '');
+    str = str.replace(/===\s*KRISHIMITRA\s+VERIFIED[\s\S]*?===/gi, '');
+    str = str.replace(/===\s*RAG\s+CONTEXT\s*===/gi, '');
+    str = str.replace(/===\s*SYSTEM\s+PROMPT\s*===/gi, '');
+    str = str.replace(/Based\s+on\s+agricultural\s+recommendations\s+for\s+[A-Z]{2,5}:\s*/gi, '');
+    str = str.replace(/Based\s+on\s+verified\s+KrishiMitra\s+agricultural\s+knowledge:\s*/gi, '');
+
+    str = str.trim();
+    if (!str || /===\s*FARMER\s+PROFILE/i.test(str)) {
+      const lang = (languageCode || 'en').split('-')[0];
+      const apologies = {
+        hi: 'माफ़ कीजिए, अभी मैं इस सवाल का सही जवाब नहीं दे पा रहा हूँ। कृपया थोड़ी देर बाद फिर कोशिश करें।',
+        gu: 'માફ કરશો, અત્યારે હું આ સવાલનો યોગ્ય જવાબ આપી શકતો નથી. કૃપા કરીને થોડી વાર પછી પ્રયાસ કરો.',
+        mr: 'माफ करा, मी सध्या या प्रश्नाचे योग्य उत्तर देऊ शकत नाही. कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.',
+        ta: 'மன்னிக்கவும், தற்சமயம் என்னால் சரியான பதிலை வழங்க முடியவில்லை. சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.',
+        te: 'క్షమించండి, ప్రస్తుతం నేను ఈ ప్రశ్నకు సరైన సమాధానం ఇవ్వలేకపోతున్నాను. దయచేసి కాసేపటి తర్వాత మళ్లీ ప్రయత్నించండి.',
+        en: 'I apologize, I am currently unable to provide an answer. Please try again later.'
+      };
+      return apologies[lang] || apologies.en;
+    }
+    return str;
+  }
+
+      const cleanReply = cleanAssistantText(data.reply, data.bcp47 || data.language);
+
       // 1. Append user transcript to feed
       appendCallTranscript('farmer', data.transcript);
 
       // 2. Append AI response to feed
-      appendCallTranscript('ai', data.reply);
+      appendCallTranscript('ai', cleanReply);
 
       // 3. Update conversation memory
       callHistory.push({ role: 'user', content: data.transcript });
-      callHistory.push({ role: 'assistant', content: data.reply });
+      callHistory.push({ role: 'assistant', content: cleanReply });
 
       // 4. Play spoken audio
-      playAIResponse(data.reply, data.audioBase64, data.bcp47 || data.language);
+      playAIResponse(cleanReply, data.audioBase64, data.bcp47 || data.language);
 
     } catch (err) {
       console.error('[VOICE] Error processing turn:', err);

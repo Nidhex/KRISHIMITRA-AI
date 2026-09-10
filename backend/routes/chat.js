@@ -14,6 +14,7 @@ const { logger } = require('../middleware/logger');
 const rag = require('../services/ragService');
 const sarvam = require('../services/sarvamService');
 const ollama = require('../services/ollamaService');
+const textExtractor = require('../services/textExtractionService');
 
 /**
  * System prompt generator for KrishiMitra AI.
@@ -246,17 +247,24 @@ router.post('/', async (req, res, next) => {
     // ── 8. Ground-Truth Direct RAG Knowledge Base Fallback ───────────────────
     if (!reply) {
       logger.info('[LLM] Falling back to local RAG');
-      if (combinedContext && combinedContext.trim()) {
-        reply = `Based on verified KrishiMitra agricultural knowledge:\n\n${combinedContext.substring(0, 500)}`;
-        source = 'rag_direct';
-        model = 'krishi_kb';
-        inferenceMs = Date.now() - requestStart;
-      }
+      reply = textExtractor.buildFarmerFacingRAGAnswer(ragResult, detectedLang);
+      source = 'rag_direct';
+      model = 'krishi_kb';
+      inferenceMs = Date.now() - requestStart;
+    }
+
+    // Clean and sanitize response text
+    reply = textExtractor.extractFinalAssistantText(reply);
+    reply = textExtractor.sanitizeAssistantText(reply, { language: detectedLang });
+
+    if (textExtractor.isInternalPromptLeaked(reply)) {
+      logger.warn('[CHAT] Refusing to return leaked internal prompt, using clean RAG fallback');
+      reply = textExtractor.buildFarmerFacingRAGAnswer(ragResult, detectedLang);
     }
 
     const totalMs = Date.now() - requestStart;
 
-    // ── 7. If no provider succeeded, return friendly error ───────────────────
+    // ── 9. If no provider succeeded, return friendly error ───────────────────
     if (!reply) {
       logger.error('[CHAT] All AI providers failed to generate a response.', { totalMs });
       return res.status(503).json({
@@ -267,7 +275,7 @@ router.post('/', async (req, res, next) => {
       });
     }
 
-    // ── 8. Success Response ──────────────────────────────────────────────────
+    // ── 10. Success Response ─────────────────────────────────────────────────
     logger.info(`[CHAT] Response generated via ${source} (${model}) in ${inferenceMs}ms`, {
       language: detectedLang,
       domains: ragResult.domains,

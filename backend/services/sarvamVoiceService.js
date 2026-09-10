@@ -13,6 +13,7 @@ const { logger } = require('../middleware/logger');
 const sarvam = require('./sarvamService');
 const rag = require('./ragService');
 const ollama = require('./ollamaService');
+const textExtractor = require('./textExtractionService');
 
 const SARVAM_STT_URL = process.env.SARVAM_STT_URL || 'https://api.sarvam.ai/speech-to-text';
 const SARVAM_TTS_URL = process.env.SARVAM_TTS_URL || 'https://api.sarvam.ai/text-to-speech';
@@ -209,15 +210,22 @@ async function synthesizeSpeech(text, languageCode = 'en-IN', speaker = 'shubh',
   const apiKey = process.env.SARVAM_API_KEY.trim();
   const bcp = toBCP47(languageCode);
 
-  // Clean text of markdown asterisks/bullets for clean audio synthesis
-  const cleanSpeechText = text
-    .replace(/\*\*/g, '')
-    .replace(/\*/g, '')
-    .replace(/#{1,6}\s+/g, '')
-    .replace(/[-•]\s+/g, ', ')
-    .replace(/\n+/g, ' ')
-    .trim()
-    .substring(0, 2000); // 2000 chars safety cap
+  let extractedText = textExtractor.extractFinalAssistantText(text);
+  let cleanSpeechText = textExtractor.sanitizeAssistantText(extractedText, {
+    forTTS: true,
+    language: languageCode
+  });
+
+  if (textExtractor.isInternalPromptLeaked(cleanSpeechText)) {
+    logger.error('[VOICE] Refusing to send internal context to TTS');
+    cleanSpeechText = textExtractor.getLocalizedFallbackApology(languageCode);
+  }
+
+  if (!cleanSpeechText || cleanSpeechText.trim().length === 0) {
+    throw new Error('No final assistant text available for TTS');
+  }
+
+  cleanSpeechText = cleanSpeechText.substring(0, 2000); // 2000 chars safety cap
 
   const payloadData = JSON.stringify({
     text: cleanSpeechText,
@@ -494,22 +502,36 @@ ${ragResult.context}`;
     } catch (_) {}
   }
 
-  // 3c. Fallback to Ollama
+  // 3c. Fallback to Ollama (Development Only)
   if (!replyText) {
-    const fallbackPrompt = `${systemPrompt}\n\nFarmer: ${transcript}\n\nAnswer concisely in ${detectedLang.toUpperCase()}:`;
-    const gemmaResult = await ollama.askGemma(fallbackPrompt);
-    if (gemmaResult.success && gemmaResult.response) {
-      replyText = gemmaResult.response;
-      chatSource = 'gemma3';
-      chatModel = 'gemma3';
+    const isProduction = process.env.NODE_ENV === 'production';
+    if (isProduction) {
+      logger.info('[VOICE] Production mode: skipping Ollama fallback');
+    } else {
+      const fallbackPrompt = `${systemPrompt}\n\nFarmer: ${transcript}\n\nAnswer concisely in ${detectedLang.toUpperCase()}:`;
+      const gemmaResult = await ollama.askGemma(fallbackPrompt);
+      if (gemmaResult.success && gemmaResult.response) {
+        replyText = gemmaResult.response;
+        chatSource = 'gemma3';
+        chatModel = 'gemma3';
+      }
     }
   }
 
   // 3d. Direct Ground-Truth RAG Knowledge Fallback
-  if (!replyText && ragResult.context) {
-    replyText = `Based on agricultural recommendations for ${detectedLang.toUpperCase()}: ${ragResult.context.substring(0, 250)}. Please consult local Krishi Vigyan Kendra for dosage.`;
+  if (!replyText) {
+    replyText = textExtractor.buildFarmerFacingRAGAnswer(ragResult, detectedLang);
     chatSource = 'rag_direct';
     chatModel = 'krishi_kb';
+  }
+
+  // Extract and sanitize final assistant text
+  replyText = textExtractor.extractFinalAssistantText(replyText);
+  replyText = textExtractor.sanitizeAssistantText(replyText, { language: detectedLang });
+
+  if (textExtractor.isInternalPromptLeaked(replyText)) {
+    logger.warn('[VOICE] Refusing to send internal context to UI, using clean RAG answer.');
+    replyText = textExtractor.buildFarmerFacingRAGAnswer(ragResult, detectedLang);
   }
 
   timings.chatMs = Date.now() - tChatStart;
@@ -531,9 +553,22 @@ ${ragResult.context}`;
   let audioBase64 = null;
   const bcp = toBCP47(detectedLang);
 
+  let speechText = textExtractor.extractFinalAssistantText(replyText);
+  speechText = textExtractor.sanitizeAssistantText(speechText, { forTTS: true, language: detectedLang });
+
+  if (!speechText || speechText.trim().length === 0) {
+    logger.error('[VOICE] No final assistant text available for TTS');
+    speechText = textExtractor.getLocalizedFallbackApology(detectedLang);
+  }
+
+  if (textExtractor.isInternalPromptLeaked(speechText)) {
+    logger.error('[VOICE] Refusing to send internal context to TTS');
+    speechText = textExtractor.getLocalizedFallbackApology(detectedLang);
+  }
+
   if (sarvam.isConfigured()) {
     try {
-      const ttsRes = await synthesizeSpeech(replyText, bcp, 'shubh', 0.95);
+      const ttsRes = await synthesizeSpeech(speechText, bcp, 'shubh', 0.95);
       audioBase64 = ttsRes.audioBase64;
       timings.ttsMs = ttsRes.durationMs;
     } catch (ttsErr) {
