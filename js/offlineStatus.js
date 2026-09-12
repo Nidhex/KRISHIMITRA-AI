@@ -40,14 +40,14 @@ window.KrishiOfflineStatus = (function () {
 
     if (isOnline) {
       banner.className = 'status-banner online';
-      banner.innerHTML = `<span>🟢 Online • Live Backend Connection</span>`;
+      banner.innerHTML = `<span>🟢 Online • Online AI services are available.</span>`;
       setTimeout(() => {
         if (isOnline) banner.style.display = 'none';
-      }, 3000);
+      }, 4000);
     } else {
       banner.style.display = 'block';
       banner.className = 'status-banner offline';
-      banner.innerHTML = `<span>⚡ Offline Mode • Browser AI & Local Knowledge Active</span>`;
+      banner.innerHTML = `<span>📴 Offline Mode • Local agricultural knowledge is being used.</span>`;
     }
   }
 

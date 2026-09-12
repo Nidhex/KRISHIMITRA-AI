@@ -3,7 +3,7 @@
    Provides true offline shell capability and caches AI browser model assets.
    ========================================================================== */
 
-const CACHE_NAME_STATIC = 'krishimitra-static-v2';
+const CACHE_NAME_STATIC = 'krishimitra-static-v3';
 const CACHE_NAME_MODELS = 'krishimitra-models-v2';
 
 const STATIC_ASSETS = [
@@ -18,6 +18,8 @@ const STATIC_ASSETS = [
   '/js/offlineStorage.js',
   '/js/offlineStatus.js',
   '/js/offlineVision.js',
+  '/js/offlineRAG.js',
+  '/js/offline-knowledge.json',
   '/js/gemmaChat.js',
   '/js/sarvamCall.js',
   '/js/newsCache.js',

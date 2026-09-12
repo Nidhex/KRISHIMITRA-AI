@@ -209,71 +209,54 @@
     }
 
     // ── Local Offline Knowledge & RAG Fallback ──────────────────────────────
-    function queryOfflineKnowledge(questionText) {
-      const q = (questionText || '').toLowerCase();
-      
-      if (q.includes('weather') || q.includes('temp') || q.includes('rain') || q.includes('मौसम') || q.includes('बारिश')) {
-        const cachedWeather = localStorage.getItem('km_weather_cache');
-        if (cachedWeather) {
-          try {
-            const w = JSON.parse(cachedWeather);
-            const dateStr = w.timestamp ? new Date(w.timestamp).toLocaleString('en-IN') : 'Recent';
-            return {
-              reply: `⚡ **Offline Mode — Last Cached Weather**\n\n- **Location**: ${w.locationName || 'Gorakhpur, UP'}\n- **Temperature**: ${w.data?.current?.temp || 28}°C (${w.data?.current?.conditionText || 'Partly Cloudy'})\n- **Humidity**: ${w.data?.current?.humidity || 65}%\n- **Last Updated**: ${dateStr}\n\n*(Connect to internet for live weather updates.)*`,
-              source: 'offline_cache',
-              model: 'local-kb'
-            };
-          } catch (e) {}
-        }
+    function queryOfflineKnowledge(questionText, options = {}) {
+      const voiceLangSelect = document.getElementById('voice-lang-select');
+      const selectedLang = options.language || (voiceLangSelect ? voiceLangSelect.value.split('-')[0] : 'en');
+      const farmerCtx = options.farmerContext || getFarmerContext();
+
+      if (window.KrishiOfflineRAG && typeof window.KrishiOfflineRAG.answerQuestion === 'function') {
+        const ragRes = window.KrishiOfflineRAG.answerQuestion(questionText, {
+          language: selectedLang,
+          farmerContext: farmerCtx
+        });
+
         return {
-          reply: "🌐 **Live Weather Requires Internet**\n\nLive weather forecasts require an active internet connection. Please connect to internet to fetch live Open-Meteo weather data.",
-          source: 'offline_notice',
-          model: 'local-kb'
+          reply: ragRes.reply,
+          source: 'offline_knowledge',
+          model: 'local-rag',
+          language: ragRes.language || selectedLang,
+          docCount: ragRes.docCount,
+          domains: ragRes.domains
         };
       }
 
-      if (q.includes('mandi') || q.includes('price') || q.includes('rate') || q.includes('मंडी') || q.includes('भाव') || q.includes('दाम')) {
-        return {
-          reply: "⚡ **Offline Mode — APMC Mandi Market Prices**\n\n- **Wheat (Gorakhpur APMC)**: ₹2,275 / Qtl (MSP Benchmark)\n- **Paddy (Common)**: ₹2,183 / Qtl\n- **Mustard**: ₹5,650 / Qtl\n\nVisit the **Market** tab to view the complete bundled APMC mandi price list offline.\n*(Live daily prices require internet.)*",
-          source: 'offline_cache',
-          model: 'local-kb'
-        };
-      }
-
-      if (q.includes('scheme') || q.includes('yojana') || q.includes('pm kisan') || q.includes('pmfby') || q.includes('योजना')) {
-        return {
-          reply: "⚡ **Offline Mode — Government Schemes Knowledge Base**\n\nKrishiMitra includes pre-cached guidance for major central and state schemes:\n- **PM-Kisan**: ₹6,000 annual direct benefit transfer\n- **PMFBY**: Comprehensive crop damage insurance\n- **PM-KUSUM**: Solar pump installation subsidy\n\nBrowse the **Schemes** tab for eligibility checkers and application guides offline.",
-          source: 'offline_cache',
-          model: 'local-kb'
-        };
-      }
-
-      if (q.includes('blight') || q.includes('rust') || q.includes('rot') || q.includes('disease') || q.includes('jhulsa') || q.includes('रोग') || q.includes('बीमारी')) {
-        return {
-          reply: "⚡ **Offline Mode — Vision AI Plant Doctor Available**\n\nTo diagnose plant diseases like Early Blight, Late Blight, or Rust, go to the **Vision Lab** tab and take or upload a leaf photo.\n\nOur browser-side TensorFlow.js AI runs **100% offline** with zero internet required!",
-          source: 'offline_cache',
-          model: 'local-kb'
-        };
-      }
-
+      // Fallback if KrishiOfflineRAG script isn't loaded
       return {
-        reply: "⚡ **Offline Mode — Local Knowledge Assistant**\n\nI am currently offline. I can assist you with:\n- 🌿 **Vision AI**: Browser-side disease & soil diagnosis (100% offline)\n- 💰 **Mandi Prices**: Bundled APMC market rates\n- 🏛️ **Schemes**: Complete offline government schemes DB\n- 🌦️ **Weather**: Last cached forecast\n\n*Connect to the internet for live AI chat reasoning.*",
-        source: 'offline_notice',
-        model: 'local-kb'
+        reply: "📴 **Offline AI — Answer from KrishiMitra's local agricultural knowledge**\n\nI am currently offline. Please connect to the internet to access live AI assistant.",
+        source: 'offline_knowledge',
+        model: 'local-kb',
+        language: selectedLang
       };
     }
 
-    // ── Core: Send Question to Backend Chat API ────────────────────────────
+    // ── Core: Send Question to Backend Chat API (with Offline Bypass & Fallback) ──
     async function askKrishiMitraBackend(questionText, language) {
       const voiceLangSelect = document.getElementById('voice-lang-select');
       const selectedLang = language || (voiceLangSelect ? voiceLangSelect.value.split('-')[0] : 'en');
-      const apiBase = cfg.API_BASE_URL || ((typeof window !== 'undefined' && window.location) ? (window.location.origin + '/api') : 'http://localhost:5001/api');
+      const farmerCtx = getFarmerContext();
 
+      // Step 1: Check if browser is strictly offline
+      if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+        logEntry('INFO', '[CHAT] Device is offline (navigator.onLine === false). Bypassing backend /api/chat call completely.');
+        return queryOfflineKnowledge(questionText, { language: selectedLang, farmerContext: farmerCtx });
+      }
+
+      const apiBase = cfg.API_BASE_URL || ((typeof window !== 'undefined' && window.location) ? (window.location.origin + '/api') : 'http://localhost:5001/api');
       const payload = {
         message: questionText,
         language: selectedLang,
         history: conversationHistory.slice(-cfg.CONVERSATION_HISTORY_LIMIT * 2),
-        farmerContext: getFarmerContext()
+        farmerContext: farmerCtx
       };
 
       const startTime = Date.now();
@@ -294,8 +277,8 @@
           cfg.CHAT_TIMEOUT_MS || 35000
         );
       } catch (fetchErr) {
-        logEntry('WARN', 'Backend fetch failed or offline, switching to local offline knowledge:', { error: fetchErr.message });
-        return queryOfflineKnowledge(questionText);
+        logEntry('WARN', 'Backend fetch failed or network unreachable, falling back to local offline RAG:', { error: fetchErr.message });
+        return queryOfflineKnowledge(questionText, { language: selectedLang, farmerContext: farmerCtx });
       }
 
       const inferenceMs = Date.now() - startTime;
@@ -303,13 +286,13 @@
       try {
         data = await res.json();
       } catch (parseErr) {
-        throw new Error('Received an invalid response from the server.');
+        logEntry('WARN', 'Backend returned non-JSON response, falling back to local offline RAG:', parseErr.message);
+        return queryOfflineKnowledge(questionText, { language: selectedLang, farmerContext: farmerCtx });
       }
 
       if (!res.ok || !data.success) {
-        const userMsg = data.userError || data.error || cfg.ERROR_GENERIC;
-        logEntry('WARN', 'Backend returned error status:', { data, inferenceMs });
-        throw new Error(userMsg);
+        logEntry('WARN', 'Backend returned error status, falling back to local offline RAG:', { data, inferenceMs });
+        return queryOfflineKnowledge(questionText, { language: selectedLang, farmerContext: farmerCtx });
       }
 
       logEntry('INFO', `KrishiMitra replied in ${data.inferenceMs || inferenceMs}ms via ${data.source} (${data.model})`, {
@@ -338,8 +321,16 @@
       if (typeClass.includes('bot-message')) {
         const htmlBody = formatMessageText(content);
         let badgeHtml = '';
-        if (meta && meta.source === 'sarvam') {
-          badgeHtml = `<span class="chat-provider-badge">🌾 Sarvam AI (${meta.model || 'sarvam-105b'})</span>`;
+        if (meta) {
+          if (meta.source === 'sarvam') {
+            badgeHtml = `<span class="chat-provider-badge">🌾 Sarvam AI (${meta.model || 'sarvam-105b'})</span>`;
+          } else if (meta.source === 'gemini') {
+            badgeHtml = `<span class="chat-provider-badge">✨ Gemini (${meta.model || 'gemini-3.5-flash'})</span>`;
+          } else if (meta.source === 'offline_knowledge' || meta.source === 'offline_cache' || meta.source === 'offline_notice') {
+            badgeHtml = `<span class="chat-provider-badge" style="background:#fff3e0;color:#e65100;">📴 Offline AI (Local Knowledge)</span>`;
+          } else if (meta.source === 'rag_direct') {
+            badgeHtml = `<span class="chat-provider-badge">📚 Krishi RAG</span>`;
+          }
         }
         bubble.innerHTML = `
           <div>${htmlBody}</div>

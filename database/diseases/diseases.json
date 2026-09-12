@@ -49,5 +49,39 @@
       "outbreakIndicator": "No outbreaks reported within 5km radius.",
       "reportType": "Leaf Disease Scan"
     }
+  },
+  {
+    "id": "disease-wheat-yellow-rust",
+    "category": "disease",
+    "title": "Wheat Yellow Rust / Yellow Leaves (Gehun me Peeli Pattiyan / Peela Rog)",
+    "description": "Yellowing of wheat leaves (peeli pattiyan) caused by Nitrogen deficiency, water logging, or Yellow Rust (Puccinia striiformis) fungal infection.",
+    "metadata": {
+      "crop": "Wheat (Gehun)",
+      "confidence": "93%",
+      "severity": "High",
+      "symptoms": "Yellow stripes or complete yellowing of wheat leaves (peeli pattiyan), stunted growth, reduced tillering.",
+      "organicTreatment": "Apply organic cow compost (gobhar khad) and neem oil spray (3 ml/liter). Ensure proper field drainage to clear stagnant water.",
+      "chemicalTreatment": "Apply Urea (25kg/acre) for nitrogen deficiency. Spray Propiconazole 25 EC (1 ml per liter of water) for fungal yellow rust.",
+      "preventiveMeasures": "Avoid over-irrigation, maintain field drainage, use resistant wheat seed varieties (e.g., HD-2967, DBW-187), and apply balanced NPK fertilizers.",
+      "outbreakIndicator": "Reported in North Indian wheat growing belts during winter/humid season.",
+      "reportType": "Leaf Yellowing Scan"
+    }
+  },
+  {
+    "id": "disease-aphid-pest",
+    "category": "disease",
+    "title": "Aphids / Mustard-Wheat Aphid (Chepa / Maho / Keede)",
+    "description": "Small sap-sucking insects causing leaf yellowing, curling, and honeydew mold on crops.",
+    "metadata": {
+      "crop": "Wheat, Mustard, Vegetables",
+      "confidence": "92%",
+      "severity": "Medium-High",
+      "symptoms": "Clusters of tiny green/black aphids on undersides of leaves and stems, leaf yellowing, sticky honeydew emission.",
+      "organicTreatment": "Spray Neem oil (3,000 ppm) at 3-5 ml per liter of water with soap solution, or release ladybird beetles.",
+      "chemicalTreatment": "Spray Imidacloprid 17.8 SL at 0.5 ml per liter of water or Dimethoate 30 EC at 1.5 ml per liter.",
+      "preventiveMeasures": "Install yellow sticky traps (10-12 traps per acre), monitor field weekly, preserve natural predators.",
+      "outbreakIndicator": "Common during cool dry weather.",
+      "reportType": "Pest Scan"
+    }
   }
 ]

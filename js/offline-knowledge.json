@@ -1,0 +1,1261 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-09-12T14:30:55.102Z",
+  "data": {
+    "crops": [
+      {
+        "id": "crop-paddy-basmati",
+        "category": "crop",
+        "title": "Paddy (Basmati)",
+        "description": "Basmati paddy grown in North India. High-value aromatic rice variety traded in APMC mandis.",
+        "metadata": {
+          "nameEN": "Paddy (Basmati)",
+          "nameHI": "Paddy (Basmati)",
+          "emoji": "Paddy",
+          "mandiPrices": {
+            "highest": 2350,
+            "highestMandi": "Laxmipur APMC (12km)",
+            "lowest": 2050,
+            "lowestMandi": "Kishanpur Mandi (4km)",
+            "unit": "Rs/Quintal"
+          },
+          "marketRecommendation": "Selling at Laxmipur APMC gives Rs.300/quintal more. Transport cost is Rs.40, net profit is higher.",
+          "prices": [
+            {
+              "name": "Laxmipur APMC",
+              "price": 2350,
+              "distance": "12km",
+              "trend": "up"
+            },
+            {
+              "name": "Gorakhpur Sadar Mandi",
+              "price": 2210,
+              "distance": "18km",
+              "trend": "up"
+            },
+            {
+              "name": "Kishanpur Mandi",
+              "price": 2050,
+              "distance": "4km",
+              "trend": "down"
+            }
+          ]
+        }
+      },
+      {
+        "id": "crop-wheat-lokwan",
+        "category": "crop",
+        "title": "Wheat (Lokwan)",
+        "description": "Lokwan wheat variety commonly grown in Uttar Pradesh and traded across nearby mandis.",
+        "metadata": {
+          "nameEN": "Wheat (Lokwan)",
+          "nameHI": "Wheat (Lokwan)",
+          "emoji": "Wheat",
+          "mandiPrices": {
+            "highest": 2275,
+            "highestMandi": "Gorakhpur Sadar Mandi (18km)",
+            "lowest": 2150,
+            "lowestMandi": "Laxmipur APMC (12km)",
+            "unit": "Rs/Quintal"
+          },
+          "marketRecommendation": "Wheat rates are highest in Gorakhpur Sadar Mandi. We advise wait 3 days as prices are rising.",
+          "prices": [
+            {
+              "name": "Gorakhpur Sadar Mandi",
+              "price": 2275,
+              "distance": "18km",
+              "trend": "up"
+            },
+            {
+              "name": "Kishanpur Mandi",
+              "price": 2200,
+              "distance": "4km",
+              "trend": "stable"
+            },
+            {
+              "name": "Laxmipur APMC",
+              "price": 2150,
+              "distance": "12km",
+              "trend": "down"
+            }
+          ]
+        }
+      },
+      {
+        "id": "crop-tomato-desi",
+        "category": "crop",
+        "title": "Tomato (Desi)",
+        "description": "Desi tomato variety grown as a vegetable crop in UP. Prices are highly volatile based on supply.",
+        "metadata": {
+          "nameEN": "Tomato (Desi)",
+          "nameHI": "Tomato (Desi)",
+          "emoji": "Tomato",
+          "mandiPrices": {
+            "highest": 1800,
+            "highestMandi": "Kishanpur Mandi (4km)",
+            "lowest": 1400,
+            "lowestMandi": "Gorakhpur Sadar Mandi (18km)",
+            "unit": "Rs/Quintal"
+          },
+          "marketRecommendation": "Tomato prices are highly volatile. Kishanpur Mandi is paying premium Rs.1800/Qtl today due to low supply.",
+          "prices": [
+            {
+              "name": "Kishanpur Mandi",
+              "price": 1800,
+              "distance": "4km",
+              "trend": "up"
+            },
+            {
+              "name": "Laxmipur APMC",
+              "price": 1650,
+              "distance": "12km",
+              "trend": "up"
+            },
+            {
+              "name": "Gorakhpur Sadar Mandi",
+              "price": 1400,
+              "distance": "18km",
+              "trend": "down"
+            }
+          ]
+        }
+      },
+      {
+        "id": "crop-potato-jyoti",
+        "category": "crop",
+        "title": "Potato (Jyoti)",
+        "description": "Jyoti potato variety with good storage lifetime; suited for cold storage and distant markets.",
+        "metadata": {
+          "nameEN": "Potato (Jyoti)",
+          "nameHI": "Potato (Jyoti)",
+          "emoji": "Potato",
+          "mandiPrices": {
+            "highest": 1350,
+            "highestMandi": "Laxmipur APMC (12km)",
+            "lowest": 1100,
+            "lowestMandi": "Kishanpur Mandi (4km)",
+            "unit": "Rs/Quintal"
+          },
+          "marketRecommendation": "Potatoes have solid storage lifetime. Consider storing in Cold Storage if you can't transport to Laxmipur.",
+          "prices": [
+            {
+              "name": "Laxmipur APMC",
+              "price": 1350,
+              "distance": "12km",
+              "trend": "stable"
+            },
+            {
+              "name": "Gorakhpur Sadar Mandi",
+              "price": 1280,
+              "distance": "18km",
+              "trend": "up"
+            },
+            {
+              "name": "Kishanpur Mandi",
+              "price": 1100,
+              "distance": "4km",
+              "trend": "down"
+            }
+          ]
+        }
+      },
+      {
+        "id": "crop-mustard-seed",
+        "category": "crop",
+        "title": "Mustard Seed",
+        "description": "Yellow mustard seed (Sarson) grown as a Rabi oilseed crop. MSP is set by the Government.",
+        "metadata": {
+          "nameEN": "Mustard Seed",
+          "nameHI": "Mustard Seed",
+          "emoji": "Mustard",
+          "mandiPrices": {
+            "highest": 5450,
+            "highestMandi": "Gorakhpur Sadar Mandi (18km)",
+            "lowest": 5100,
+            "lowestMandi": "Kishanpur Mandi (4km)",
+            "unit": "Rs/Quintal"
+          },
+          "marketRecommendation": "Government MSP is Rs.5650. Mandi rates are lower; consider selling to government procurement centers directly.",
+          "prices": [
+            {
+              "name": "Gorakhpur Sadar Mandi",
+              "price": 5450,
+              "distance": "18km",
+              "trend": "up"
+            },
+            {
+              "name": "Laxmipur APMC",
+              "price": 5300,
+              "distance": "12km",
+              "trend": "stable"
+            },
+            {
+              "name": "Kishanpur Mandi",
+              "price": 5100,
+              "distance": "4km",
+              "trend": "down"
+            }
+          ]
+        }
+      }
+    ],
+    "diseases": [
+      {
+        "id": "disease-rice-blast",
+        "category": "disease",
+        "title": "Rice Blast (Dhaan ka Jhonka Rog)",
+        "description": "Spindle-shaped lesions on leaves with grayish centers. Spreads rapidly in high humidity conditions. Reported in Kishanpur block farms.",
+        "metadata": {
+          "crop": "Paddy / Rice",
+          "confidence": "94%",
+          "severity": "High",
+          "symptoms": "Spindle-shaped lesions on leaves with grayish centers. Spreading rapidly due to high humidity.",
+          "organicTreatment": "Spray Neem oil formulation (3,000 ppm) at 3 ml per liter of water. Ensure proper spacing between rows.",
+          "chemicalTreatment": "Spray Tricyclazole 75 WP at 0.6 grams per liter of water. Avoid water logging.",
+          "preventiveMeasures": "Destroy previous crop residues. Do not apply excessive nitrogen fertilizer.",
+          "outbreakIndicator": "3 nearby farms in Kishanpur reported Rice Blast in the last 48 hours.",
+          "reportType": "Leaf Disease Scan"
+        }
+      },
+      {
+        "id": "disease-cotton-leaf-curl",
+        "category": "disease",
+        "title": "Cotton Leaf Curl (Kapas ka Patta Marod Rog)",
+        "description": "Upward curling of leaf margins, thick veins on leaves, stunted plant growth in cotton crops.",
+        "metadata": {
+          "crop": "Cotton",
+          "confidence": "89%",
+          "severity": "Medium",
+          "symptoms": "Upward curling of leaf margins, thick veins on leaves, stunted plant growth.",
+          "organicTreatment": "Introduce ladybird beetles to control whiteflies vector. Spray garlic-chili extract.",
+          "chemicalTreatment": "Spray Imidacloprid 17.8 SL at 0.5 ml per liter of water to control vector.",
+          "preventiveMeasures": "Use resistant cotton hybrids. Eliminate weed hosts near field bunds.",
+          "outbreakIndicator": "1 farm in Laxmipur block reported leaf curl vector outbreak.",
+          "reportType": "Leaf Disease Scan"
+        }
+      },
+      {
+        "id": "disease-tomato-early-blight",
+        "category": "disease",
+        "title": "Early Blight (Ageti Jhulsa Rog)",
+        "description": "Concentric dark brown circular spots appearing first on older leaves, forming a target board pattern.",
+        "metadata": {
+          "crop": "Tomato",
+          "confidence": "91%",
+          "severity": "Medium-Low",
+          "symptoms": "Concentric dark brown circular spots appearing first on older leaves, forming a target board pattern.",
+          "organicTreatment": "Mulch soil surface with crop residue. Spray copper hydroxide or bio-pesticide Trichoderma.",
+          "chemicalTreatment": "Spray Mancozeb 75 WP at 2 grams per liter of water immediately.",
+          "preventiveMeasures": "Ensure crop rotation. Water roots directly instead of overhead leaf sprinkling.",
+          "outbreakIndicator": "No outbreaks reported within 5km radius.",
+          "reportType": "Leaf Disease Scan"
+        }
+      },
+      {
+        "id": "disease-wheat-yellow-rust",
+        "category": "disease",
+        "title": "Wheat Yellow Rust / Yellow Leaves (Gehun me Peeli Pattiyan / Peela Rog)",
+        "description": "Yellowing of wheat leaves (peeli pattiyan) caused by Nitrogen deficiency, water logging, or Yellow Rust (Puccinia striiformis) fungal infection.",
+        "metadata": {
+          "crop": "Wheat (Gehun)",
+          "confidence": "93%",
+          "severity": "High",
+          "symptoms": "Yellow stripes or complete yellowing of wheat leaves (peeli pattiyan), stunted growth, reduced tillering.",
+          "organicTreatment": "Apply organic cow compost (gobhar khad) and neem oil spray (3 ml/liter). Ensure proper field drainage to clear stagnant water.",
+          "chemicalTreatment": "Apply Urea (25kg/acre) for nitrogen deficiency. Spray Propiconazole 25 EC (1 ml per liter of water) for fungal yellow rust.",
+          "preventiveMeasures": "Avoid over-irrigation, maintain field drainage, use resistant wheat seed varieties (e.g., HD-2967, DBW-187), and apply balanced NPK fertilizers.",
+          "outbreakIndicator": "Reported in North Indian wheat growing belts during winter/humid season.",
+          "reportType": "Leaf Yellowing Scan"
+        }
+      },
+      {
+        "id": "disease-aphid-pest",
+        "category": "disease",
+        "title": "Aphids / Mustard-Wheat Aphid (Chepa / Maho / Keede)",
+        "description": "Small sap-sucking insects causing leaf yellowing, curling, and honeydew mold on crops.",
+        "metadata": {
+          "crop": "Wheat, Mustard, Vegetables",
+          "confidence": "92%",
+          "severity": "Medium-High",
+          "symptoms": "Clusters of tiny green/black aphids on undersides of leaves and stems, leaf yellowing, sticky honeydew emission.",
+          "organicTreatment": "Spray Neem oil (3,000 ppm) at 3-5 ml per liter of water with soap solution, or release ladybird beetles.",
+          "chemicalTreatment": "Spray Imidacloprid 17.8 SL at 0.5 ml per liter of water or Dimethoate 30 EC at 1.5 ml per liter.",
+          "preventiveMeasures": "Install yellow sticky traps (10-12 traps per acre), monitor field weekly, preserve natural predators.",
+          "outbreakIndicator": "Common during cool dry weather.",
+          "reportType": "Pest Scan"
+        }
+      }
+    ],
+    "schemes": [
+      {
+        "id": "pm-kisan",
+        "category": "subsidy",
+        "title": "PM Kisan Samman Nidhi",
+        "description": "Direct income support of Rs.6,000 per year in three equal installments to all landholding farmer families across India to help purchase inputs.",
+        "metadata": {
+          "benefit": "Rs.6,000 / Year Cash Assistance (Direct Benefit Transfer)",
+          "source": "Ministry of Agriculture and Farmers Welfare",
+          "officialLink": "https://pmkisan.gov.in/",
+          "lastUpdated": "2026-08-01",
+          "deadline": null,
+          "eligibilityRules": {
+            "allowedStates": [
+              "All"
+            ],
+            "requiredOwnership": [
+              "Owner"
+            ],
+            "maxLandSizeAcres": null,
+            "requiredFarmingType": "any",
+            "requiredIrrigation": "any"
+          },
+          "documents": [
+            "Aadhaar Card",
+            "Land Record (Jamabandi/Khasra/RoR)",
+            "Bank Passbook linked with Aadhaar",
+            "Mobile Number linked with Aadhaar"
+          ],
+          "relatedSchemes": [
+            "pm-fasal-bima",
+            "soil-health-card",
+            "pm-kusum"
+          ]
+        }
+      },
+      {
+        "id": "pm-fasal-bima",
+        "category": "insurance",
+        "title": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+        "description": "Financial support and risk coverage for farmers suffering crop loss or damage due to natural calamities, pests, and diseases.",
+        "metadata": {
+          "benefit": "Low Premium Crop Insurance (1.5% - 2% Premium for Rabi/Kharif crops)",
+          "source": "Ministry of Agriculture and Farmers Welfare",
+          "officialLink": "https://pmfby.gov.in/",
+          "lastUpdated": "2026-08-01",
+          "deadline": "2026-08-31",
+          "eligibilityRules": {
+            "allowedStates": [
+              "All"
+            ],
+            "requiredOwnership": [
+              "Owner",
+              "Tenant",
+              "Sharecropper"
+            ],
+            "maxLandSizeAcres": null,
+            "requiredFarmingType": "any",
+            "requiredIrrigation": "any"
+          },
+          "documents": [
+            "Aadhaar Card",
+            "Land records (RoR) or Tenancy Agreement",
+            "Sowing Certificate issued by Patwari/Gram Panchayat",
+            "Bank Account Details (with Cancelled Cheque)"
+          ],
+          "relatedSchemes": [
+            "pm-kisan",
+            "soil-health-card"
+          ]
+        }
+      },
+      {
+        "id": "pm-kusum",
+        "category": "solar",
+        "title": "PM KUSUM Yojana (Solar Pumps)",
+        "description": "De-dieselization of the farm sector. Install clean solar water pumps with 60% combined subsidy from Central and State Governments.",
+        "metadata": {
+          "benefit": "60% Subsidy on Solar Water Pump Installation",
+          "source": "Ministry of New and Renewable Energy",
+          "officialLink": "https://pmkusum.mnre.gov.in/",
+          "lastUpdated": "2026-08-03",
+          "deadline": "2026-09-30",
+          "eligibilityRules": {
+            "allowedStates": [
+              "All"
+            ],
+            "requiredOwnership": [
+              "Owner"
+            ],
+            "maxLandSizeAcres": 12.5,
+            "requiredFarmingType": "any",
+            "requiredIrrigation": [
+              "Borewell/Tubewell",
+              "Canal"
+            ]
+          },
+          "documents": [
+            "Aadhaar Card",
+            "Land Ownership Certificate",
+            "Borewell/Water Source availability certificate",
+            "Electricity Bill (if grid-connected)",
+            "Bank Passbook",
+            "Passport Size Photo"
+          ],
+          "relatedSchemes": [
+            "pm-kisan",
+            "pmksy-pdmc"
+          ]
+        }
+      },
+      {
+        "id": "soil-health-card",
+        "category": "seed",
+        "title": "Soil Health Card Scheme",
+        "description": "Provides soil testing services to help farmers understand the nutrient status of their soil and receive recommendations on fertilizer dosage.",
+        "metadata": {
+          "benefit": "Free Soil Health Testing and Advisory Card",
+          "source": "Department of Agriculture and Farmers Welfare",
+          "officialLink": "https://soilhealth.dac.gov.in/",
+          "lastUpdated": "2026-07-28",
+          "deadline": null,
+          "eligibilityRules": {
+            "allowedStates": [
+              "All"
+            ],
+            "requiredOwnership": [
+              "Owner",
+              "Tenant",
+              "Sharecropper"
+            ],
+            "maxLandSizeAcres": null,
+            "requiredFarmingType": "any",
+            "requiredIrrigation": "any"
+          },
+          "documents": [
+            "Aadhaar Card",
+            "Soil sample collection details (Khasra No.)"
+          ],
+          "relatedSchemes": [
+            "pm-kisan",
+            "pkvy-organic"
+          ]
+        }
+      },
+      {
+        "id": "pkvy-organic",
+        "category": "organic",
+        "title": "Paramparagat Krishi Vikas Yojana (PKVY)",
+        "description": "Supports organic farming in clusters. Financial assistance of Rs.50,000 per hectare for 3 years is provided for organic inputs, certification, and packaging.",
+        "metadata": {
+          "benefit": "Rs.50,000 / Hectare Subsidy for organic cultivation and certification",
+          "source": "Ministry of Agriculture and Farmers Welfare",
+          "officialLink": "https://pgsindia-ncof.gov.in/",
+          "lastUpdated": "2026-08-01",
+          "deadline": null,
+          "eligibilityRules": {
+            "allowedStates": [
+              "All"
+            ],
+            "requiredOwnership": [
+              "Owner",
+              "Tenant"
+            ],
+            "maxLandSizeAcres": 10,
+            "requiredFarmingType": "organic",
+            "requiredIrrigation": "any"
+          },
+          "documents": [
+            "Aadhaar Card",
+            "Land records (RoR)",
+            "Cluster membership certificate",
+            "Bank details"
+          ],
+          "relatedSchemes": [
+            "soil-health-card",
+            "pmksy-pdmc"
+          ]
+        }
+      },
+      {
+        "id": "smam-equipment",
+        "category": "equipment",
+        "title": "Sub-Mission on Agricultural Mechanization (SMAM)",
+        "description": "Assistance for procurement of modern agricultural machinery (tractors, tillers, harvesters, rotavators) to reduce labor costs and increase efficiency.",
+        "metadata": {
+          "benefit": "40% to 50% Subsidy on Agricultural Equipment (up to 80% for SC/ST/Women/Small farmers)",
+          "source": "Department of Agriculture and Farmers Welfare",
+          "officialLink": "https://agrimachinery.nic.in/",
+          "lastUpdated": "2026-08-04",
+          "deadline": "2026-10-15",
+          "eligibilityRules": {
+            "allowedStates": [
+              "All"
+            ],
+            "requiredOwnership": [
+              "Owner",
+              "Tenant"
+            ],
+            "maxLandSizeAcres": null,
+            "requiredFarmingType": "any",
+            "requiredIrrigation": "any"
+          },
+          "documents": [
+            "Aadhaar Card",
+            "Land Record details (Jamabandi/RoR)",
+            "Bank Passbook copy",
+            "Caste/Category Certificate (for higher SC/ST subsidy)",
+            "Tractor registration copy (if buying implements)"
+          ],
+          "relatedSchemes": [
+            "pm-kisan",
+            "pm-kusum"
+          ]
+        }
+      },
+      {
+        "id": "pmksy-pdmc",
+        "category": "irrigation",
+        "title": "Per Drop More Crop (PDMC - PMKSY)",
+        "description": "Promotes micro-irrigation systems like drip and sprinkler setups to enhance water-use efficiency and crop productivity.",
+        "metadata": {
+          "benefit": "45% to 55% Subsidy on Drip and Sprinkler Irrigation Systems",
+          "source": "Department of Agriculture, Cooperation and Farmers Welfare",
+          "officialLink": "https://pmksy.gov.in/",
+          "lastUpdated": "2026-07-30",
+          "deadline": null,
+          "eligibilityRules": {
+            "allowedStates": [
+              "All"
+            ],
+            "requiredOwnership": [
+              "Owner",
+              "Tenant"
+            ],
+            "maxLandSizeAcres": 12.5,
+            "requiredFarmingType": "any",
+            "requiredIrrigation": [
+              "Drip/Sprinkler",
+              "Borewell/Tubewell",
+              "Canal"
+            ]
+          },
+          "documents": [
+            "Aadhaar Card",
+            "Land records (RoR)",
+            "Electricity bill / Pump connection proof",
+            "Borewell/Water source details",
+            "Bank details"
+          ],
+          "relatedSchemes": [
+            "pm-kusum",
+            "soil-health-card"
+          ]
+        }
+      },
+      {
+        "id": "rythu-bandhu",
+        "category": "subsidy",
+        "title": "Rythu Bandhu Scheme (Telangana)",
+        "description": "Investment support scheme of the Telangana Government providing direct cash assistance to farmers for purchase of seeds, fertilizers, and pesticide inputs.",
+        "metadata": {
+          "benefit": "Rs.10,000 / Acre / Year investment support in two crop seasons",
+          "source": "Telangana State Agriculture Department",
+          "officialLink": "http://rythubandhu.telangana.gov.in/",
+          "lastUpdated": "2026-08-01",
+          "deadline": null,
+          "eligibilityRules": {
+            "allowedStates": [
+              "Telangana",
+              "Andhra Pradesh"
+            ],
+            "requiredOwnership": [
+              "Owner"
+            ],
+            "maxLandSizeAcres": null,
+            "requiredFarmingType": "any",
+            "requiredIrrigation": "any"
+          },
+          "documents": [
+            "Pattadar Passbook (Telangana Land record)",
+            "Aadhaar Card",
+            "Bank Account details linked with Aadhaar"
+          ],
+          "relatedSchemes": [
+            "pm-kisan",
+            "pm-fasal-bima"
+          ]
+        }
+      }
+    ],
+    "weather": [
+      {
+        "id": "weather-code-map",
+        "category": "weather",
+        "title": "WMO Weather Code Mapping",
+        "description": "WMO Weather Interpretation Codes (WW) mapped to human-readable descriptions and emojis for display in the KrishiMitra weather dashboard.",
+        "metadata": {
+          "source": "Open-Meteo API / WMO Weather Codes",
+          "codeMap": {
+            "0": {
+              "text": "Clear Sky",
+              "emoji": "sunny"
+            },
+            "1": {
+              "text": "Mainly Clear",
+              "emoji": "partly sunny"
+            },
+            "2": {
+              "text": "Partly Cloudy",
+              "emoji": "partly cloudy"
+            },
+            "3": {
+              "text": "Overcast",
+              "emoji": "cloudy"
+            },
+            "45": {
+              "text": "Foggy",
+              "emoji": "fog"
+            },
+            "48": {
+              "text": "Depositing Rime Fog",
+              "emoji": "fog"
+            },
+            "51": {
+              "text": "Light Drizzle",
+              "emoji": "drizzle"
+            },
+            "53": {
+              "text": "Moderate Drizzle",
+              "emoji": "drizzle"
+            },
+            "55": {
+              "text": "Dense Drizzle",
+              "emoji": "drizzle"
+            },
+            "61": {
+              "text": "Slight Rain",
+              "emoji": "rain"
+            },
+            "63": {
+              "text": "Moderate Rain",
+              "emoji": "rain"
+            },
+            "65": {
+              "text": "Heavy Rain",
+              "emoji": "heavy rain"
+            },
+            "80": {
+              "text": "Slight Rain Showers",
+              "emoji": "showers"
+            },
+            "81": {
+              "text": "Moderate Rain Showers",
+              "emoji": "showers"
+            },
+            "82": {
+              "text": "Violent Rain Showers",
+              "emoji": "thunderstorm"
+            },
+            "95": {
+              "text": "Thunderstorm",
+              "emoji": "thunderstorm"
+            },
+            "96": {
+              "text": "Thunderstorm with Hail",
+              "emoji": "thunderstorm hail"
+            },
+            "99": {
+              "text": "Heavy Thunderstorm with Hail",
+              "emoji": "thunderstorm hail"
+            }
+          }
+        }
+      },
+      {
+        "id": "weather-alert-thresholds",
+        "category": "weather",
+        "title": "Weather Alert Thresholds for Farmers",
+        "description": "Threshold values used by KrishiMitra to raise weather-specific farming alerts including danger and caution warnings.",
+        "metadata": {
+          "alerts": [
+            {
+              "id": "thunderstorm-warning",
+              "type": "danger",
+              "title": "Thunderstorm Warning",
+              "triggerCodes": [
+                95,
+                96,
+                99
+              ],
+              "description": "Lightning and electrical storm active. Seek shelter indoors. Postpone using field machinery."
+            },
+            {
+              "id": "heatwave-alert",
+              "type": "danger",
+              "title": "Heatwave Alert",
+              "triggerCondition": "temperature >= 40°C",
+              "description": "Extreme temperatures exceeding 40°C. Avoid outdoor labor in peak hours. Ensure adequate crop watering."
+            },
+            {
+              "id": "cold-wave-alert",
+              "type": "danger",
+              "title": "Cold Wave Alert",
+              "triggerCondition": "temperature <= 10°C",
+              "description": "Temperatures dropped below 10°C. Cover frost-sensitive crops or trigger light night irrigation."
+            },
+            {
+              "id": "heavy-rain-warning",
+              "type": "caution",
+              "title": "Heavy Rain Warning",
+              "triggerCondition": "rainProbability > 75% or weatherCode in [65, 82]",
+              "description": "Heavy localized showers expected. Clear drainage pathways to avoid field flooding."
+            },
+            {
+              "id": "strong-wind-warning",
+              "type": "caution",
+              "title": "Strong Wind Warning",
+              "triggerCondition": "windSpeed > 25 km/h",
+              "description": "High wind velocity exceeding 25 km/h. Postpone foliar spraying; secure crop supports."
+            },
+            {
+              "id": "fog-warning",
+              "type": "caution",
+              "title": "Fog Warning",
+              "triggerCodes": [
+                45,
+                48
+              ],
+              "description": "Dense fog limiting visibility. Exercise caution during early morning operations."
+            }
+          ],
+          "defaultLocation": {
+            "name": "Gorakhpur, Uttar Pradesh",
+            "lat": 26.7606,
+            "lon": 83.3731
+          },
+          "apiSource": "Open-Meteo (open-meteo.com)",
+          "aqiSource": "Open-Meteo Air Quality API",
+          "geocodingSource": "OSM Nominatim"
+        }
+      },
+      {
+        "id": "weather-aqi-descriptions",
+        "category": "weather",
+        "title": "Air Quality Index (AQI) Descriptions",
+        "description": "US AQI scale descriptions used in KrishiMitra weather dashboard for farmer air quality awareness.",
+        "metadata": {
+          "scale": "US AQI",
+          "levels": [
+            {
+              "range": "0-50",
+              "label": "Good"
+            },
+            {
+              "range": "51-100",
+              "label": "Satisfactory"
+            },
+            {
+              "range": "101-200",
+              "label": "Moderate"
+            },
+            {
+              "range": "201-300",
+              "label": "Poor"
+            },
+            {
+              "range": "301-400",
+              "label": "Very Poor"
+            },
+            {
+              "range": "401+",
+              "label": "Severe"
+            }
+          ]
+        }
+      },
+      {
+        "id": "weather-crop-advisory-structure",
+        "category": "weather",
+        "title": "Crop-Specific Weather Advisory Structure",
+        "description": "JSON structure generated by Gemini AI for crop-specific weather farming recommendations.",
+        "metadata": {
+          "generatedBy": "Gemini AI (gemini-2.5-flash via Google Generative Language API)",
+          "advisoryFields": {
+            "advisory": "2-sentence summary of crop health suggestions under current weather conditions",
+            "watering": "Irrigation guidelines based on humidity, temperature, and rain likelihood",
+            "pesticide": "Pesticide spray recommendations based on rain probability and wind speed",
+            "fertilizer": "Fertilizer advice based on weather impact on absorption",
+            "harvest": "Harvesting advice based on approaching storms or moisture levels",
+            "riskLevel": "One of: Safe / Caution / Danger",
+            "riskReason": "One brief reason explaining the assigned risk level"
+          },
+          "fallbackBehavior": "If Gemini API is unavailable, fallback advisories are served based on rainProbability > 50% and humidity > 75% thresholds",
+          "autoRefreshInterval": "15 minutes (900,000 ms)"
+        }
+      }
+    ],
+    "soil": [
+      {
+        "id": "soil-alluvial-clay-loam",
+        "category": "soil",
+        "title": "Alluvial Clay-Loam Soil (Domat Mitti)",
+        "description": "Common soil type in UP river plains. Low organic matter, medium water retention. Suitable for wheat, potato, mustard, and gram.",
+        "metadata": {
+          "soilType": "Alluvial Clay-Loam",
+          "localName": "Domat Mitti",
+          "healthScore": "72/100",
+          "moisture": "14% (Dry - Low Moisture)",
+          "organicMatter": "0.62% (Low)",
+          "waterRetention": "Medium",
+          "recommendedCrops": [
+            "Wheat",
+            "Potato",
+            "Mustard",
+            "Gram"
+          ],
+          "fertilizerAdvisory": "Apply 25kg Nitrogen (Urea), 15kg Phosphorus (DAP) per acre. Mix 5 tons organic cow compost (gobhar khad).",
+          "region": "North India - Uttar Pradesh, Bihar river plains"
+        }
+      },
+      {
+        "id": "soil-black-clayey",
+        "category": "soil",
+        "title": "Black Clayey Soil (Kaali Mitti)",
+        "description": "High organic matter, high water retention soil type. Excellent for cotton, soybeans, pigeon pea, and paddy.",
+        "metadata": {
+          "soilType": "Black Clayey Soil",
+          "localName": "Kaali Mitti / Regur Soil",
+          "healthScore": "89/100",
+          "moisture": "28% (Optimal - High Moisture)",
+          "organicMatter": "1.15% (Optimal)",
+          "waterRetention": "High",
+          "recommendedCrops": [
+            "Cotton",
+            "Soybeans",
+            "Pigeon Pea",
+            "Paddy"
+          ],
+          "fertilizerAdvisory": "Soil health is highly rich. Add 10kg Zinc Sulphate per acre to enhance micro-nutrients. Regular compost sufficient.",
+          "region": "Central India - Maharashtra, MP, Telangana, Karnataka"
+        }
+      }
+    ],
+    "fertilizers": [
+      {
+        "id": "fertilizer-urea-nitrogen",
+        "category": "fertilizer",
+        "title": "Urea (Nitrogen Fertilizer)",
+        "description": "Primary nitrogen source fertilizer. Should not be applied before or during rain events to avoid wash-off and loss.",
+        "metadata": {
+          "nutrient": "Nitrogen (N)",
+          "application": "25kg Nitrogen (Urea) per acre for Alluvial Clay-Loam soil",
+          "timing": "Avoid application during rain probability above 50% or before expected heavy downpours",
+          "advisory": "Rain showers expected for the next 24 hours. Postpone nitrogen/urea fertilizer applications. Keep drainage channels open in vegetable beds to prevent water logging.",
+          "weatherCondition": "Do not apply in wet or waterlogged conditions",
+          "compatibleSoils": [
+            "Alluvial Clay-Loam",
+            "Sandy Loam"
+          ],
+          "compatibleCrops": [
+            "Wheat",
+            "Paddy",
+            "Potato",
+            "Mustard"
+          ]
+        }
+      },
+      {
+        "id": "fertilizer-dap-phosphorus",
+        "category": "fertilizer",
+        "title": "DAP (Phosphorus Fertilizer)",
+        "description": "Di-Ammonium Phosphate - primary phosphorus and secondary nitrogen source for most crops.",
+        "metadata": {
+          "nutrient": "Phosphorus (P)",
+          "application": "15kg Phosphorus (DAP) per acre for Alluvial Clay-Loam soil",
+          "timing": "Apply in dry soil before sowing for best absorption",
+          "advisory": "Avoid applying urea or top-dressing fertilizers when rain will wash it away.",
+          "weatherCondition": "Apply during dry breaks in weather; avoid during rain",
+          "compatibleSoils": [
+            "Alluvial Clay-Loam",
+            "Black Clayey Soil"
+          ],
+          "compatibleCrops": [
+            "Wheat",
+            "Paddy",
+            "Mustard",
+            "Gram"
+          ]
+        }
+      },
+      {
+        "id": "fertilizer-organic-compost",
+        "category": "fertilizer",
+        "title": "Organic Cow Compost (Gobhar Khad)",
+        "description": "Farm yard manure / organic compost that improves soil organic carbon, water retention, and microbial activity.",
+        "metadata": {
+          "nutrient": "Organic Matter",
+          "application": "Mix 5 tons organic cow compost (gobhar khad) per acre. For Black Clayey Soil: regular compost is sufficient.",
+          "timing": "Apply before sowing season for best results",
+          "advisory": "Alluvial soil organic matter is 0.62% (Low). Apply gobhar khad to improve fertility.",
+          "weatherCondition": "Can be applied in any weather condition",
+          "compatibleSoils": [
+            "Alluvial Clay-Loam",
+            "Black Clayey Soil"
+          ],
+          "compatibleCrops": [
+            "Wheat",
+            "Paddy",
+            "Potato",
+            "Cotton",
+            "Soybeans"
+          ]
+        }
+      },
+      {
+        "id": "fertilizer-zinc-sulphate",
+        "category": "fertilizer",
+        "title": "Zinc Sulphate (Micronutrient)",
+        "description": "Zinc micronutrient fertilizer used in Black Clayey Soil to enhance micronutrient availability.",
+        "metadata": {
+          "nutrient": "Zinc (Zn)",
+          "application": "Add 10kg Zinc Sulphate per acre to enhance micro-nutrients in Black Clayey Soil",
+          "timing": "Apply during base fertilizer application before sowing",
+          "advisory": "Soil health is highly rich in Black Clayey Soil. Add Zinc Sulphate to fill micronutrient gaps.",
+          "weatherCondition": "Apply in dry conditions",
+          "compatibleSoils": [
+            "Black Clayey Soil"
+          ],
+          "compatibleCrops": [
+            "Cotton",
+            "Soybeans",
+            "Pigeon Pea",
+            "Paddy"
+          ]
+        }
+      }
+    ],
+    "pesticides": [
+      {
+        "id": "pesticide-tricyclazole-rice-blast",
+        "category": "pesticide",
+        "title": "Tricyclazole 75 WP (Rice Blast Treatment)",
+        "description": "Chemical fungicide used to control Rice Blast disease in paddy fields.",
+        "metadata": {
+          "type": "Chemical Fungicide",
+          "targetDisease": "Rice Blast (Magnaporthe oryzae)",
+          "targetCrop": "Paddy / Rice",
+          "dosage": "0.6 grams per liter of water",
+          "applicationMethod": "Foliar spray",
+          "precautions": "Avoid water logging in fields after application. Do not spray during rain.",
+          "weatherConstraint": "Do not spray if rain probability is above 50% or winds exceed 15 km/h"
+        }
+      },
+      {
+        "id": "pesticide-neem-oil-organic",
+        "category": "pesticide",
+        "title": "Neem Oil Formulation 3000 ppm (Organic)",
+        "description": "Organic bio-pesticide made from neem extract used to control fungal diseases and insects.",
+        "metadata": {
+          "type": "Organic Bio-Pesticide",
+          "targetDisease": "Rice Blast, various fungal infections",
+          "targetCrop": "Paddy / Rice, general crops",
+          "dosage": "3 ml per liter of water",
+          "applicationMethod": "Foliar spray",
+          "precautions": "Ensure proper plant spacing before application. Best applied in early morning or evening.",
+          "weatherConstraint": "Avoid spraying in strong winds or during active rainfall"
+        }
+      },
+      {
+        "id": "pesticide-imidacloprid-cotton",
+        "category": "pesticide",
+        "title": "Imidacloprid 17.8 SL (Cotton Whitefly Control)",
+        "description": "Systemic insecticide used to control whitefly vectors responsible for Cotton Leaf Curl disease.",
+        "metadata": {
+          "type": "Chemical Insecticide",
+          "targetPest": "Whitefly (Bemisia tabaci) - vector of Cotton Leaf Curl Virus",
+          "targetCrop": "Cotton",
+          "dosage": "0.5 ml per liter of water",
+          "applicationMethod": "Foliar spray",
+          "precautions": "Wear protective gear. Avoid spraying near water bodies. Keep away from children.",
+          "weatherConstraint": "Do not spray during rain or strong winds"
+        }
+      },
+      {
+        "id": "pesticide-mancozeb-tomato",
+        "category": "pesticide",
+        "title": "Mancozeb 75 WP (Tomato Early Blight Treatment)",
+        "description": "Contact fungicide used to control Early Blight and other fungal diseases in tomato crops.",
+        "metadata": {
+          "type": "Chemical Fungicide",
+          "targetDisease": "Early Blight (Alternaria solani)",
+          "targetCrop": "Tomato",
+          "dosage": "2 grams per liter of water",
+          "applicationMethod": "Foliar spray - apply immediately at first sign of disease",
+          "precautions": "Wear protective clothing. Wash hands after use.",
+          "weatherConstraint": "Apply when no rain is expected for at least 6 hours"
+        }
+      },
+      {
+        "id": "pesticide-trichoderma-biocontrol",
+        "category": "pesticide",
+        "title": "Trichoderma (Bio-Pesticide Fungal Control)",
+        "description": "Biological fungicide made from beneficial Trichoderma fungi used for organic crop protection.",
+        "metadata": {
+          "type": "Bio-Pesticide / Organic Fungicide",
+          "targetDisease": "Early Blight, soil-borne pathogens",
+          "targetCrop": "Tomato, Vegetables",
+          "dosage": "As per product label - typically 5-10 grams per liter of water",
+          "applicationMethod": "Foliar spray or soil drench",
+          "precautions": "Store in cool place. Do not mix with chemical fungicides.",
+          "weatherConstraint": "Best applied in humid conditions for spore germination; avoid strong UV sunlight"
+        }
+      }
+    ],
+    "mandi": [
+      {
+        "id": "mandi-laxmipur-apmc",
+        "category": "mandi",
+        "title": "Laxmipur APMC",
+        "description": "Government APMC mandi located 12km from Kishanpur. Known for high paddy and tomato prices.",
+        "metadata": {
+          "distance": "12km",
+          "type": "Government APMC",
+          "cropPrices": {
+            "paddy": {
+              "price": 2350,
+              "trend": "up"
+            },
+            "wheat": {
+              "price": 2150,
+              "trend": "down"
+            },
+            "tomato": {
+              "price": 1650,
+              "trend": "up"
+            },
+            "potato": {
+              "price": 1350,
+              "trend": "stable"
+            },
+            "mustard": {
+              "price": 5300,
+              "trend": "stable"
+            }
+          },
+          "highlightedFor": [
+            "paddy",
+            "tomato",
+            "potato"
+          ]
+        }
+      },
+      {
+        "id": "mandi-gorakhpur-sadar",
+        "category": "mandi",
+        "title": "Gorakhpur Sadar Mandi",
+        "description": "Gorakhpur district mandi located 18km from Kishanpur. Highest prices for wheat and mustard.",
+        "metadata": {
+          "distance": "18km",
+          "type": "Government APMC",
+          "cropPrices": {
+            "paddy": {
+              "price": 2210,
+              "trend": "up"
+            },
+            "wheat": {
+              "price": 2275,
+              "trend": "up"
+            },
+            "tomato": {
+              "price": 1400,
+              "trend": "down"
+            },
+            "potato": {
+              "price": 1280,
+              "trend": "up"
+            },
+            "mustard": {
+              "price": 5450,
+              "trend": "up"
+            }
+          },
+          "highlightedFor": [
+            "wheat",
+            "mustard"
+          ]
+        }
+      },
+      {
+        "id": "mandi-kishanpur-local",
+        "category": "mandi",
+        "title": "Kishanpur Mandi",
+        "description": "Nearest local mandi at 4km. Best for tomatoes today due to low supply. Lower prices for paddy.",
+        "metadata": {
+          "distance": "4km",
+          "type": "Local Mandi",
+          "cropPrices": {
+            "paddy": {
+              "price": 2050,
+              "trend": "down"
+            },
+            "wheat": {
+              "price": 2200,
+              "trend": "stable"
+            },
+            "tomato": {
+              "price": 1800,
+              "trend": "up"
+            },
+            "potato": {
+              "price": 1100,
+              "trend": "down"
+            },
+            "mustard": {
+              "price": 5100,
+              "trend": "down"
+            }
+          },
+          "highlightedFor": [
+            "tomato"
+          ],
+          "note": "Kishanpur Mandi is paying premium Rs.1800/Qtl today for tomatoes due to low supply."
+        }
+      }
+    ],
+    "faq": [
+      {
+        "id": "faq-wheat-price",
+        "category": "faq",
+        "title": "What is the wheat price in Mandi today?",
+        "description": "Wheat (Lokwan) mandi price query answered by KrishiMitra Voice AI.",
+        "metadata": {
+          "trigger": [
+            "wheat",
+            "gehu",
+            "lokwan",
+            "kanak"
+          ],
+          "voiceResponse": "The highest price for Wheat (Lokwan) is Rs.2275/Qtl at Gorakhpur Sadar Mandi (18km). The lowest price is Rs.2150/Qtl at Laxmipur APMC (12km). Wheat rates are highest in Gorakhpur Sadar Mandi. We advise wait 3 days as prices are rising.",
+          "relatedModule": "Market / Mandi Prices",
+          "language": "en"
+        }
+      },
+      {
+        "id": "faq-rice-blast-cure",
+        "category": "faq",
+        "title": "How do I cure rice brown spots?",
+        "description": "Voice AI response for rice disease queries. Directs farmer to Vision Lab for AI diagnosis.",
+        "metadata": {
+          "trigger": [
+            "disease",
+            "spots",
+            "rog",
+            "bimari",
+            "blast"
+          ],
+          "voiceResponse": "If your leaves have brown spots, it could be Rice Blast. Switch to the 'Vision Lab' tab, upload a picture, and our AI scanner will diagnose it immediately and give organic and chemical treatments.",
+          "relatedModule": "Vision Lab - Disease Scanner",
+          "language": "en"
+        }
+      },
+      {
+        "id": "faq-pm-kusum-scheme",
+        "category": "faq",
+        "title": "What is PM Kusum Scheme?",
+        "description": "Voice AI explanation of PM KUSUM Yojana for solar water pump subsidy.",
+        "metadata": {
+          "trigger": [
+            "kusum",
+            "solar",
+            "pump",
+            "subsidy"
+          ],
+          "voiceResponse": "Under PM Kusum Yojana, you can get a 60% government subsidy to install Solar water pumps. Required documents: Land Jamabandi ownership papers, borewell certification, and Aadhaar card.",
+          "relatedModule": "Schemes - PM KUSUM",
+          "language": "en"
+        }
+      },
+      {
+        "id": "faq-weather-advisory",
+        "category": "faq",
+        "title": "What is the weather advisory today?",
+        "description": "Voice AI weather response including current conditions and crop advisory.",
+        "metadata": {
+          "trigger": [
+            "weather",
+            "rain",
+            "mausam",
+            "barish",
+            "varsha",
+            "hava"
+          ],
+          "voiceResponse": "Today is 29°C with Light Rain (80% probability). AI Crop Advisory: Rain is expected, so postpone spraying nitrogen/urea fertilizer or pesticides today.",
+          "relatedModule": "Weather",
+          "language": "en"
+        }
+      },
+      {
+        "id": "faq-soil-recommendation",
+        "category": "faq",
+        "title": "What crop is best for my soil?",
+        "description": "Voice AI answer for soil type based crop recommendations.",
+        "metadata": {
+          "trigger": [
+            "soil",
+            "mitti",
+            "maati",
+            "zameen"
+          ],
+          "voiceResponse": "For Alluvial Soil, we recommend growing Wheat, Paddy, and Potato crops. Use organic compost (gobhar khad) to improve low organic carbon levels. Check Vision Lab to analyze soil images.",
+          "relatedModule": "Vision Lab - Soil Analyzer",
+          "language": "en"
+        }
+      },
+      {
+        "id": "faq-pm-kisan-samman",
+        "category": "faq",
+        "title": "How do I get PM Kisan Samman Nidhi money?",
+        "description": "Voice AI answer explaining PM-Kisan direct benefit transfer process.",
+        "metadata": {
+          "trigger": [
+            "kisan",
+            "samman",
+            "6000",
+            "pm kisan",
+            "income support"
+          ],
+          "voiceResponse": "PM Kisan Samman Nidhi gives Rs.6,000 yearly income support directly into farmers' bank accounts. Link your Aadhaar card with your bank to receive installments.",
+          "relatedModule": "Schemes - PM Kisan",
+          "language": "en"
+        }
+      },
+      {
+        "id": "faq-paddy-price",
+        "category": "faq",
+        "title": "What is the paddy price today?",
+        "description": "Voice AI response for paddy mandi price queries.",
+        "metadata": {
+          "trigger": [
+            "paddy",
+            "rice",
+            "dhaan",
+            "dhan",
+            "chawal",
+            "tandul",
+            "jhona"
+          ],
+          "voiceResponse": "Rice Paddy prices today: Highest is Rs.2350/Qtl in Laxmipur APMC (12km). Lowest is Rs.2050/Qtl in Kishanpur Mandi (4km). Selling at Laxmipur APMC gives Rs.300/quintal more. Transport cost is Rs.40, net profit is higher.",
+          "relatedModule": "Market / Mandi Prices",
+          "language": "en"
+        }
+      },
+      {
+        "id": "faq-tomato-price",
+        "category": "faq",
+        "title": "What is the tomato price in mandi today?",
+        "description": "Voice AI response for tomato mandi price queries.",
+        "metadata": {
+          "trigger": [
+            "tomato",
+            "tamatar",
+            "tameta",
+            "tamatar"
+          ],
+          "voiceResponse": "Tomatoes are selling at an excellent rate today! Highest is Rs.1800/Qtl in Kishanpur Mandi (4km). Lowest is Rs.1400/Qtl in Gorakhpur Sadar Mandi.",
+          "relatedModule": "Market / Mandi Prices",
+          "language": "en"
+        }
+      }
+    ]
+  }
+}
