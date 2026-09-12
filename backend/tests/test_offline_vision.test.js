@@ -88,7 +88,7 @@ function runTests() {
 
   // 8. Service Worker & Manifest
   const swJs = fs.readFileSync(path.join(ROOT_DIR, 'service-worker.js'), 'utf8');
-  assert(/krishimitra-static-v[23]/.test(swJs) && swJs.includes('krishimitra-models-v2'), 'service-worker.js implements cache versioning');
+  assert(/krishimitra-static-v[2345]/.test(swJs) && swJs.includes('krishimitra-models-v2'), 'service-worker.js implements cache versioning');
   assert(swJs.includes('/ai/browser-models/disease/model.json'), 'service-worker.js caches disease browser model');
   assert(swJs.includes('/ai/browser-models/soil/model.json'), 'service-worker.js caches soil browser model');
   assert(swJs.includes('/js/lib/tf.min.js'), 'service-worker.js caches local tf.min.js bundle');

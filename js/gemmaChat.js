@@ -10,8 +10,10 @@
 (function () {
   'use strict';
 
-  // ── Wait for DOM + script.js to finish loading ────────────────────────────
-  window.addEventListener('load', function () {
+  function initGemmaChat() {
+    if (window.__krishiGemmaInitialized) return;
+    window.__krishiGemmaInitialized = true;
+
     const cfg = window.KrishiMitraConfig || {
       API_BASE_URL: (typeof window !== 'undefined' && window.location) ? (window.location.origin + '/api') : 'http://localhost:5001/api',
       CHAT_TIMEOUT_MS: 35000,
@@ -38,8 +40,8 @@
     // ── Helper: Extract Current Farmer Context from App ────────────────────
     function getFarmerContext() {
       try {
-        const farmerNameEl = document.querySelector('.farmer-name');
-        const farmerVillageEl = document.querySelector('.farmer-village');
+        const farmerNameEl = typeof document !== 'undefined' ? document.querySelector('.farmer-name') : null;
+        const farmerVillageEl = typeof document !== 'undefined' ? document.querySelector('.farmer-village') : null;
 
         return {
           name: farmerNameEl ? farmerNameEl.innerText.trim() : 'Ramesh Prasad',
@@ -47,7 +49,7 @@
           landSize: '4 Acres',
           soilType: 'Clay Loam (दोमट मिट्टी)',
           primaryCrop: 'Paddy / Wheat (धान / गेहूं)',
-          currentLanguage: (window.appState && window.appState.currentLanguage) || 'en'
+          currentLanguage: (typeof window !== 'undefined' && window.appState && window.appState.currentLanguage) || 'en'
         };
       } catch (_) {
         return null;
@@ -103,6 +105,7 @@
 
     // ── UI helpers ─────────────────────────────────────────────────────────
     function setThinkingBubble(show) {
+      if (typeof document === 'undefined') return null;
       const THINKING_ID = 'km-thinking-bubble';
       let existing = document.getElementById(THINKING_ID);
 
@@ -133,6 +136,7 @@
     }
 
     function showErrorBubble(message) {
+      if (typeof document === 'undefined') return;
       const box = document.getElementById('chat-messages-box');
       if (!box) return;
       const bubble = document.createElement('div');
@@ -147,6 +151,7 @@
     }
 
     function setInputsDisabled(disabled) {
+      if (typeof document === 'undefined') return;
       const micBtn = document.getElementById('btn-microphone');
       const sendBtn = document.getElementById('km-chat-send-btn');
       const textInp = document.getElementById('km-chat-input');
@@ -167,7 +172,7 @@
     }
 
     // ── Inject Thinking Styles ─────────────────────────────────────────────
-    if (!document.getElementById('km-thinking-styles')) {
+    if (typeof document !== 'undefined' && !document.getElementById('km-thinking-styles')) {
       const style = document.createElement('style');
       style.id = 'km-thinking-styles';
       style.textContent = `
@@ -210,12 +215,15 @@
 
     // ── Local Offline Knowledge & RAG Fallback ──────────────────────────────
     function queryOfflineKnowledge(questionText, options = {}) {
-      const voiceLangSelect = document.getElementById('voice-lang-select');
+      const voiceLangSelect = typeof document !== 'undefined' ? document.getElementById('voice-lang-select') : null;
       const selectedLang = options.language || (voiceLangSelect ? voiceLangSelect.value.split('-')[0] : 'en');
       const farmerCtx = options.farmerContext || getFarmerContext();
 
-      if (window.KrishiOfflineRAG && typeof window.KrishiOfflineRAG.answerQuestion === 'function') {
-        const ragRes = window.KrishiOfflineRAG.answerQuestion(questionText, {
+      const ragEngine = (typeof window !== 'undefined' && window.KrishiOfflineRAG) ||
+                        (typeof require === 'function' ? (function() { try { return require('./offlineRAG.js'); } catch(_) { return null; } })() : null);
+
+      if (ragEngine && typeof ragEngine.answerQuestion === 'function') {
+        const ragRes = ragEngine.answerQuestion(questionText, {
           language: selectedLang,
           farmerContext: farmerCtx
         });
@@ -241,7 +249,7 @@
 
     // ── Core: Send Question to Backend Chat API (with Offline Bypass & Fallback) ──
     async function askKrishiMitraBackend(questionText, language) {
-      const voiceLangSelect = document.getElementById('voice-lang-select');
+      const voiceLangSelect = typeof document !== 'undefined' ? document.getElementById('voice-lang-select') : null;
       const selectedLang = language || (voiceLangSelect ? voiceLangSelect.value.split('-')[0] : 'en');
       const farmerCtx = getFarmerContext();
 
@@ -311,6 +319,7 @@
 
     // ── Function to Add Chat Message with Markdown Formatting ──────────────
     function appendChatMessage(content, typeClass, meta = null) {
+      if (typeof document === 'undefined') return;
       const box = document.getElementById('chat-messages-box');
       if (!box) return;
 
@@ -353,23 +362,21 @@
     // ── Clear Chat History Function ────────────────────────────────────────
     window.clearKrishiChat = function () {
       conversationHistory = [];
-      const box = document.getElementById('chat-messages-box');
-      if (box) {
-        box.innerHTML = `
-          <div class="chat-bubble bot-message">
-            <p>Namaste! I am your KrishiMitra assistant. How can I help you with your crops, weather, diseases, or market prices today?</p>
-            <span class="chat-time">${new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}</span>
-          </div>
-        `;
+      if (typeof document !== 'undefined') {
+        const box = document.getElementById('chat-messages-box');
+        if (box) {
+          box.innerHTML = `
+            <div class="chat-bubble bot-message">
+              <p>Namaste! I am your KrishiMitra assistant. How can I help you with your crops, weather, diseases, or market prices today?</p>
+              <span class="chat-time">${new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}</span>
+            </div>
+          `;
+        }
       }
       logEntry('INFO', 'Conversation memory cleared.');
     };
 
     // ── Intercept and Patch handleFarmerVoiceQuestion ──────────────────────
-    if (typeof window.handleFarmerVoiceQuestion === 'function') {
-      window.__originalHandleFarmerVoiceQuestion = window.handleFarmerVoiceQuestion;
-    }
-
     window.handleFarmerVoiceQuestion = async function (questionText) {
       if (!questionText || !questionText.trim()) return;
 
@@ -415,6 +422,8 @@
           window.speakAloud(result.reply);
         }
 
+        return result;
+
       } catch (err) {
         setThinkingBubble(false);
         const userMessage = err.message || cfg.ERROR_GENERIC;
@@ -422,19 +431,31 @@
         showErrorBubble(userMessage);
       } finally {
         setInputsDisabled(false);
-        const inp = document.getElementById('km-chat-input');
-        if (inp) inp.focus();
+        if (typeof document !== 'undefined') {
+          const inp = document.getElementById('km-chat-input');
+          if (inp) inp.focus();
+        }
       }
     };
 
     // ── Expose Global Reference ────────────────────────────────────────────
     window.KrishiMitraGemma = {
       ask: askKrishiMitraBackend,
+      queryOffline: queryOfflineKnowledge,
       history: conversationHistory,
       log: logEntry,
       clear: window.clearKrishiChat
     };
 
     logEntry('INFO', 'KrishiMitra Multilingual Sarvam AI Chat ready.');
-  });
+  }
+
+  // Execute initialization immediately or on DOM ready
+  if (typeof document !== 'undefined' && document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGemmaChat);
+    window.addEventListener('load', initGemmaChat);
+  } else {
+    initGemmaChat();
+  }
 })();
+

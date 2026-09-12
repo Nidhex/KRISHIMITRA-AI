@@ -1,52 +1,32 @@
 /* ==========================================================================
-   KrishiMitra AI — Browser-Safe Multilingual Offline RAG Engine
-   Performs local agricultural knowledge search & answer generation.
-   Supports: 11 Indian Languages (Native Scripts only, Romanized Hindi -> Devanagari).
-   Compatible with both Browser environment and Node.js testing.
+   KrishiMitra AI — Offline RAG & Agricultural Knowledge Engine
+   Provides zero-latency local agricultural knowledge search when offline.
+   Supports: 11 Indian Languages, Native Scripts, Romanized Hindi Input,
+              Exact Matching Boosts, and Devanagari Output Generation.
    ========================================================================== */
 
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define([], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    module.exports = factory();
-  } else {
-    root.KrishiOfflineRAG = factory();
+  const instance = factory();
+  if (typeof module === 'object' && module.exports) {
+    module.exports = instance;
   }
-}(typeof self !== 'undefined' ? self : this, function () {
+  if (root) {
+    root.KrishiOfflineRAG = instance;
+  }
+}(typeof window !== 'undefined' ? window : (typeof self !== 'undefined' ? self : this), function () {
   'use strict';
 
-  // ── In-memory Knowledge Store ──────────────────────────────────────────────
-  let offlineData = {
-    crops: [],
-    diseases: [],
-    schemes: [],
-    weather: [],
-    soil: [],
-    fertilizers: [],
-    pesticides: [],
-    mandi: [],
-    faq: []
-  };
-
+  let offlineData = {};
   let isLoaded = false;
 
-  // ── Supported Language Definitions ──────────────────────────────────────────
+  // ── Supported Languages Configuration ─────────────────────────────────────
   const SUPPORTED_LANGUAGES = {
-    en: { name: 'English', native: 'English' },
-    hi: { name: 'Hindi', native: 'हिन्दी' },
-    gu: { name: 'Gujarati', native: 'ગુજરાતી' },
-    mr: { name: 'Marathi', native: 'मराठी' },
-    bn: { name: 'Bengali', native: 'বাংলা' },
-    ta: { name: 'Tamil', native: 'தமிழ்' },
-    te: { name: 'Telugu', native: 'తెలుగు' },
-    kn: { name: 'Kannada', native: 'ಕನ್ನಡ' },
-    ml: { name: 'Malayalam', native: 'മലയാളം' },
-    pa: { name: 'Punjabi', native: 'ਪੰਜਾਬੀ' },
-    or: { name: 'Odia', native: 'ଓଡ଼ିଆ' }
+    en: 'English', hi: 'हिन्दी', gu: 'ગુજરાતી', mr: 'मराठी',
+    bn: 'বাংলা', ta: 'தமிழ்', te: 'తెలుగు', kn: 'ಕನ್ನಡ',
+    ml: 'മലയാളം', pa: 'ਪੰਜਾਬੀ', or: 'ଓଡ଼ିଆ'
   };
 
-  // ── Localized UI Templates & Headers for All 11 Languages ──────────────────
+  // ── Multilingual UI Templates ──────────────────────────────────────────────
   const LOCALIZED_UI = {
     en: {
       header: '📴 **Offline AI — Answer from KrishiMitra\'s local agricultural knowledge**\n',
@@ -146,7 +126,7 @@
       labels: {
         overview: 'ವಿವರಣೆ', crop: 'ಬೆಳೆ', symptoms: 'ಲಕ್ಷಣಗಳು', organicTreatment: '🌿 ಸಾವಯವ ಚಿಕಿತ್ಸೆ',
         chemicalTreatment: '🧪 ರಾಸಾಯನಿಕ ಚಿಕಿತ್ಸೆ', prevention: '🛡️ ಮುನ್ನೆಚ್ಚರಿಕೆ', dosage: '⚖️ ಪ್ರಮಾಣ',
-        applicationMethod: '💧 ಸಿಂಪಡಣೆ ವಿಧಾನ', precautions: '⚠️ ಮುನ್ನೆಚ್ಚರಿಕೆಗಳು', application: '🌾 ಗೊಬ್ಬರ ಬಳಕೆ',
+        applicationMethod: '💧 ಸಿಂಪಡಣೆ ವಿಧಾನ', precautions: '⚠️ ಮುನ್ನೆಚ್ಚರಿಕೆಗಳು', application: '🌾 ಗೊಬ್ಬರ ಸಲಹೆ',
         fertilizerAdvisory: '🧪 ಗೊಬ್ಬರ ಪ್ರಮಾಣ', timing: '⏰ ಸಮಯ', suitableCrops: '🌱 ಸೂಕ್ತ ಬೆಳೆಗಳು',
         soilType: '🏔️ ಮಣ್ಣಿನ ವಿಧ', healthScore: '📊 ಮಣ್ಣಿನ ಆರೋಗ್ಯ', moisture: '💧 ತೇವಾಂಶ', eligibility: '📋 ಅರ್ಹತೆ',
         benefit: '💰 ಸೌಲಭ್ಯ / ಸಬ್ಸಿಡಿ', guidance: '💡 ಮಾರ್ಗದರ್ಶನ', mandiRates: '💵 ಮಾರುಕಟ್ಟೆ ಬೆಲೆ', marketAdvice: '📈 ಮಾರುಕಟ್ಟೆ ಸಲಹೆ'
@@ -193,10 +173,10 @@
     }
   };
 
-  // ── Hindi Devanagari Terminology Translation Map ───────────────────────────
+  // ── Comprehensive Hindi Devanagari Terminology Translation Map ──────────────
   const HINDI_TRANSLATION_MAP = {
     // Record Titles
-    'Wheat Yellow Rust / Yellow Leaves (Gehun me Peeli Pattiyan / Peela Rog)': 'गेहूं का पीला रतुआ / पीली पत्तियां (नाइट्रोजन की कमी या रतुआ रोग)',
+    'Wheat Yellow Rust / Yellow Leaves (Gehun me Peeli Pattiyan / Peela Rog)': 'गेहूं का पीला रतुआ / पीली पत्तियां (नाइट्रोजन कमी या रतुआ रोग)',
     'Aphids / Mustard-Wheat Aphid (Chepa / Maho / Keede)': 'माहो / चेपा / कीड़े (एफिड्स कीट प्रकोप)',
     'Rice Blast (Dhaan ka Jhonka Rog)': 'धान का झोंका रोग (राइस ब्लास्ट)',
     'Cotton Leaf Curl (Kapas ka Patta Marod Rog)': 'कपास पत्ती मरोड़ रोग (लीफ कर्ल)',
@@ -218,25 +198,56 @@
     'Alluvial Clay-Loam Soil (Domat Mitti)': 'जलोढ़ दोमट मिट्टी (नदी मैदानी क्षेत्र)',
     'Black Clayey Soil (Kaali Mitti)': 'काली मिट्टी (रेगुर मिट्टी)',
     'PM Kisan Samman Nidhi Yojana': 'पीएम किसान सम्मान निधि योजना',
-    'PM Fasal Bima Yojana (PMFBY)': 'प्रधानमंत्री फसल बीमा योजना (PMFBY)',
+    'PM Kisan Samman Nidhi': 'पीएम किसान सम्मान निधि योजना',
+    'Pradhan Mantri Fasal Bima Yojana (PMFBY)': 'प्रधानमंत्री फसल बीमा योजना (PMFBY)',
     'PM KUSUM Solar Pump Scheme': 'पीएम कुसुम सोलर पंप योजना',
+    'PM KUSUM Yojana (Solar Pumps)': 'पीएम कुसुम सोलर पंप योजना',
+    'Soil Health Card Scheme': 'मृदा स्वास्थ्य कार्ड योजना',
+    'Paramparagat Krishi Vikas Yojana (PKVY)': 'पारम्परागत कृषि विकास योजना (PKVY)',
+    'Sub-Mission on Agricultural Mechanization (SMAM)': 'कृषि यंत्रीकरण उप-मिशन (SMAM)',
+    'Per Drop More Crop (PDMC - PMKSY)': 'प्रति बूंद अधिक फसल (ड्रिप/स्प्रिंकलर सिंचाई योजना)',
 
-    // Record Descriptions & Metadata
-    'Yellowing of wheat leaves (peeli pattiyan) caused by Nitrogen deficiency, water logging, or Yellow Rust (Puccinia striiformis) fungal infection.': 'गेहूं की पत्तियां पीली होने के कई कारण हो सकते हैं, जैसे नाइट्रोजन की कमी, खेत में अत्यधिक पानी का जमाव (जलभराव) या पीला रतुआ (Puccinia striiformis) फंगल रोग।',
-    'Wheat (Gehun)': 'गेहूं',
+    // Record Descriptions & Metadata Strings
+    'Yellowing of wheat leaves (peeli pattiyan) caused by Nitrogen deficiency, water logging, or Yellow Rust (Puccinia striiformis) fungal infection.': 'गेहूं की पत्तियां पीली होने के कई कारण हो सकते हैं, जैसे नाइट्रोजन की कमी, खेत में अत्यधिक पानी का जमाव (जलभराव) या पीला रतुआ फफूंद रोग।',
+    'Wheat (Gehun)': 'गेहूं की फसल',
     'Yellow stripes or complete yellowing of wheat leaves (peeli pattiyan), stunted growth, reduced tillering.': 'गेहूं की पत्तियों पर पीली धारियां या पत्तियों का पीला पड़ना, पौधे का विकास रुकना तथा कल्ले कम बनना।',
-    'Apply organic cow compost (gobhar khad) and neem oil spray (3 ml/liter). Ensure proper field drainage to clear stagnant water.': 'खेत में अच्छी सड़ी हुई गोबर की जैविक खाद का प्रयोग करें तथा नीम के तेल (3 मिली प्रति लीटर पानी) का छिड़काव करें। खेत में खड़े अतिरिक्त पानी को बाहर निकालने के लिए जल निकासी की उचित व्यवस्था करें।',
-    'Apply Urea (25kg/acre) for nitrogen deficiency. Spray Propiconazole 25 EC (1 ml per liter of water) for fungal yellow rust.': 'नाइट्रोजन की कमी दूर करने के लिए प्रति एकड़ 25 किग्रा यूरिया की टॉप ड्रेसिंग करें। फफूंद जनित पीला रतुआ दिखने पर प्रोपिकोनाज़ोल 25 EC (1 मिली प्रति लीटर पानी) का छिड़काव करें।',
-    'Avoid over-irrigation, maintain field drainage, use resistant wheat seed varieties (e.g., HD-2967, DBW-187), and apply balanced NPK fertilizers.': 'अत्यधिक सिंचाई से बचें, खेत में पानी रुकने न दें, रोग प्रतिरोधी किस्मों (जैसे HD-2967, DBW-187) का चयन करें तथा संतुलित NPK उर्वरकों का प्रयोग करें।',
-    'Small sap-sucking insects causing leaf yellowing, curling, and honeydew mold on crops.': 'छोटे रस चूसक कीड़े (माहो/चेपा) जो फसल की पत्तियों का रस चूसकर पत्तियों को पीला और मुड़ा हुआ बना देते हैं।',
-    'Clusters of tiny green/black aphids on undersides of leaves and stems, leaf yellowing, sticky honeydew emission.': 'पत्तियों के निचले हिस्से और तनों पर हरे/काले कीड़ों का समूह, पत्तियों का पीला पड़ना तथा चिपचिपा पदार्थ दिखना।',
-    'Spray Neem oil (3,000 ppm) at 3-5 ml per liter of water with soap solution, or release ladybird beetles.': 'नीम के तेल (3000 ppm) 3-5 मिली प्रति लीटर पानी में थोड़ा साबुन घोलकर छिड़काव करें या मित्र कीड़ों का प्रयोग करें।',
-    'Spray Imidacloprid 17.8 SL at 0.5 ml per liter of water or Dimethoate 30 EC at 1.5 ml per liter.': 'कीट का प्रकोप अधिक होने पर इमिडाक्लोप्रिड 17.8 SL (0.5 मिली प्रति लीटर पानी) या डाइमेथोएट 30 EC (1.5 मिली/लीटर) का छिड़काव करें।',
-    'Install yellow sticky traps (10-12 traps per acre), monitor field weekly, preserve natural predators.': 'खेत में प्रति एकड़ 10-12 पीले चिपचिपे ट्रैप (Yellow Sticky Traps) लगाएं तथा साप्ताहिक निरीक्षण करें।',
-    'Primary nitrogen source fertilizer. Should not be applied before or during rain events to avoid wash-off and loss.': 'फसल के लिए प्राथमिक नाइट्रोजन उर्वरक। बारिश के दौरान या बारिश से ठीक पहले यूरिया का छिड़काव न करें ताकि दवा बहकर नष्ट न हो।',
+    'Apply organic cow compost (gobhar khad) and neem oil spray (3 ml/liter). Ensure proper field drainage to clear stagnant water.': 'खेत में अच्छी सड़ी हुई गोबर की जैविक खाद का प्रयोग करें तथा नीम के तेल (3 मिली/लीटर) का छिड़काव करें। जल निकासी की उचित व्यवस्था करें।',
+    'Apply Urea (25kg/acre) for nitrogen deficiency. Spray Propiconazole 25 EC (1 ml per liter of water) for fungal yellow rust.': 'नाइट्रोजन कमी के लिए 25 किग्रा/एकड़ यूरिया की टॉप ड्रेसिंग करें। पीला रतुआ फफूंद दिखने पर प्रोपिकोनाज़ोल 25 EC (1 मिली/लीटर पानी) का छिड़काव करें।',
+    'Avoid over-irrigation, maintain field drainage, use resistant wheat seed varieties (e.g., HD-2967, DBW-187), and apply balanced NPK fertilizers.': 'अत्यधिक सिंचाई से बचें, खेत में जल निकासी रखें, रोग प्रतिरोधी किस्मों (HD-2967, DBW-187) का प्रयोग करें तथा संतुलित उर्वरक डालें।',
+    'Small sap-sucking insects causing leaf yellowing, curling, and honeydew mold on crops.': 'छोटे रस चूसक कीड़े जो फसल की पत्तियों का रस चूसकर पत्तियों को पीला और मुड़ा हुआ बना देते हैं।',
+    'Clusters of tiny green/black aphids on undersides of leaves and stems, leaf yellowing, sticky honeydew emission.': 'पत्तियों और तनों पर हरे/काले कीड़ों का जमावड़ा, पत्तियों का पीला पड़ना तथा चिपचिपा पदार्थ।',
+    'Spray Neem oil (3,000 ppm) at 3-5 ml per liter of water with soap solution, or release ladybird beetles.': 'नीम तेल (3000 ppm) 3-5 मिली/लीटर पानी में साबुन घोल के साथ छिड़कें।',
+    'Spray Imidacloprid 17.8 SL at 0.5 ml per liter of water or Dimethoate 30 EC at 1.5 ml per liter.': 'इमिडाक्लोप्रिड 17.8 SL (0.5 मिली/लीटर) या डाइमेथोएट 30 EC (1.5 मिली/लीटर) का छिड़काव करें।',
+    'Install yellow sticky traps (10-12 traps per acre), monitor field weekly, preserve natural predators.': 'प्रति एकड़ 10-12 पीले चिपचिपे ट्रैप (Yellow Sticky Traps) लगाएं।',
+    'Primary nitrogen source fertilizer. Should not be applied before or during rain events to avoid wash-off and loss.': 'फसल का मुख्य नाइट्रोजन उर्वरक। बारिश के दौरान या ठीक पहले इसका छिड़काव न करें ताकि दवा बहकर व्यर्थ न हो।',
     '25kg Nitrogen (Urea) per acre for Alluvial Clay-Loam soil': 'जलोढ़ दोमट मिट्टी के लिए प्रति एकड़ 25 किग्रा यूरिया (नाइट्रोजन)',
-    'Common soil type in UP river plains. Low organic matter, medium water retention. Suitable for wheat, potato, mustard, and gram.': 'उत्तर प्रदेश के मैदानी क्षेत्रों में पाई जाने वाली उपजाऊ मिट्टी। गेहूं, आलू, सरसों और चना की खेती के लिए सबसे उत्तम।',
-    'High organic matter, high water retention soil type. Excellent for cotton, soybeans, pigeon pea, and paddy.': 'उच्च जलधारण क्षमता और पोषक तत्वों से भरपूर मिट्टी। कपास, सोयाबीन, अरहर और धान के लिए अत्यंत उपयुक्त।'
+    'Di-Ammonium Phosphate - primary phosphorus and secondary nitrogen source for most crops.': 'डाई-अमोनियम फास्फेट — फसलों के लिए मुख्य फास्फोरस एवं नाइट्रोजन स्रोत।',
+    '15kg Phosphorus (DAP) per acre for Alluvial Clay-Loam soil': 'जलोढ़ दोमट मिट्टी के लिए प्रति एकड़ 15 किग्रा डीएपी',
+    'Farm yard manure / organic compost that improves soil organic carbon, water retention, and microbial activity.': 'देशी गोबर खाद जो मिट्टी में जैविक कार्बन, जलधारण क्षमता और सूक्ष्मजीवों को बढ़ाती है।',
+    'Mix 5 tons organic cow compost (gobhar khad) per acre. For Black Clayey Soil: regular compost is sufficient.': 'प्रति एकड़ 5 टन सड़ी गोबर खाद मिलाएं। काली मिट्टी में सामान्य कंपोस्ट पर्याप्त है।',
+    'Zinc micronutrient fertilizer used in Black Clayey Soil to enhance micronutrient availability.': 'काली मिट्टी में जिंक की कमी दूर करने और सूक्ष्म पोषक तत्व बढ़ाने वाला उर्वरक।',
+    'Add 10kg Zinc Sulphate per acre to enhance micro-nutrients in Black Clayey Soil': 'काली मिट्टी में सूक्ष्म पोषक तत्वों के लिए प्रति एकड़ 10 किग्रा जिंक सल्फेट डालें।',
+    'Common soil type in UP river plains. Low organic matter, medium water retention. Suitable for wheat, potato, mustard, and gram.': 'उत्तर प्रदेश के मैदानी क्षेत्रों में पाई जाने वाली उपजाऊ मिट्टी। गेहूं, आलू, सरसों और चना की खेती के लिए सर्वोत्तम।',
+    'High organic matter, high water retention soil type. Excellent for cotton, soybeans, pigeon pea, and paddy.': 'उच्च जलधारण क्षमता और पोषक तत्वों से भरपूर मिट्टी। कपास, सोयाबीन, अरहर और धान की खेती के लिए अत्यंत उत्तम।',
+    'Alluvial Clay-Loam': 'जलोढ़ दोमट मिट्टी',
+    'Domat Mitti': 'दोमट मिट्टी',
+    'Black Clayey Soil': 'काली मिट्टी',
+    'Kaali Mitti / Regur Soil': 'काली मिट्टी / रेगुर मिट्टी',
+    'Direct income support of Rs.6,000 per year in three equal installments to all landholding farmer families across India to help purchase inputs.': 'देश के सभी भूस्वामी किसान परिवारों को कृषि इनपुट खरीदने के लिए प्रति वर्ष ₹6,000 की प्रत्यक्ष आय सहायता (तीन समान किस्तों में)।',
+    'Rs.6,000 / Year Cash Assistance (Direct Benefit Transfer)': '₹6,000 प्रति वर्ष नकद सहायता (डीबीटी के माध्यम से सीधे बैंक खाते में)',
+    'Financial support and risk coverage for farmers suffering crop loss or damage due to natural calamities, pests, and diseases.': 'प्राकृतिक आपदाओं, कीटों और रोगों के कारण फसल नुकसान पर किसानों को वित्तीय सुरक्षा एवं बीमा कवर।',
+    'Low Premium Crop Insurance (1.5% - 2% Premium for Rabi/Kharif crops)': 'कम प्रीमियम पर फसल बीमा (रबी/खरीफ फसलों के लिए केवल 1.5% से 2% प्रीमियम)',
+    'De-dieselization of the farm sector. Install clean solar water pumps with 60% combined subsidy from Central and State Governments.': 'सिंचाई को डीजल मुक्त बनाना। केंद्र और राज्य सरकार की ओर से 60% सब्सिडी पर सोलर वाटर पंप स्थापना।',
+    '60% Subsidy on Solar Water Pump Installation': 'सोलर वाटर पंप स्थापना पर 60% तक सरकारी सब्सिडी',
+    'Provides soil testing services to help farmers understand the nutrient status of their soil and receive recommendations on fertilizer dosage.': 'किसानों को मिट्टी की जांच सुविधा प्रदान करना तथा पोषक तत्वों की स्थिति एवं उर्वरक मात्रा की सलाह देना।',
+    'Free Soil Health Testing and Advisory Card': 'निःशुल्क मिट्टी जांच एवं मृदा स्वास्थ्य कार्ड',
+    'Supports organic farming in clusters. Financial assistance of Rs.50,000 per hectare for 3 years is provided for organic inputs, certification, and packaging.': 'क्लस्टर में जैविक खेती को बढ़ावा देना। जैविक खाद, प्रमाणीकरण और पैकिंग के लिए 3 वर्षों में ₹50,000 प्रति हेक्टेयर की वित्तीय सहायता।',
+    'Rs.50,000 / Hectare Subsidy for organic cultivation and certification': '₹50,000 प्रति हेक्टेयर सब्सिडी (जैविक खेती एवं प्रमाणीकरण)',
+    'Assistance for procurement of modern agricultural machinery (tractors, tillers, harvesters, rotavators) to reduce labor costs and increase efficiency.': 'आधुनिक कृषि यंत्रों (ट्रैक्टर, रोटावेटर, थ्रेशर) की खरीद पर सब्सिडी ताकि खेती की लागत घटे।',
+    '40% to 50% Subsidy on Agricultural Equipment (up to 80% for SC/ST/Women/Small farmers)': 'कृषि उपकरणों पर 40% से 50% तक सब्सिडी (छोटे/सीमांत किसानों के लिए 80% तक)',
+    'Promotes micro-irrigation systems like drip and sprinkler setups to enhance water-use efficiency and crop productivity.': 'ड्रिप और स्प्रिंकलर जैसी सूक्ष्म सिंचाई प्रणालियों को बढ़ावा देना ताकि पानी की बचत और पैदावार बढ़े।',
+    '45% to 55% Subsidy on Drip and Sprinkler Irrigation Systems': 'ड्रिप और स्प्रिंकलर सिंचाई प्रणाली पर 45% से 55% तक सब्सिडी',
+    'Spindle-shaped lesions on leaves with grayish centers. Spreads rapidly in high humidity conditions. Reported in Kishanpur block farms.': 'पत्तियों पर सलेटी केंद्र वाले नाव के आकार के धब्बे। उच्च नमी में तेजी से फैलता है।'
   };
 
   // Helper to translate arbitrary text to Devanagari Hindi if translation exists
@@ -246,35 +257,29 @@
     if (HINDI_TRANSLATION_MAP[clean]) {
       return HINDI_TRANSLATION_MAP[clean];
     }
-    // Perform partial replacements for key agricultural words if full line match is not present
     let res = clean;
-    res = res.replace(/\bWheat\b/g, 'गेहूं')
-             .replace(/\bPaddy\b/g, 'धान')
-             .replace(/\bRice\b/g, 'चावल')
-             .replace(/\bCotton\b/g, 'कपास')
-             .replace(/\bTomato\b/g, 'टमाटर')
-             .replace(/\bPotato\b/g, 'आलू')
-             .replace(/\bMustard\b/g, 'सरसों')
-             .replace(/\bFertilizer\b/g, 'उर्वरक')
-             .replace(/\bUrea\b/g, 'यूरिया')
-             .replace(/\bSoil\b/g, 'मिट्टी')
-             .replace(/\bDisease\b/g, 'रोग')
-             .replace(/\bLeaves\b/g, 'पत्तियां')
-             .replace(/\bLeaf\b/g, 'पत्ती')
-             .replace(/\bYellowing\b/g, 'पीला पड़ना')
-             .replace(/\bYellow\b/g, 'पीली')
-             .replace(/\bOrganic\b/g, 'जैविक')
-             .replace(/\bChemical\b/g, 'रासायनिक')
-             .replace(/\bTreatment\b/g, 'उपचार')
-             .replace(/\bPrevention\b/g, 'बचाव');
+    res = res.replace(/\bWheat\b/gi, 'गेहूं')
+             .replace(/\bPaddy\b/gi, 'धान')
+             .replace(/\bRice\b/gi, 'चावल')
+             .replace(/\bCotton\b/gi, 'कपास')
+             .replace(/\bTomato\b/gi, 'टमाटर')
+             .replace(/\bPotato\b/gi, 'आलू')
+             .replace(/\bMustard\b/gi, 'सरसों')
+             .replace(/\bFertilizer\b/gi, 'उर्वरक')
+             .replace(/\bSoil\b/gi, 'मिट्टी')
+             .replace(/\bYellow Rust\b/gi, 'पीला रतुआ')
+             .replace(/\bYellow Leaves\b/gi, 'पीली पत्तियां')
+             .replace(/\bEarly Blight\b/gi, 'अगेती झुलसा')
+             .replace(/\bRice Blast\b/gi, 'धान का झोंका रोग');
+
     return res;
   }
 
-  // ── Multilingual Synonyms for Search Matching ──────────────────────────────
+  // ── Multilingual Synonyms Dictionary ──────────────────────────────────────
   const MULTILINGUAL_SYNONYMS = {
     // Crops
     'कपास': 'cotton kapas', 'કપાસ': 'cotton kapas', 'कापूस': 'cotton kapas', 'तुला': 'cotton', 'பருத்தி': 'cotton', 'ప్రత్తి': 'cotton', 'kapas': 'cotton kapas', 'cotton': 'cotton kapas',
-    'धान': 'rice paddy dhaan dhan chawal', 'ડાંગર': 'rice paddy dhaan', 'ડાંગર': 'rice paddy', 'भात': 'rice paddy', 'ধান': 'rice paddy', 'நெல்': 'rice paddy', 'వరి': 'rice paddy', 'dhaan': 'rice paddy dhaan chawal', 'dhan': 'rice paddy dhaan', 'chawal': 'rice paddy chawal', 'paddy': 'rice paddy dhaan', 'rice': 'rice paddy dhaan', 'basmati': 'rice paddy basmati',
+    'धान': 'rice paddy dhaan dhan chawal', 'ડાંગર': 'rice paddy dhaan', 'भात': 'rice paddy', 'ধান': 'rice paddy', 'நெல்': 'rice paddy', 'వరి': 'rice paddy', 'dhaan': 'rice paddy dhaan chawal', 'dhan': 'rice paddy dhaan', 'chawal': 'rice paddy chawal', 'paddy': 'rice paddy dhaan', 'rice': 'rice paddy dhaan', 'basmati': 'rice paddy basmati',
     'गेहूं': 'wheat gehun gehu kanak', 'गेहु': 'wheat gehun gehu', 'घऊं': 'wheat gehun', 'गहू': 'wheat gehun', 'গম': 'wheat', 'கோதுமை': 'wheat', 'ગોધુમ': 'wheat', 'gehu': 'wheat gehun gehu', 'gehun': 'wheat gehun gehu', 'wheat': 'wheat gehun gehu', 'lokwan': 'wheat lokwan', 'kanak': 'wheat gehun kanak',
     'टमाटर': 'tomato tamatar', 'ટામેટા': 'tomato tamatar', 'टोमॅटो': 'tomato tamatar', 'টমেটো': 'tomato', 'தக்காளி': 'tomato', 'tamatar': 'tomato tamatar', 'tomato': 'tomato tamatar', 'desi': 'tomato desi',
     'आलू': 'potato aalu aloo jyoti', 'બટાકા': 'potato aalu', 'बटाटा': 'potato aalu', 'আলু': 'potato', 'aalu': 'potato aalu aloo', 'aloo': 'potato aalu aloo', 'potato': 'potato aalu aloo', 'jyoti': 'potato jyoti',
@@ -282,26 +287,43 @@
     'मक्का': 'maize corn makka', 'મકાઈ': 'maize corn makka', 'मका': 'maize corn makka', 'makka': 'maize corn makka', 'maize': 'maize corn makka', 'corn': 'maize corn makka',
     'सरसों': 'mustard sarson', 'રાયડો': 'mustard sarson', 'मोहरी': 'mustard sarson', 'sarson': 'mustard sarson', 'mustard': 'mustard sarson',
 
-    // Symptoms & Issues
-    'पीले': 'yellow yellowing peeli peela pila', 'पीला': 'yellow yellowing peeli peela pila', 'पीली': 'yellow yellowing peeli peela pila', 'પીળા': 'yellow peeli peela', 'पिवळे': 'yellow peeli peela', 'peele': 'yellow yellowing peeli peela', 'peela': 'yellow yellowing peeli peela', 'pila': 'yellow yellowing peeli peela', 'peeli': 'yellow yellowing peeli peela', 'yellow': 'yellow yellowing peeli peela', 'yellowing': 'yellow yellowing peeli peela',
-    'पत्ते': 'leaf leaves patte patta pan paan pattiyan', 'पत्ता': 'leaf leaves patte patta pattiyan', 'पत्तियां': 'leaf leaves patte patta pattiyan', 'पत्तिया': 'leaf leaves patte patta pattiyan', 'पाने': 'leaf leaves patte', 'পাতা': 'leaf leaves', 'இலை': 'leaf leaves', 'patte': 'leaf leaves patte patta pattiyan', 'patta': 'leaf leaves patte patta pattiyan', 'pattiyan': 'leaf leaves patte patta pattiyan', 'pan': 'leaf leaves', 'paan': 'leaf leaves', 'leaf': 'leaf leaves patte patta pattiyan', 'leaves': 'leaf leaves patte patta pattiyan',
-    'रोग': 'disease rog bimari infection', 'રોગ': 'disease rog bimari', 'রোগ': 'disease rog', 'நோய்': 'disease rog', 'rog': 'disease rog bimari', 'bimari': 'disease rog bimari', 'disease': 'disease rog bimari', 'infection': 'disease rog infection',
+    // Symptoms & Issues / Yellow Leaves / Wheat Disease
+    'पीली': 'yellow peeli peela yellowing leaves rust rust-disease',
+    'पीले': 'yellow yellowing peeli peela pila', 'पीला': 'yellow yellowing peeli peela pila', 'પીળા': 'yellow peeli peela', 'पिवळे': 'yellow peeli peela', 'peele': 'yellow yellowing peeli peela', 'peela': 'yellow yellowing peeli peela', 'pila': 'yellow yellowing peeli peela', 'peeli': 'yellow yellowing peeli peela', 'yellow': 'yellow yellowing peeli peela', 'yellowing': 'yellow yellowing peeli peela',
+    'पत्तियां': 'leaf leaves patta pattiyan yellowing',
+    'पत्ते': 'leaf leaves patte patta pan paan pattiyan', 'पत्ता': 'leaf leaves patte patta pattiyan', 'पत्तिया': 'leaf leaves patte patta pattiyan', 'पाने': 'leaf leaves patte', 'পাতা': 'leaf leaves', 'இலை': 'leaf leaves', 'patte': 'leaf leaves patte patta pattiyan', 'patta': 'leaf leaves patte patta pattiyan', 'pattiyan': 'leaf leaves patte patta pattiyan', 'pan': 'leaf leaves', 'paan': 'leaf leaves', 'leaf': 'leaf leaves patte patta pattiyan', 'leaves': 'leaf leaves patte patta pattiyan',
+    'रोग': 'disease blast rust blight spot attack rog bimari infection', 'રોગ': 'disease rog bimari', 'রোগ': 'disease rog', 'நோய்': 'disease rog', 'rog': 'disease rog bimari', 'bimari': 'disease rog bimari', 'disease': 'disease rog bimari', 'infection': 'disease rog infection',
     'धब्बे': 'spot blast blight jhulsa jhonka', 'स्पॉट': 'spot', 'झुलसा': 'blight blast jhulsa', 'झोंका': 'blast jhonka', 'blast': 'blast jhonka', 'blight': 'blight jhulsa', 'rust': 'rust peela rog', 'canker': 'canker',
     'कीड़े': 'pest insect caterpillar aphid whitefly keede keeda chepa maho', 'जीवात': 'pest insect keede', 'पोका': 'pest insect', 'keede': 'pest insect caterpillar aphid keede keeda chepa maho', 'keeda': 'pest insect caterpillar aphid keede keeda chepa maho', 'aphid': 'aphid insect pest chepa maho keede', 'aphids': 'aphid insect pest chepa maho keede', 'whitefly': 'whitefly insect pest', 'chepa': 'aphid pest chepa maho keede', 'maho': 'aphid pest chepa maho keede',
 
-    // Fertilizers & Soil
-    'खाद': 'fertilizer urea dap npk compost khad khaad gobhar', 'ખાતર': 'fertilizer urea dap npk khad', 'खत': 'fertilizer khad', 'সার': 'fertilizer khad', 'உரம்': 'fertilizer khad', 'khad': 'fertilizer urea dap npk compost khad khaad gobhar', 'khaad': 'fertilizer urea dap npk khad khaad gobhar', 'khatar': 'fertilizer khad', 'fertilizer': 'fertilizer urea dap npk compost khad khaad gobhar', 'urea': 'urea nitrogen fertilizer khad', 'dap': 'dap phosphorus fertilizer khad', 'gobhar': 'organic compost fertilizer gobhar khad', 'nitrogen': 'nitrogen urea fertilizer', 'phosphorus': 'phosphorus dap fertilizer', 'compost': 'organic compost fertilizer gobhar khad',
+    // Soil & Black Soil
+    'काली': 'black kaali mitti clayey regur kaalii',
+    'मिट्टी': 'soil mitti clay loam alluvial kaali domat maati janch', 'માટી': 'soil clay loam mitti', 'जमीन': 'soil land mitti', 'माती': 'soil mitti', 'mitti': 'soil clay loam alluvial black mitti maati janch', 'soil': 'soil clay loam alluvial black mitti maati janch', 'janch': 'soil test testing health score janch', 'test': 'soil test testing janch', 'testing': 'soil test testing janch', 'kaali': 'black kaali mitti clayey regur kaalii', 'black': 'black kaali mitti clayey regur', 'domat': 'alluvial clay loam soil domat mitti',
+
+    // PM Kisan & Schemes
+    'पीएम': 'pm kisan samman yojana 6000 subsidy scheme',
+    'किसान': 'kisan farmer yojana pm-kisan samman',
+    'योजना': 'scheme subsidy pm kisan pmfby kusum yojana', 'યોજના': 'scheme subsidy yojana', 'yojana': 'scheme subsidy pm kisan pmfby kusum yojana', 'subsidy': 'subsidy scheme yojana', 'scheme': 'scheme subsidy yojana', 'bima': 'insurance claim crop insurance pmfby bima',
+    'pm': 'pm kisan samman yojana 6000 subsidy scheme',
+    'kisan': 'kisan farmer yojana pm-kisan samman',
+
+    // Fertilizer & Soil
+    'उर्वरक': 'fertilizer urea dap npk compost khad urvarak dosage',
+    'खाद': 'fertilizer urea dap npk compost khad khaad gobhar urvarak', 'ખાતર': 'fertilizer urea dap npk khad', 'खत': 'fertilizer khad', 'সার': 'fertilizer khad', 'உரம்': 'fertilizer khad', 'khad': 'fertilizer urea dap npk compost khad khaad gobhar', 'khaad': 'fertilizer urea dap npk khad khaad gobhar', 'khatar': 'fertilizer khad', 'fertilizer': 'fertilizer urea dap npk compost khad khaad gobhar urvarak', 'urea': 'urea nitrogen fertilizer khad', 'dap': 'dap phosphorus fertilizer khad', 'gobhar': 'organic compost fertilizer gobhar khad', 'nitrogen': 'nitrogen urea fertilizer', 'phosphorus': 'phosphorus dap fertilizer', 'compost': 'organic compost fertilizer gobhar khad',
+    'यूरिया': 'urea nitrogen fertilizer khad',
+    'urvarak': 'fertilizer urea dap npk compost khad urvarak',
     'दवा': 'pesticide medicine spray treatment fungicide insecticide dawa upchar upay', 'દવા': 'pesticide medicine spray dawa', 'औषध': 'pesticide medicine spray', 'dawa': 'pesticide medicine spray treatment fungicide insecticide dawa upchar upay', 'spray': 'pesticide spray dawa', 'upchar': 'treatment remedy cure upchar', 'upay': 'treatment remedy cure upay', 'cure': 'treatment remedy cure', 'treatment': 'treatment remedy upchar', 'fungicide': 'fungicide pesticide dawa', 'insecticide': 'insecticide pesticide dawa',
-    'मिट्टी': 'soil clay loam alluvial black mitti maati janch', 'માટી': 'soil clay loam mitti', 'जमीन': 'soil land mitti', 'माती': 'soil mitti', 'mitti': 'soil clay loam alluvial black mitti maati janch', 'soil': 'soil clay loam alluvial black mitti maati janch', 'janch': 'soil test testing health score janch', 'test': 'soil test testing janch', 'testing': 'soil test testing janch', 'kaali': 'black clayey soil kaali mitti', 'black': 'black clayey soil kaali mitti', 'domat': 'alluvial clay loam soil domat mitti',
+
+    // Disease & Rice Blast
+    'धान': 'paddy rice dhaan dhan chawal',
+    'ब्लास्ट': 'blast jhonka rice blast tricyclazole',
+    'झोंका': 'blast jhonka rice blast tricyclazole',
 
     // Mandi & Price
-    'भाव': 'mandi price rate apmc quintal bhav dam', 'ભાવ': 'mandi price rate apmc bhav', 'दर': 'mandi price rate', 'bhav': 'mandi price rate apmc bhav dam', 'price': 'mandi price rate bhav dam', 'rate': 'mandi price rate bhav dam', 'mandi': 'mandi price market apmc', 'dam': 'price rate dam',
+    'भाव': 'mandi price rate apmc quintal bhav dam', 'ભાવ': 'mandi price rate apmc bhav', 'દર': 'mandi price rate', 'bhav': 'mandi price rate apmc bhav dam', 'price': 'mandi price rate bhav dam', 'rate': 'mandi price rate bhav dam', 'mandi': 'mandi price market apmc', 'dam': 'price rate dam',
 
     // Weather
-    'मौसम': 'weather rain temperature forecast advisory mausam barish', 'હવામાન': 'weather rain forecast mausam', 'पाऊस': 'rain weather barish', 'mausam': 'weather rain temperature forecast mausam barish', 'barish': 'rain weather barish', 'weather': 'weather rain forecast advisory mausam barish', 'rain': 'rain weather barish',
-
-    // Schemes
-    'योजना': 'scheme subsidy pm kisan pmfby kusum yojana', 'યોજના': 'scheme subsidy yojana', 'yojana': 'scheme subsidy pm kisan pmfby kusum yojana', 'subsidy': 'subsidy scheme yojana', 'scheme': 'scheme subsidy yojana', 'bima': 'insurance claim crop insurance pmfby bima'
+    'मौसम': 'weather rain temperature forecast advisory mausam barish', 'હવામાન': 'weather rain forecast mausam', 'पाऊस': 'rain weather barish', 'mausam': 'weather rain temperature forecast mausam barish', 'barish': 'rain weather barish', 'weather': 'weather rain forecast advisory mausam barish', 'rain': 'rain weather barish'
   };
 
   // ── Stop Words List ────────────────────────────────────────────────────────
@@ -349,9 +371,15 @@
       return marathiMarkers.some(m => clean.includes(m)) ? 'mr' : 'hi';
     }
 
-    // Romanized markers -> Normalizes Romanized Hindi to Hindi ('hi')
     const lower = clean.toLowerCase();
-    if (/\b(meri|mera|mere|fasal|keede|keeda|lag|gaye|gaya|kya|kare|karu|hoye|hai|hain|upchar|dawa|mausam|barish|peele|patte|peeli|pattiyan|janch|kaunsa|gehu|gehun|kaise|kisi)\b/.test(lower)) {
+
+    // Pure Latin text without Romanized Hindi markers -> English
+    if (/^[a-zA-Z0-9\s.,?!'\-"]+$/.test(clean) && !/\b(meri|mera|mere|fasal|keede|keeda|lag|gaye|gaya|kya|kare|karu|hoye|hai|hain|upchar|dawa|mausam|barish|peele|patte|peeli|pattiyan|janch|kaunsa|gehu|gehun|kaise|kisi|yojana|kaali|mitti|urvarak|dhaan|rog)\b/.test(lower)) {
+      return 'en';
+    }
+
+    // Romanized markers -> Normalizes Romanized Hindi to Hindi ('hi')
+    if (/\b(meri|mera|mere|fasal|keede|keeda|lag|gaye|gaya|kya|kare|karu|hoye|hai|hain|upchar|dawa|mausam|barish|peele|patte|peeli|pattiyan|janch|kaunsa|gehu|gehun|kaise|kisi|yojana|kaali|mitti|urvarak|dhaan|rog)\b/.test(lower)) {
       return 'hi';
     }
     if (/\b(su|rog|che|khedut|kheti|pan|paan|kem|cho|chhe)\b/.test(lower)) return 'gu';
@@ -422,7 +450,8 @@
     const records = offlineData[domain] || [];
     if (!query || records.length === 0) return [];
 
-    const terms = query.toLowerCase().split(/\s+/).filter(w => w.length >= 3 && !STOP_WORDS.has(w));
+    const lowerQuery = query.toLowerCase();
+    const terms = lowerQuery.split(/\s+/).filter(w => w.length >= 2 && !STOP_WORDS.has(w));
     if (terms.length === 0) return [];
 
     const scored = records.map(record => {
@@ -437,10 +466,52 @@
               (record.id && record.id.toLowerCase().includes(term))) {
             score += 3;
           }
-        } else if (term.length >= 4 && blob.includes(term)) {
+        } else if (term.length >= 3 && blob.includes(term)) {
           score += 1;
         }
       });
+
+      // ── Specific Query Phrase Boosts ──
+      const recordTitleLower = (record.title || '').toLowerCase();
+      const recordIdLower = (record.id || '').toLowerCase();
+
+      // Black Soil boost
+      if ((lowerQuery.includes('काली') || lowerQuery.includes('kaali') || lowerQuery.includes('black soil')) &&
+          (recordTitleLower.includes('black') || recordTitleLower.includes('kaali') || recordIdLower.includes('black'))) {
+        score += 15;
+      }
+
+      // PM-Kisan Scheme boost
+      if ((lowerQuery.includes('पीएम किसान') || lowerQuery.includes('pm kisan') || lowerQuery.includes('pm-kisan')) &&
+          (recordTitleLower.includes('pm kisan') || recordIdLower.includes('pm-kisan'))) {
+        score += 15;
+      }
+
+      // Wheat Yellow Rust / Yellow Leaves boost
+      if ((lowerQuery.includes('पीली') || lowerQuery.includes('peeli') || lowerQuery.includes('yellow')) &&
+          (lowerQuery.includes('गेहूं') || lowerQuery.includes('gehu') || lowerQuery.includes('wheat')) &&
+          (recordTitleLower.includes('yellow') || recordTitleLower.includes('peeli') || recordIdLower.includes('yellow'))) {
+        score += 15;
+      }
+
+      // Rice Blast boost
+      if ((lowerQuery.includes('ब्लास्ट') || lowerQuery.includes('blast') || lowerQuery.includes('झोंका')) &&
+          (recordTitleLower.includes('blast') || recordIdLower.includes('blast'))) {
+        score += 15;
+      }
+
+      // Fertilizer boost
+      if ((lowerQuery.includes('उर्वरक') || lowerQuery.includes('fertilizer') || lowerQuery.includes('यूरिया') || lowerQuery.includes('डीएपी')) &&
+          domain === 'fertilizers') {
+        score += 12;
+      }
+
+      // Soil testing / soil health card boost
+      if ((lowerQuery.includes('जांच') || lowerQuery.includes('testing') || lowerQuery.includes('janch')) &&
+          (domain === 'soil' || recordIdLower.includes('soil-health'))) {
+        score += 12;
+      }
+
       return { record, score, domain };
     });
 
@@ -544,7 +615,10 @@
         if (meta.moisture) lines.push(`• ${labels.moisture}: ${meta.moisture}`);
 
         if (meta.eligibility) lines.push(`• ${labels.eligibility}: ${meta.eligibility}`);
-        if (meta.benefit) lines.push(`• ${labels.benefit}: ${meta.benefit}`);
+        if (meta.benefit) {
+          const val = isHindi ? translateToHindiDevanagari(meta.benefit) : meta.benefit;
+          lines.push(`• ${labels.benefit}: ${val}`);
+        }
         if (meta.voiceResponse) {
           const val = isHindi ? translateToHindiDevanagari(meta.voiceResponse) : meta.voiceResponse;
           lines.push(`• ${labels.guidance}: ${val}`);
@@ -569,6 +643,11 @@
 
   // ── Main Search & Answer Generation ────────────────────────────────────────
   function answerQuestion(question, options = {}) {
+    // Ensure data is loaded
+    if (!isLoaded || Object.keys(offlineData).length === 0) {
+      init();
+    }
+
     const { language = 'en', farmerContext = null } = options;
     const detectedLang = detectLanguage(question, language);
     const { terms, expandedQuery } = extractAndExpandKeywords(question);
@@ -602,7 +681,12 @@
     }
 
     allScoredResults.sort((a, b) => b.score - a.score);
-    const topResults = allScoredResults.slice(0, 2);
+
+    // ── Unknown Query Threshold Check ──
+    // If top score is below threshold (e.g. < 4), consider knowledge insufficient
+    const topResults = (allScoredResults.length > 0 && allScoredResults[0].score >= 4)
+      ? allScoredResults.slice(0, 2)
+      : [];
 
     const finalAnswer = formatOfflineAnswer(topResults, {
       detectedLang,
@@ -620,19 +704,44 @@
     };
   }
 
-  // ── Load Bundle Data ───────────────────────────────────────────────────────
+  // ── Load Bundle Data (Supports Synchronous Browser Bundle, Node fs, and Fetch) ──
   function init(bundleData) {
     if (bundleData && typeof bundleData === 'object') {
-      if (bundleData.data) {
-        offlineData = bundleData.data;
-      } else {
-        offlineData = bundleData;
-      }
+      offlineData = bundleData.data || bundleData;
       isLoaded = true;
       console.log('[OfflineRAG] Loaded knowledge data directly into store.');
       return true;
     }
 
+    // 1. Check synchronous browser bundle window.KRISHI_OFFLINE_KNOWLEDGE_BUNDLE
+    if (typeof window !== 'undefined' && window.KRISHI_OFFLINE_KNOWLEDGE_BUNDLE) {
+      const b = window.KRISHI_OFFLINE_KNOWLEDGE_BUNDLE;
+      offlineData = b.data || b;
+      isLoaded = true;
+      console.log('[OfflineRAG] Loaded synchronous KRISHI_OFFLINE_KNOWLEDGE_BUNDLE.');
+      return true;
+    }
+
+    // 2. Check Node environment fs
+    if (typeof require === 'function') {
+      try {
+        const fs = require('fs');
+        const path = require('path');
+        const bundlePath = path.join(__dirname, 'offline-knowledge.json');
+        if (fs.existsSync(bundlePath)) {
+          const raw = fs.readFileSync(bundlePath, 'utf8');
+          const json = JSON.parse(raw);
+          offlineData = json.data || json;
+          isLoaded = true;
+          console.log('[OfflineRAG] Loaded offline-knowledge.json via Node fs.');
+          return true;
+        }
+      } catch (e) {
+        // Continue to fetch if present
+      }
+    }
+
+    // 3. Fallback browser async fetch
     if (typeof window !== 'undefined' && window.fetch) {
       fetch('/js/offline-knowledge.json')
         .then(res => res.json())
@@ -644,22 +753,8 @@
         .catch(err => {
           console.warn('[OfflineRAG] Could not fetch offline-knowledge.json:', err.message);
         });
-    } else if (typeof require === 'function') {
-      try {
-        const fs = require('fs');
-        const path = require('path');
-        const bundlePath = path.join(__dirname, 'offline-knowledge.json');
-        if (fs.existsSync(bundlePath)) {
-          const raw = fs.readFileSync(bundlePath, 'utf8');
-          const json = JSON.parse(raw);
-          offlineData = json.data || json;
-          isLoaded = true;
-          console.log('[OfflineRAG] Loaded offline-knowledge.json via Node fs.');
-        }
-      } catch (e) {
-        console.warn('[OfflineRAG] Node fs load failed:', e.message);
-      }
     }
+
     return isLoaded;
   }
 

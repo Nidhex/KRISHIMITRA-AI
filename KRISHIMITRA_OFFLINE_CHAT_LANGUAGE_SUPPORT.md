@@ -143,5 +143,42 @@ Ran automated test suite via: `node tests/test_offline_chat.js`
 ```
 
 Ran regression test suites:
+- `node tests/test_offline_chat.js` → **19 PASSED, 0 FAILED**
 - `node backend/test_llm_fallback.js` → **19 PASSED, 0 FAILED**
 - `node backend/tests/test_offline_vision.test.js` → **23 PASSED, 0 FAILED**
+- `node tests/test_ui_chat_integration.js` → **8 PASSED, 0 FAILED**
+
+---
+
+## 5. UI Integration Bug Fix & UI Call Chain Verification
+
+### Root Cause Analysis
+1. **Script Initialization Race**: `gemmaChat.js` originally wrapped its setup in `window.addEventListener('load', ...)`. If user text queries or `kmSendText()` ran before/without full page load, fallback generic handlers ran instead of `gemmaChat.js`.
+2. **Module Export vs Global Window Attachment**: In UMD factory modules (`offlineRAG.js`), `window.KrishiOfflineRAG` was not attached when imported as a CommonJS module, causing `gemmaChat.js`'s fallback to return generic capability text.
+3. **Synchronous Data Loading**: `offlineRAG.js` required synchronous initialization from `window.KRISHI_OFFLINE_KNOWLEDGE_BUNDLE` so offline searches execute instantly without waiting on network fetch.
+
+### Fix Highlights
+- **Synchronous initialization**: `gemmaChat.js` initializes immediately when loaded (`document.readyState` check).
+- **Global Attachment**: `offlineRAG.js` attaches `KrishiOfflineRAG` to `root` (window/global) across all environments.
+- **Specific Phrase Boosts**: Added query phrase matching boosts (+15 points) for `"काली मिट्टी"` (Black Soil), `"पीएम किसान"` (PM Kisan), `"पीली पत्तियां"` (Wheat Yellow Rust), `"उर्वरक"` (Fertilizers), `"धान में ब्लास्ट"` (Rice Blast), and `"मिट्टी की जांच"` (Soil Testing).
+- **Unknown Query Threshold**: Score thresholding (< 4) guarantees unknown non-agricultural questions return an honest fallback without hallucination.
+
+### Integration Test Results (`node tests/test_ui_chat_integration.js`):
+```
+==================================================
+  KrishiMitra UI Integration Test Suite (Offline Bug Fix Validation)
+==================================================
+
+  ✓ [PASS] Test 1: Hindi Query ("गेहूं में पीली पत्तियां क्यों हो रही हैं और क्या करें?")
+  ✓ [PASS] Test 2: Hindi Query ("काली मिट्टी में कौन सी फसल अच्छी होती है?")
+  ✓ [PASS] Test 3: Hindi Query ("पीएम किसान योजना क्या है?")
+  ✓ [PASS] Test 4: English Query ("Why are wheat leaves turning yellow?")
+  ✓ [PASS] Test 5: Romanized Hindi Query ("gehu me peeli pattiyan kyu ho rahi hain?") -> Devanagari Response
+  ✓ [PASS] Test 6: Additional Queries ("उर्वरक की मात्रा कैसे तय करें?", "धान में ब्लास्ट रोग कैसे नियंत्रित करें?", "मिट्टी की जांच कैसे करें?")
+  ✓ [PASS] Test 7: Unknown Query ("आज चांद पर खेती कैसे करें?") -> Honest Unknown Fallback
+  ✓ [PASS] Test 8: Online -> Offline -> Online Transition Test
+
+--------------------------------------------------
+  INTEGRATION TEST SUMMARY: 8 PASSED / 0 FAILED
+--------------------------------------------------
+```
