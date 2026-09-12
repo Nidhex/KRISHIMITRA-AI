@@ -2,197 +2,1349 @@
 window.KRISHI_OFFLINE_KNOWLEDGE_BUNDLE = {
   "crops": [
     {
-      "id": "crop-paddy-basmati",
+      "id": "crop-wheat",
       "category": "crop",
-      "title": "Paddy (Basmati)",
-      "description": "Basmati paddy grown in North India. High-value aromatic rice variety traded in APMC mandis.",
+      "domain": "crops",
+      "crop": "Wheat",
+      "topic": "Crop Cultivation",
+      "title": "Wheat (गेहूं / Gehun)",
+      "title_hi": "गेहूं (Wheat Cultivation Guide)",
+      "description": "Major Rabi cereal crop grown across Northern and Central India requiring cool climate and well-drained loam soil.",
+      "description_hi": "उत्तर एवं मध्य भारत की प्रमुख रबी खाद्यान्न फसल, जिसके लिए ठंडी जलवायु तथा उपजाऊ दोमट मिट्टी उपयुक्त होती है।",
       "metadata": {
-        "nameEN": "Paddy (Basmati)",
-        "nameHI": "Paddy (Basmati)",
-        "emoji": "Paddy",
-        "mandiPrices": {
-          "highest": 2350,
-          "highestMandi": "Laxmipur APMC (12km)",
-          "lowest": 2050,
-          "lowestMandi": "Kishanpur Mandi (4km)",
-          "unit": "Rs/Quintal"
-        },
-        "marketRecommendation": "Selling at Laxmipur APMC gives Rs.300/quintal more. Transport cost is Rs.40, net profit is higher.",
-        "prices": [
-          {
-            "name": "Laxmipur APMC",
-            "price": 2350,
-            "distance": "12km",
-            "trend": "up"
-          },
-          {
-            "name": "Gorakhpur Sadar Mandi",
-            "price": 2210,
-            "distance": "18km",
-            "trend": "up"
-          },
-          {
-            "name": "Kishanpur Mandi",
-            "price": 2050,
-            "distance": "4km",
-            "trend": "down"
-          }
+        "nameEN": "Wheat",
+        "nameHI": "गेहूं",
+        "season": "Rabi (October - November Sowing)",
+        "soil": "Alluvial Clay-Loam, Well-drained Loam",
+        "seedRate": "40-45 kg per acre (100 kg/ha)",
+        "spacing": "20-22.5 cm row spacing",
+        "irrigation": "4-6 irrigations at critical stages (CRI stage at 21 days is mandatory)",
+        "fertilizer": "120 kg N, 60 kg P2O5, 40 kg K2O per hectare",
+        "majorPests": "Aphids, Termites, Armyworm",
+        "majorDiseases": "Yellow Rust, Brown Rust, Loose Smut",
+        "harvesting": "110-140 days after sowing when grains become hard and golden",
+        "keywords": [
+          "wheat",
+          "gehu",
+          "gehun",
+          "kanak",
+          "rabi crop",
+          "lokwan",
+          "hd2967"
+        ],
+        "keywords_hi": [
+          "गेहूं",
+          "कनक",
+          "रबी फसल",
+          "गेहूं की खेती",
+          "सिंचाई",
+          "बीज दर"
+        ],
+        "keywords_romanized": [
+          "gehu",
+          "gehun",
+          "kanak",
+          "gehu ki kheti",
+          "gehu beej dar"
         ]
       }
     },
     {
-      "id": "crop-wheat-lokwan",
+      "id": "crop-paddy-rice",
       "category": "crop",
-      "title": "Wheat (Lokwan)",
-      "description": "Lokwan wheat variety commonly grown in Uttar Pradesh and traded across nearby mandis.",
+      "domain": "crops",
+      "crop": "Rice / Paddy",
+      "topic": "Crop Cultivation",
+      "title": "Rice / Paddy (धान / Dhaan / Rice)",
+      "title_hi": "धान / चावल (Paddy Cultivation Guide)",
+      "description": "Primary Kharif staple crop requiring abundant water, warm humid climate, and clayey loam soils.",
+      "description_hi": "भारत की प्रमुख खरीफ खाद्यान्न फसल, जिसके लिए प्रचुर जल, उष्ण-आर्द्र जलवायु तथा चिकनी दोमट मिट्टी आवश्यक है।",
       "metadata": {
-        "nameEN": "Wheat (Lokwan)",
-        "nameHI": "Wheat (Lokwan)",
-        "emoji": "Wheat",
-        "mandiPrices": {
-          "highest": 2275,
-          "highestMandi": "Gorakhpur Sadar Mandi (18km)",
-          "lowest": 2150,
-          "lowestMandi": "Laxmipur APMC (12km)",
-          "unit": "Rs/Quintal"
-        },
-        "marketRecommendation": "Wheat rates are highest in Gorakhpur Sadar Mandi. We advise wait 3 days as prices are rising.",
-        "prices": [
-          {
-            "name": "Gorakhpur Sadar Mandi",
-            "price": 2275,
-            "distance": "18km",
-            "trend": "up"
-          },
-          {
-            "name": "Kishanpur Mandi",
-            "price": 2200,
-            "distance": "4km",
-            "trend": "stable"
-          },
-          {
-            "name": "Laxmipur APMC",
-            "price": 2150,
-            "distance": "12km",
-            "trend": "down"
-          }
+        "nameEN": "Paddy / Rice",
+        "nameHI": "धान / चावल",
+        "season": "Kharif (June - July Nursery / Transplanting)",
+        "soil": "Clay Loam, Heavy Clay, Alluvial",
+        "seedRate": "15-20 kg/acre for transplanted rice; 6-8 kg/acre for Basmati",
+        "spacing": "20x15 cm seedling spacing",
+        "irrigation": "Submerged water (2-5 cm depth) or Alternate Wetting and Drying (AWD)",
+        "fertilizer": "100-120 kg N, 50-60 kg P2O5, 40-50 kg K2O per hectare",
+        "majorPests": "Stem Borer, Leaf Folder, Brown Planthopper (BPH), Rice Hispa",
+        "majorDiseases": "Rice Blast, Bacterial Leaf Blight, Sheath Blight, False Smut",
+        "harvesting": "115-150 days when 80% grains turn golden yellow",
+        "keywords": [
+          "paddy",
+          "rice",
+          "dhaan",
+          "dhan",
+          "chawal",
+          "basmati",
+          "kharif"
+        ],
+        "keywords_hi": [
+          "धान",
+          "चावल",
+          "बासमती",
+          "धान की खेती",
+          "रोपई",
+          "खरीफ"
+        ],
+        "keywords_romanized": [
+          "dhaan",
+          "dhan",
+          "chawal",
+          "basmati",
+          "dhan ki kheti"
         ]
       }
     },
     {
-      "id": "crop-tomato-desi",
+      "id": "crop-maize",
       "category": "crop",
-      "title": "Tomato (Desi)",
-      "description": "Desi tomato variety grown as a vegetable crop in UP. Prices are highly volatile based on supply.",
+      "domain": "crops",
+      "crop": "Maize",
+      "topic": "Crop Cultivation",
+      "title": "Maize / Corn (मक्का / Makka)",
+      "title_hi": "मक्का (Maize / Corn Cultivation Guide)",
+      "description": "Versatile cereal crop grown in Kharif, Rabi, and Spring seasons for food, fodder, and industrial starch.",
+      "description_hi": "खाद्यान्न, चारे तथा औद्योगिक उपयोग के लिए उगाई जाने वाली बहुउपयोगी फसल जो खरीफ, रबी और जायद में उगाई जा सकती है।",
       "metadata": {
-        "nameEN": "Tomato (Desi)",
-        "nameHI": "Tomato (Desi)",
-        "emoji": "Tomato",
-        "mandiPrices": {
-          "highest": 1800,
-          "highestMandi": "Kishanpur Mandi (4km)",
-          "lowest": 1400,
-          "lowestMandi": "Gorakhpur Sadar Mandi (18km)",
-          "unit": "Rs/Quintal"
-        },
-        "marketRecommendation": "Tomato prices are highly volatile. Kishanpur Mandi is paying premium Rs.1800/Qtl today due to low supply.",
-        "prices": [
-          {
-            "name": "Kishanpur Mandi",
-            "price": 1800,
-            "distance": "4km",
-            "trend": "up"
-          },
-          {
-            "name": "Laxmipur APMC",
-            "price": 1650,
-            "distance": "12km",
-            "trend": "up"
-          },
-          {
-            "name": "Gorakhpur Sadar Mandi",
-            "price": 1400,
-            "distance": "18km",
-            "trend": "down"
-          }
+        "nameEN": "Maize / Corn",
+        "nameHI": "मक्का",
+        "season": "Kharif (June-July), Rabi (Oct-Nov), Spring (Feb)",
+        "soil": "Well-drained Fertile Loam, Silt Loam",
+        "seedRate": "8-10 kg per acre (20 kg/ha)",
+        "spacing": "60 cm row-to-row, 20 cm plant-to-plant",
+        "irrigation": "3-5 irrigations; sensitive to waterlogging",
+        "fertilizer": "120 kg N, 60 kg P2O5, 50 kg K2O per hectare",
+        "majorPests": "Fall Armyworm (FAW), Stem Borer",
+        "majorDiseases": "Turcicum Leaf Blight, Maydis Leaf Blight, Downy Mildew",
+        "harvesting": "90-110 days when cob husks dry and seeds harden",
+        "keywords": [
+          "maize",
+          "corn",
+          "makka",
+          "bhutta",
+          "hybrid maize"
+        ],
+        "keywords_hi": [
+          "मक्का",
+          "भुट्टा",
+          "मक्के की खेती",
+          "फॉल आर्मीवॉर्म"
+        ],
+        "keywords_romanized": [
+          "makka",
+          "bhutta",
+          "makke ki kheti"
         ]
       }
     },
     {
-      "id": "crop-potato-jyoti",
+      "id": "crop-cotton",
       "category": "crop",
-      "title": "Potato (Jyoti)",
-      "description": "Jyoti potato variety with good storage lifetime; suited for cold storage and distant markets.",
+      "domain": "crops",
+      "crop": "Cotton",
+      "topic": "Crop Cultivation",
+      "title": "Cotton (कपास / Kapas)",
+      "title_hi": "कपास (Cotton Cultivation Guide)",
+      "description": "Major commercial fiber crop thriving in deep black clayey soils with warm temperatures.",
+      "description_hi": "काली मिट्टी वाले क्षेत्रों में उगाई जाने वाली प्रमुख नकदी रेशेदार फसल।",
       "metadata": {
-        "nameEN": "Potato (Jyoti)",
-        "nameHI": "Potato (Jyoti)",
-        "emoji": "Potato",
-        "mandiPrices": {
-          "highest": 1350,
-          "highestMandi": "Laxmipur APMC (12km)",
-          "lowest": 1100,
-          "lowestMandi": "Kishanpur Mandi (4km)",
-          "unit": "Rs/Quintal"
-        },
-        "marketRecommendation": "Potatoes have solid storage lifetime. Consider storing in Cold Storage if you can't transport to Laxmipur.",
-        "prices": [
-          {
-            "name": "Laxmipur APMC",
-            "price": 1350,
-            "distance": "12km",
-            "trend": "stable"
-          },
-          {
-            "name": "Gorakhpur Sadar Mandi",
-            "price": 1280,
-            "distance": "18km",
-            "trend": "up"
-          },
-          {
-            "name": "Kishanpur Mandi",
-            "price": 1100,
-            "distance": "4km",
-            "trend": "down"
-          }
+        "nameEN": "Cotton",
+        "nameHI": "कपास",
+        "season": "Kharif (May - June Sowing)",
+        "soil": "Black Cotton Soil (Regur), Deep Alluvial Soil",
+        "seedRate": "1.5-2.0 kg Bt Cotton seed per acre",
+        "spacing": "90x60 cm or 120x45 cm for Bt Cotton",
+        "irrigation": "4-6 irrigations during flowering and boll formation",
+        "fertilizer": "90-120 kg N, 45-60 kg P2O5, 45-60 kg K2O per hectare",
+        "majorPests": "Pink Bollworm, Whitefly, Aphids, Thrips, Jassids",
+        "majorDiseases": "Cotton Leaf Curl Virus, Bacterial Blight, Fusarium Wilt",
+        "harvesting": "150-180 days in 3-4 pickings as bolls burst open",
+        "keywords": [
+          "cotton",
+          "kapas",
+          "rui",
+          "bt cotton",
+          "bollworm"
+        ],
+        "keywords_hi": [
+          "कपास",
+          "रुई",
+          "कपास की खेती",
+          "गुलाबी सुंडी",
+          "बीटी कपास"
+        ],
+        "keywords_romanized": [
+          "kapas",
+          "rui",
+          "kapas ki kheti",
+          "bt cotton"
         ]
       }
     },
     {
-      "id": "crop-mustard-seed",
+      "id": "crop-soybean",
       "category": "crop",
-      "title": "Mustard Seed",
-      "description": "Yellow mustard seed (Sarson) grown as a Rabi oilseed crop. MSP is set by the Government.",
+      "domain": "crops",
+      "crop": "Soybean",
+      "topic": "Crop Cultivation",
+      "title": "Soybean (सोयाबीन / Soybean)",
+      "title_hi": "सोयाबीन (Soybean Cultivation Guide)",
+      "description": "High-protein Kharif oilseed leguminous crop primarily grown in Central India (MP, Maharashtra).",
+      "description_hi": "उच्च प्रोटीन और तेल सामग्री वाली प्रमुख खरीफ दलहन-तिलहन फसल।",
       "metadata": {
-        "nameEN": "Mustard Seed",
-        "nameHI": "Mustard Seed",
-        "emoji": "Mustard",
-        "mandiPrices": {
-          "highest": 5450,
-          "highestMandi": "Gorakhpur Sadar Mandi (18km)",
-          "lowest": 5100,
-          "lowestMandi": "Kishanpur Mandi (4km)",
-          "unit": "Rs/Quintal"
-        },
-        "marketRecommendation": "Government MSP is Rs.5650. Mandi rates are lower; consider selling to government procurement centers directly.",
-        "prices": [
-          {
-            "name": "Gorakhpur Sadar Mandi",
-            "price": 5450,
-            "distance": "18km",
-            "trend": "up"
-          },
-          {
-            "name": "Laxmipur APMC",
-            "price": 5300,
-            "distance": "12km",
-            "trend": "stable"
-          },
-          {
-            "name": "Kishanpur Mandi",
-            "price": 5100,
-            "distance": "4km",
-            "trend": "down"
-          }
+        "nameEN": "Soybean",
+        "nameHI": "सोयाबीन",
+        "season": "Kharif (June - July Sowing with Monsoon onset)",
+        "soil": "Well-drained Black Soil, Clay Loam",
+        "seedRate": "25-30 kg per acre (70-75 kg/ha)",
+        "spacing": "45x5 cm row-to-plant spacing",
+        "irrigation": "Rainfed; supplementary irrigation at pod filling if dry",
+        "fertilizer": "20 kg N, 60 kg P2O5, 40 kg K2O, 20 kg Sulfur per hectare",
+        "majorPests": "Girdle Beetle, Stem Fly, Tobacco Caterpillar, Semilooper",
+        "majorDiseases": "Yellow Mosaic Virus, Rhizoctonia Aerial Blight, Rust",
+        "harvesting": "90-105 days when leaves turn yellow and drop off",
+        "keywords": [
+          "soybean",
+          "soyabean",
+          "soyabeen",
+          "oilseed",
+          "mp crop"
+        ],
+        "keywords_hi": [
+          "सोयाबीन",
+          "सोयाबीन की खेती",
+          "तिलहन",
+          "पीला मोज़ेक"
+        ],
+        "keywords_romanized": [
+          "soyabean",
+          "soyabeen",
+          "soyabean ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-chickpea-chana",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Chickpea",
+      "topic": "Crop Cultivation",
+      "title": "Chickpea / Bengal Gram (चना / Chana)",
+      "title_hi": "चना (Chickpea / Gram Cultivation Guide)",
+      "description": "Premier Rabi pulse crop rich in protein, suitable for rainfed and semi-arid conditions.",
+      "description_hi": "मुख्य रबी दलहनी फसल जो कम पानी और शुष्क क्षेत्रों में प्रचुर मात्रा में उगाई जाती है।",
+      "metadata": {
+        "nameEN": "Chickpea / Gram",
+        "nameHI": "चना",
+        "season": "Rabi (October - November Sowing)",
+        "soil": "Well-drained Sandy Loam to Clay Loam",
+        "seedRate": "25-30 kg/acre for Desi; 35-40 kg/acre for Kabuli",
+        "spacing": "30x10 cm spacing",
+        "irrigation": "1-2 irrigations (pre-flowering and pod development)",
+        "fertilizer": "20 kg N, 50 kg P2O5, 20 kg Sulfur per hectare",
+        "majorPests": "Gram Pod Borer (Helicoverpa armigera), Cutworm",
+        "majorDiseases": "Fusarium Wilt, Ascochyta Blight, Dry Root Rot",
+        "harvesting": "100-120 days when leaves dry and pods rattle",
+        "keywords": [
+          "chickpea",
+          "gram",
+          "chana",
+          "kabuli chana",
+          "desi chana",
+          "pulse"
+        ],
+        "keywords_hi": [
+          "चना",
+          "देशी चना",
+          "काबुली चना",
+          "चने की खेती",
+          "इल्ली"
+        ],
+        "keywords_romanized": [
+          "chana",
+          "kabuli chana",
+          "chane ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-pigeon-pea-arhar",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Pigeon Pea",
+      "topic": "Crop Cultivation",
+      "title": "Pigeon Pea / Red Gram (अरहर / तुअर / Arhar / Tur)",
+      "title_hi": "अरहर / तुअर (Pigeon Pea Cultivation Guide)",
+      "description": "Long-duration Kharif pulse crop essential for protein nutrition and soil nitrogen fixation.",
+      "description_hi": "दीर्घकालिक खरीफ दलहन फसल जो मिट्टी की उर्वरता में सुधार करती है।",
+      "metadata": {
+        "nameEN": "Pigeon Pea / Red Gram",
+        "nameHI": "अरहर / तुअर",
+        "season": "Kharif (June - July Sowing)",
+        "soil": "Deep Well-drained Loam, Black Soil",
+        "seedRate": "5-6 kg per acre (12-15 kg/ha)",
+        "spacing": "60-75 cm row spacing",
+        "irrigation": "Rainfed; 1-2 protective irrigations at flowering/pod formation",
+        "fertilizer": "20 kg N, 50 kg P2O5, 20 kg Sulfur per hectare",
+        "majorPests": "Pod Fly, Pod Borer, Maruca Webber",
+        "majorDiseases": "Wilt (Fusarium udum), Sterility Mosaic Virus",
+        "harvesting": "160-200 days when 80% pods dry and turn brown",
+        "keywords": [
+          "pigeon pea",
+          "red gram",
+          "arhar",
+          "tur",
+          "tuvar",
+          "pulse"
+        ],
+        "keywords_hi": [
+          "अरहर",
+          "तुअर",
+          "अरहर की खेती",
+          "दलहन"
+        ],
+        "keywords_romanized": [
+          "arhar",
+          "tur",
+          "tuvar",
+          "arhar ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-mustard",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Mustard",
+      "topic": "Crop Cultivation",
+      "title": "Mustard / Rapeseed (सरसों / Sarson)",
+      "title_hi": "सरसों / राया (Mustard Cultivation Guide)",
+      "description": "Major Rabi oilseed crop yielding high-quality edible mustard oil across North-West India.",
+      "description_hi": "उत्तर-पश्चिम भारत की प्रमुख रबी तिलहन फसल जिससे खाद्य तेल प्राप्त होता है।",
+      "metadata": {
+        "nameEN": "Mustard / Rapeseed",
+        "nameHI": "सरसों / राया",
+        "season": "Rabi (October Sowing)",
+        "soil": "Sandy Loam to Clay Loam",
+        "seedRate": "1.5-2.0 kg per acre (4-5 kg/ha)",
+        "spacing": "30x10 cm spacing",
+        "irrigation": "2 irrigations (30 days after sowing & flowering stage)",
+        "fertilizer": "80 kg N, 40 kg P2O5, 40 kg K2O, 40 kg Sulfur per hectare",
+        "majorPests": "Mustard Aphids (Chepa/Maho), Sawfly, Painted Bug",
+        "majorDiseases": "White Rust, Alternaria Blight, Downy Mildew",
+        "harvesting": "110-130 days when pods turn golden yellow",
+        "keywords": [
+          "mustard",
+          "sarson",
+          "rai",
+          "raya",
+          "oilseed"
+        ],
+        "keywords_hi": [
+          "सरसों",
+          "राई",
+          "राया",
+          "सरसों की खेती",
+          "माहो"
+        ],
+        "keywords_romanized": [
+          "sarson",
+          "rai",
+          "raya",
+          "sarson ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-groundnut",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Groundnut",
+      "topic": "Crop Cultivation",
+      "title": "Groundnut / Peanut (मूंगफली / Mungfali)",
+      "title_hi": "मूंगफली (Groundnut Cultivation Guide)",
+      "description": "Important oilseed legume crop requiring friable sandy loam soil for underground pod formation.",
+      "description_hi": "भूमिगत फलियों के विकास के लिए भुरभुरी बलुई दोमट मिट्टी वाली मुख्य तिलहन फसल।",
+      "metadata": {
+        "nameEN": "Groundnut / Peanut",
+        "nameHI": "मूंगफली",
+        "season": "Kharif (June-July) & Summer (Jan-Feb)",
+        "soil": "Sandy Loam, Red Loam, Well-drained Light Soils",
+        "seedRate": "40-45 kg kernels per acre (100 kg/ha)",
+        "spacing": "30x10 cm spacing",
+        "irrigation": "3-5 irrigations; pegging and pod development stages critical",
+        "fertilizer": "25 kg N, 50 kg P2O5, 40 kg K2O, 200 kg Gypsum/ha",
+        "majorPests": "White Grub, Red Hairy Caterpillar, Leaf Miner, Aphids",
+        "majorDiseases": "Tikka Leaf Spot, Collar Rot, Peanut Bud Necrosis",
+        "harvesting": "105-120 days when inner pod wall turns dark brown",
+        "keywords": [
+          "groundnut",
+          "peanut",
+          "mungfali",
+          "singdana",
+          "oilseed"
+        ],
+        "keywords_hi": [
+          "मूंगफली",
+          "सींगदाना",
+          "मूंगफली की खेती",
+          "टिक्का रोग"
+        ],
+        "keywords_romanized": [
+          "mungfali",
+          "mungfali ki kheti",
+          "singdana"
+        ]
+      }
+    },
+    {
+      "id": "crop-potato",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Potato",
+      "topic": "Crop Cultivation",
+      "title": "Potato (आलू / Aloo)",
+      "title_hi": "आलू (Potato Cultivation Guide)",
+      "description": "Major Rabi tuber vegetable crop demanding cool weather and loose organic-rich soil.",
+      "description_hi": "भारत की प्रमुख रबी कंद फसल जिसके लिए ठंडी जलवायु और ढीली उपजाऊ मिट्टी की आवश्यकता होती है।",
+      "metadata": {
+        "nameEN": "Potato",
+        "nameHI": "आलू",
+        "season": "Rabi (October - November Planting)",
+        "soil": "Loose Well-drained Sandy Loam",
+        "seedRate": "8-10 quintals tuber seed per acre (25-30 Q/ha)",
+        "spacing": "50-60 cm ridge-to-ridge, 15-20 cm tuber-to-tuber",
+        "irrigation": "5-7 light irrigations; stop 10 days before harvest",
+        "fertilizer": "150 kg N, 80 kg P2O5, 100 kg K2O per hectare",
+        "majorPests": "Potato Tuber Moth, Aphids, Cutworms",
+        "majorDiseases": "Late Blight, Early Blight, Black Scurf, Common Scab",
+        "harvesting": "80-110 days after planting when haulms dry",
+        "keywords": [
+          "potato",
+          "aloo",
+          "aalu",
+          "jyoti",
+          "pukhraj",
+          "tuber"
+        ],
+        "keywords_hi": [
+          "आलू",
+          "अगेती झुलसा",
+          "पछेती झुलसा",
+          "आलू की खेती"
+        ],
+        "keywords_romanized": [
+          "aloo",
+          "aalu",
+          "aloo ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-tomato",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Tomato",
+      "topic": "Crop Cultivation",
+      "title": "Tomato (टमाटर / Tamatar)",
+      "title_hi": "टमाटर (Tomato Cultivation Guide)",
+      "description": "High-value commercial vegetable crop cultivated year-round with stakes or trellising.",
+      "description_hi": "वर्षभर उगाई जाने वाली उच्च मूल्य वाली सब्जी फसल।",
+      "metadata": {
+        "nameEN": "Tomato",
+        "nameHI": "टमाटर",
+        "season": "Kharif, Rabi, and Summer",
+        "soil": "Well-drained Sandy Loam to Clay Loam (pH 6.0-7.0)",
+        "seedRate": "100-150 grams per acre for hybrids",
+        "spacing": "60x45 cm or 75x60 cm for indeterminate varieties",
+        "irrigation": "Weekly irrigation; avoid overhead sprinkling to prevent blight",
+        "fertilizer": "150 kg N, 100 kg P2O5, 100 kg K2O per hectare",
+        "majorPests": "Fruit Borer (Helicoverpa), Whitefly, Leaf Miner, Mites",
+        "majorDiseases": "Tomato Leaf Curl Virus, Early Blight, Late Blight, Bacterial Wilt",
+        "harvesting": "60-70 days from transplanting in multiple pickings",
+        "keywords": [
+          "tomato",
+          "tamatar",
+          "desi tomato",
+          "hybrid tomato",
+          "vegetable"
+        ],
+        "keywords_hi": [
+          "टमाटर",
+          "टमाटर की खेती",
+          "पत्ती मरोड़",
+          "अर्ली ब्लाइट"
+        ],
+        "keywords_romanized": [
+          "tamatar",
+          "tamatar ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-onion",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Onion",
+      "topic": "Crop Cultivation",
+      "title": "Onion (प्याज / Pyaj)",
+      "title_hi": "प्याज (Onion Cultivation Guide)",
+      "description": "Essential bulb vegetable crop grown in Kharif, Late Kharif, and Rabi seasons.",
+      "description_hi": "रसोई की आवश्यक कंद फसल जो खरीफ, लेट-खरीफ और रबी मौसम में उगाई जाती है।",
+      "metadata": {
+        "nameEN": "Onion",
+        "nameHI": "प्याज",
+        "season": "Rabi (Nov-Dec transplanting), Kharif (July transplanting)",
+        "soil": "Friable Rich Loam Soil (pH 6.5-7.5)",
+        "seedRate": "3-4 kg per acre for seedlings (8-10 kg/ha)",
+        "spacing": "15x10 cm bed spacing",
+        "irrigation": "10-15 light irrigations; stop 15 days before harvesting",
+        "fertilizer": "100 kg N, 50 kg P2O5, 50 kg K2O, 30 kg Sulfur per hectare",
+        "majorPests": "Thrips, Armyworm, Maggots",
+        "majorDiseases": "Purple Blotch, Stemphylium Blight, Downy Mildew",
+        "harvesting": "110-130 days when 50% tops fall over (neck fall)",
+        "keywords": [
+          "onion",
+          "pyaj",
+          "pyaaj",
+          "kanda",
+          "bulb"
+        ],
+        "keywords_hi": [
+          "प्याज",
+          "कांदा",
+          "प्याज की खेती",
+          "थ्रिप्स"
+        ],
+        "keywords_romanized": [
+          "pyaj",
+          "pyaaj",
+          "kanda",
+          "pyaj ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-chilli",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Chilli",
+      "topic": "Crop Cultivation",
+      "title": "Chilli / Red Pepper (मिर्च / Mirch)",
+      "title_hi": "मिर्च (Chilli / Red Pepper Cultivation Guide)",
+      "description": "Spice and vegetable crop requiring warm humid climate and good field drainage.",
+      "description_hi": "मसाला एवं सब्जी फसल जिसके लिए गर्म आर्द्र जलवायु और अच्छी जल निकासी आवश्यक है।",
+      "metadata": {
+        "nameEN": "Chilli / Red Pepper",
+        "nameHI": "मिर्च",
+        "season": "Kharif & Summer",
+        "soil": "Well-drained Black Soil, Sandy Loam",
+        "seedRate": "150-200 grams hybrid seed per acre",
+        "spacing": "60x45 cm spacing",
+        "irrigation": "Frequent light irrigations; sensitive to drought and flood",
+        "fertilizer": "120 kg N, 60 kg P2O5, 60 kg K2O per hectare",
+        "majorPests": "Thrips (Murda disease vector), Mites, Whitefly, Fruit Borer",
+        "majorDiseases": "Chilli Leaf Curl Virus, Anthracnose / Dieback, Powdery Mildew",
+        "harvesting": "60-75 days after transplanting for green; 120 days for dry red",
+        "keywords": [
+          "chilli",
+          "chili",
+          "mirch",
+          "mirchi",
+          "red pepper",
+          "spice"
+        ],
+        "keywords_hi": [
+          "मिर्च",
+          "हरी मिर्च",
+          "लाल मिर्च",
+          "मिर्च की खेती",
+          "मुरडा रोग"
+        ],
+        "keywords_romanized": [
+          "mirch",
+          "mirchi",
+          "mirch ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-brinjal",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Brinjal",
+      "topic": "Crop Cultivation",
+      "title": "Brinjal / Eggplant (बैंगन / Baingan)",
+      "title_hi": "बैंगन (Brinjal / Eggplant Cultivation Guide)",
+      "description": "Hardy Solanaceous vegetable crop cultivated across warm seasons.",
+      "description_hi": "सहनशील सब्जी फसल जो अधिकांश मौसमों में उगाई जा सकती है।",
+      "metadata": {
+        "nameEN": "Brinjal / Eggplant",
+        "nameHI": "बैंगन",
+        "season": "Kharif, Rabi, and Summer",
+        "soil": "Silt Loam to Clay Loam",
+        "seedRate": "150-200 grams per acre",
+        "spacing": "75x60 cm or 90x60 cm",
+        "irrigation": "Irrigate every 4-6 days in summer, 8-10 days in winter",
+        "fertilizer": "100 kg N, 50 kg P2O5, 50 kg K2O per hectare",
+        "majorPests": "Brinjal Shoot and Fruit Borer (BSFB), Epilachna Beetle, Jassid",
+        "majorDiseases": "Little Leaf of Brinjal (Phytoplasma), Bacterial Wilt, Phomopsis Blight",
+        "harvesting": "55-70 days after transplanting when tender and glossy",
+        "keywords": [
+          "brinjal",
+          "eggplant",
+          "baingan",
+          "aubergine",
+          "bsfb"
+        ],
+        "keywords_hi": [
+          "बैंगन",
+          "बैंगन की खेती",
+          "फल छेदक",
+          "छोटे पत्ते रोग"
+        ],
+        "keywords_romanized": [
+          "baingan",
+          "baingan ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-okra",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Okra",
+      "topic": "Crop Cultivation",
+      "title": "Okra / Lady Finger (भिंडी / Bhindi)",
+      "title_hi": "भिंडी (Okra / Lady Finger Cultivation Guide)",
+      "description": "Warm-season vegetable crop sensitive to frost and waterlogging.",
+      "description_hi": "गर्मी एवं बरसात के मौसम की लोकप्रिय सब्जी फसल।",
+      "metadata": {
+        "nameEN": "Okra / Lady Finger",
+        "nameHI": "भिंडी",
+        "season": "Summer (Feb-March) & Kharif (June-July)",
+        "soil": "Sandy Loam to Clay Loam rich in organic matter",
+        "seedRate": "3.5-4.5 kg/acre for Kharif; 5-6 kg/acre for Summer",
+        "spacing": "45x30 cm or 60x30 cm",
+        "irrigation": "Every 4-5 days in summer, rainfed in Kharif",
+        "fertilizer": "90 kg N, 50 kg P2O5, 50 kg K2O per hectare",
+        "majorPests": "Shoot and Fruit Borer, Whitefly, Jassids, Mites",
+        "majorDiseases": "Yellow Vein Mosaic Virus (YVMV), Enation Leaf Curl, Powdery Mildew",
+        "harvesting": "45-50 days after sowing, harvest tender pods every 2 days",
+        "keywords": [
+          "okra",
+          "lady finger",
+          "bhindi",
+          "yvmv"
+        ],
+        "keywords_hi": [
+          "भिंडी",
+          "भिंडी की खेती",
+          "पीला वीन मोज़ेक"
+        ],
+        "keywords_romanized": [
+          "bhindi",
+          "bhindi ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-sugarcane",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Sugarcane",
+      "topic": "Crop Cultivation",
+      "title": "Sugarcane (गन्ना / Ganna)",
+      "title_hi": "गन्ना (Sugarcane Cultivation Guide)",
+      "description": "Long-duration industrial cash crop vital for sugar and ethanol production.",
+      "description_hi": "चीनी तथा एथेनॉल उद्योग के लिए भारत की मुख्य दीर्घकालिक नकदी फसल।",
+      "metadata": {
+        "nameEN": "Sugarcane",
+        "nameHI": "गन्ना",
+        "season": "Autumn (Oct-Nov) & Spring (Feb-March)",
+        "soil": "Deep Well-drained Heavy Loams and Alluvial Soils",
+        "seedRate": "35,000-40,000 three-budded setts per hectare (12-15 quintals/acre)",
+        "spacing": "90-120 cm trench or furrow spacing",
+        "irrigation": "10-15 irrigations; high water requirement (1500-2500 mm)",
+        "fertilizer": "150-250 kg N, 60-80 kg P2O5, 60-80 kg K2O per hectare",
+        "majorPests": "Early Shoot Borer, Top Borer, Pyrilla, White Grub",
+        "majorDiseases": "Red Rot (Colletotrichum falcatum), Smut, Grassy Shoot",
+        "harvesting": "10-14 months after planting when sucrose content reaches peak",
+        "keywords": [
+          "sugarcane",
+          "ganna",
+          "cash crop",
+          "red rot",
+          "co2018"
+        ],
+        "keywords_hi": [
+          "गन्ना",
+          "गन्ने की खेती",
+          "लाल सड़न रोग",
+          "पेड़ी फसल"
+        ],
+        "keywords_romanized": [
+          "ganna",
+          "ganne ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-garlic",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Garlic",
+      "topic": "Crop Cultivation",
+      "title": "Garlic (लहसुन / Lahsun)",
+      "title_hi": "लहसुन (Garlic Cultivation Guide)",
+      "description": "Rabi spice condiment bulb crop rich in medicinal allicin compound.",
+      "description_hi": "औषधीय गुणों से भरपूर रबी मौसम की मसाला कंद फसल।",
+      "metadata": {
+        "nameEN": "Garlic",
+        "nameHI": "लहसुन",
+        "season": "Rabi (October - November Planting)",
+        "soil": "Fertile Rich Sandy Loam to Clay Loam",
+        "seedRate": "200-250 kg cloves per acre (500-600 kg/ha)",
+        "spacing": "15x10 cm dibbling spacing",
+        "irrigation": "10-12 light irrigations; stop 15 days before harvest",
+        "fertilizer": "100 kg N, 50 kg P2O5, 50 kg K2O, 40 kg Sulfur per hectare",
+        "majorPests": "Thrips, Stem and Bulb Nematode",
+        "majorDiseases": "Purple Blotch, Downy Mildew, Basal Rot",
+        "harvesting": "130-150 days when leaves turn yellow-brown and dry",
+        "keywords": [
+          "garlic",
+          "lahsun",
+          "lasun",
+          "clove",
+          "spice"
+        ],
+        "keywords_hi": [
+          "लहसुन",
+          "लहसुन की खेती",
+          "कली",
+          "थ्रिप्स"
+        ],
+        "keywords_romanized": [
+          "lahsun",
+          "lasun",
+          "lahsun ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-turmeric",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Turmeric",
+      "topic": "Crop Cultivation",
+      "title": "Turmeric (हल्दी / Haldi)",
+      "title_hi": "हल्दी (Turmeric Cultivation Guide)",
+      "description": "Commercial rhizome spice crop valued for curcumin pigment and health benefits.",
+      "description_hi": "करक्यूमिन घटक और औषधीय उपयोग के लिए उगाई जाने वाली कंद मसाला फसल।",
+      "metadata": {
+        "nameEN": "Turmeric",
+        "nameHI": "हल्दी",
+        "season": "Kharif (May - June Planting)",
+        "soil": "Friable Rich Loam, Red Loam, Well-drained Sandy Soil",
+        "seedRate": "800-1000 kg seed rhizomes per acre (2000-2500 kg/ha)",
+        "spacing": "45x20 cm raised bed spacing",
+        "irrigation": "15-20 irrigations in rainfed deficit periods; mulch with green leaves",
+        "fertilizer": "60 kg N, 50 kg P2O5, 120 kg K2O, 25 tons FYM/ha",
+        "majorPests": "Rhizome Fly, Shoot Borer, Leaf Roller",
+        "majorDiseases": "Rhizome Rot (Pythium), Leaf Spot (Taphrina)",
+        "harvesting": "7-9 months when leaves turn dry and yellow",
+        "keywords": [
+          "turmeric",
+          "haldi",
+          "curcumin",
+          "spice",
+          "rhizome"
+        ],
+        "keywords_hi": [
+          "हल्दी",
+          "हल्दी की खेती",
+          "कंद सड़न"
+        ],
+        "keywords_romanized": [
+          "haldi",
+          "haldi ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-ginger",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Ginger",
+      "topic": "Crop Cultivation",
+      "title": "Ginger (अदरक / Adrak)",
+      "title_hi": "अदरक (Ginger Cultivation Guide)",
+      "description": "High-value commercial rhizome spice crop thriving in partial shade and organic soils.",
+      "description_hi": "उच्च मूल्य वाली मसाला फसल जिसे अच्छी जल निकासी और छायादार आर्द्र जलवायु की आवश्यकता होती है।",
+      "metadata": {
+        "nameEN": "Ginger",
+        "nameHI": "अदरक",
+        "season": "Kharif (April - May Planting)",
+        "soil": "Rich Sandy Loam, Humus-rich Soil",
+        "seedRate": "600-750 kg rhizomes per acre",
+        "spacing": "30x20 cm on raised beds",
+        "irrigation": "Heavy irrigation required; mandatory organic mulching",
+        "fertilizer": "75 kg N, 50 kg P2O5, 50 kg K2O, 30 tons compost/ha",
+        "majorPests": "Shoot Borer, Rhizome Scale",
+        "majorDiseases": "Soft Rot / Rhizome Rot (Pythium), Bacterial Wilt",
+        "harvesting": "8 months for fresh ginger; 9 months for dry ginger (Saunth)",
+        "keywords": [
+          "ginger",
+          "adrak",
+          "saunth",
+          "spice",
+          "rhizome"
+        ],
+        "keywords_hi": [
+          "अदरक",
+          "सोंठ",
+          "अदरक की खेती",
+          "सड़न रोग"
+        ],
+        "keywords_romanized": [
+          "adrak",
+          "adrak ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-banana",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Banana",
+      "topic": "Crop Cultivation",
+      "title": "Banana (केला / Kela)",
+      "title_hi": "केला (Banana Cultivation Guide)",
+      "description": "Major tropical fruit crop cultivated using tissue culture suckers and drip fertigation.",
+      "description_hi": "ड्रिप फर्टिगेशन एवं टिश्यू कल्चर पौधों द्वारा उगाई जाने वाली प्रमुख फल फसल।",
+      "metadata": {
+        "nameEN": "Banana",
+        "nameHI": "केला",
+        "season": "Year-round (June-July or Oct-Nov planting)",
+        "soil": "Deep Well-drained Fertile Loam (pH 6.5-7.5)",
+        "seedRate": "1200-1450 tissue culture plants per acre",
+        "spacing": "1.8x1.5 meter or 1.5x1.5 meter spacing",
+        "irrigation": "Drip irrigation (20-25 liters/plant/day)",
+        "fertilizer": "200 g N, 50 g P2O5, 300 g K2O per plant per year",
+        "majorPests": "Banana Stem Weevil, Rhizome Weevil, Nematodes, Aphids",
+        "majorDiseases": "Panama Wilt (Fusarium oxysporum), Sigatoka Leaf Spot, Bunchy Top Virus",
+        "harvesting": "11-14 months when bunches mature and angles round off",
+        "keywords": [
+          "banana",
+          "kela",
+          "grand naine",
+          "tissue culture",
+          "fruit"
+        ],
+        "keywords_hi": [
+          "केला",
+          "केले की खेती",
+          "सिगाटोका रोग",
+          "पनामा विल्ट"
+        ],
+        "keywords_romanized": [
+          "kela",
+          "kela ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-mango",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Mango",
+      "topic": "Crop Cultivation",
+      "title": "Mango (आम / Aam)",
+      "title_hi": "आम (Mango Orchard Management)",
+      "description": "King of fruits; permanent perennial orchard tree grown across India.",
+      "description_hi": "फलों का राजा; भारत भर में उगाया जाने वाला प्रमुख बहुवर्षीय बागवानी वृक्ष।",
+      "metadata": {
+        "nameEN": "Mango",
+        "nameHI": "आम",
+        "season": "Monsoon Planting (July - August)",
+        "soil": "Deep Alluvial Loam (pH 5.5-7.5)",
+        "seedRate": "40-70 grafted plants per acre (10x10m or 5x5m high density)",
+        "spacing": "10x10 meter traditional; 3x3 meter High Density (HDPE)",
+        "irrigation": "Irrigate young plants; ring irrigation during fruit set",
+        "fertilizer": "1 kg N, 0.5 kg P2O5, 1 kg K2O per mature tree per year",
+        "majorPests": "Mango Hopper, Mealybug, Shoot Gall Psylla, Fruit Fly",
+        "majorDiseases": "Powdery Mildew, Anthracnose, Mango Malformation",
+        "harvesting": "Harvest when fruits show color change and maturity starch",
+        "keywords": [
+          "mango",
+          "aam",
+          "alphonso",
+          "dasheri",
+          "langra",
+          "orchard"
+        ],
+        "keywords_hi": [
+          "आम",
+          "दशहरी",
+          "लंगड़ा",
+          "आम का बाग",
+          "हॉपर कीट"
+        ],
+        "keywords_romanized": [
+          "aam",
+          "aam ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-papaya",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Papaya",
+      "topic": "Crop Cultivation",
+      "title": "Papaya (पपीता / Papita)",
+      "title_hi": "पपीता (Papaya Cultivation Guide)",
+      "description": "Fast-growing fruit crop giving quick returns, rich in Vitamin A and papain enzyme.",
+      "description_hi": "शीघ्र फल देने वाली फल फसल, जो विटामिन ए तथा पपेन एंजाइम से भरपूर होती है।",
+      "metadata": {
+        "nameEN": "Papaya",
+        "nameHI": "पपीता",
+        "season": "Spring (Feb-March) & Monsoon (June-July)",
+        "soil": "Well-drained Sandy Loam; strictly no waterlogging",
+        "seedRate": "100-150 grams per acre for gynodioecious varieties (e.g. Red Lady 786)",
+        "spacing": "1.8x1.8 meter or 2x2 meter",
+        "irrigation": "Drip irrigation every 2-3 days; collar region must stay dry",
+        "fertilizer": "250 g N, 250 g P2O5, 500 g K2O per plant per year",
+        "majorPests": "Mealybug, Aphids (vector), Whitefly",
+        "majorDiseases": "Papaya Ring Spot Virus (PRSV), Foot Rot / Stem Rot (Pythium)",
+        "harvesting": "9-10 months after planting when fruit tip turns yellow",
+        "keywords": [
+          "papaya",
+          "papita",
+          "red lady 786",
+          "fruit"
+        ],
+        "keywords_hi": [
+          "पपीता",
+          "पपीते की खेती",
+          "रिंग स्पॉट",
+          "तना सड़न"
+        ],
+        "keywords_romanized": [
+          "papita",
+          "papita ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-pomegranate",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Pomegranate",
+      "topic": "Crop Cultivation",
+      "title": "Pomegranate (अनार / Anar)",
+      "title_hi": "अनार (Pomegranate Orchard Guide)",
+      "description": "High-value arid and semi-arid fruit crop grown with Bahar treatment regulation.",
+      "description_hi": "शुष्क एवं अर्ध-शुष्क क्षेत्रों की उच्च मूल्य वाली फल फसल (भगवा किस्म)।",
+      "metadata": {
+        "nameEN": "Pomegranate",
+        "nameHI": "अनार",
+        "season": "Bahar regulation (Ambe, Mrig, or Hasta Bahar)",
+        "soil": "Well-drained Light Loam to Medium Black Soil",
+        "seedRate": "300-400 air-layered plants per acre (Bhagwa variety)",
+        "spacing": "4.5x3.0 meter or 5x4 meter",
+        "irrigation": "Drip irrigation; regulated water stress for Bahar flowering",
+        "fertilizer": "625 g N, 250 g P2O5, 500 g K2O per mature tree per year",
+        "majorPests": "Pomegranate Butterfly / Fruit Borer (Deudorix), Thrips, Shot Hole Borer",
+        "majorDiseases": "Bacterial Oily Spot / Blight (Xanthomonas), Wilt, Fruit Rot",
+        "harvesting": "150-180 days after flowering when arils turn deep red",
+        "keywords": [
+          "pomegranate",
+          "anar",
+          "bhagwa",
+          "fruit",
+          "bahar"
+        ],
+        "keywords_hi": [
+          "अनार",
+          "भगवा",
+          "अनार की खेती",
+          "तेलिया रोग"
+        ],
+        "keywords_romanized": [
+          "anar",
+          "anar ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-grapes",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Grapes",
+      "topic": "Crop Cultivation",
+      "title": "Grapes (अंगूर / Angoor)",
+      "title_hi": "अंगूर (Grapes Cultivation & Trellising)",
+      "description": "High-investment vine fruit crop cultivated on Bower / Y-trellis systems.",
+      "description_hi": "मंडप या वाई-ट्रेलीस प्रणाली पर उगाई जाने वाली उच्च निवेश वाली बेल फल फसल।",
+      "metadata": {
+        "nameEN": "Grapes",
+        "nameHI": "अंगूर",
+        "season": "October pruning (for fruiting in North/West India)",
+        "soil": "Deep Well-drained Sandy Loam to Red Loam (pH 6.5-7.5)",
+        "seedRate": "800-1000 rootstock grafted vines per acre (Thomson Seedless)",
+        "spacing": "3x1.8 meter or 2.7x1.5 meter",
+        "irrigation": "Drip irrigation with precise fertigation schedule",
+        "fertilizer": "500 kg N, 300 kg P2O5, 700 kg K2O per hectare total",
+        "majorPests": "Thrips, Mealybugs, Flea Beetle, Mites",
+        "majorDiseases": "Downy Mildew, Powdery Mildew, Anthracnose",
+        "harvesting": "130-160 days after October pruning when TSS reaches 18-20° Brix",
+        "keywords": [
+          "grapes",
+          "angoor",
+          "thomson seedless",
+          "viticulture"
+        ],
+        "keywords_hi": [
+          "अंगूर",
+          "अंगूर की खेती",
+          "डाउनही फफूंद"
+        ],
+        "keywords_romanized": [
+          "angoor",
+          "angoor ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-citrus-lemon",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Citrus / Lemon",
+      "topic": "Crop Cultivation",
+      "title": "Citrus / Lemon / Acid Lime (नींबू / संतरा / Nimbu / Santra)",
+      "title_hi": "नींबू / संतरा (Citrus Orchard Guide)",
+      "description": "Perennial fruit crop rich in Vitamin C, sensitive to waterlogging and soil salinity.",
+      "description_hi": "विटामिन सी से भरपूर बहुवर्षीय फलदार पेड़।",
+      "metadata": {
+        "nameEN": "Citrus / Lemon / Mandarin",
+        "nameHI": "नींबू / संतरा",
+        "season": "Monsoon Planting (July-August)",
+        "soil": "Deep Well-drained Sandy Loam to Clay Loam (pH 5.5-7.5)",
+        "seedRate": "110-160 budded plants per acre (Kagzi Lime / Nagpur Mandarin)",
+        "spacing": "6x6 meter or 5x5 meter",
+        "irrigation": "Ring system or drip irrigation; avoid flooding tree trunk",
+        "fertilizer": "600 g N, 200 g P2O5, 300 g K2O per mature tree per year",
+        "majorPests": "Citrus Psylla (Huanglongbing vector), Leaf Miner, Lemon Butterfly",
+        "majorDiseases": "Citrus Canker (Xanthomonas), Phytophthora Gummosis, Citrus Greening",
+        "harvesting": "Harvest when fruits turn yellow or reach optimal juice percentage",
+        "keywords": [
+          "citrus",
+          "lemon",
+          "nimbu",
+          "santra",
+          "orange",
+          "lime"
+        ],
+        "keywords_hi": [
+          "नींबू",
+          "संतरा",
+          "नींबू की खेती",
+          "सिट्रस कैंकर"
+        ],
+        "keywords_romanized": [
+          "nimbu",
+          "santra",
+          "nimbu ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-tea",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Tea",
+      "topic": "Crop Cultivation",
+      "title": "Tea (चाय / Chai)",
+      "title_hi": "चाय (Tea Plantation Guide)",
+      "description": "Perennial plantation beverage crop thriving in acidic hill slope soils of Assam and Nilgiris.",
+      "description_hi": "असम, पश्चिम बंगाल एवं दक्षिण भारत की पहाड़ियों पर उगाई जाने वाली पेय फसल।",
+      "metadata": {
+        "nameEN": "Tea",
+        "nameHI": "चाय",
+        "season": "Spring and Monsoon plucking seasons",
+        "soil": "Deep Acidic Soil (pH 4.5-5.5) with rich organic matter",
+        "seedRate": "5000-6000 clonal bushes per acre",
+        "spacing": "105x60 cm or 120x75 cm staggered",
+        "irrigation": "Rainfed in high rainfall regions; overhead sprinklers during dry spells",
+        "fertilizer": "140 kg N, 50 kg P2O5, 140 kg K2O per hectare",
+        "majorPests": "Tea Mosquito Bug, Red Spider Mite, Thrips",
+        "majorDiseases": "Blister Blight, Black Rot, Red Rust",
+        "harvesting": "Pluck two leaves and a bud every 7-10 days",
+        "keywords": [
+          "tea",
+          "chai",
+          "plantation",
+          "assam tea",
+          "darjeeling"
+        ],
+        "keywords_hi": [
+          "चाय",
+          "चाय की खेती",
+          "चाय पत्ती"
+        ],
+        "keywords_romanized": [
+          "chai",
+          "chai ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-coffee",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Coffee",
+      "topic": "Crop Cultivation",
+      "title": "Coffee (कॉफी / Coffee)",
+      "title_hi": "कॉफी (Coffee Plantation Guide)",
+      "description": "Shade-grown commercial beverage crop cultivated in Western Ghats (Karnataka, Kerala, TN).",
+      "description_hi": "पश्चिमी घाट के छायादार ढलानों पर उगाई जाने वाली प्रमुख बागवानी पेय फसल।",
+      "metadata": {
+        "nameEN": "Coffee",
+        "nameHI": "कॉफी",
+        "season": "Monsoon planting (June - September)",
+        "soil": "Deep Acidic Rich Forest Soil (pH 6.0-6.5)",
+        "seedRate": "1000-1200 plants per acre (Arabica/Robusta)",
+        "spacing": "2x2 meter for Arabica; 3x3 meter for Robusta",
+        "irrigation": "Blossom and backing irrigations via sprinklers in dry spring",
+        "fertilizer": "140 kg N, 100 kg P2O5, 140 kg K2O per hectare",
+        "majorPests": "Coffee White Stem Borer, Berry Borer, Mealybug",
+        "majorDiseases": "Coffee Leaf Rust (Hemileia vastatrix), Black Rot",
+        "harvesting": "Nov-Jan (Arabica) and Dec-Feb (Robusta) ripe red berries picking",
+        "keywords": [
+          "coffee",
+          "kapi",
+          "arabica",
+          "robusta",
+          "plantation"
+        ],
+        "keywords_hi": [
+          "कॉफी",
+          "कॉफी की खेती",
+          "पत्ती रोली रोग"
+        ],
+        "keywords_romanized": [
+          "coffee",
+          "coffee ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-cabbage-cauliflower",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Cabbage & Cauliflower",
+      "topic": "Crop Cultivation",
+      "title": "Cabbage & Cauliflower (पत्तागोभी / फूलगोभी / Gobhi)",
+      "title_hi": "पत्तागोभी एवं फूलगोभी (Cole Crops Guide)",
+      "description": "Popular Rabi cole vegetable crops requiring cool climate and high soil fertility.",
+      "description_hi": "ठंडे मौसम में उगाई जाने वाली लोकप्रिय सब्जी फसलें।",
+      "metadata": {
+        "nameEN": "Cabbage & Cauliflower",
+        "nameHI": "पत्तागोभी एवं फूलगोभी",
+        "season": "Rabi (Sept-Nov Transplanting)",
+        "soil": "Sandy Loam to Silt Loam rich in organic carbon",
+        "seedRate": "200-250 grams per acre",
+        "spacing": "45x45 cm or 60x45 cm",
+        "irrigation": "Irrigate every 7-10 days; keep moisture uniform",
+        "fertilizer": "120 kg N, 80 kg P2O5, 80 kg K2O, Boron + Molybdenum",
+        "majorPests": "Diamondback Moth (DBM), Tobacco Caterpillar, Aphids",
+        "majorDiseases": "Black Rot (Xanthomonas), Clubroot, Downy Mildew",
+        "harvesting": "60-90 days after transplanting when heads/curds are firm",
+        "keywords": [
+          "cabbage",
+          "cauliflower",
+          "gobhi",
+          "patta gobhi",
+          "phool gobhi"
+        ],
+        "keywords_hi": [
+          "पत्तागोभी",
+          "फूलगोभी",
+          "गोभी की खेती",
+          "डीबीएम कीट"
+        ],
+        "keywords_romanized": [
+          "gobhi",
+          "patta gobhi",
+          "phool gobhi"
+        ]
+      }
+    },
+    {
+      "id": "crop-pea",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Field Pea / Garden Pea",
+      "topic": "Crop Cultivation",
+      "title": "Pea (मटर / Matar)",
+      "title_hi": "मटर (Pea Cultivation Guide)",
+      "description": "Rabi leguminous vegetable and pulse crop enriching soil with atmospheric nitrogen.",
+      "description_hi": "रबी की प्रमुख दलहनी एवं सब्जी फसल जो मिट्टी में नाइट्रोजन स्थिरीकरण करती है।",
+      "metadata": {
+        "nameEN": "Pea",
+        "nameHI": "मटर",
+        "season": "Rabi (October - November Sowing)",
+        "soil": "Well-drained Light Silt Loam to Clay Loam (pH 6.0-7.5)",
+        "seedRate": "35-40 kg per acre (80-100 kg/ha)",
+        "spacing": "30x10 cm row spacing",
+        "irrigation": "2 irrigations (at flowering and pod development)",
+        "fertilizer": "20 kg N, 60 kg P2O5, 40 kg K2O per hectare",
+        "majorPests": "Pea Pod Borer, Leaf Miner, Aphids",
+        "majorDiseases": "Powdery Mildew (Erysiphe pisi), Rust, Fusarium Wilt",
+        "harvesting": "60-80 days for green pods; 100-110 days for dry grain",
+        "keywords": [
+          "pea",
+          "matar",
+          "mutter",
+          "green pea",
+          "pulse"
+        ],
+        "keywords_hi": [
+          "मटर",
+          "हरी मटर",
+          "मटर की खेती",
+          "पाउडरी माइल्ड्यू"
+        ],
+        "keywords_romanized": [
+          "matar",
+          "matar ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-bajra-pearl-millet",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Pearl Millet / Bajra",
+      "topic": "Crop Cultivation",
+      "title": "Pearl Millet / Bajra (बाजरा / Bajra)",
+      "title_hi": "बाजरा (Pearl Millet Cultivation Guide)",
+      "description": "Drought-tolerant nutri-cereal millet suitable for dry sandy regions of Rajasthan & Gujarat.",
+      "description_hi": "शुष्क एवं कम वर्षा वाले क्षेत्रों के लिए अत्यंत सहनशील पोषक अनाज (श्री अन्न)।",
+      "metadata": {
+        "nameEN": "Pearl Millet / Bajra",
+        "nameHI": "बाजरा",
+        "season": "Kharif (June - July Sowing)",
+        "soil": "Sandy Soil, Light Loam, Drought-prone soils",
+        "seedRate": "1.5-2.0 kg per acre (4-5 kg/ha)",
+        "spacing": "45x12 cm spacing",
+        "irrigation": "Rainfed; 1 critical irrigation at earhead stage if monsoon fails",
+        "fertilizer": "80 kg N, 40 kg P2O5, 30 kg K2O per hectare",
+        "majorPests": "Shoot Fly, Stem Borer, Blister Beetle",
+        "majorDiseases": "Downy Mildew / Green Ear Disease, Ergot, Smut",
+        "harvesting": "80-95 days when earheads mature and dry",
+        "keywords": [
+          "bajra",
+          "pearl millet",
+          "millet",
+          "nutri cereal",
+          "dryland"
+        ],
+        "keywords_hi": [
+          "बाजरा",
+          "बाजरे की खेती",
+          "श्री अन्न",
+          "हरा कान रोग"
+        ],
+        "keywords_romanized": [
+          "bajra",
+          "bajre ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-jowar-sorghum",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Sorghum / Jowar",
+      "topic": "Crop Cultivation",
+      "title": "Sorghum / Jowar (ज्वार / Jowar)",
+      "title_hi": "ज्वार (Sorghum / Jowar Cultivation Guide)",
+      "description": "Nutritious dual-purpose grain and fodder crop grown in Kharif and Rabi seasons.",
+      "description_hi": "अनाज एवं चारे के लिए उगाई जाने वाली प्रमुख पोषक अनाज (मिल्लेट) फसल।",
+      "metadata": {
+        "nameEN": "Sorghum / Jowar",
+        "nameHI": "ज्वार",
+        "season": "Kharif (June-July) & Rabi (Sept-Oct)",
+        "soil": "Clay Loam, Deep Black Soil, Medium Loam",
+        "seedRate": "3-4 kg per acre for grain (9-10 kg/ha)",
+        "spacing": "45x15 cm spacing",
+        "irrigation": "Rainfed in Kharif; 2-3 irrigations for Rabi Jowar",
+        "fertilizer": "80 kg N, 40 kg P2O5, 40 kg K2O per hectare",
+        "majorPests": "Sorghum Shoot Fly, Stem Borer, Armyworm",
+        "majorDiseases": "Grain Mold, Charcoal Rot, Anthracnose",
+        "harvesting": "100-115 days when grain hardens",
+        "keywords": [
+          "jowar",
+          "sorghum",
+          "millet",
+          "fodder",
+          "nutri cereal"
+        ],
+        "keywords_hi": [
+          "ज्वार",
+          "ज्वार की खेती",
+          "शूट फ्लाई"
+        ],
+        "keywords_romanized": [
+          "jowar",
+          "jowar ki kheti"
+        ]
+      }
+    },
+    {
+      "id": "crop-ragi-finger-millet",
+      "category": "crop",
+      "domain": "crops",
+      "crop": "Finger Millet / Ragi",
+      "topic": "Crop Cultivation",
+      "title": "Finger Millet / Ragi (रागी / मडुआ / Ragi / Mandua)",
+      "title_hi": "रागी / मडुआ (Finger Millet Cultivation Guide)",
+      "description": "Calcium-rich climate-resilient millet crop grown in South and East India.",
+      "description_hi": "कैल्शियम से भरपूर जलवायु-सहनशील पोषक अनाज फसल।",
+      "metadata": {
+        "nameEN": "Finger Millet / Ragi",
+        "nameHI": "रागी / मडुआ",
+        "season": "Kharif & Rabi (transplanted or direct sown)",
+        "soil": "Red Loam, Sandy Loam, Clay Loam",
+        "seedRate": "2-3 kg per acre for transplanted; 4 kg for direct sown",
+        "spacing": "25x10 cm transplanting spacing",
+        "irrigation": "Rainfed; highly drought resistant",
+        "fertilizer": "60 kg N, 30 kg P2O5, 30 kg K2O per hectare",
+        "majorPests": "Pink Stem Borer, Aphids, Root Aphid",
+        "majorDiseases": "Ragi Blast (Pyricularia grisea)",
+        "harvesting": "110-120 days when earheads turn brown",
+        "keywords": [
+          "ragi",
+          "finger millet",
+          "mandua",
+          "madua",
+          "nutri cereal"
+        ],
+        "keywords_hi": [
+          "रागी",
+          "मडुआ",
+          "रागी की खेती",
+          "ब्लास्ट रोग"
+        ],
+        "keywords_romanized": [
+          "ragi",
+          "mandua",
+          "madua",
+          "ragi ki kheti"
         ]
       }
     }
@@ -201,86 +1353,6051 @@ window.KRISHI_OFFLINE_KNOWLEDGE_BUNDLE = {
     {
       "id": "disease-rice-blast",
       "category": "disease",
+      "crop": "Paddy / Rice",
+      "topic": "Rice Blast",
       "title": "Rice Blast (Dhaan ka Jhonka Rog)",
-      "description": "Spindle-shaped lesions on leaves with grayish centers. Spreads rapidly in high humidity conditions. Reported in Kishanpur block farms.",
+      "title_hi": "धान का झोंका रोग (Rice Blast)",
+      "description": "Spindle-shaped lesions on leaves with grayish centers. Spreads rapidly in high humidity conditions.",
+      "description_hi": "पत्तियों पर आंख या नाव के आकार के धब्बे जिनके बीच का भाग स्लेटी होता है। अधिक नमी में तेजी से फैलता है।",
       "metadata": {
         "crop": "Paddy / Rice",
         "confidence": "94%",
         "severity": "High",
         "symptoms": "Spindle-shaped lesions on leaves with grayish centers. Spreading rapidly due to high humidity.",
+        "symptoms_hi": "पत्तियों पर धब्बे, तने के जोड़ों का काला पड़ना, बालियों का सूखना।",
         "organicTreatment": "Spray Neem oil formulation (3,000 ppm) at 3 ml per liter of water. Ensure proper spacing between rows.",
+        "organicTreatment_hi": "नीम तेल (3000 ppm) 3 मिली प्रति लीटर पानी में मिलाकर छिड़कें। ट्राइकोड्रामा 5 ग्राम/लीटर का प्रयोग करें।",
         "chemicalTreatment": "Spray Tricyclazole 75 WP at 0.6 grams per liter of water. Avoid water logging.",
+        "chemicalTreatment_hi": "ट्राइसाइक्लाजोल 75 WP (0.6 ग्राम/लीटर) पानी में मिलाकर छिड़काव करें।",
         "preventiveMeasures": "Destroy previous crop residues. Do not apply excessive nitrogen fertilizer.",
-        "outbreakIndicator": "3 nearby farms in Kishanpur reported Rice Blast in the last 48 hours.",
-        "reportType": "Leaf Disease Scan"
+        "preventiveMeasures_hi": "प्रमाणित बीजों का प्रयोग करें। यूरिया का अत्यधिक उपयोग न करें।",
+        "outbreakIndicator": "Reported in humid paddy regions during monsoon.",
+        "reportType": "Leaf Disease Scan",
+        "keywords": [
+          "rice blast",
+          "dhaan jhonka",
+          "paddy leaf spot",
+          "spindle lesions",
+          "grey center spot"
+        ],
+        "keywords_hi": [
+          "धान का झोंका",
+          "धान ब्लास्ट",
+          "पत्ती का धब्बा",
+          "धान का रोग"
+        ],
+        "keywords_romanized": [
+          "dhaan blast",
+          "dhan jhonka",
+          "paddy blast",
+          "rice jhonka"
+        ]
       }
     },
     {
-      "id": "disease-cotton-leaf-curl",
+      "id": "disease-rice-bacterial-blight",
       "category": "disease",
-      "title": "Cotton Leaf Curl (Kapas ka Patta Marod Rog)",
-      "description": "Upward curling of leaf margins, thick veins on leaves, stunted plant growth in cotton crops.",
+      "crop": "Paddy / Rice",
+      "topic": "Bacterial Leaf Blight",
+      "title": "Rice Bacterial Leaf Blight (Dhaan ka Jeevanu Jhulsa)",
+      "title_hi": "धान का जीवाणु झुलसा रोग (Bacterial Leaf Blight)",
+      "description": "Water-soaked lesions on leaf margins turning yellow to white with wavy borders.",
+      "description_hi": "पत्तियों के किनारों पर पानी से भीगे हुए धब्बे जो पीले और बाद में सफेद हो जाते हैं।",
       "metadata": {
-        "crop": "Cotton",
-        "confidence": "89%",
+        "crop": "Paddy / Rice",
+        "severity": "High",
+        "symptoms": "Yellowing and drying of leaves starting from tips along the margins.",
+        "symptoms_hi": "पत्तियों की नोक और किनारों से पीला पड़कर सूखना।",
+        "organicTreatment": "Spray fresh cow dung extract (20kg in 200L water) strained through cloth.",
+        "organicTreatment_hi": "ताजा गाय के गोबर का घोल (5%) छानकर छिड़काव करें।",
+        "chemicalTreatment": "Copper hydroxide 77 WP at 2g/L along with Streptocycline 0.15g/L.",
+        "chemicalTreatment_hi": "कॉपर हाइड्रॉक्साइड 2 ग्राम और स्ट्रैप्टोसाइक्लिन 0.15 ग्राम प्रति लीटर पानी।",
+        "preventiveMeasures": "Avoid excessive nitrogen fertilizers. Drain stagnant water.",
+        "preventiveMeasures_hi": "खेत से अतिरिक्त पानी निकालें। नाइट्रोजन सीमित मात्रा में दें।",
+        "keywords": [
+          "bacterial leaf blight",
+          "blb",
+          "dhaan jhulsa",
+          "leaf margin yellowing"
+        ],
+        "keywords_hi": [
+          "जीवाणु झुलसा",
+          "धान झुलसा",
+          "पत्ती सूखना"
+        ],
+        "keywords_romanized": [
+          "dhan jhulsa",
+          "bacterial blight paddy",
+          "patti sukhna"
+        ]
+      }
+    },
+    {
+      "id": "disease-rice-sheath-blight",
+      "category": "disease",
+      "crop": "Paddy / Rice",
+      "topic": "Sheath Blight",
+      "title": "Rice Sheath Blight (Dhaan ka Sheath Blight)",
+      "title_hi": "धान का शीथ ब्लाइट रोग",
+      "description": "Oval or irregular greenish-grey spots on leaf sheaths near water level.",
+      "description_hi": "पानी की सतह के पास तने और पत्तियों के आवरण पर हरे-सफेद अंडे जैसे धब्बे।",
+      "metadata": {
+        "crop": "Paddy / Rice",
+        "severity": "Medium-High",
+        "symptoms": "Snake-skin like spots on leaf sheaths leading to lodging of crop.",
+        "symptoms_hi": "तने के निचले हिस्से पर सांप की त्वचा जैसे चकत्ते।",
+        "organicTreatment": "Spray Pseudomonas fluorescens at 10g/L on lower parts of stems.",
+        "organicTreatment_hi": "सुडोमोनास फ्लोरेसेंस 10 ग्राम प्रति लीटर पानी का छिड़काव तने के निचले भाग पर करें।",
+        "chemicalTreatment": "Hexaconazole 5 EC at 2 ml/L or Validamycin 3L at 2 ml/L.",
+        "chemicalTreatment_hi": "हेक्साकोनाज़ोल 5 EC (2 मिली/लीटर) या वैलिडामाइसिन का छिड़काव।",
+        "preventiveMeasures": "Maintain optimum plant spacing and balanced fertilization.",
+        "preventiveMeasures_hi": "पौधों के बीच उचित दूरी रखें और अत्यधिक यूरिया न डालें।",
+        "keywords": [
+          "sheath blight",
+          "dhaan sheath blight",
+          "snake skin spot paddy"
+        ],
+        "keywords_hi": [
+          "शीथ ब्लाइट",
+          "धान का तना सड़न"
+        ],
+        "keywords_romanized": [
+          "sheath blight dhaan",
+          "tana sadan dhan"
+        ]
+      }
+    },
+    {
+      "id": "disease-rice-brown-spot",
+      "category": "disease",
+      "crop": "Paddy / Rice",
+      "topic": "Brown Spot",
+      "title": "Rice Brown Spot (Dhaan ka Bhura Dhabba)",
+      "title_hi": "धान का भूरा धब्बा रोग (Brown Spot)",
+      "description": "Oval sesame seed shaped brown spots with yellow halos on leaves.",
+      "description_hi": "पत्तियों पर तिल के आकार के गोल भूरे धब्बे जिनके चारों ओर पीला घेरा होता है।",
+      "metadata": {
+        "crop": "Paddy / Rice",
         "severity": "Medium",
-        "symptoms": "Upward curling of leaf margins, thick veins on leaves, stunted plant growth.",
-        "organicTreatment": "Introduce ladybird beetles to control whiteflies vector. Spray garlic-chili extract.",
-        "chemicalTreatment": "Spray Imidacloprid 17.8 SL at 0.5 ml per liter of water to control vector.",
-        "preventiveMeasures": "Use resistant cotton hybrids. Eliminate weed hosts near field bunds.",
-        "outbreakIndicator": "1 farm in Laxmipur block reported leaf curl vector outbreak.",
-        "reportType": "Leaf Disease Scan"
-      }
-    },
-    {
-      "id": "disease-tomato-early-blight",
-      "category": "disease",
-      "title": "Early Blight (Ageti Jhulsa Rog)",
-      "description": "Concentric dark brown circular spots appearing first on older leaves, forming a target board pattern.",
-      "metadata": {
-        "crop": "Tomato",
-        "confidence": "91%",
-        "severity": "Medium-Low",
-        "symptoms": "Concentric dark brown circular spots appearing first on older leaves, forming a target board pattern.",
-        "organicTreatment": "Mulch soil surface with crop residue. Spray copper hydroxide or bio-pesticide Trichoderma.",
-        "chemicalTreatment": "Spray Mancozeb 75 WP at 2 grams per liter of water immediately.",
-        "preventiveMeasures": "Ensure crop rotation. Water roots directly instead of overhead leaf sprinkling.",
-        "outbreakIndicator": "No outbreaks reported within 5km radius.",
-        "reportType": "Leaf Disease Scan"
+        "symptoms": "Numerous small oval brown spots on leaves and glumes indicating nutrient deficiency.",
+        "symptoms_hi": "पत्तियों और दानों पर छोटे भूरे धब्बे, पौधे कमजोर पड़ना।",
+        "organicTreatment": "Soil application of FYM and spray Trichoderma viride.",
+        "organicTreatment_hi": "गोबर की खाद डालें और ट्राइकोड्रामा विरिडी 5 ग्राम/लीटर का छिड़काव करें।",
+        "chemicalTreatment": "Mancozeb 75 WP at 2g/L or Zineb 75 WP at 2g/L.",
+        "chemicalTreatment_hi": "मैनकोज़ेब 75 WP (2 ग्राम/लीटर पानी) का छिड़काव करें।",
+        "preventiveMeasures": "Apply potash and micronutrients based on soil test recommendations.",
+        "preventiveMeasures_hi": "पोटाश और जिंक की संतुलित मात्रा दें।",
+        "keywords": [
+          "brown spot rice",
+          "dhaan bhura dhabba",
+          "sesame leaf spot"
+        ],
+        "keywords_hi": [
+          "भूरा धब्बा",
+          "धान का भूरा रोग"
+        ],
+        "keywords_romanized": [
+          "bhura dhabba dhaan",
+          "rice brown spot"
+        ]
       }
     },
     {
       "id": "disease-wheat-yellow-rust",
       "category": "disease",
-      "title": "Wheat Yellow Rust / Yellow Leaves (Gehun me Peeli Pattiyan / Peela Rog)",
-      "description": "Yellowing of wheat leaves (peeli pattiyan) caused by Nitrogen deficiency, water logging, or Yellow Rust (Puccinia striiformis) fungal infection.",
+      "crop": "Wheat",
+      "topic": "Yellow Rust",
+      "title": "Wheat Yellow Rust / Yellow Leaves (Gehun me Peeli Pattiyan)",
+      "title_hi": "गेहूं का पीला रतुआ / पीली पत्तियां (Yellow Rust)",
+      "description": "Yellow linear stripes of pustules on leaves during cold humid winter weather.",
+      "description_hi": "ठंड के मौसम में पत्तियों पर पीले रंग की कतारबद्ध धारियां और पीला पाउडर जमना।",
       "metadata": {
         "crop": "Wheat (Gehun)",
-        "confidence": "93%",
         "severity": "High",
-        "symptoms": "Yellow stripes or complete yellowing of wheat leaves (peeli pattiyan), stunted growth, reduced tillering.",
-        "organicTreatment": "Apply organic cow compost (gobhar khad) and neem oil spray (3 ml/liter). Ensure proper field drainage to clear stagnant water.",
-        "chemicalTreatment": "Apply Urea (25kg/acre) for nitrogen deficiency. Spray Propiconazole 25 EC (1 ml per liter of water) for fungal yellow rust.",
-        "preventiveMeasures": "Avoid over-irrigation, maintain field drainage, use resistant wheat seed varieties (e.g., HD-2967, DBW-187), and apply balanced NPK fertilizers.",
-        "outbreakIndicator": "Reported in North Indian wheat growing belts during winter/humid season.",
-        "reportType": "Leaf Yellowing Scan"
+        "symptoms": "Yellow powder stripes on leaves, leaf yellowing, reduced grain filling.",
+        "symptoms_hi": "पत्तियों पर पीली धारियां, छूने पर हाथ में पीला पाउडर लगना, पत्तियां पीली पड़ना।",
+        "organicTreatment": "Spray sour buttermilk (chaach) solution or Neem oil 3ml/L.",
+        "organicTreatment_hi": "खट्टी छाछ (5 लीटर/200 लीटर पानी) या नीम तेल का छिड़काव करें।",
+        "chemicalTreatment": "Propiconazole 25 EC at 1 ml per liter of water.",
+        "chemicalTreatment_hi": "प्रोपीकोनाज़ोल 25 EC (1 मिली प्रति लीटर पानी) का छिड़काव करें।",
+        "preventiveMeasures": "Grow rust-resistant varieties like HD-2967, DBW-187.",
+        "preventiveMeasures_hi": "रोगरोधी किस्मों जैसे HD-2967, DBW-187 की बुआई करें।",
+        "keywords": [
+          "yellow rust wheat",
+          "gehun peeli pattiyan",
+          "stripe rust",
+          "yellow powder leaves"
+        ],
+        "keywords_hi": [
+          "पीला रतुआ",
+          "गेहूं पीली पत्तियां",
+          "गेहूं का पीला रोग"
+        ],
+        "keywords_romanized": [
+          "gehu peeli patti",
+          "peela ratua gehun",
+          "yellow rust gehu"
+        ]
       }
     },
     {
-      "id": "disease-aphid-pest",
+      "id": "disease-wheat-brown-rust",
       "category": "disease",
-      "title": "Aphids / Mustard-Wheat Aphid (Chepa / Maho / Keede)",
-      "description": "Small sap-sucking insects causing leaf yellowing, curling, and honeydew mold on crops.",
+      "crop": "Wheat",
+      "topic": "Brown Rust",
+      "title": "Wheat Brown Rust / Leaf Rust (Gehun ka Bhura Ratua)",
+      "title_hi": "गेहूं का भूरा रतुआ (Brown Rust / Leaf Rust)",
+      "description": "Small orange-brown round pustules scattered randomly on leaf surfaces.",
+      "description_hi": "पत्तियों पर नारंगी-भूरे रंग के छोटे गोल चकत्ते जो बिखरे हुए दिखाई देते हैं।",
       "metadata": {
-        "crop": "Wheat, Mustard, Vegetables",
-        "confidence": "92%",
+        "crop": "Wheat",
         "severity": "Medium-High",
-        "symptoms": "Clusters of tiny green/black aphids on undersides of leaves and stems, leaf yellowing, sticky honeydew emission.",
-        "organicTreatment": "Spray Neem oil (3,000 ppm) at 3-5 ml per liter of water with soap solution, or release ladybird beetles.",
-        "chemicalTreatment": "Spray Imidacloprid 17.8 SL at 0.5 ml per liter of water or Dimethoate 30 EC at 1.5 ml per liter.",
-        "preventiveMeasures": "Install yellow sticky traps (10-12 traps per acre), monitor field weekly, preserve natural predators.",
-        "outbreakIndicator": "Common during cool dry weather.",
-        "reportType": "Pest Scan"
+        "symptoms": "Orange-brown powder on leaf surface leading to premature leaf drying.",
+        "symptoms_hi": "पत्तियों पर भूरा पाउडर जमना और पत्तियां समय से पहले सूखना।",
+        "organicTreatment": "Spray neem leaf extract and bio-fungicide Trichoderma.",
+        "organicTreatment_hi": "नीम की पत्ती का अर्क और ट्राइकोड्रामा 5 ग्राम/लीटर का प्रयोग करें।",
+        "chemicalTreatment": "Mancozeb 75 WP at 2g/L or Propiconazole 25 EC at 1 ml/L.",
+        "chemicalTreatment_hi": "मैनकोज़ेब 75 WP (2 ग्राम/लीटर) या प्रोपीकोनाज़ोल का छिड़काव करें।",
+        "preventiveMeasures": "Timely sowing and balanced NPK fertilizer application.",
+        "preventiveMeasures_hi": "समय पर बुआई करें और पोटाश की उचित मात्रा दें।",
+        "keywords": [
+          "brown rust wheat",
+          "gehun bhura ratua",
+          "leaf rust orange pustules"
+        ],
+        "keywords_hi": [
+          "भूरा रतुआ",
+          "गेहूं भूरा रोग"
+        ],
+        "keywords_romanized": [
+          "bhura ratua gehun",
+          "wheat leaf rust"
+        ]
+      }
+    },
+    {
+      "id": "disease-wheat-loose-smut",
+      "category": "disease",
+      "crop": "Wheat",
+      "topic": "Loose Smut",
+      "title": "Wheat Loose Smut (Gehun ka Khula Kangoiy / Kaala Churna)",
+      "title_hi": "गेहूं का खुला कगुआ / काला चूर्ण रोग (Loose Smut)",
+      "description": "Earheads transformed into black powdery mass of fungal spores.",
+      "description_hi": "गेहूं की बालियों में दाने की जगह काला चूर्ण भर जाता है।",
+      "metadata": {
+        "crop": "Wheat",
+        "severity": "High",
+        "symptoms": "Black soot-like powder in wheat earheads at flowering stage.",
+        "symptoms_hi": "बालियां निकलने पर दानों की जगह काला पाउडर दिखाई देना।",
+        "organicTreatment": "Solar heat seed treatment (soaking seeds in water for 4 hours in sun).",
+        "organicTreatment_hi": "सौर ऊर्जा उपचार: मई-जून की धूप में बीजों को पानी में भिगोकर सुखाएं।",
+        "chemicalTreatment": "Seed treatment with Carboxin 75 WP or Carbendazim 50 WP at 2g/kg seed.",
+        "chemicalTreatment_hi": "कारबॉक्सिन या कार्बेन्डाजिम (2 ग्राम प्रति किग्रा बीज) से बीज उपचार करें।",
+        "preventiveMeasures": "Always treat seeds before sowing.",
+        "preventiveMeasures_hi": "बीज उपचार के बिना बुआई कभी न करें।",
+        "keywords": [
+          "loose smut wheat",
+          "gehun kaala churna",
+          "black powder wheat earhead"
+        ],
+        "keywords_hi": [
+          "खुला कगुआ",
+          "गेहूं का काला रोग",
+          "काली बाली"
+        ],
+        "keywords_romanized": [
+          "gehu loose smut",
+          "kaala churna gehun"
+        ]
+      }
+    },
+    {
+      "id": "disease-wheat-powdery-mildew",
+      "category": "disease",
+      "crop": "Wheat",
+      "topic": "Powdery Mildew",
+      "title": "Wheat Powdery Mildew (Gehun ka Safed Churna Rog)",
+      "title_hi": "गेहूं का सफेद चूर्ण रोग (Powdery Mildew)",
+      "description": "White cottony/powdery patches on leaves and stems.",
+      "description_hi": "पत्तियों और तनों पर सफेद रुई जैसा या चूर्ण जैसा पाउडर जमना।",
+      "metadata": {
+        "crop": "Wheat",
+        "severity": "Medium",
+        "symptoms": "White grey powdery growth covering leaves leading to yellowing and drying.",
+        "symptoms_hi": "पत्तियों पर सफेद पाउडर की परत चढ़ना, जिससे प्रकाश संश्लेषण रुकता है।",
+        "organicTreatment": "Spray sulfur-based organic formulation or cow urine solution (10%).",
+        "organicTreatment_hi": "गोमूत्र (10%) या घुलनशील सल्फर 3 ग्राम/लीटर का छिड़काव करें।",
+        "chemicalTreatment": "Wettable Sulfur 80 WP at 3g/L or Propiconazole 25 EC at 1 ml/L.",
+        "chemicalTreatment_hi": "घुलनशील सल्फर 80 WP (3 ग्राम/लीटर) पानी में मिलाकर छिड़कें।",
+        "preventiveMeasures": "Avoid dense sowing and heavy nitrogen doses.",
+        "preventiveMeasures_hi": "घनी बुआई न करें और हवा का प्रवाह बनाए रखें।",
+        "keywords": [
+          "powdery mildew wheat",
+          "gehun safed churna",
+          "white powder wheat"
+        ],
+        "keywords_hi": [
+          "सफेद चूर्ण",
+          "गेहूं चूर्णी फफूंद"
+        ],
+        "keywords_romanized": [
+          "safed churna gehun",
+          "powdery mildew gehu"
+        ]
+      }
+    },
+    {
+      "id": "disease-cotton-leaf-curl",
+      "category": "disease",
+      "crop": "Cotton",
+      "topic": "Leaf Curl Virus",
+      "title": "Cotton Leaf Curl (Kapas ka Patta Marod Rog)",
+      "title_hi": "कपास का पत्ता मरोड़ रोग (Cotton Leaf Curl)",
+      "description": "Upward curling of leaf margins, thick veins on leaves, stunted plant growth.",
+      "description_hi": "पत्तियों के किनारे ऊपर की ओर मुड़ना, नसें मोटी होना और पौधे का बौना रह जाना।",
+      "metadata": {
+        "crop": "Cotton",
+        "severity": "High",
+        "symptoms": "Upward curling of leaf margins, thick veins on leaves, stunted plant growth.",
+        "symptoms_hi": "पत्तियां ऊपर मुड़ना, नसों का उभरा होना, कपासी फल न बनना।",
+        "organicTreatment": "Introduce ladybird beetles to control whiteflies vector. Spray garlic-chili extract.",
+        "organicTreatment_hi": "सफेद मक्खी नियंत्रण के लिए नीम तेल 5 मिली/लीटर या लहसुन-मिर्च अर्क छिड़कें।",
+        "chemicalTreatment": "Spray Imidacloprid 17.8 SL at 0.5 ml per liter of water to control vector.",
+        "chemicalTreatment_hi": "इमिडाक्लोप्रिड 17.8 SL (0.5 मिली/लीटर) सफेद मक्खी नियंत्रण हेतु छिड़कें।",
+        "preventiveMeasures": "Use resistant cotton hybrids. Eliminate weed hosts near field bunds.",
+        "preventiveMeasures_hi": "प्रतिरोधी हाइब्रिड किस्मों का चयन करें और खरपतवार नष्ट करें।",
+        "keywords": [
+          "cotton leaf curl",
+          "kapas patta marod",
+          "whitefly vector cotton"
+        ],
+        "keywords_hi": [
+          "पत्ता मरोड़",
+          "कपास पत्ती मुड़ना"
+        ],
+        "keywords_romanized": [
+          "kapas patta marod",
+          "cotton leaf curl"
+        ]
+      }
+    },
+    {
+      "id": "disease-cotton-bacterial-blight",
+      "category": "disease",
+      "crop": "Cotton",
+      "topic": "Bacterial Blight",
+      "title": "Cotton Bacterial Blight / Black Arm (Kapas ka Black Arm)",
+      "title_hi": "कपास का जीवाणु झुलसा / ब्लैक आर्म रोग",
+      "description": "Angular water-soaked spots on leaves turning dark brown or black on veins.",
+      "description_hi": "पत्तियों पर कोणीय धब्बे तथा तनों पर काले धब्बे (ब्लैक आर्म) बनना।",
+      "metadata": {
+        "crop": "Cotton",
+        "severity": "Medium-High",
+        "symptoms": "Angular leaf spots, black lesions on stems causing branch breakage.",
+        "symptoms_hi": "पत्तियों पर कोणीय धब्बे और टहनियों का काला पड़कर टूटना।",
+        "organicTreatment": "Copper oxychloride + Neem oil spray.",
+        "organicTreatment_hi": "कॉपर ऑक्सीक्लोराइड 3 ग्राम/लीटर और नीम तेल का छिड़काव।",
+        "chemicalTreatment": "Copper Oxychloride 50 WP at 3g/L + Streptocycline at 0.1g/L.",
+        "chemicalTreatment_hi": "कॉपर ऑक्सीक्लोराइड 3 ग्राम + स्ट्रैप्टोसाइक्लिन 0.1 ग्राम प्रति लीटर।",
+        "preventiveMeasures": "Acid delinting of cotton seed before sowing.",
+        "preventiveMeasures_hi": "बीज का तेजाबी उपचार (Acid delinting) करें।",
+        "keywords": [
+          "cotton bacterial blight",
+          "black arm cotton",
+          "kapas angular spot"
+        ],
+        "keywords_hi": [
+          "ब्लैक आर्म",
+          "कपास का जीवाणु रोग"
+        ],
+        "keywords_romanized": [
+          "black arm kapas",
+          "bacterial blight cotton"
+        ]
+      }
+    },
+    {
+      "id": "disease-cotton-fusarium-wilt",
+      "category": "disease",
+      "crop": "Cotton",
+      "topic": "Fusarium Wilt",
+      "title": "Cotton Fusarium Wilt (Kapas ka Ukhata Rog)",
+      "title_hi": "कपास का उकठा / उखाड़ा रोग (Wilt)",
+      "description": "Yellowing and browning of leaves, wilting of plant from top to bottom.",
+      "description_hi": "पत्तियों का पीला पड़ना, मुरझाना और पौधे का सूख जाना। तना काटने पर अंदर काली धारी दिखती है।",
+      "metadata": {
+        "crop": "Cotton",
+        "severity": "High",
+        "symptoms": "Wilting of branches, internal vascular discoloration of stems.",
+        "symptoms_hi": "पौधे का अचानक मुरझाना, तने के अंदर भूरी-काली नसें दिखना।",
+        "organicTreatment": "Soil drenching with Trichoderma viride 10g/L.",
+        "organicTreatment_hi": "ट्राइकोड्रामा विरिडी 10 ग्राम/लीटर से जड़ों में ड्रेंचिंग करें।",
+        "chemicalTreatment": "Drench soil with Carbendazim 50 WP at 2g/L.",
+        "chemicalTreatment_hi": "कार्बेन्डाजिम 50 WP (2 ग्राम/लीटर) से जड़ों के पास सिंचाई करें।",
+        "preventiveMeasures": "Follow crop rotation with non-host crops like maize or sorghum.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं, मक्का या ज्वार के बाद ही कपास बोएं।",
+        "keywords": [
+          "cotton wilt",
+          "kapas ukhata",
+          "fusarium wilt cotton"
+        ],
+        "keywords_hi": [
+          "उकठा रोग",
+          "कपास सूखना"
+        ],
+        "keywords_romanized": [
+          "kapas ukhata",
+          "cotton wilt"
+        ]
+      }
+    },
+    {
+      "id": "disease-tomato-early-blight",
+      "category": "disease",
+      "crop": "Tomato",
+      "topic": "Early Blight",
+      "title": "Early Blight (Tamatar Ageti Jhulsa)",
+      "title_hi": "टमाटर का अगेती झुलसा (Early Blight)",
+      "description": "Concentric dark brown circular spots appearing first on older leaves forming target board pattern.",
+      "description_hi": "निचली पत्तियों पर गोल भूरे धब्बे जिनमें छल्ले (Target board pattern) दिखाई देते हैं।",
+      "metadata": {
+        "crop": "Tomato",
+        "severity": "Medium",
+        "symptoms": "Concentric dark brown circular spots appearing first on older leaves.",
+        "symptoms_hi": "पत्तियों पर गोल छल्लेदार भूरे चकत्ते, पत्तियां पीली पड़कर गिरना।",
+        "organicTreatment": "Mulch soil surface with crop residue. Spray copper hydroxide or bio-pesticide Trichoderma.",
+        "organicTreatment_hi": "ट्राइकोड्रामा 5 ग्राम/लीटर या तांबे युक्त जैविक फफूंदनाशी का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP at 2 grams per liter of water immediately.",
+        "chemicalTreatment_hi": "मैनकोज़ेब 75 WP (2 ग्राम प्रति लीटर पानी) का तुरंत छिड़काव करें।",
+        "preventiveMeasures": "Ensure crop rotation. Water roots directly instead of overhead leaf sprinkling.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं। पत्तियों पर ऊपर से पानी न छिड़कें।",
+        "keywords": [
+          "tomato early blight",
+          "tamatar ageti jhulsa",
+          "target board leaf spot"
+        ],
+        "keywords_hi": [
+          "अगेती झुलसा",
+          "टमाटर झुलसा रोग"
+        ],
+        "keywords_romanized": [
+          "tamatar ageti jhulsa",
+          "tomato early blight"
+        ]
+      }
+    },
+    {
+      "id": "disease-tomato-late-blight",
+      "category": "disease",
+      "crop": "Tomato",
+      "topic": "Late Blight",
+      "title": "Tomato Late Blight (Tamatar Pacheti Jhulsa)",
+      "title_hi": "टमाटर का पछेती झुलसा (Late Blight)",
+      "description": "Water-soaked dark lesions on leaves and fruits in cool wet weather.",
+      "description_hi": "ठंड और नमी में पत्तियों और फलों पर काले-भूरे धब्बे, सफेद फफूंद जमना।",
+      "metadata": {
+        "crop": "Tomato",
+        "severity": "High",
+        "symptoms": "Rapid rotting of foliage and brown patchy firm rot on tomato fruits.",
+        "symptoms_hi": "पत्तियों का रातों-रात झुलसना, फलों पर कठोर भूरे सड़े धब्बे।",
+        "organicTreatment": "Spray copper oxychloride or Bordeaux mixture (1%).",
+        "organicTreatment_hi": "बोर्डो मिश्रण (1%) या कॉपर ऑक्सीक्लोराइड 3 ग्राम/लीटर का छिड़काव।",
+        "chemicalTreatment": "Cymoxanil + Mancozeb at 2g/L or Metalaxyl + Mancozeb at 2g/L.",
+        "chemicalTreatment_hi": "मैटालेक्सिल + मैनकोज़ेब (2 ग्राम/लीटर पानी) का छिड़काव करें।",
+        "preventiveMeasures": "Avoid free moisture on leaf surface, plant in well-drained soil.",
+        "preventiveMeasures_hi": "खेत में पानी रुकने न दें, ठंड में रात को सिंचाई न करें।",
+        "keywords": [
+          "tomato late blight",
+          "tamatar pacheti jhulsa",
+          "fruit rot tomato"
+        ],
+        "keywords_hi": [
+          "पछेती झुलसा",
+          "टमाटर सड़ांध"
+        ],
+        "keywords_romanized": [
+          "tamatar pacheti jhulsa",
+          "late blight tomato"
+        ]
+      }
+    },
+    {
+      "id": "disease-tomato-leaf-curl",
+      "category": "disease",
+      "crop": "Tomato",
+      "topic": "Leaf Curl Virus",
+      "title": "Tomato Leaf Curl Virus (Tamatar Patti Marod Rog)",
+      "title_hi": "टमाटर का पत्ती मरोड़ रोग (Tomato Leaf Curl Virus)",
+      "description": "Severe curling, puckering, yellowing of leaves and bushy stunted appearance.",
+      "description_hi": "पत्तियों का अत्यधिक मुड़ना (मरोड़िया), छोटा होना, पीला पड़ना और पौधा झाड़ी जैसा बनना।",
+      "metadata": {
+        "crop": "Tomato",
+        "severity": "High",
+        "symptoms": "Upward or downward curling of tomato leaves, bushy plant, small fruit size.",
+        "symptoms_hi": "टमाटर की पत्तियां मुड़ना (leaf curl/mudna), पौधा छोटा रहना, फल न लगना।",
+        "organicTreatment": "Install yellow sticky traps (15/acre). Spray neem oil 5ml/L to clear whiteflies.",
+        "organicTreatment_hi": "पीले चिपचिपे कार्ड लगाएं। नीम तेल 5 मिली/लीटर का छिड़काव करें।",
+        "chemicalTreatment": "Dimethoate 30 EC at 1.5 ml/L or Imidacloprid 17.8 SL at 0.5 ml/L.",
+        "chemicalTreatment_hi": "इमिडाक्लोप्रिड 17.8 SL (0.5 मिली/लीटर) का सफेद मक्खी नियंत्रण हेतु छिड़काव करें।",
+        "preventiveMeasures": "Raise nurseries under insect-proof net covers.",
+        "preventiveMeasures_hi": "नर्सरी को नेट से ढककर उगाएं।",
+        "keywords": [
+          "tomato leaf curl",
+          "tamatar patti marod",
+          "tamatar mudna",
+          "curling tomato leaves"
+        ],
+        "keywords_hi": [
+          "पत्ती मरोड़",
+          "टमाटर पत्ती मुड़ना",
+          "मरोड़िया रोग"
+        ],
+        "keywords_romanized": [
+          "tamatar pattiyan mud rahi",
+          "tamatar leaf curl",
+          "patti marod tamatar"
+        ]
+      }
+    },
+    {
+      "id": "disease-potato-early-blight",
+      "category": "disease",
+      "crop": "Potato",
+      "topic": "Early Blight",
+      "title": "Potato Early Blight (Aalu Ageti Jhulsa)",
+      "title_hi": "आलू का अगेती झुलसा (Early Blight)",
+      "description": "Brown angular spots with concentric rings on lower potato leaves.",
+      "description_hi": "आलू की निचली पत्तियों पर भूरे कोणीय धब्बे जिनमें गोल घेरे बनते हैं।",
+      "metadata": {
+        "crop": "Potato",
+        "severity": "Medium",
+        "symptoms": "Target board dark spots on lower leaves spreading to upper leaves.",
+        "symptoms_hi": "पत्तियों पर भूरे चकत्ते, समय से पहले पौधा पीला पड़ना।",
+        "organicTreatment": "Spray Trichoderma viride 5g/L or copper fungicides.",
+        "organicTreatment_hi": "ट्राइकोड्रामा विरिडी 5 ग्राम/लीटर का छिड़काव करें।",
+        "chemicalTreatment": "Mancozeb 75 WP at 2g/L or Chlorothalonil at 2g/L.",
+        "chemicalTreatment_hi": "मैनकोज़ेब 75 WP (2 ग्राम/लीटर) पानी में घोलकर छिड़कें।",
+        "preventiveMeasures": "Use healthy certified seed tubers and rotate crops.",
+        "preventiveMeasures_hi": "स्वस्थ आलू बीज का चयन करें।",
+        "keywords": [
+          "potato early blight",
+          "aalu ageti jhulsa",
+          "potato leaf spot"
+        ],
+        "keywords_hi": [
+          "अगेती झुलसा आलू",
+          "आलू का रोग"
+        ],
+        "keywords_romanized": [
+          "aalu ageti jhulsa",
+          "potato early blight"
+        ]
+      }
+    },
+    {
+      "id": "disease-potato-late-blight",
+      "category": "disease",
+      "crop": "Potato",
+      "topic": "Late Blight",
+      "title": "Potato Late Blight (Aalu Pacheti Jhulsa)",
+      "title_hi": "आलू का पछेती झुलसा (Late Blight)",
+      "description": "Water-soaked dark lesions on leaf tips/margins turning necrotic in foggy cloudy weather.",
+      "description_hi": "कोहरे और नमी में पत्तियों के किनारों पर पानी जैसे धब्बे जो तेजी से काले पड़कर पूरे खेत को सुखा देते हैं।",
+      "metadata": {
+        "crop": "Potato",
+        "severity": "High",
+        "symptoms": "Rapid foliage destruction, foul smell in field, tuber rot.",
+        "symptoms_hi": "पत्तियों का काला पड़कर गलना, खेत में बदबू आना, कंद सड़ना।",
+        "organicTreatment": "Bordeaux mixture (1%) spray before appearance of fog.",
+        "organicTreatment_hi": "बोर्डो मिश्रण (1%) का अग्रिम छिड़काव करें।",
+        "chemicalTreatment": "Mancozeb 75 WP (2g/L) preventively; Metalaxyl + Mancozeb (2g/L) curatively.",
+        "chemicalTreatment_hi": "मैनकोज़ेब 2 ग्राम/लीटर अग्रिम छिड़काव, या मैटालेक्सिल + मैनकोज़ेब 2 ग्राम/लीटर।",
+        "preventiveMeasures": "Destroy infected vines before harvest. Earthing up to protect tubers.",
+        "preventiveMeasures_hi": "मिट्टी अच्छी तरह चढ़ाएं ताकि कंद तक फफूंद न पहुंचे।",
+        "keywords": [
+          "potato late blight",
+          "aalu pacheti jhulsa",
+          "potato foliage rot",
+          "fog potato disease"
+        ],
+        "keywords_hi": [
+          "पछेती झुलसा आलू",
+          "आलू का सड़न रोग"
+        ],
+        "keywords_romanized": [
+          "aalu pacheti jhulsa",
+          "potato late blight"
+        ]
+      }
+    },
+    {
+      "id": "disease-chilli-leaf-curl",
+      "category": "disease",
+      "crop": "Chilli",
+      "topic": "Leaf Curl Virus",
+      "title": "Chilli Leaf Curl Virus (Mirch Patti Marod / Churda Murda)",
+      "title_hi": "मिर्च का पत्ती मरोड़ / चुरड़ा-मुड़ड़ा रोग",
+      "description": "Leaves curl upwards, shrink in size, and plants become severely stunted.",
+      "description_hi": "मिर्च की पत्तियां ऊपर की ओर मुड़ती हैं (नौकाकार), छोटी हो जाती हैं और पौधा बौना रह जाता है।",
+      "metadata": {
+        "crop": "Chilli",
+        "severity": "High",
+        "symptoms": "Upward leaf curling, vein clearing, reduced flowering and fruit setting.",
+        "symptoms_hi": "मिर्च पत्ती मुड़ना (mirch pattiyan mudna), नाव की तरह मुड़ना, फूल गिरना।",
+        "organicTreatment": "Spray Neem oil 5ml/L + sour buttermilk (chaach) 50ml/L.",
+        "organicTreatment_hi": "नीम तेल 5 मिली + खट्टी छाछ 50 मिली प्रति लीटर पानी का छिड़काव।",
+        "chemicalTreatment": "Imidacloprid 17.8 SL at 0.5 ml/L or Fipronil 5 SC at 1.5 ml/L.",
+        "chemicalTreatment_hi": "इमिडाक्लोप्रिड 17.8 SL (0.5 मिली/लीटर) या फिप्रोनिल छिड़कें।",
+        "preventiveMeasures": "Control whiteflies and thrips early in the season.",
+        "preventiveMeasures_hi": "सफेद मक्खी और थ्रिप्स का शुरुआती दौर में ही नियंत्रण करें।",
+        "keywords": [
+          "chilli leaf curl",
+          "mirch patti marod",
+          "churda murda mirch",
+          "mirch mudna"
+        ],
+        "keywords_hi": [
+          "चुरड़ा मुड़ड़ा",
+          "मिर्च पत्ती मुड़ना",
+          "मिर्च का मरोड़िया"
+        ],
+        "keywords_romanized": [
+          "mirch pattiyan mud rahi",
+          "mirch patti marod",
+          "chilli leaf curl"
+        ]
+      }
+    },
+    {
+      "id": "disease-chilli-anthracnose",
+      "category": "disease",
+      "crop": "Chilli",
+      "topic": "Anthracnose / Dieback",
+      "title": "Chilli Anthracnose / Fruit Rot / Dieback (Mirch Anthracnose / Phal Sadan)",
+      "title_hi": "मिर्च का फल सड़न / डाइबैक रोग (Anthracnose)",
+      "description": "Circular sunken spots on green/ripe chilli fruits and drying of twigs from top downwards.",
+      "description_hi": "मिर्च के फलों पर गोल धंसे हुए धब्बे और टहनियों का ऊपर से नीचे की ओर सूखना (Dieback)।",
+      "metadata": {
+        "crop": "Chilli",
+        "severity": "High",
+        "symptoms": "Sunken spots on chilli pods with black concentric rings, twig dieback.",
+        "symptoms_hi": "मिर्च के फलों पर काले दाग, फलों का सड़कर गिरना, टहनियां ऊपर से सूखना।",
+        "organicTreatment": "Spray Trichoderma harzianum or Neem oil formulation.",
+        "organicTreatment_hi": "ट्राइकोड्रामा 5 ग्राम/लीटर का छिड़काव करें।",
+        "chemicalTreatment": "Azoxystrobin 23 SC at 1 ml/L or Copper Oxychloride at 3g/L.",
+        "chemicalTreatment_hi": "एज़ोक्सीस्ट्रोबिन 23 SC (1 मिली/लीटर) या कॉपर ऑक्सीक्लोराइड 3 ग्राम/लीटर।",
+        "preventiveMeasures": "Seed treatment with Thiram 3g/kg seed. Remove dried twigs.",
+        "preventiveMeasures_hi": "बीज उपचार करें और सूखी टहनियों को काटकर नष्ट करें।",
+        "keywords": [
+          "chilli anthracnose",
+          "mirch dieback",
+          "chilli fruit rot",
+          "mirch phal sadan"
+        ],
+        "keywords_hi": [
+          "फल सड़न",
+          "डाइबैक मिर्च",
+          "मिर्च का दाग रोग"
+        ],
+        "keywords_romanized": [
+          "mirch anthracnose",
+          "chilli dieback",
+          "mirch fruit rot"
+        ]
+      }
+    },
+    {
+      "id": "disease-brinjal-little-leaf",
+      "category": "disease",
+      "crop": "Brinjal",
+      "topic": "Little Leaf Disease",
+      "title": "Brinjal Little Leaf Disease (Baingan Chhoti Patti Rog)",
+      "title_hi": "बैंगन का छोटी पत्ती रोग (Little Leaf of Brinjal)",
+      "description": "Phytoplasma disease causing leaves to become extremely small, yellow, and crowded like a bush.",
+      "description_hi": "पत्तियां अत्यधिक छोटी, पतली और झाड़ीनुमा गुच्छे के रूप में बदल जाती हैं। फल नहीं बनते।",
+      "metadata": {
+        "crop": "Brinjal",
+        "severity": "High",
+        "symptoms": "Reduction in leaf size, bushy growth, sterility of flowers.",
+        "symptoms_hi": "पत्तियों का बहुत छोटा होना, पौधा झाड़ी बनना, फल न आना।",
+        "organicTreatment": "Uproot infected plants. Spray Neem oil 5ml/L to suppress leafhoppers.",
+        "organicTreatment_hi": "रोगी पौधों को उखाड़कर नष्ट करें। नीम तेल 5 मिली/लीटर का छिड़काव करें।",
+        "chemicalTreatment": "Dimethoate 30 EC at 1.5 ml/L to control leafhopper vector.",
+        "chemicalTreatment_hi": "लीफहॉपर नियंत्रण के लिए डाइमेथोएट 30 EC (1.5 मिली/लीटर) छिड़कें।",
+        "preventiveMeasures": "Remove weed hosts near brinjal plots.",
+        "preventiveMeasures_hi": "आस-पास के खरपतवार नष्ट करें।",
+        "keywords": [
+          "brinjal little leaf",
+          "baingan chhoti patti",
+          "brinjal bush disease"
+        ],
+        "keywords_hi": [
+          "छोटी पत्ती बैंगन",
+          "बैंगन रोग"
+        ],
+        "keywords_romanized": [
+          "baingan chhoti patti",
+          "brinjal little leaf"
+        ]
+      }
+    },
+    {
+      "id": "disease-okra-yellow-vein-mosaic",
+      "category": "disease",
+      "crop": "Okra",
+      "topic": "Yellow Vein Mosaic Virus",
+      "title": "Okra Yellow Vein Mosaic Virus (Bhindi Peeli Shira Mosaic)",
+      "title_hi": "भिंडी का पीला शिरा मोज़ेक रोग (Yellow Vein Mosaic)",
+      "description": "Veins of okra leaves turn bright yellow while interveinal areas remain green.",
+      "description_hi": "भिंडी की पत्तियों की नसें पीली हो जाती हैं और पूरा पत्ता पीला-हरा हो जाता है।",
+      "metadata": {
+        "crop": "Okra / Bhindi",
+        "severity": "High",
+        "symptoms": "Yellowing of leaf veins, pale green fruits, stunted growth.",
+        "symptoms_hi": "पत्तियों की नसें पीली पड़ना, फल पीले और कठोर होना।",
+        "organicTreatment": "Spray Neem oil (3,000 ppm) at 5ml/L to manage whitefly vector.",
+        "organicTreatment_hi": "नीम तेल 5 मिली/लीटर का सफेद मक्खी नियंत्रण हेतु छिड़काव करें।",
+        "chemicalTreatment": "Imidacloprid 17.8 SL at 0.5 ml/L or Thiamethoxam 25 WG at 0.3g/L.",
+        "chemicalTreatment_hi": "इमिडाक्लोप्रिड 17.8 SL (0.5 मिली/लीटर) का छिड़काव करें।",
+        "preventiveMeasures": "Grow YVMV resistant varieties like Arka Anamika, Parbhani Kranti.",
+        "preventiveMeasures_hi": "प्रतिरोधी किस्मों जैसे अर्क अनामिका, परभणी क्रांति की बुआई करें।",
+        "keywords": [
+          "okra yellow vein mosaic",
+          "bhindi peeli shira",
+          "bhindi yellowing"
+        ],
+        "keywords_hi": [
+          "पीला शिरा मोज़ेक",
+          "भिंडी पीली पड़ना"
+        ],
+        "keywords_romanized": [
+          "bhindi peeli patti",
+          "okra yellow vein mosaic"
+        ]
+      }
+    },
+    {
+      "id": "disease-mustard-alternaria-blight",
+      "category": "disease",
+      "crop": "Mustard",
+      "topic": "Alternaria Blight",
+      "title": "Mustard Alternaria Blight (Sarson Alternaria Jhulsa)",
+      "title_hi": "सरसों का अल्टरनेरिया झुलसा रोग",
+      "description": "Concentric dark brown circular spots on lower leaves, stems, and pods.",
+      "description_hi": "पत्तियों, तनों और फलियों पर काले-भूरे गोल छल्लेदार धब्बे।",
+      "metadata": {
+        "crop": "Mustard / Sarson",
+        "severity": "High",
+        "symptoms": "Black target board spots on pods causing premature shattering and low oil yield.",
+        "symptoms_hi": "फलियों पर काले धब्बे, समय से पहले दाना गिरना, तेल प्रतिशत घटना।",
+        "organicTreatment": "Spray Garlic leaf extract (5%) or Neem oil 3ml/L.",
+        "organicTreatment_hi": "लहसुन अर्क (5%) या नीम तेल 3 मिली/लीटर का छिड़काव।",
+        "chemicalTreatment": "Mancozeb 75 WP at 2g/L or Iprodione 50 WP at 2g/L.",
+        "chemicalTreatment_hi": "मैनकोज़ेब 75 WP (2 ग्राम प्रति लीटर पानी) का छिड़काव करें।",
+        "preventiveMeasures": "Sow mustard early (by mid-October) to escape blight outbreak.",
+        "preventiveMeasures_hi": "15 अक्टूबर तक अगेती बुआई करके रोग से बचें।",
+        "keywords": [
+          "mustard alternaria blight",
+          "sarson jhulsa",
+          "mustard pod spot"
+        ],
+        "keywords_hi": [
+          "अल्टरनेरिया झुलसा",
+          "सरसों झुलसा"
+        ],
+        "keywords_romanized": [
+          "sarson jhulsa",
+          "mustard alternaria"
+        ]
+      }
+    },
+    {
+      "id": "disease-mustard-white-rust",
+      "category": "disease",
+      "crop": "Mustard",
+      "topic": "White Rust",
+      "title": "Mustard White Rust (Sarson Safed Ratua / Safed Dhabba)",
+      "title_hi": "सरसों का सफेद रतुआ (White Rust)",
+      "description": "White or cream-colored raised pustules on the lower surface of leaves.",
+      "description_hi": "पत्तियों की निचली सतह पर सफेद रंग के फफोले (Pustules) जमना और फूल विकृत होना (Staghead).",
+      "metadata": {
+        "crop": "Mustard",
+        "severity": "High",
+        "symptoms": "White pustules on leaves, floral malformation into swollen stagheads.",
+        "symptoms_hi": "पत्तियों के नीचे सफेद धब्बे, फूलों का सूजकर विकृत होना।",
+        "organicTreatment": "Spray Trichoderma viride 5g/L + Neem oil 3ml/L.",
+        "organicTreatment_hi": "ट्राइकोड्रामा 5 ग्राम/लीटर और नीम तेल का छिड़काव।",
+        "chemicalTreatment": "Metalaxyl 8% + Mancozeb 64% WP at 2g/L.",
+        "chemicalTreatment_hi": "मैटालेक्सिल + मैनकोज़ेब (2 ग्राम/लीटर) पानी में मिलाकर छिड़कें।",
+        "preventiveMeasures": "Use clean seed and practice crop rotation.",
+        "preventiveMeasures_hi": "स्वस्थ बीजों की बुआई करें और फसल चक्र अपनाएं।",
+        "keywords": [
+          "mustard white rust",
+          "sarson safed ratua",
+          "staghead mustard"
+        ],
+        "keywords_hi": [
+          "सफेद रतुआ",
+          "सरसों का सफेद रोग"
+        ],
+        "keywords_romanized": [
+          "sarson safed ratua",
+          "white rust mustard"
+        ]
+      }
+    },
+    {
+      "id": "disease-chickpea-fusarium-wilt",
+      "category": "disease",
+      "crop": "Chickpea",
+      "topic": "Fusarium Wilt",
+      "title": "Chickpea Fusarium Wilt (Chana Ukhata Rog)",
+      "title_hi": "चने का उकठा रोग (Fusarium Wilt)",
+      "description": "Drooping of petioles and leaves, wilting of whole plant at flowering stage.",
+      "description_hi": "पत्तियों का झुकना, पीला पड़ना और पौधा जड़ से सूख जाना।",
+      "metadata": {
+        "crop": "Chickpea / Chana",
+        "severity": "High",
+        "symptoms": "Internal xylem dark discoloration in taproot, sudden wilting in patches.",
+        "symptoms_hi": "पौधों का पैच में सूखना, मुख्य जड़ को चीरने पर अंदर काली धारी।",
+        "organicTreatment": "Seed treatment with Trichoderma viride 10g/kg seed.",
+        "organicTreatment_hi": "ट्राइकोड्रामा विरिडी (10 ग्राम/किग्रा बीज) से बीज उपचार करें।",
+        "chemicalTreatment": "Seed treatment with Carbendazim 12% + Mancozeb 63% WP at 2g/kg seed.",
+        "chemicalTreatment_hi": "कार्बेन्डाजिम + मैनकोज़ेब (2 ग्राम/किग्रा) से बीज उपचार।",
+        "preventiveMeasures": "Deep summer plowing and crop rotation with sorghum or wheat.",
+        "preventiveMeasures_hi": "गर्मियों में गहरी जुताई करें। ज्वार या गेहूं के साथ फसल चक्र अपनाएं।",
+        "keywords": [
+          "chickpea wilt",
+          "chana ukhata",
+          "fusarium wilt chana"
+        ],
+        "keywords_hi": [
+          "चने का उकठा",
+          "चना सूखना"
+        ],
+        "keywords_romanized": [
+          "chana ukhata",
+          "chickpea wilt"
+        ]
+      }
+    },
+    {
+      "id": "disease-pigeonpea-wilt",
+      "category": "disease",
+      "crop": "Pigeon Pea",
+      "topic": "Fusarium Wilt",
+      "title": "Pigeon Pea Fusarium Wilt (Arhar/Tur Ukhata Rog)",
+      "title_hi": "अरहर का उकठा रोग (Fusarium Wilt)",
+      "description": "Gradual yellowing and wilting of branches leading to death of entire bush.",
+      "description_hi": "अरहर की शाखाओं का धीरे-धीरे पीला पड़ना और पूरा पौधा सूख जाना।",
+      "metadata": {
+        "crop": "Pigeon Pea / Arhar / Tur",
+        "severity": "High",
+        "symptoms": "Purple brown band on main stem near soil line, dark vascular bundles.",
+        "symptoms_hi": "तने की छाल पर नीली-काली धारी बनना, पौधे का सूख जाना।",
+        "organicTreatment": "Trichoderma viride 2.5 kg/acre mixed with FYM applied to soil.",
+        "organicTreatment_hi": "ट्राइकोड्रामा 2.5 किग्रा/एकड़ गोबर की खाद में मिलाकर खेत में डालें।",
+        "chemicalTreatment": "Drench roots with Carbendazim at 2g/L.",
+        "chemicalTreatment_hi": "कार्बेन्डाजिम (2 ग्राम/लीटर) से जड़ों के पास ड्रेंचिंग करें।",
+        "preventiveMeasures": "Sow wilt resistant varieties like Asha (BDN-2), Maruti (ICP-8863).",
+        "preventiveMeasures_hi": "प्रतिरोधी किस्मों जैसे आशा (BDN-2), मारुति (ICP-8863) की बुआई करें।",
+        "keywords": [
+          "pigeonpea wilt",
+          "arhar ukhata",
+          "tur wilt"
+        ],
+        "keywords_hi": [
+          "अरहर उकठा",
+          "तुअर सूखना"
+        ],
+        "keywords_romanized": [
+          "arhar ukhata",
+          "tur wilt"
+        ]
+      }
+    },
+    {
+      "id": "disease-sugarcane-red-rot",
+      "category": "disease",
+      "crop": "Sugarcane",
+      "topic": "Red Rot",
+      "title": "Sugarcane Red Rot (Ganna Laal Galan / Cancer Rog)",
+      "title_hi": "गन्ने का लाल सड़न रोग (Red Rot / Cancer Rog)",
+      "description": "Third and fourth leaves wither; split cane reveals reddened internal tissue with white cross bands and alcohol smell.",
+      "description_hi": "गन्ने के अंदर का भाग लाल हो जाता है जिसमें सफेद आड़ी धारियां और सिरके जैसी गंध आती है।",
+      "metadata": {
+        "crop": "Sugarcane / Ganna",
+        "severity": "High",
+        "symptoms": "Drying of cane crown, red color inside cane with white cross bands.",
+        "symptoms_hi": "गन्ने का ऊपरी हिस्सा सूखना, गन्ने को बीच से चीरने पर लाल रंग और सिरके की गंध।",
+        "organicTreatment": "Sett treatment with Trichoderma viride.",
+        "organicTreatment_hi": "ट्राइकोड्रामा 10 ग्राम/लीटर घोल में गन्ने के टुकड़ों को डुबोकर बोएं।",
+        "chemicalTreatment": "Sett treatment with Carbendazim 50 WP at 2g/L water for 15 mins.",
+        "chemicalTreatment_hi": "कार्बेन्डाजिम (2 ग्राम/लीटर) में 15 मिनट गन्ने के टुकड़े भिगोएं।",
+        "preventiveMeasures": "Use healthy setts, avoid rattoning infected fields.",
+        "preventiveMeasures_hi": "रोगी खेत की पेड़ी फसल (Ratoon) न लें।",
+        "keywords": [
+          "sugarcane red rot",
+          "ganna laal galan",
+          "sugarcane cancer"
+        ],
+        "keywords_hi": [
+          "लाल सड़न",
+          "गन्ना कैंसर",
+          "गन्ने का लाल रोग"
+        ],
+        "keywords_romanized": [
+          "ganna laal galan",
+          "sugarcane red rot"
+        ]
+      }
+    },
+    {
+      "id": "disease-banana-sigatoka",
+      "category": "disease",
+      "crop": "Banana",
+      "topic": "Sigatoka Leaf Spot",
+      "title": "Banana Sigatoka Leaf Spot (Kela Sigatoka Dhabba)",
+      "title_hi": "केले का सिगाटोका पत्ती धब्बा रोग",
+      "description": "Yellowish green spots on leaves enlarging into dark brown spots with grey centers.",
+      "description_hi": "केले की पत्तियों पर पीले-हरे धब्बे जो बाद में भूरे-काले होकर पूरे पत्ते को सुखा देते हैं।",
+      "metadata": {
+        "crop": "Banana / Kela",
+        "severity": "High",
+        "symptoms": "Large necrotic leaf spots reducing photosynthetic area and bunch size.",
+        "symptoms_hi": "पत्तियों का समय से पहले सूखना, केले के घौंद (Bunch) का छोटा रह जाना।",
+        "organicTreatment": "Remove infected leaves. Spray mineral oil or Neem oil 5ml/L.",
+        "organicTreatment_hi": "रोगी पत्तियों को काटकर जलाएं। नीम तेल 5 मिली/लीटर का छिड़काव करें।",
+        "chemicalTreatment": "Propiconazole 25 EC at 1 ml/L or Carbendazim at 1g/L with sticker.",
+        "chemicalTreatment_hi": "प्रोपीकोनाज़ोल 25 EC (1 मिली/लीटर) चिपकने वाले पदार्थ (Sticker) के साथ छिड़कें।",
+        "preventiveMeasures": "Provide proper field drainage and maintain plant spacing.",
+        "preventiveMeasures_hi": "केले के बाग में जल निकासी का उत्तम प्रबंध रखें।",
+        "keywords": [
+          "banana sigatoka",
+          "kela leaf spot",
+          "banana brown leaf spot"
+        ],
+        "keywords_hi": [
+          "सिगाटोका",
+          "केले का पत्ती धब्बा"
+        ],
+        "keywords_romanized": [
+          "kela sigatoka",
+          "banana leaf spot"
+        ]
+      }
+    },
+    {
+      "id": "disease-mango-anthracnose",
+      "category": "disease",
+      "crop": "Mango",
+      "topic": "Anthracnose",
+      "title": "Mango Anthracnose (Aam Anthracnose / Kaala Dhabba)",
+      "title_hi": "आम का एंथ्रेक्नोज / काला धब्बा रोग",
+      "description": "Dark brown/black spots on leaves, flower panicles, and developing fruits.",
+      "description_hi": "आम के पत्तों, बौर (Panicles) और छोटे टिकोरों पर काले-भूरे धब्बे बनना और बौर का झड़ना।",
+      "metadata": {
+        "crop": "Mango / Aam",
+        "severity": "High",
+        "symptoms": "Blossom blight, premature drop of young fruits, black tear stains on mature fruit.",
+        "symptoms_hi": "बौर का झुलसकर गिरना, फलों पर काले धब्बे और सड़ांध।",
+        "organicTreatment": "Prune affected dried twigs. Spray Copper Oxychloride at 3g/L.",
+        "organicTreatment_hi": "सूखी टहनियों की छंटाई करें। कॉपर ऑक्सीक्लोराइड 3 ग्राम/लीटर छिड़कें।",
+        "chemicalTreatment": "Carbendazim 50 WP at 1g/L or Azoxystrobin 23 SC at 1 ml/L.",
+        "chemicalTreatment_hi": "कार्बेन्डाजिम (1 ग्राम/लीटर) बौर आने से पहले और बाद में छिड़कें।",
+        "preventiveMeasures": "Keep orchard clean, burn fallen leaves.",
+        "preventiveMeasures_hi": "बाग की साफ-सफाई रखें और गिरी पत्तियों को जलाएं।",
+        "keywords": [
+          "mango anthracnose",
+          "aam kaala dhabba",
+          "blossom blight mango"
+        ],
+        "keywords_hi": [
+          "एंथ्रेक्नोज आम",
+          "आम का बौर झुलसा"
+        ],
+        "keywords_romanized": [
+          "aam anthracnose",
+          "mango blossom blight"
+        ]
+      }
+    },
+    {
+      "id": "disease-mango-powdery-mildew",
+      "category": "disease",
+      "crop": "Mango",
+      "topic": "Powdery Mildew",
+      "title": "Mango Powdery Mildew (Aam ka Safed Churna Rog)",
+      "title_hi": "आम का चूर्णी आसिता / सफेद चूर्ण रोग (Powdery Mildew)",
+      "description": "White powdery fungal growth covering flower panicles, leaves, and young fruits.",
+      "description_hi": "आम के बौर और छोटे फलों पर सफेद पाउडर जम जाता है जिससे बौर सूखकर गिर जाता है।",
+      "metadata": {
+        "crop": "Mango",
+        "severity": "High",
+        "symptoms": "White powdery deposit on inflorescence causing heavy fruit drop.",
+        "symptoms_hi": "बौर पर सफेद चूर्ण जमना, पूरे बौर का सूखकर गिरना।",
+        "organicTreatment": "Spray Wettable Sulfur at 3g/L or Cow urine solution 10%.",
+        "organicTreatment_hi": "घुलनशील सल्फर 3 ग्राम/लीटर या 10% गोमूत्र का छिड़काव करें।",
+        "chemicalTreatment": "Hexaconazole 5 EC at 1 ml/L or Karathane at 1 ml/L.",
+        "chemicalTreatment_hi": "हेक्साकोनाज़ोल 5 EC (1 मिली/लीटर) बौर निकलते समय छिड़कें।",
+        "preventiveMeasures": "Spray preventively at mustard-stage of fruit setting.",
+        "preventiveMeasures_hi": "सरसों के दाने जितने टिकोरे बनने पर अग्रिम छिड़काव करें।",
+        "keywords": [
+          "mango powdery mildew",
+          "aam safed churna",
+          "mango flower drop"
+        ],
+        "keywords_hi": [
+          "चूर्णी आसिता",
+          "आम का सफेद रोग"
+        ],
+        "keywords_romanized": [
+          "aam powdery mildew",
+          "aam safed churna"
+        ]
+      }
+    },
+    {
+      "id": "disease-citrus-canker",
+      "category": "disease",
+      "crop": "Citrus",
+      "topic": "Citrus Canker",
+      "title": "Citrus Canker (Nimbu Canker / Khajli Rog)",
+      "title_hi": "नींबू का कैंकर रोग (Citrus Canker)",
+      "description": "Raised corky brown lesions on leaves, twigs, and lemon fruits surrounded by yellow halo.",
+      "description_hi": "नींबू की पत्तियों और फलों पर उभरे हुए खुरदरे भूरे दाने जिन पर पीला घेरा होता है।",
+      "metadata": {
+        "crop": "Citrus / Nimbu",
+        "severity": "High",
+        "symptoms": "Rough corky lesions on citrus leaves and rind causing unmarketable fruit quality.",
+        "symptoms_hi": "फलों की छाल खुरदरी और बदरंग होना, पत्तियां झड़ना।",
+        "organicTreatment": "Prune affected twigs and spray Neem cake extract.",
+        "organicTreatment_hi": "ग्रसित टहनियों को काटकर नष्ट करें। तांबे युक्त जैविक फफूंदनाशी का छिड़काव।",
+        "chemicalTreatment": "Copper Oxychloride 50 WP at 3g/L + Streptocycline at 0.1g/L.",
+        "chemicalTreatment_hi": "कॉपर ऑक्सीक्लोराइड 3 ग्राम + स्ट्रैप्टोसाइक्लिन 0.1 ग्राम/लीटर छिड़कें।",
+        "preventiveMeasures": "Control leaf miner pest which spreads canker bacteria.",
+        "preventiveMeasures_hi": "लीफ माइनर कीट का शुरुआती नियंत्रण करें।",
+        "keywords": [
+          "citrus canker",
+          "nimbu canker",
+          "corky fruit spot lemon"
+        ],
+        "keywords_hi": [
+          "कैंकर रोग",
+          "नींबू कैंकर"
+        ],
+        "keywords_romanized": [
+          "nimbu canker",
+          "citrus canker"
+        ]
+      }
+    },
+    {
+      "id": "disease-pomegranate-bacterial-blight",
+      "category": "disease",
+      "crop": "Pomegranate",
+      "topic": "Bacterial Blight",
+      "title": "Pomegranate Bacterial Blight / Teliya (Anar Teliya Rog)",
+      "title_hi": "अनार का तेलिया / जीवाणु झुलसा रोग (Teliya Rog)",
+      "description": "Dark oily brown spots on leaves, stems, and fruits forming 'L' shaped cracks on fruit skin.",
+      "description_hi": "अनार के फलों और पत्तियों पर तेल जैसे धब्बे (Teliya) तथा फलों का अंग्रेजी के 'L' आकार में फटना।",
+      "metadata": {
+        "crop": "Pomegranate / Anar",
+        "severity": "Very High",
+        "symptoms": "Water-soaked oily spots, cracking of pomegranates, black stem spots.",
+        "symptoms_hi": "फलों पर तैलीय धब्बे, अनार का बीच से फटना (L-shape crack).",
+        "organicTreatment": "Prune infected branches and apply Bordeaux paste on cut ends.",
+        "organicTreatment_hi": "कटे तनों पर बोर्डो लेप लगाएं। कॉपर फफूंदनाशी छिड़कें।",
+        "chemicalTreatment": "Streptocycline 0.5g/L + Copper Oxychloride 2.5g/L spray.",
+        "chemicalTreatment_hi": "स्ट्रैप्टोसाइक्लिन (0.5 ग्राम) + कॉपर ऑक्सीक्लोराइड (2.5 ग्राम/लीटर) का छिड़काव।",
+        "preventiveMeasures": "Maintain strict orchard sanitation and avoid overhead irrigation.",
+        "preventiveMeasures_hi": "ड्रिप सिंचाई अपनाएं, ऊपर से पानी न डालें।",
+        "keywords": [
+          "pomegranate teliya",
+          "anar teliya",
+          "pomegranate bacterial blight"
+        ],
+        "keywords_hi": [
+          "तेलिया रोग",
+          "अनार तेलिया",
+          "अनार फटना"
+        ],
+        "keywords_romanized": [
+          "anar teliya",
+          "pomegranate bacterial blight"
+        ]
+      }
+    },
+    {
+      "id": "disease-grapes-downy-mildew",
+      "category": "disease",
+      "crop": "Grapes",
+      "topic": "Downy Mildew",
+      "title": "Grapes Downy Mildew (Angoor Mridu Romil / Peela Dhabba)",
+      "title_hi": "अंगूर का मृदु रोमिल आसिता (Downy Mildew)",
+      "description": "Translucent oily yellowish spots on upper leaf surface, white downy growth underneath.",
+      "description_hi": "पत्तियों की ऊपरी सतह पर तेल जैसे पीले धब्बे और निचली सतह पर सफेद रूई जैसा पाउडर।",
+      "metadata": {
+        "crop": "Grapes / Angoor",
+        "severity": "High",
+        "symptoms": "Oil-spot lesions on leaves, drying of grape clusters and berries.",
+        "symptoms_hi": "अंगूर के गुच्छे सूखना, पत्तियों की नीचे सफेद रोएं।",
+        "organicTreatment": "Spray Bordeaux mixture 1% preventively.",
+        "organicTreatment_hi": "बोर्डो मिश्रण (1%) का छिड़काव करें।",
+        "chemicalTreatment": "Copper hydroxide 77 WP at 2g/L or Dimethomorph 50 WP at 1g/L.",
+        "chemicalTreatment_hi": "डाइमेथोमोर्फ (1 ग्राम/लीटर) या कॉपर हाइड्रॉक्साइड का छिड़काव।",
+        "preventiveMeasures": "Prune canopy for proper air flow and sunlight.",
+        "preventiveMeasures_hi": "बेलों की छंटाई करके हवा और धूप का प्रवाह बनाएं।",
+        "keywords": [
+          "grapes downy mildew",
+          "angoor downy mildew",
+          "grape oil spot"
+        ],
+        "keywords_hi": [
+          "मृदु रोमिल अंगूर",
+          "अंगूर रोग"
+        ],
+        "keywords_romanized": [
+          "angoor downy mildew",
+          "grapes disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-papaya-ring-spot",
+      "category": "disease",
+      "crop": "Papaya",
+      "topic": "Ring Spot Virus",
+      "title": "Papaya Ring Spot Virus (Papita Ring Spot Virus)",
+      "title_hi": "पपीते का रिंग स्पॉट वायरस (Ring Spot Virus)",
+      "description": "Yellow mosaic on leaves, dark green rings on fruits, and oily streaks on petioles.",
+      "description_hi": "पपीते की पत्तियों पर पीला मोज़ेक, फलों पर हरे गोल छल्ले (Rings) और डंठल पर तेल की धारियां।",
+      "metadata": {
+        "crop": "Papaya / Papita",
+        "severity": "High",
+        "symptoms": "Shoestring leaf symptoms, dark ring spots on fruits, low sugar content.",
+        "symptoms_hi": "पत्तियां धागे जैसी पतली होना, फलों पर गोल चकत्ते, मिठास कम होना।",
+        "organicTreatment": "Uproot infected trees. Control aphids with Neem oil 5ml/L.",
+        "organicTreatment_hi": "संक्रमित पौधों को उखाड़ दें। माहू नियंत्रण के लिए नीम तेल छिड़कें।",
+        "chemicalTreatment": "Imidacloprid 17.8 SL at 0.5 ml/L to suppress aphid vectors.",
+        "chemicalTreatment_hi": "इमिडाक्लोप्रिड (0.5 मिली/लीटर) का माहू (Aphid) नियंत्रण हेतु छिड़काव।",
+        "preventiveMeasures": "Plant border crops like maize or sorghum around papaya field.",
+        "preventiveMeasures_hi": "पपीते के खेत के चारों ओर मक्के की बॉर्डर फसल लगाएं।",
+        "keywords": [
+          "papaya ring spot",
+          "papita ring spot",
+          "papaya leaf mosaic"
+        ],
+        "keywords_hi": [
+          "रिंग स्पॉट",
+          "पपीता मोज़ेक"
+        ],
+        "keywords_romanized": [
+          "papita ring spot",
+          "papaya ring spot"
+        ]
+      }
+    },
+    {
+      "id": "disease-maize-maydis-blight",
+      "category": "disease",
+      "crop": "Maize",
+      "topic": "Maydis Blight",
+      "title": "Maize Maydis Leaf Blight",
+      "title_hi": "मक्का का मायडिस पत्ती झुलसा",
+      "description": "Elongated rectangular brownish spots on maize leaves.",
+      "description_hi": "मक्के की पत्तियों पर आयताकार भूरे धब्बे।",
+      "metadata": {
+        "crop": "Maize",
+        "severity": "Medium-High",
+        "symptoms": "Elongated rectangular brownish spots on maize leaves.",
+        "symptoms_hi": "मक्के की पत्तियों पर आयताकार भूरे धब्बे।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "maydis blight",
+          "maize disease",
+          "maize-maydis-blight"
+        ],
+        "keywords_hi": [
+          "मक्का का मायडिस पत्ती झुलसा",
+          "Maize रोग"
+        ],
+        "keywords_romanized": [
+          "maize bimari",
+          "maydis blight disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-maize-turcicum-blight",
+      "category": "disease",
+      "crop": "Maize",
+      "topic": "Turcicum Blight",
+      "title": "Maize Turcicum Blight",
+      "title_hi": "मक्का का टरसिकाउम झुलसा",
+      "description": "Long boat-shaped greyish-tan lesions on leaves.",
+      "description_hi": "पत्तियों पर नाव के आकार के लंबे स्लेटी धब्बे।",
+      "metadata": {
+        "crop": "Maize",
+        "severity": "Medium-High",
+        "symptoms": "Long boat-shaped greyish-tan lesions on leaves.",
+        "symptoms_hi": "पत्तियों पर नाव के आकार के लंबे स्लेटी धब्बे।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "turcicum blight",
+          "maize disease",
+          "maize-turcicum-blight"
+        ],
+        "keywords_hi": [
+          "मक्का का टरसिकाउम झुलसा",
+          "Maize रोग"
+        ],
+        "keywords_romanized": [
+          "maize bimari",
+          "turcicum blight disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-maize-downy-mildew",
+      "category": "disease",
+      "crop": "Maize",
+      "topic": "Downy Mildew",
+      "title": "Maize Downy Mildew",
+      "title_hi": "मक्का का मृदु रोमिल आसिता",
+      "description": "Yellowish striping on leaves with downy white fungus underneath.",
+      "description_hi": "पत्तियों पर पीली धारियां और नीचे सफेद फफूंद।",
+      "metadata": {
+        "crop": "Maize",
+        "severity": "Medium-High",
+        "symptoms": "Yellowish striping on leaves with downy white fungus underneath.",
+        "symptoms_hi": "पत्तियों पर पीली धारियां और नीचे सफेद फफूंद।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "downy mildew",
+          "maize disease",
+          "maize-downy-mildew"
+        ],
+        "keywords_hi": [
+          "मक्का का मृदु रोमिल आसिता",
+          "Maize रोग"
+        ],
+        "keywords_romanized": [
+          "maize bimari",
+          "downy mildew disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-rice-tungro",
+      "category": "disease",
+      "crop": "Rice",
+      "topic": "Tungro Virus",
+      "title": "Rice Tungro Virus",
+      "title_hi": "धान का टुंग्रो वायरस",
+      "description": "Stunting, yellow-orange leaf discoloration transferred by leafhoppers.",
+      "description_hi": "पौधा बौना होना, पत्तियां संतरी-पीली पड़ना।",
+      "metadata": {
+        "crop": "Rice",
+        "severity": "Medium-High",
+        "symptoms": "Stunting, yellow-orange leaf discoloration transferred by leafhoppers.",
+        "symptoms_hi": "पौधा बौना होना, पत्तियां संतरी-पीली पड़ना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "tungro virus",
+          "rice disease",
+          "rice-tungro"
+        ],
+        "keywords_hi": [
+          "धान का टुंग्रो वायरस",
+          "Rice रोग"
+        ],
+        "keywords_romanized": [
+          "rice bimari",
+          "tungro virus disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-rice-false-smut",
+      "category": "disease",
+      "crop": "Rice",
+      "topic": "False Smut",
+      "title": "Rice False Smut",
+      "title_hi": "धान का आभासी कगुआ",
+      "description": "Individual rice grains turn into velvety yellow-orange balls.",
+      "description_hi": "धान के दाने पीले-हरे मखमली गोलों में बदलना।",
+      "metadata": {
+        "crop": "Rice",
+        "severity": "Medium-High",
+        "symptoms": "Individual rice grains turn into velvety yellow-orange balls.",
+        "symptoms_hi": "धान के दाने पीले-हरे मखमली गोलों में बदलना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "false smut",
+          "rice disease",
+          "rice-false-smut"
+        ],
+        "keywords_hi": [
+          "धान का आभासी कगुआ",
+          "Rice रोग"
+        ],
+        "keywords_romanized": [
+          "rice bimari",
+          "false smut disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-wheat-black-rust",
+      "category": "disease",
+      "crop": "Wheat",
+      "topic": "Black Rust",
+      "title": "Wheat Black Rust / Stem Rust",
+      "title_hi": "गेहूं का काला रतुआ (Stem Rust)",
+      "description": "Dark reddish-brown elongated pustules on stems and leaf sheaths.",
+      "description_hi": "तने और पत्तियों के आवरण पर लंबे काले-भूरे फफोले।",
+      "metadata": {
+        "crop": "Wheat",
+        "severity": "Medium-High",
+        "symptoms": "Dark reddish-brown elongated pustules on stems and leaf sheaths.",
+        "symptoms_hi": "तने और पत्तियों के आवरण पर लंबे काले-भूरे फफोले।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "black rust",
+          "wheat disease",
+          "wheat-black-rust"
+        ],
+        "keywords_hi": [
+          "गेहूं का काला रतुआ (Stem Rust)",
+          "Wheat रोग"
+        ],
+        "keywords_romanized": [
+          "wheat bimari",
+          "black rust disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-wheat-karnal-bunt",
+      "category": "disease",
+      "crop": "Wheat",
+      "topic": "Karnal Bunt",
+      "title": "Wheat Karnal Bunt",
+      "title_hi": "गेहूं का करनाल बंट",
+      "description": "Partial conversion of grain into black powdery mass with fishy odor.",
+      "description_hi": "दाने का आंशिक हिस्सा काले चूर्ण में बदलना, सड़ी मछली जैसी गंध।",
+      "metadata": {
+        "crop": "Wheat",
+        "severity": "Medium-High",
+        "symptoms": "Partial conversion of grain into black powdery mass with fishy odor.",
+        "symptoms_hi": "दाने का आंशिक हिस्सा काले चूर्ण में बदलना, सड़ी मछली जैसी गंध।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "karnal bunt",
+          "wheat disease",
+          "wheat-karnal-bunt"
+        ],
+        "keywords_hi": [
+          "गेहूं का करनाल बंट",
+          "Wheat रोग"
+        ],
+        "keywords_romanized": [
+          "wheat bimari",
+          "karnal bunt disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-soybean-rust",
+      "category": "disease",
+      "crop": "Soybean",
+      "topic": "Soybean Rust",
+      "title": "Soybean Rust",
+      "title_hi": "सोयाबीन का रतुआ रोग",
+      "description": "Tiny reddish-brown pustules on underside of soybean leaves.",
+      "description_hi": "सोयाबीन की पत्तियों की निचली सतह पर छोटे लाल-भूरे धब्बे।",
+      "metadata": {
+        "crop": "Soybean",
+        "severity": "Medium-High",
+        "symptoms": "Tiny reddish-brown pustules on underside of soybean leaves.",
+        "symptoms_hi": "सोयाबीन की पत्तियों की निचली सतह पर छोटे लाल-भूरे धब्बे।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "soybean rust",
+          "soybean disease",
+          "soybean-rust"
+        ],
+        "keywords_hi": [
+          "सोयाबीन का रतुआ रोग",
+          "Soybean रोग"
+        ],
+        "keywords_romanized": [
+          "soybean bimari",
+          "soybean rust disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-soybean-yellow-mosaic",
+      "category": "disease",
+      "crop": "Soybean",
+      "topic": "Yellow Mosaic Virus",
+      "title": "Soybean Yellow Mosaic Virus",
+      "title_hi": "सोयाबीन पीला मोज़ेक वायरस",
+      "description": "Bright yellow patches interspersed with green on soybean leaves.",
+      "description_hi": "पत्तियों पर चमकीले पीले चकत्ते, पौधा बौना होना।",
+      "metadata": {
+        "crop": "Soybean",
+        "severity": "Medium-High",
+        "symptoms": "Bright yellow patches interspersed with green on soybean leaves.",
+        "symptoms_hi": "पत्तियों पर चमकीले पीले चकत्ते, पौधा बौना होना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "yellow mosaic virus",
+          "soybean disease",
+          "soybean-yellow-mosaic"
+        ],
+        "keywords_hi": [
+          "सोयाबीन पीला मोज़ेक वायरस",
+          "Soybean रोग"
+        ],
+        "keywords_romanized": [
+          "soybean bimari",
+          "yellow mosaic virus disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-groundnut-tikka",
+      "category": "disease",
+      "crop": "Groundnut",
+      "topic": "Tikka Leaf Spot",
+      "title": "Groundnut Tikka Disease",
+      "title_hi": "मूंगफली का टिक्का रोग",
+      "description": "Circular dark brown spots on leaf surfaces surrounded by yellow ring.",
+      "description_hi": "पत्तियों पर गोल काले-भूरे धब्बे जिनके चारों ओर पीला घेरा होता है।",
+      "metadata": {
+        "crop": "Groundnut",
+        "severity": "Medium-High",
+        "symptoms": "Circular dark brown spots on leaf surfaces surrounded by yellow ring.",
+        "symptoms_hi": "पत्तियों पर गोल काले-भूरे धब्बे जिनके चारों ओर पीला घेरा होता है।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "tikka leaf spot",
+          "groundnut disease",
+          "groundnut-tikka"
+        ],
+        "keywords_hi": [
+          "मूंगफली का टिक्का रोग",
+          "Groundnut रोग"
+        ],
+        "keywords_romanized": [
+          "groundnut bimari",
+          "tikka leaf spot disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-groundnut-collar-rot",
+      "category": "disease",
+      "crop": "Groundnut",
+      "topic": "Collar Rot",
+      "title": "Groundnut Collar Rot",
+      "title_hi": "मूंगफली का कॉलर रॉट / तना सड़न",
+      "description": "Rotting of seedling hypocotyl at soil level covered with black spores.",
+      "description_hi": "जमीन की सतह के पास तने का काला पड़कर सड़ जाना।",
+      "metadata": {
+        "crop": "Groundnut",
+        "severity": "Medium-High",
+        "symptoms": "Rotting of seedling hypocotyl at soil level covered with black spores.",
+        "symptoms_hi": "जमीन की सतह के पास तने का काला पड़कर सड़ जाना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "collar rot",
+          "groundnut disease",
+          "groundnut-collar-rot"
+        ],
+        "keywords_hi": [
+          "मूंगफली का कॉलर रॉट / तना सड़न",
+          "Groundnut रोग"
+        ],
+        "keywords_romanized": [
+          "groundnut bimari",
+          "collar rot disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-chickpea-ascochyta-blight",
+      "category": "disease",
+      "crop": "Chickpea",
+      "topic": "Ascochyta Blight",
+      "title": "Chickpea Ascochyta Blight",
+      "title_hi": "चने का एस्कोकाइटा झुलसा",
+      "description": "Circular dark lesions with concentric dots on leaves and stems.",
+      "description_hi": "पत्तियों और फलियों पर काले गोल धब्बे।",
+      "metadata": {
+        "crop": "Chickpea",
+        "severity": "Medium-High",
+        "symptoms": "Circular dark lesions with concentric dots on leaves and stems.",
+        "symptoms_hi": "पत्तियों और फलियों पर काले गोल धब्बे।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "ascochyta blight",
+          "chickpea disease",
+          "chickpea-ascochyta-blight"
+        ],
+        "keywords_hi": [
+          "चने का एस्कोकाइटा झुलसा",
+          "Chickpea रोग"
+        ],
+        "keywords_romanized": [
+          "chickpea bimari",
+          "ascochyta blight disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-pigeonpea-sterility-mosaic",
+      "category": "disease",
+      "crop": "Pigeon Pea",
+      "topic": "Sterility Mosaic",
+      "title": "Pigeon Pea Sterility Mosaic",
+      "title_hi": "अरहर का बांझपन मोज़ेक रोग",
+      "description": "Light green pale leaves, profuse vegetative growth, complete sterility.",
+      "description_hi": "पत्तियां हल्की पीली, पौधे में फूल और फलियां न बनना।",
+      "metadata": {
+        "crop": "Pigeon Pea",
+        "severity": "Medium-High",
+        "symptoms": "Light green pale leaves, profuse vegetative growth, complete sterility.",
+        "symptoms_hi": "पत्तियां हल्की पीली, पौधे में फूल और फलियां न बनना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "sterility mosaic",
+          "pigeon pea disease",
+          "pigeonpea-sterility-mosaic"
+        ],
+        "keywords_hi": [
+          "अरहर का बांझपन मोज़ेक रोग",
+          "Pigeon Pea रोग"
+        ],
+        "keywords_romanized": [
+          "pigeon pea bimari",
+          "sterility mosaic disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-sugarcane-smut",
+      "category": "disease",
+      "crop": "Sugarcane",
+      "topic": "Sugarcane Smut",
+      "title": "Sugarcane Smut",
+      "title_hi": "गन्ने का कगुआ / चाबुक रोग",
+      "description": "Long whip-like black dusty structure arising from cane central shoot.",
+      "description_hi": "गन्ने के शीर्ष से लंबी चाबुक जैसी काली संरचना निकलना।",
+      "metadata": {
+        "crop": "Sugarcane",
+        "severity": "Medium-High",
+        "symptoms": "Long whip-like black dusty structure arising from cane central shoot.",
+        "symptoms_hi": "गन्ने के शीर्ष से लंबी चाबुक जैसी काली संरचना निकलना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "sugarcane smut",
+          "sugarcane disease",
+          "sugarcane-smut"
+        ],
+        "keywords_hi": [
+          "गन्ने का कगुआ / चाबुक रोग",
+          "Sugarcane रोग"
+        ],
+        "keywords_romanized": [
+          "sugarcane bimari",
+          "sugarcane smut disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-sugarcane-grassy-shoot",
+      "category": "disease",
+      "crop": "Sugarcane",
+      "topic": "Grassy Shoot",
+      "title": "Sugarcane Grassy Shoot",
+      "title_hi": "गन्ने का घास सदृश रोह (Grassy Shoot)",
+      "description": "Production of numerous pale yellow thin tillers giving a grassy look.",
+      "description_hi": "गन्ने में अनगिनत पतले पीले कल्ले निकलना, घास जैसा दिखना।",
+      "metadata": {
+        "crop": "Sugarcane",
+        "severity": "Medium-High",
+        "symptoms": "Production of numerous pale yellow thin tillers giving a grassy look.",
+        "symptoms_hi": "गन्ने में अनगिनत पतले पीले कल्ले निकलना, घास जैसा दिखना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "grassy shoot",
+          "sugarcane disease",
+          "sugarcane-grassy-shoot"
+        ],
+        "keywords_hi": [
+          "गन्ने का घास सदृश रोह (Grassy Shoot)",
+          "Sugarcane रोग"
+        ],
+        "keywords_romanized": [
+          "sugarcane bimari",
+          "grassy shoot disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-banana-panama-wilt",
+      "category": "disease",
+      "crop": "Banana",
+      "topic": "Panama Wilt",
+      "title": "Banana Panama Wilt",
+      "title_hi": "केले का पनामा उकठा रोग",
+      "description": "Yellowing of lower leaves along margins, longitudinal splitting of pseudostem.",
+      "description_hi": "निचली पत्तियों का पीला पड़ना, तने का लंबाई में फटना।",
+      "metadata": {
+        "crop": "Banana",
+        "severity": "Medium-High",
+        "symptoms": "Yellowing of lower leaves along margins, longitudinal splitting of pseudostem.",
+        "symptoms_hi": "निचली पत्तियों का पीला पड़ना, तने का लंबाई में फटना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "panama wilt",
+          "banana disease",
+          "banana-panama-wilt"
+        ],
+        "keywords_hi": [
+          "केले का पनामा उकठा रोग",
+          "Banana रोग"
+        ],
+        "keywords_romanized": [
+          "banana bimari",
+          "panama wilt disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-grapes-powdery-mildew",
+      "category": "disease",
+      "crop": "Grapes",
+      "topic": "Powdery Mildew",
+      "title": "Grapes Powdery Mildew",
+      "title_hi": "अंगूर का चूर्णी फफूंद",
+      "description": "White powdery patches on grape berries causing cracking.",
+      "description_hi": "अंगूर के दानों पर सफेद पाउडर और दानों का फटना।",
+      "metadata": {
+        "crop": "Grapes",
+        "severity": "Medium-High",
+        "symptoms": "White powdery patches on grape berries causing cracking.",
+        "symptoms_hi": "अंगूर के दानों पर सफेद पाउडर और दानों का फटना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "powdery mildew",
+          "grapes disease",
+          "grapes-powdery-mildew"
+        ],
+        "keywords_hi": [
+          "अंगूर का चूर्णी फफूंद",
+          "Grapes रोग"
+        ],
+        "keywords_romanized": [
+          "grapes bimari",
+          "powdery mildew disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-citrus-gummosis",
+      "category": "disease",
+      "crop": "Citrus",
+      "topic": "Citrus Gummosis",
+      "title": "Citrus Gummosis",
+      "title_hi": "नींबू का गोंदिया रोग (Gummosis)",
+      "description": "Exudation of amber-colored gum from bark cracks of trunk.",
+      "description_hi": "नींबू के तने की छाल से भूरा-पीला गोंद निकलना।",
+      "metadata": {
+        "crop": "Citrus",
+        "severity": "Medium-High",
+        "symptoms": "Exudation of amber-colored gum from bark cracks of trunk.",
+        "symptoms_hi": "नींबू के तने की छाल से भूरा-पीला गोंद निकलना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "citrus gummosis",
+          "citrus disease",
+          "citrus-gummosis"
+        ],
+        "keywords_hi": [
+          "नींबू का गोंदिया रोग (Gummosis)",
+          "Citrus रोग"
+        ],
+        "keywords_romanized": [
+          "citrus bimari",
+          "citrus gummosis disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-cabbage-black-rot",
+      "category": "disease",
+      "crop": "Cabbage",
+      "topic": "Black Rot",
+      "title": "Cabbage / Cauliflower Black Rot",
+      "title_hi": "गोभी का काला सड़न (Black Rot)",
+      "description": "V-shaped yellow lesions on leaf margins with blackened leaf veins.",
+      "description_hi": "पत्ती के किनारों पर V-आकार के पीले धब्बे, नसें काली होना।",
+      "metadata": {
+        "crop": "Cabbage",
+        "severity": "Medium-High",
+        "symptoms": "V-shaped yellow lesions on leaf margins with blackened leaf veins.",
+        "symptoms_hi": "पत्ती के किनारों पर V-आकार के पीले धब्बे, नसें काली होना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "black rot",
+          "cabbage disease",
+          "cabbage-black-rot"
+        ],
+        "keywords_hi": [
+          "गोभी का काला सड़न (Black Rot)",
+          "Cabbage रोग"
+        ],
+        "keywords_romanized": [
+          "cabbage bimari",
+          "black rot disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-pea-powdery-mildew",
+      "category": "disease",
+      "crop": "Pea",
+      "topic": "Powdery Mildew",
+      "title": "Pea Powdery Mildew",
+      "title_hi": "मटर का सफेद फफूंद / चूर्णी आसिता",
+      "description": "Fluffy white powdery growth covering pea leaves and pods.",
+      "description_hi": "मटर की पत्तियों और फलियों पर सफेद पाउडर की परत।",
+      "metadata": {
+        "crop": "Pea",
+        "severity": "Medium-High",
+        "symptoms": "Fluffy white powdery growth covering pea leaves and pods.",
+        "symptoms_hi": "मटर की पत्तियों और फलियों पर सफेद पाउडर की परत।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "powdery mildew",
+          "pea disease",
+          "pea-powdery-mildew"
+        ],
+        "keywords_hi": [
+          "मटर का सफेद फफूंद / चूर्णी आसिता",
+          "Pea रोग"
+        ],
+        "keywords_romanized": [
+          "pea bimari",
+          "powdery mildew disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-turmeric-leaf-spot",
+      "category": "disease",
+      "crop": "Turmeric",
+      "topic": "Leaf Spot",
+      "title": "Turmeric Leaf Spot",
+      "title_hi": "हल्दी का पत्ती धब्बा रोग",
+      "description": "Elliptical brown spots on leaves with yellow halo.",
+      "description_hi": "हल्दी के पत्तों पर बादामी रंग के लंबे धब्बे।",
+      "metadata": {
+        "crop": "Turmeric",
+        "severity": "Medium-High",
+        "symptoms": "Elliptical brown spots on leaves with yellow halo.",
+        "symptoms_hi": "हल्दी के पत्तों पर बादामी रंग के लंबे धब्बे।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "leaf spot",
+          "turmeric disease",
+          "turmeric-leaf-spot"
+        ],
+        "keywords_hi": [
+          "हल्दी का पत्ती धब्बा रोग",
+          "Turmeric रोग"
+        ],
+        "keywords_romanized": [
+          "turmeric bimari",
+          "leaf spot disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-ginger-rhizome-rot",
+      "category": "disease",
+      "crop": "Ginger",
+      "topic": "Rhizome Rot",
+      "title": "Ginger Rhizome Rot / Soft Rot",
+      "title_hi": "अदरक का प्रकंद सड़न (Rhizome Rot)",
+      "description": "Water-soaked rot of rhizome tissue at soil level causing foul smell.",
+      "description_hi": "जमीन के नीचे अदरक की गांठों का सड़ना और बदबू आना।",
+      "metadata": {
+        "crop": "Ginger",
+        "severity": "Medium-High",
+        "symptoms": "Water-soaked rot of rhizome tissue at soil level causing foul smell.",
+        "symptoms_hi": "जमीन के नीचे अदरक की गांठों का सड़ना और बदबू आना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "rhizome rot",
+          "ginger disease",
+          "ginger-rhizome-rot"
+        ],
+        "keywords_hi": [
+          "अदरक का प्रकंद सड़न (Rhizome Rot)",
+          "Ginger रोग"
+        ],
+        "keywords_romanized": [
+          "ginger bimari",
+          "rhizome rot disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-brinjal-phomopsis",
+      "category": "disease",
+      "crop": "Brinjal",
+      "topic": "Phomopsis Blight",
+      "title": "Brinjal Phomopsis Blight",
+      "title_hi": "बैंगन का फोमोप्सिस झुलसा",
+      "description": "Circular brown spots on leaves and soft watery decay of brinjal fruits.",
+      "description_hi": "फलों का गलकर सड़ना और पत्तियों पर भूरे धब्बे।",
+      "metadata": {
+        "crop": "Brinjal",
+        "severity": "Medium-High",
+        "symptoms": "Circular brown spots on leaves and soft watery decay of brinjal fruits.",
+        "symptoms_hi": "फलों का गलकर सड़ना और पत्तियों पर भूरे धब्बे।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "phomopsis blight",
+          "brinjal disease",
+          "brinjal-phomopsis"
+        ],
+        "keywords_hi": [
+          "बैंगन का फोमोप्सिस झुलसा",
+          "Brinjal रोग"
+        ],
+        "keywords_romanized": [
+          "brinjal bimari",
+          "phomopsis blight disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-brinjal-bacterial-wilt",
+      "category": "disease",
+      "crop": "Brinjal",
+      "topic": "Bacterial Wilt",
+      "title": "Brinjal Bacterial Wilt",
+      "title_hi": "बैंगन का जीवाणु उकठा",
+      "description": "Rapid wilting of green brinjal plants without leaf yellowing.",
+      "description_hi": "हरे पौधे का अचानक रातों-रात मुरझाना।",
+      "metadata": {
+        "crop": "Brinjal",
+        "severity": "Medium-High",
+        "symptoms": "Rapid wilting of green brinjal plants without leaf yellowing.",
+        "symptoms_hi": "हरे पौधे का अचानक रातों-रात मुरझाना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "bacterial wilt",
+          "brinjal disease",
+          "brinjal-bacterial-wilt"
+        ],
+        "keywords_hi": [
+          "बैंगन का जीवाणु उकठा",
+          "Brinjal रोग"
+        ],
+        "keywords_romanized": [
+          "brinjal bimari",
+          "bacterial wilt disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-okra-powdery-mildew",
+      "category": "disease",
+      "crop": "Okra",
+      "topic": "Powdery Mildew",
+      "title": "Okra Powdery Mildew",
+      "title_hi": "भिंडी का सफेद फफूंद",
+      "description": "White powdery patches on upper leaf surface of bhindi.",
+      "description_hi": "भिंडी की पत्तियों के ऊपरी भाग पर सफेद चूर्ण।",
+      "metadata": {
+        "crop": "Okra",
+        "severity": "Medium-High",
+        "symptoms": "White powdery patches on upper leaf surface of bhindi.",
+        "symptoms_hi": "भिंडी की पत्तियों के ऊपरी भाग पर सफेद चूर्ण।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "powdery mildew",
+          "okra disease",
+          "okra-powdery-mildew"
+        ],
+        "keywords_hi": [
+          "भिंडी का सफेद फफूंद",
+          "Okra रोग"
+        ],
+        "keywords_romanized": [
+          "okra bimari",
+          "powdery mildew disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-onion-purple-blotch",
+      "category": "disease",
+      "crop": "Onion",
+      "topic": "Purple Blotch",
+      "title": "Onion Purple Blotch",
+      "title_hi": "प्याज़ का बैंगनी धब्बा रोग",
+      "description": "Small water-soaked sunken lesions turning purple with yellow border.",
+      "description_hi": "प्याज़ की पत्तियों पर बैंगनी रंग के धब्बे।",
+      "metadata": {
+        "crop": "Onion",
+        "severity": "Medium-High",
+        "symptoms": "Small water-soaked sunken lesions turning purple with yellow border.",
+        "symptoms_hi": "प्याज़ की पत्तियों पर बैंगनी रंग के धब्बे।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "purple blotch",
+          "onion disease",
+          "onion-purple-blotch"
+        ],
+        "keywords_hi": [
+          "प्याज़ का बैंगनी धब्बा रोग",
+          "Onion रोग"
+        ],
+        "keywords_romanized": [
+          "onion bimari",
+          "purple blotch disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-garlic-stemphylium-blight",
+      "category": "disease",
+      "crop": "Garlic",
+      "topic": "Stemphylium Blight",
+      "title": "Garlic Stemphylium Blight",
+      "title_hi": "लहसुन का स्टेमफिलियम झुलसा",
+      "description": "Yellowish pale spots on leaves changing to purple or dark brown.",
+      "description_hi": "लहसुन की पत्तियों की नोक पीली पड़कर सूखना।",
+      "metadata": {
+        "crop": "Garlic",
+        "severity": "Medium-High",
+        "symptoms": "Yellowish pale spots on leaves changing to purple or dark brown.",
+        "symptoms_hi": "लहसुन की पत्तियों की नोक पीली पड़कर सूखना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "stemphylium blight",
+          "garlic disease",
+          "garlic-stemphylium-blight"
+        ],
+        "keywords_hi": [
+          "लहसुन का स्टेमफिलियम झुलसा",
+          "Garlic रोग"
+        ],
+        "keywords_romanized": [
+          "garlic bimari",
+          "stemphylium blight disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-cucumber-downy-mildew",
+      "category": "disease",
+      "crop": "Cucumber",
+      "topic": "Downy Mildew",
+      "title": "Cucumber Downy Mildew",
+      "title_hi": "खीरा/ककड़ी का मृदु रोमिल",
+      "description": "Angular yellow spots on leaves bounded by leaf veins.",
+      "description_hi": "पत्तियों पर नसों से घिरे कोणीय पीले धब्बे।",
+      "metadata": {
+        "crop": "Cucumber",
+        "severity": "Medium-High",
+        "symptoms": "Angular yellow spots on leaves bounded by leaf veins.",
+        "symptoms_hi": "पत्तियों पर नसों से घिरे कोणीय पीले धब्बे।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "downy mildew",
+          "cucumber disease",
+          "cucumber-downy-mildew"
+        ],
+        "keywords_hi": [
+          "खीरा/ककड़ी का मृदु रोमिल",
+          "Cucumber रोग"
+        ],
+        "keywords_romanized": [
+          "cucumber bimari",
+          "downy mildew disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-watermelon-fusarium-wilt",
+      "category": "disease",
+      "crop": "Watermelon",
+      "topic": "Fusarium Wilt",
+      "title": "Watermelon Fusarium Wilt",
+      "title_hi": "तरबूज का उकठा रोग",
+      "description": "Wilting of runners and vines in watermelon fields.",
+      "description_hi": "तरबूज की बेलों का अचानक सूखना।",
+      "metadata": {
+        "crop": "Watermelon",
+        "severity": "Medium-High",
+        "symptoms": "Wilting of runners and vines in watermelon fields.",
+        "symptoms_hi": "तरबूज की बेलों का अचानक सूखना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "fusarium wilt",
+          "watermelon disease",
+          "watermelon-fusarium-wilt"
+        ],
+        "keywords_hi": [
+          "तरबूज का उकठा रोग",
+          "Watermelon रोग"
+        ],
+        "keywords_romanized": [
+          "watermelon bimari",
+          "fusarium wilt disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-papaya-anthracnose",
+      "category": "disease",
+      "crop": "Papaya",
+      "topic": "Anthracnose",
+      "title": "Papaya Anthracnose Fruit Rot",
+      "title_hi": "पपीते का एंथ्रेक्नोज फल सड़न",
+      "description": "Sunken circular dark spots on ripe papaya skin.",
+      "description_hi": "पके पपीते की छाल पर गोल धंसे हुए सड़े धब्बे।",
+      "metadata": {
+        "crop": "Papaya",
+        "severity": "Medium-High",
+        "symptoms": "Sunken circular dark spots on ripe papaya skin.",
+        "symptoms_hi": "पके पपीते की छाल पर गोल धंसे हुए सड़े धब्बे।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "anthracnose",
+          "papaya disease",
+          "papaya-anthracnose"
+        ],
+        "keywords_hi": [
+          "पपीते का एंथ्रेक्नोज फल सड़न",
+          "Papaya रोग"
+        ],
+        "keywords_romanized": [
+          "papaya bimari",
+          "anthracnose disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-apple-scab",
+      "category": "disease",
+      "crop": "Apple",
+      "topic": "Apple Scab",
+      "title": "Apple Scab",
+      "title_hi": "सेब का स्कैब रोग",
+      "description": "Olive green velvety spots on apple leaves and fruit skin.",
+      "description_hi": "सेब की छाल और पत्तियों पर जैतूनी भूरे खुरदरे धब्बे।",
+      "metadata": {
+        "crop": "Apple",
+        "severity": "Medium-High",
+        "symptoms": "Olive green velvety spots on apple leaves and fruit skin.",
+        "symptoms_hi": "सेब की छाल और पत्तियों पर जैतूनी भूरे खुरदरे धब्बे।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "apple scab",
+          "apple disease",
+          "apple-scab"
+        ],
+        "keywords_hi": [
+          "सेब का स्कैब रोग",
+          "Apple रोग"
+        ],
+        "keywords_romanized": [
+          "apple bimari",
+          "apple scab disease"
+        ]
+      }
+    },
+    {
+      "id": "disease-tea-blister-blight",
+      "category": "disease",
+      "crop": "Tea",
+      "topic": "Blister Blight",
+      "title": "Tea Blister Blight",
+      "title_hi": "चाय का ब्लिस्टर ब्लाइट",
+      "description": "Translucent pinkish spots forming indented blisters on young tea shoots.",
+      "description_hi": "चाय की कोमल पत्तियों पर गुलाबी छाले (Blister) पड़ना।",
+      "metadata": {
+        "crop": "Tea",
+        "severity": "Medium-High",
+        "symptoms": "Translucent pinkish spots forming indented blisters on young tea shoots.",
+        "symptoms_hi": "चाय की कोमल पत्तियों पर गुलाबी छाले (Blister) पड़ना।",
+        "organicTreatment": "Spray Neem oil 5ml/L or Trichoderma viride 5g/L.",
+        "organicTreatment_hi": "नीम तेल (5 मिली/लीटर) या ट्राइकोड्रामा (5 ग्राम/लीटर) का छिड़काव करें।",
+        "chemicalTreatment": "Spray Mancozeb 75 WP (2g/L) or Copper Oxychloride (3g/L) as recommended.",
+        "chemicalTreatment_hi": "मैनकोज़ेब (2 ग्राम/लीटर) या कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+        "preventiveMeasures": "Follow crop rotation and field sanitation.",
+        "preventiveMeasures_hi": "फसल चक्र अपनाएं और खेत साफ रखें।",
+        "keywords": [
+          "blister blight",
+          "tea disease",
+          "tea-blister-blight"
+        ],
+        "keywords_hi": [
+          "चाय का ब्लिस्टर ब्लाइट",
+          "Tea रोग"
+        ],
+        "keywords_romanized": [
+          "tea bimari",
+          "blister blight disease"
+        ]
+      }
+    }
+  ],
+  "pests": [
+    {
+      "id": "pest-aphid-chepa",
+      "category": "pest",
+      "crop": "Mustard, Wheat, Vegetables",
+      "topic": "Aphids",
+      "title": "Aphids / Mustard-Wheat Aphid (Chepa / Maho / Keede)",
+      "title_hi": "माहू / चेपा / लही (Aphid Pest)",
+      "description": "Tiny green or black sap-sucking insects colonizing undersides of leaves and shoots.",
+      "description_hi": "छोटे हरे-काले कीट जो पत्तियों और कोमल तनों से रस चूसते हैं और चिपचिपा पदार्थ (Honeydew) छोड़ते हैं।",
+      "metadata": {
+        "crop": "Mustard, Wheat, Vegetables",
+        "severity": "High",
+        "symptoms": "Leaf yellowing, curling, honeydew mold development, stunted crop growth.",
+        "symptoms_hi": "पत्तियां पीली पड़ना, मुड़ना, पत्तियों पर चिपचिपापन और काली फफूंद जमना।",
+        "organicTreatment": "Spray Neem oil (3,000 ppm) at 3-5 ml/L with soap solution, or release ladybird beetle predators.",
+        "organicTreatment_hi": "नीम का तेल (3-5 मिली/लीटर) शैम्पू घोल के साथ मिलाकर छिड़कें। मित्र कीट लेडीबर्ड बीटल का संरक्षण करें।",
+        "chemicalTreatment": "Spray Imidacloprid 17.8 SL at 0.5 ml/L or Dimethoate 30 EC at 1.5 ml/L.",
+        "chemicalTreatment_hi": "इमिडाक्लोप्रिड 17.8 SL (0.5 मिली/लीटर) या डाइमेथोएट 30 EC (1.5 मिली/लीटर) का छिड़काव करें।",
+        "preventiveMeasures": "Install yellow sticky traps (10-12 traps per acre). Monitor fields early in cold weather.",
+        "preventiveMeasures_hi": "खेत में पीले चिपचिपे ट्रैप (Yellow sticky traps) 10-12 प्रति एकड़ लगाएं।",
+        "keywords": [
+          "aphid",
+          "chepa",
+          "maho",
+          "lahee",
+          "keeda",
+          "mustard aphid",
+          "wheat aphid"
+        ],
+        "keywords_hi": [
+          "माहू",
+          "चेपा",
+          "लही",
+          "कीड़ा",
+          "सरसों का कीड़ा"
+        ],
+        "keywords_romanized": [
+          "chepa keeda",
+          "maho keeda",
+          "aphid pest",
+          "sarson ka keeda"
+        ]
+      }
+    },
+    {
+      "id": "pest-whitefly-safed-makkhi",
+      "category": "pest",
+      "crop": "Cotton, Tomato, Chilli, Okra",
+      "topic": "Whitefly",
+      "title": "Whitefly / Cotton-Vegetable Whitefly (Safed Makkhi)",
+      "title_hi": "सफेद मक्खी (Whitefly)",
+      "description": "Small white moth-like insects sucking plant sap and transmitting deadly leaf curl and yellow mosaic viruses.",
+      "description_hi": "छोटे सफेद रंग के उड़ने वाले कीट जो पत्तियों का रस चूसते हैं और मरोड़िया व पीला मोज़ेक वायरस फैलाते हैं।",
+      "metadata": {
+        "crop": "Cotton, Tomato, Chilli, Okra, Soybean",
+        "severity": "High",
+        "symptoms": "Fluttering white insects when foliage shaken, sticky leaves, viral infection spread.",
+        "symptoms_hi": "पत्तियों को हिलाने पर सफेद मक्खियों का उड़ना, पत्तियों पर काला सोती मोल्ड जमना।",
+        "organicTreatment": "Yellow sticky traps 15/acre, neem oil 5ml/L, yellow water pan traps.",
+        "organicTreatment_hi": "पीले चिपचिपे कार्ड (15/एकड़) लगाएं। नीम का तेल 5 मिली/लीटर छिड़कें।",
+        "chemicalTreatment": "Spiromesifen 22.9 SC at 1 ml/L or Pyriproxyfen 10 EC at 2 ml/L or Imidacloprid 0.5 ml/L.",
+        "chemicalTreatment_hi": "स्पाइरोमेसिफेन (1 मिली/लीटर) या पायरीप्रोक्सीफेन (2 मिली/लीटर) का छिड़काव करें।",
+        "preventiveMeasures": "Avoid weed hosts around field margins, avoid excess nitrogen.",
+        "preventiveMeasures_hi": "खेत के किनारों से खरपतवार नष्ट करें, अत्यधिक यूरिया न दें।",
+        "keywords": [
+          "whitefly",
+          "safed makkhi",
+          "cotton whitefly",
+          "leaf curl vector"
+        ],
+        "keywords_hi": [
+          "सफेद मक्खी",
+          "कपास की मक्खी",
+          "वायरस कीट"
+        ],
+        "keywords_romanized": [
+          "safed makkhi",
+          "whitefly cotton",
+          "tamatar whitefly"
+        ]
+      }
+    },
+    {
+      "id": "pest-thrips-choorda",
+      "category": "pest",
+      "crop": "Chilli, Onion, Cotton, Grapes",
+      "topic": "Thrips",
+      "title": "Thrips / Chilli-Onion Thrips (Churda / Mirch ke Keede)",
+      "title_hi": "थ्रिप्स / चुरड़ा कीट (Thrips)",
+      "description": "Slender tiny dark yellow/black insects rasping leaf tissues causing boat-shaped leaf curling.",
+      "description_hi": "बारीक पतले कीट जो पत्तियों की सतह को खुरचकर रस चूसते हैं, जिससे पत्तियां ऊपर की ओर मुड़ती हैं।",
+      "metadata": {
+        "crop": "Chilli, Onion, Garlic, Cotton, Grapes",
+        "severity": "High",
+        "symptoms": "Silvery leaf patches, boat-shaped upward leaf curling, brown scarring on onion leaves.",
+        "symptoms_hi": "पत्तियों पर चांदी जैसी धारियां, मिर्च की पत्तियां नौकाकार मुड़ना, प्याज़ की पत्तियां झुलसना।",
+        "organicTreatment": "Blue sticky traps (12-15/acre), Neem seed kernel extract (NSKE 5%).",
+        "organicTreatment_hi": "नीले चिपचिपे कार्ड (Blue sticky traps) लगाएं। नीम बीज अर्क (5%) का छिड़काव।",
+        "chemicalTreatment": "Fipronil 5 SC at 1.5-2 ml/L or Spinetoram 11.7 SC at 0.8 ml/L.",
+        "chemicalTreatment_hi": "फिप्रोनिल 5 SC (1.5 मिली/लीटर) या स्पिनेटोरम (0.8 मिली/लीटर) छिड़कें।",
+        "preventiveMeasures": "Maintain field moisture, avoid dry stress conditions.",
+        "preventiveMeasures_hi": "खेत में नमी बनाए रखें, सूखा तनाव न होने दें।",
+        "keywords": [
+          "thrips",
+          "chilli thrips",
+          "onion thrips",
+          "churda keeda",
+          "silvery leaf"
+        ],
+        "keywords_hi": [
+          "थ्रिप्स",
+          "चुरड़ा",
+          "मिर्च का कीट",
+          "प्याज़ का थ्रिप्स"
+        ],
+        "keywords_romanized": [
+          "thrips mirch",
+          "churda keeda",
+          "onion thrips"
+        ]
+      }
+    },
+    {
+      "id": "pest-stem-borer-tana-chedak",
+      "category": "pest",
+      "crop": "Paddy, Maize, Sugarcane",
+      "topic": "Stem Borer",
+      "title": "Stem Borer / Paddy-Maize Stem Borer (Tana Chedak)",
+      "title_hi": "तना छेदक कीट (Stem Borer)",
+      "description": "Caterpillar larva boring into central stems causing dead hearts in young plants and whiteheads in paddy.",
+      "description_hi": "इल्ली जो तने के अंदर घुसकर अंदरूनी भाग को खाती है जिससे गोभ सूख जाती है (Dead Heart) और धान में सफेद बाली बनती है।",
+      "metadata": {
+        "crop": "Paddy / Rice, Maize, Sugarcane",
+        "severity": "High",
+        "symptoms": "Dead hearts in vegetative stage, empty white earheads (Whiteheads) in rice at heading stage.",
+        "symptoms_hi": "पौधे का बीच का पत्ता (गोभ) सूखना, धान में सफेद थोथी बालियां (Whiteheads) निकलना।",
+        "organicTreatment": "Pheromone traps (5/acre), release Trichogramma egg parasitoids 20,000/acre.",
+        "organicTreatment_hi": "फेरोमोन ट्रैप (5/एकड़) लगाएं। ट्राइकोग्राम कार्ड (मित्र कीट) का प्रयोग करें।",
+        "chemicalTreatment": "Cartap Hydrochloride 4G granules at 7.5 kg/acre or Chlorantraniliprole 0.4G at 4 kg/acre.",
+        "chemicalTreatment_hi": "कार्टैप हाइड्रोक्लोराइड 4G (7.5 किग्रा/एकड़) या क्लोरैंट्रानिलिप्रोले granular दानेदार डालें।",
+        "preventiveMeasures": "Clip leaf tips of rice seedlings before transplanting to destroy egg masses.",
+        "preventiveMeasures_hi": "धान रोपाई से पहले पौध की ऊपरी नोक काट दें ताकि अंडे नष्ट हो जाएं।",
+        "keywords": [
+          "stem borer",
+          "tana chedak",
+          "dead heart paddy",
+          "whitehead rice"
+        ],
+        "keywords_hi": [
+          "तना छेदक",
+          "धान का तना छेदक",
+          "सफेद बाली",
+          "गोभ सूखना"
+        ],
+        "keywords_romanized": [
+          "tana chedak",
+          "stem borer dhaan",
+          "whitehead paddy"
+        ]
+      }
+    },
+    {
+      "id": "pest-leaf-folder-patti-lapetak",
+      "category": "pest",
+      "crop": "Paddy / Rice",
+      "topic": "Leaf Folder",
+      "title": "Rice Leaf Folder (Dhaan ka Patti Lapetak Keeda)",
+      "title_hi": "धान का पत्ती लपेटक कीट (Leaf Folder)",
+      "description": "Caterpillar folds rice leaf longitudinally and feeds on green chlorophyll from inside.",
+      "description_hi": "इल्ली धान के पत्ते को लंबाई में मोड़कर गोंद से चिपका लेती है और अंदर रहकर हरा भाग खुरचकर खाती है।",
+      "metadata": {
+        "crop": "Paddy / Rice",
+        "severity": "Medium-High",
+        "symptoms": "Folded leaves fastened with white silk threads, transparent white streaks on leaves.",
+        "symptoms_hi": "मुड़ी हुई पत्तियां, पत्तियों पर सफेद पारदर्शी धारियां दिखाई देना।",
+        "organicTreatment": "Pass a thick rope over crop canopy to dislodge larvae into standing water. Neem oil 5ml/L.",
+        "organicTreatment_hi": "खेत में खड़ी फसल पर रस्सी घुमाएं ताकि इल्लियां पानी में गिर जाएं। नीम तेल छिड़कें।",
+        "chemicalTreatment": "Chlorantraniliprole 18.5 SC at 0.3 ml/L or Flubendiamide 39.35 SC at 0.2 ml/L.",
+        "chemicalTreatment_hi": "कोराजन (Chlorantraniliprole 18.5 SC) 0.3 मिली प्रति लीटर पानी में मिलाकर छिड़कें।",
+        "preventiveMeasures": "Avoid excessive nitrogenous fertilizer application.",
+        "preventiveMeasures_hi": "आवश्यकता से अधिक यूरिया का प्रयोग न करें।",
+        "keywords": [
+          "leaf folder",
+          "patti lapetak",
+          "rice leaf folder",
+          "paddy folded leaves"
+        ],
+        "keywords_hi": [
+          "पत्ती लपेटक",
+          "धान पत्ती लपेटक",
+          "पत्ता मोड़ कीट"
+        ],
+        "keywords_romanized": [
+          "patti lapetak",
+          "leaf folder dhaan"
+        ]
+      }
+    },
+    {
+      "id": "pest-brown-planthopper-bph",
+      "category": "pest",
+      "crop": "Paddy / Rice",
+      "topic": "Brown Planthopper",
+      "title": "Brown Planthopper / BPH (Dhaan ka Bhura Maho / Hopper Burn)",
+      "title_hi": "भूरा पौध फुदका / बीपीएच (Brown Planthopper / Hopperburn)",
+      "description": "Brown planthoppers sucking sap at base of paddy tillers causing circular patches of scorched dead crop (Hopperburn).",
+      "description_hi": "धान की जड़ों और तने के आधार पर रहने वाले भूरे फुदके जो रस चूसकर खेत में जले हुए गोल चकत्ते (Hopperburn) बना देते हैं।",
+      "metadata": {
+        "crop": "Paddy / Rice",
+        "severity": "Very High",
+        "symptoms": "Circular patches of dried brown rice plants looking as if burnt by fire.",
+        "symptoms_hi": "खेत में जगह-जगह धान के पौधों का आग से झुलसा जैसा सूखना (Hopper burn).",
+        "organicTreatment": "Drain standing water immediately. Alternate wetting and drying (AWD). Neem oil 5ml/L.",
+        "organicTreatment_hi": "खेत से तुरंत पानी निकालें। हवा और धूप तने तक पहुंचने दें। नीम तेल छिड़कें।",
+        "chemicalTreatment": "Pymetrozine 50 WG at 0.6g/L or Triflumezopyrim 10 SC at 0.5 ml/L directed at stem base.",
+        "chemicalTreatment_hi": "पाइमेट्रोज़िन 50 WG (0.6 ग्राम/लीटर) या ट्रिफ्लुमेज़ोपायरीम का छिड़काव तने के निचले भाग पर करें।",
+        "preventiveMeasures": "Provide alleyways (30cm spacing every 2 meters) for sunlight and airflow.",
+        "preventiveMeasures_hi": "रोपाई के समय 2 मीटर पर हवा के लिए रास्ता (Alleyways) छोड़ें।",
+        "keywords": [
+          "bph",
+          "brown planthopper",
+          "hopperburn",
+          "bhura maho dhaan"
+        ],
+        "keywords_hi": [
+          "भूरा माहू",
+          "बीपीएच",
+          "हॉपर बर्न",
+          "धान का फुदका"
+        ],
+        "keywords_romanized": [
+          "bhura maho",
+          "bph paddy",
+          "hopperburn dhaan"
+        ]
+      }
+    },
+    {
+      "id": "pest-fall-armyworm-faw",
+      "category": "pest",
+      "crop": "Maize, Sugarcane, Sorghum",
+      "topic": "Fall Armyworm",
+      "title": "Fall Armyworm / FAW (Makka ka Sainik Keeda)",
+      "title_hi": "फॉल्स आर्मीवर्म / मक्का का सैनिक कीट (Fall Armyworm)",
+      "description": "Devastating caterpillar eating maize leaf whorls, leaving characteristic Y-mark on head and 4 dots on tail.",
+      "description_hi": "मक्के की गोभ को खाने वाली खतरनाक इल्ली जिसके सिर पर उल्टा 'Y' का निशान और पूंछ पर 4 काले बिंदु होते हैं।",
+      "metadata": {
+        "crop": "Maize, Sugarcane, Sorghum",
+        "severity": "Very High",
+        "symptoms": "Shot-hole damage on whorl leaves, heavy moist frass (poop) inside central leaf funnel.",
+        "symptoms_hi": "पत्तियों में बड़े छेद, मक्के की गोभ के अंदर गीला मल (Frass) जमा होना।",
+        "organicTreatment": "Apply sand + neem cake mixture into leaf whorls. Release Metarhizium anisopliae bio-agent.",
+        "organicTreatment_hi": "मक्के की गोभ में रेत और नीम की खली का मिश्रण भरें। मिटाराइजियम बायो-कीटनाशक छिड़कें।",
+        "chemicalTreatment": "Emamectin Benzoate 5 SG at 0.4g/L or Chlorantraniliprole 18.5 SC at 0.4 ml/L directed into whorl.",
+        "chemicalTreatment_hi": "इमामेक्टिन बेंजोएट 5 SG (0.4 ग्राम/लीटर) स्प्रे नोजल से सीधे गोभ में डालें।",
+        "preventiveMeasures": "Deep summer plowing and install FAW pheromone traps (4/acre).",
+        "preventiveMeasures_hi": "गर्मियों में गहरी जुताई करें और फेरोमोन ट्रैप लगाएं।",
+        "keywords": [
+          "fall armyworm",
+          "faw",
+          "makka sainik keeda",
+          "maize armyworm",
+          "y mark caterpillar"
+        ],
+        "keywords_hi": [
+          "सैनिक कीट",
+          "फॉल्स आर्मीवर्म",
+          "मक्का की इल्ली"
+        ],
+        "keywords_romanized": [
+          "makka sainik keeda",
+          "fall armyworm",
+          "faw maize"
+        ]
+      }
+    },
+    {
+      "id": "pest-fruit-and-pod-borer",
+      "category": "pest",
+      "crop": "Tomato, Chickpea, Pigeon Pea, Chilli",
+      "topic": "Fruit and Pod Borer",
+      "title": "Fruit Borer / Pod Borer (Helicoverpa / Tamatar-Chana Borer)",
+      "title_hi": "फल व फली छेदक कीट / इल्ली (Helicoverpa / Fruit Borer)",
+      "description": "Greenish-brown caterpillar boring round holes into tomato fruits and chickpea pods with half body inside.",
+      "description_hi": "हरी-भूरी इल्ली जो फलियों और टमाटर के फलों में गोल छेद बनाकर आधा शरीर अंदर घुसाकर खाती है।",
+      "metadata": {
+        "crop": "Tomato, Chickpea, Pigeon Pea, Chilli",
+        "severity": "High",
+        "symptoms": "Circular boreholes on tomatoes and chickpea pods with internal hollowed seed contents.",
+        "symptoms_hi": "फलों और फलियों में गोल छेद होना, फल सड़ना व दाना खोखला होना।",
+        "organicTreatment": "Pheromone traps (5/acre), HaNPV spray 250 LE/acre, erect bird perches (20/acre).",
+        "organicTreatment_hi": "टी-आकार के पक्षी बसेरे (20/एकड़) लगाएं ताकि चिड़िया इल्लियों को खाएं। HaNPV स्प्रे करें।",
+        "chemicalTreatment": "Emamectin Benzoate 5 SG at 0.4g/L or Indoxacarb 14.5 SC at 0.5 ml/L.",
+        "chemicalTreatment_hi": "इमामेक्टिन बेंजोएट 5 SG (0.4 ग्राम/लीटर) या इंडोक्साकार्ब छिड़कें।",
+        "preventiveMeasures": "Plant marigold as trap crop around tomato field boundaries.",
+        "preventiveMeasures_hi": "टमाटर के चारों तरफ गेंदे (Marigold) का पौधा ट्रैप क्रॉप के रूप में लगाएं।",
+        "keywords": [
+          "fruit borer",
+          "pod borer",
+          "helicoverpa",
+          "tamatar borer",
+          "chana illi"
+        ],
+        "keywords_hi": [
+          "फल छेदक",
+          "फली छेदक",
+          "चना इल्ली",
+          "टमाटर का कीड़ा"
+        ],
+        "keywords_romanized": [
+          "tamatar borer",
+          "chana illi",
+          "pod borer",
+          "fruit borer"
+        ]
+      }
+    },
+    {
+      "id": "pest-termite-deemak",
+      "category": "pest",
+      "crop": "Wheat, Sugarcane, Groundnut, Maize",
+      "topic": "Termite",
+      "title": "Termite / White Ant (Deemak)",
+      "title_hi": "दीमक (Termite / Deemak)",
+      "description": "Social soil-dwelling insects attacking roots and basal stems, causing plants to dry up easily and pull out.",
+      "description_hi": "मिट्टी में रहने वाले कीट जो फसलों की जड़ों और तने को अंदर से खा जाते हैं, जिससे पौधा आसानी से उखड़ जाता है।",
+      "metadata": {
+        "crop": "Wheat, Sugarcane, Groundnut, Maize, Trees",
+        "severity": "High",
+        "symptoms": "Plants dry up in patches, roots hollowed out covered with mud galleries.",
+        "symptoms_hi": "पौधे पैच में सूखना, छूने पर आसानी से उखड़ जाना, जड़ों पर मिट्टी की नालियां।",
+        "organicTreatment": "Apply Neem cake 100 kg/acre, Metarhizium anisopliae bio-pesticide 2 kg/acre mixed with FYM.",
+        "organicTreatment_hi": "नीम की खली (100 किग्रा/एकड़) या मिटाराइजियम बायो-फफूंद गोबर खाद में मिलाकर डालें।",
+        "chemicalTreatment": "Chlorpyrifos 20 EC at 2 liters/acre applied with irrigation water or seed treatment with Imidacloprid.",
+        "chemicalTreatment_hi": "सिंचाई के पानी के साथ क्लोरपायरीफॉस 20 EC (2 लीटर/एकड़) बहाएं या बीज उपचार करें।",
+        "preventiveMeasures": "Do not use un-decomposed raw farmyard manure in fields.",
+        "preventiveMeasures_hi": "खेत में कच्ची गोबर की खाद कभी न डालें।",
+        "keywords": [
+          "termite",
+          "deemak",
+          "white ant",
+          "root termite"
+        ],
+        "keywords_hi": [
+          "दीमक",
+          "गेहूं की दीमक",
+          "गन्ने की दीमक"
+        ],
+        "keywords_romanized": [
+          "deemak",
+          "termite wheat",
+          "ganna deemak"
+        ]
+      }
+    },
+    {
+      "id": "pest-pink-bollworm-gulabi-sundi",
+      "category": "pest",
+      "crop": "Cotton",
+      "topic": "Pink Bollworm",
+      "title": "Pink Bollworm (Kapas ki Gulabi Sundi)",
+      "title_hi": "गुलाबी सूंडी (Pink Bollworm of Cotton)",
+      "description": "Pinkish caterpillar feeding inside cotton bolls, destroying lint quality and causing rosette flowers.",
+      "description_hi": "गुलाबी रंग की इल्ली जो कपास के डोडे (Bolls) के अंदर घुसकर बिनौले और रुई को नष्ट करती है।",
+      "metadata": {
+        "crop": "Cotton",
+        "severity": "Very High",
+        "symptoms": "Rosette flowers (petals tied together), premature boll opening, stained ruined cotton lint.",
+        "symptoms_hi": "फूल का गुलाब जैसा बंधना (Rosette flower), डोडे में सूंडी का प्रवेश छेद, खराब रुई।",
+        "organicTreatment": "Install Pink bollworm pheromone traps (8/acre), destroy crop stubble immediately after harvest.",
+        "organicTreatment_hi": "गुलाबी सूंडी फेरोमोन ट्रैप (8/एकड़) लगाएं। फसल कटाई के बाद डंठल नष्ट करें।",
+        "chemicalTreatment": "Profeno-cypermethrin formulation or Chlorantraniliprole 18.5 SC at 0.3 ml/L.",
+        "chemicalTreatment_hi": "प्रोफेनोफॉस + साइपरमैथ्रिन या क्लोरैंट्रानिलिप्रोले का छिड़काव करें।",
+        "preventiveMeasures": "Avoid extending cotton crop beyond December to break pest lifecycle.",
+        "preventiveMeasures_hi": "दिसंबर के बाद कपास की फसल न खींचें।",
+        "keywords": [
+          "pink bollworm",
+          "gulabi sundi",
+          "cotton bollworm",
+          "rosette flower cotton"
+        ],
+        "keywords_hi": [
+          "गुलाबी सूंडी",
+          "कपास की इल्ली",
+          "गुलाबी कीड़ा"
+        ],
+        "keywords_romanized": [
+          "gulabi sundi",
+          "pink bollworm kapas"
+        ]
+      }
+    },
+    {
+      "id": "pest-cutworm-gehun-sundi",
+      "category": "pest",
+      "crop": "Wheat, Gram, Potato",
+      "topic": "Cutworm",
+      "title": "Cutworm (Katai Keeda / Sundi)",
+      "title_hi": "कटवा कीड़ा / सुंडी (Cutworm)",
+      "description": "Greasy grey caterpillar cutting young seedlings at soil surface during night.",
+      "description_hi": "रात में जमीन की सतह से छोटे पौधों के तने काटकर गिराने वाली इल्ली।",
+      "metadata": {
+        "crop": "Wheat, Gram, Potato",
+        "severity": "Medium-High",
+        "symptoms": "Greasy grey caterpillar cutting young seedlings at soil surface during night.",
+        "symptoms_hi": "रात में जमीन की सतह से छोटे पौधों के तने काटकर गिराने वाली इल्ली।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "cutworm",
+          "wheat, gram, potato pest",
+          "cutworm-gehun-sundi"
+        ],
+        "keywords_hi": [
+          "कटवा कीड़ा / सुंडी (Cutworm)",
+          "Wheat, Gram, Potato कीड़ा"
+        ],
+        "keywords_romanized": [
+          "wheat, gram, potato keeda",
+          "cutworm pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-mealybug-kapas",
+      "category": "pest",
+      "crop": "Cotton, Papaya, Mango",
+      "topic": "Mealybug",
+      "title": "Mealybug (Kapas/Papita Mealybug)",
+      "title_hi": "मीलीबग / दहिआ कीट (Mealybug)",
+      "description": "Soft-bodied insect covered with white waxy powder sucking sap in colonies.",
+      "description_hi": "सफेद मोमी पाउडर से ढके कीड़े जो गुच्छों में तने और पत्तियों का रस चूसते हैं।",
+      "metadata": {
+        "crop": "Cotton, Papaya, Mango",
+        "severity": "Medium-High",
+        "symptoms": "Soft-bodied insect covered with white waxy powder sucking sap in colonies.",
+        "symptoms_hi": "सफेद मोमी पाउडर से ढके कीड़े जो गुच्छों में तने और पत्तियों का रस चूसते हैं।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "mealybug",
+          "cotton, papaya, mango pest",
+          "mealybug-kapas"
+        ],
+        "keywords_hi": [
+          "मीलीबग / दहिआ कीट (Mealybug)",
+          "Cotton, Papaya, Mango कीड़ा"
+        ],
+        "keywords_romanized": [
+          "cotton, papaya, mango keeda",
+          "mealybug pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-jassid-green-leafhopper",
+      "category": "pest",
+      "crop": "Cotton, Okra, Potato",
+      "topic": "Jassid / Leafhopper",
+      "title": "Jassid / Green Leafhopper (Hari Makkhi)",
+      "title_hi": "जैसिड / हरी मक्खी (Jassid)",
+      "description": "Wedge-shaped pale green insects walking diagonally sucking leaf juices causing hopperburn.",
+      "description_hi": "हरे रंग के छोटे तिरछे चलने वाले कीड़े जो पत्ती की निचली सतह से रस चूसते हैं।",
+      "metadata": {
+        "crop": "Cotton, Okra, Potato",
+        "severity": "Medium-High",
+        "symptoms": "Wedge-shaped pale green insects walking diagonally sucking leaf juices causing hopperburn.",
+        "symptoms_hi": "हरे रंग के छोटे तिरछे चलने वाले कीड़े जो पत्ती की निचली सतह से रस चूसते हैं।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "jassid / leafhopper",
+          "cotton, okra, potato pest",
+          "jassid-green-leafhopper"
+        ],
+        "keywords_hi": [
+          "जैसिड / हरी मक्खी (Jassid)",
+          "Cotton, Okra, Potato कीड़ा"
+        ],
+        "keywords_romanized": [
+          "cotton, okra, potato keeda",
+          "jassid / leafhopper pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-mealybug-root-nematode",
+      "category": "pest",
+      "crop": "Vegetables, Banana",
+      "topic": "Root Knot Nematode",
+      "title": "Root-Knot Nematode (Jad Ganth Rog)",
+      "title_hi": "जड़ गांठ सूत्रकृमि (Root-Knot Nematode)",
+      "description": "Microscopic soil worms forming swelling galls on roots hindering water uptake.",
+      "description_hi": "मिट्टी के सूक्ष्म कीड़े जो जड़ों में गांठें बना देते हैं।",
+      "metadata": {
+        "crop": "Vegetables, Banana",
+        "severity": "Medium-High",
+        "symptoms": "Microscopic soil worms forming swelling galls on roots hindering water uptake.",
+        "symptoms_hi": "मिट्टी के सूक्ष्म कीड़े जो जड़ों में गांठें बना देते हैं।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "root knot nematode",
+          "vegetables, banana pest",
+          "mealybug-root-nematode"
+        ],
+        "keywords_hi": [
+          "जड़ गांठ सूत्रकृमि (Root-Knot Nematode)",
+          "Vegetables, Banana कीड़ा"
+        ],
+        "keywords_romanized": [
+          "vegetables, banana keeda",
+          "root knot nematode pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-red-spider-mite",
+      "category": "pest",
+      "crop": "Brinjal, Tomato, Apple",
+      "topic": "Red Spider Mite",
+      "title": "Red Spider Mite (Laal Makdi)",
+      "title_hi": "लाल मकड़ी (Red Spider Mite)",
+      "description": "Tiny red arachnids spinning fine webs on underside of leaves in hot dry weather.",
+      "description_hi": "सूखे गर्म मौसम में पत्तियों के नीचे बारीक जाले बनाने वाली छोटी लाल मकड़ी।",
+      "metadata": {
+        "crop": "Brinjal, Tomato, Apple",
+        "severity": "Medium-High",
+        "symptoms": "Tiny red arachnids spinning fine webs on underside of leaves in hot dry weather.",
+        "symptoms_hi": "सूखे गर्म मौसम में पत्तियों के नीचे बारीक जाले बनाने वाली छोटी लाल मकड़ी।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "red spider mite",
+          "brinjal, tomato, apple pest",
+          "red-spider-mite"
+        ],
+        "keywords_hi": [
+          "लाल मकड़ी (Red Spider Mite)",
+          "Brinjal, Tomato, Apple कीड़ा"
+        ],
+        "keywords_romanized": [
+          "brinjal, tomato, apple keeda",
+          "red spider mite pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-scale-insect-nimbu",
+      "category": "pest",
+      "crop": "Citrus, Sugarcane",
+      "topic": "Scale Insect",
+      "title": "Scale Insect (Chhilka Keeda)",
+      "title_hi": "स्केल कीड़ा / छिलका कीट (Scale Insect)",
+      "description": "Hard shell-like stationary scales attached to twigs and fruit rinds.",
+      "description_hi": "तने और फलों की छाल पर जमे हुए कठोर ढाल जैसे कीड़े।",
+      "metadata": {
+        "crop": "Citrus, Sugarcane",
+        "severity": "Medium-High",
+        "symptoms": "Hard shell-like stationary scales attached to twigs and fruit rinds.",
+        "symptoms_hi": "तने और फलों की छाल पर जमे हुए कठोर ढाल जैसे कीड़े।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "scale insect",
+          "citrus, sugarcane pest",
+          "scale-insect-nimbu"
+        ],
+        "keywords_hi": [
+          "स्केल कीड़ा / छिलका कीट (Scale Insect)",
+          "Citrus, Sugarcane कीड़ा"
+        ],
+        "keywords_romanized": [
+          "citrus, sugarcane keeda",
+          "scale insect pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-leaf-miner-tamatar",
+      "category": "pest",
+      "crop": "Tomato, Citrus, Pea",
+      "topic": "Leaf Miner",
+      "title": "Leaf Miner (Patti Surang Keeda)",
+      "title_hi": "लीफ माइनर / सुरंग कीट (Leaf Miner)",
+      "description": "Maggot making silvery serpentine mines inside leaf epidermal layers.",
+      "description_hi": "पत्तियों के अंदर टेढ़ी-मेढ़ी सफेद सांप जैसी सुरंगें बनाने वाला कीट।",
+      "metadata": {
+        "crop": "Tomato, Citrus, Pea",
+        "severity": "Medium-High",
+        "symptoms": "Maggot making silvery serpentine mines inside leaf epidermal layers.",
+        "symptoms_hi": "पत्तियों के अंदर टेढ़ी-मेढ़ी सफेद सांप जैसी सुरंगें बनाने वाला कीट।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "leaf miner",
+          "tomato, citrus, pea pest",
+          "leaf-miner-tamatar"
+        ],
+        "keywords_hi": [
+          "लीफ माइनर / सुरंग कीट (Leaf Miner)",
+          "Tomato, Citrus, Pea कीड़ा"
+        ],
+        "keywords_romanized": [
+          "tomato, citrus, pea keeda",
+          "leaf miner pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-locust-tiddi",
+      "category": "pest",
+      "crop": "All Crops",
+      "topic": "Locust",
+      "title": "Locust Swarm (Tiddi Dal)",
+      "title_hi": "टिड्डी दल (Locust Swarm)",
+      "description": "Migratory grasshopper swarms stripping entire green vegetation in hours.",
+      "description_hi": "लाखों टिड्डियों का दल जो कुछ घंटों में पूरा हरा खेत चट कर जाता है।",
+      "metadata": {
+        "crop": "All Crops",
+        "severity": "Medium-High",
+        "symptoms": "Migratory grasshopper swarms stripping entire green vegetation in hours.",
+        "symptoms_hi": "लाखों टिड्डियों का दल जो कुछ घंटों में पूरा हरा खेत चट कर जाता है।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "locust",
+          "all crops pest",
+          "locust-tiddi"
+        ],
+        "keywords_hi": [
+          "टिड्डी दल (Locust Swarm)",
+          "All Crops कीड़ा"
+        ],
+        "keywords_romanized": [
+          "all crops keeda",
+          "locust pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-diamondback-moth-gobhi",
+      "category": "pest",
+      "crop": "Cabbage, Cauliflower",
+      "topic": "Diamondback Moth (DBM)",
+      "title": "Diamondback Moth / DBM (Gobhi ki Illi)",
+      "title_hi": "डायमंडबैक मौथ / गोभी की इल्ली (DBM)",
+      "description": "Small grey moth larva making window-pane feeding holes in cabbage leaves.",
+      "description_hi": "गोभी के पत्तों में खिड़की जैसे पारदर्शी छेद करने वाली छोटी हरी इल्ली।",
+      "metadata": {
+        "crop": "Cabbage, Cauliflower",
+        "severity": "Medium-High",
+        "symptoms": "Small grey moth larva making window-pane feeding holes in cabbage leaves.",
+        "symptoms_hi": "गोभी के पत्तों में खिड़की जैसे पारदर्शी छेद करने वाली छोटी हरी इल्ली।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "diamondback moth (dbm)",
+          "cabbage, cauliflower pest",
+          "diamondback-moth-gobhi"
+        ],
+        "keywords_hi": [
+          "डायमंडबैक मौथ / गोभी की इल्ली (DBM)",
+          "Cabbage, Cauliflower कीड़ा"
+        ],
+        "keywords_romanized": [
+          "cabbage, cauliflower keeda",
+          "diamondback moth (dbm) pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-gundhi-bug-dhaan",
+      "category": "pest",
+      "crop": "Paddy / Rice",
+      "topic": "Gundhi Bug",
+      "title": "Rice Gundhi Bug (Dhaan ka Gandhy Keeda)",
+      "title_hi": "धान का गंधी बग (Gundhi Bug)",
+      "description": "Foul-smelling slender green bug sucking milky fluid from tender rice grains.",
+      "description_hi": "दुर्गंध देने वाला कीट जो धान के दानों से दूधिया रस (Milky stage) चूसकर दाना फोक बना देता है।",
+      "metadata": {
+        "crop": "Paddy / Rice",
+        "severity": "Medium-High",
+        "symptoms": "Foul-smelling slender green bug sucking milky fluid from tender rice grains.",
+        "symptoms_hi": "दुर्गंध देने वाला कीट जो धान के दानों से दूधिया रस (Milky stage) चूसकर दाना फोक बना देता है।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "gundhi bug",
+          "paddy / rice pest",
+          "gundhi-bug-dhaan"
+        ],
+        "keywords_hi": [
+          "धान का गंधी बग (Gundhi Bug)",
+          "Paddy / Rice कीड़ा"
+        ],
+        "keywords_romanized": [
+          "paddy / rice keeda",
+          "gundhi bug pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-mustard-sawfly",
+      "category": "pest",
+      "crop": "Mustard",
+      "topic": "Mustard Sawfly",
+      "title": "Mustard Sawfly (Sarson ki Aari Makkhi)",
+      "title_hi": "सरसों की आरा मक्खी (Mustard Sawfly)",
+      "description": "Dark green grubs eating leaf margins of young mustard seedlings.",
+      "description_hi": "सरसों के छोटे पौधों की पत्तियों को किनारों से खाने वाली काली-हरी सूंडी।",
+      "metadata": {
+        "crop": "Mustard",
+        "severity": "Medium-High",
+        "symptoms": "Dark green grubs eating leaf margins of young mustard seedlings.",
+        "symptoms_hi": "सरसों के छोटे पौधों की पत्तियों को किनारों से खाने वाली काली-हरी सूंडी।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "mustard sawfly",
+          "mustard pest",
+          "mustard-sawfly"
+        ],
+        "keywords_hi": [
+          "सरसों की आरा मक्खी (Mustard Sawfly)",
+          "Mustard कीड़ा"
+        ],
+        "keywords_romanized": [
+          "mustard keeda",
+          "mustard sawfly pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-shoot-and-fruit-borer-baingan",
+      "category": "pest",
+      "crop": "Brinjal",
+      "topic": "Shoot and Fruit Borer",
+      "title": "Brinjal Shoot & Fruit Borer (Baingan Tana-Phal Chedak)",
+      "title_hi": "बैंगन का तना व फल छेदक कीट",
+      "description": "Pinkish larva causing wilting of shoot tips and internal rotting of brinjal fruit.",
+      "description_hi": "बैंगन के तने की नोक सुखाने और फल के अंदर छेद करके खाने वाली इल्ली।",
+      "metadata": {
+        "crop": "Brinjal",
+        "severity": "Medium-High",
+        "symptoms": "Pinkish larva causing wilting of shoot tips and internal rotting of brinjal fruit.",
+        "symptoms_hi": "बैंगन के तने की नोक सुखाने और फल के अंदर छेद करके खाने वाली इल्ली।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "shoot and fruit borer",
+          "brinjal pest",
+          "shoot-and-fruit-borer-baingan"
+        ],
+        "keywords_hi": [
+          "बैंगन का तना व फल छेदक कीट",
+          "Brinjal कीड़ा"
+        ],
+        "keywords_romanized": [
+          "brinjal keeda",
+          "shoot and fruit borer pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-shoot-borer-bhindi",
+      "category": "pest",
+      "crop": "Okra",
+      "topic": "Shoot Borer",
+      "title": "Okra Shoot & Fruit Borer (Bhindi Chedak)",
+      "title_hi": "भिंडी का तना व फल छेदक",
+      "description": "Caterpillar boring tender okra shoots and crooked fruits.",
+      "description_hi": "भिंडी की कोमल टहनियों और भिंडी के फल में छेद करने वाला कीट।",
+      "metadata": {
+        "crop": "Okra",
+        "severity": "Medium-High",
+        "symptoms": "Caterpillar boring tender okra shoots and crooked fruits.",
+        "symptoms_hi": "भिंडी की कोमल टहनियों और भिंडी के फल में छेद करने वाला कीट।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "shoot borer",
+          "okra pest",
+          "shoot-borer-bhindi"
+        ],
+        "keywords_hi": [
+          "भिंडी का तना व फल छेदक",
+          "Okra कीड़ा"
+        ],
+        "keywords_romanized": [
+          "okra keeda",
+          "shoot borer pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-bark-eating-caterpillar-aam",
+      "category": "pest",
+      "crop": "Mango, Guava",
+      "topic": "Bark Eating Caterpillar",
+      "title": "Bark Eating Caterpillar (Chhaal Khane Wali Illi)",
+      "title_hi": "छाल खाने वाली इल्ली (Bark Borer)",
+      "description": "Caterpillar making webbing covered holes on main trunk of fruit trees.",
+      "description_hi": "फलों के पेड़ों के तने में छेद बनाकर जालियों के अंदर रहने वाली इल्ली।",
+      "metadata": {
+        "crop": "Mango, Guava",
+        "severity": "Medium-High",
+        "symptoms": "Caterpillar making webbing covered holes on main trunk of fruit trees.",
+        "symptoms_hi": "फलों के पेड़ों के तने में छेद बनाकर जालियों के अंदर रहने वाली इल्ली।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "bark eating caterpillar",
+          "mango, guava pest",
+          "bark-eating-caterpillar-aam"
+        ],
+        "keywords_hi": [
+          "छाल खाने वाली इल्ली (Bark Borer)",
+          "Mango, Guava कीड़ा"
+        ],
+        "keywords_romanized": [
+          "mango, guava keeda",
+          "bark eating caterpillar pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-mango-hopper",
+      "category": "pest",
+      "crop": "Mango",
+      "topic": "Mango Hopper",
+      "title": "Mango Hopper (Aam ka Bhunka / Hopper)",
+      "title_hi": "आम का भुनका / हॉपर (Mango Hopper)",
+      "description": "Wedge shaped hoppers sucking sap from mango blossom panicles causing flower drop.",
+      "description_hi": "आम के बौर का रस चूसने वाले भुनके जिससे बौर गिर जाता है।",
+      "metadata": {
+        "crop": "Mango",
+        "severity": "Medium-High",
+        "symptoms": "Wedge shaped hoppers sucking sap from mango blossom panicles causing flower drop.",
+        "symptoms_hi": "आम के बौर का रस चूसने वाले भुनके जिससे बौर गिर जाता है।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "mango hopper",
+          "mango pest",
+          "mango-hopper"
+        ],
+        "keywords_hi": [
+          "आम का भुनका / हॉपर (Mango Hopper)",
+          "Mango कीड़ा"
+        ],
+        "keywords_romanized": [
+          "mango keeda",
+          "mango hopper pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-mango-mealybug",
+      "category": "pest",
+      "crop": "Mango",
+      "topic": "Mango Mealybug",
+      "title": "Mango Mealybug (Aam ka Mealybug)",
+      "title_hi": "आम का मीलीबग (Giant Mealybug)",
+      "description": "Wingless white giant mealybugs crawling up tree trunk in spring.",
+      "description_hi": "बसंत में तने पर चढ़ने वाले सफेद मोमी बड़े कीड़े।",
+      "metadata": {
+        "crop": "Mango",
+        "severity": "Medium-High",
+        "symptoms": "Wingless white giant mealybugs crawling up tree trunk in spring.",
+        "symptoms_hi": "बसंत में तने पर चढ़ने वाले सफेद मोमी बड़े कीड़े।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "mango mealybug",
+          "mango pest",
+          "mango-mealybug"
+        ],
+        "keywords_hi": [
+          "आम का मीलीबग (Giant Mealybug)",
+          "Mango कीड़ा"
+        ],
+        "keywords_romanized": [
+          "mango keeda",
+          "mango mealybug pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-citrus-butterfly",
+      "category": "pest",
+      "crop": "Citrus",
+      "topic": "Citrus Butterfly",
+      "title": "Citrus Butterfly Caterpillar (Nimbu ki Illi)",
+      "title_hi": "नींबू की तितली की इल्ली (Citrus Caterpillar)",
+      "description": "Caterpillar resembling bird dropping eating young lemon leaf flushes.",
+      "description_hi": "चिड़िया की बीट जैसी दिखने वाली इल्ली जो नींबू की नई पत्तियां खाती है।",
+      "metadata": {
+        "crop": "Citrus",
+        "severity": "Medium-High",
+        "symptoms": "Caterpillar resembling bird dropping eating young lemon leaf flushes.",
+        "symptoms_hi": "चिड़िया की बीट जैसी दिखने वाली इल्ली जो नींबू की नई पत्तियां खाती है।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "citrus butterfly",
+          "citrus pest",
+          "citrus-butterfly"
+        ],
+        "keywords_hi": [
+          "नींबू की तितली की इल्ली (Citrus Caterpillar)",
+          "Citrus कीड़ा"
+        ],
+        "keywords_romanized": [
+          "citrus keeda",
+          "citrus butterfly pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-pomegranate-butterfly",
+      "category": "pest",
+      "crop": "Pomegranate",
+      "topic": "Anar Butterfly",
+      "title": "Pomegranate Butterfly / Deudorix (Anar ki Illi)",
+      "title_hi": "अनार की तितली / अनार फल भेदक",
+      "description": "Caterpillar boring inside developing pomegranate fruits causing foul smelling rot.",
+      "description_hi": "अनार के फल के अंदर घुसकर दाने खाने वाली और फल सड़ाने वाली सूंडी।",
+      "metadata": {
+        "crop": "Pomegranate",
+        "severity": "Medium-High",
+        "symptoms": "Caterpillar boring inside developing pomegranate fruits causing foul smelling rot.",
+        "symptoms_hi": "अनार के फल के अंदर घुसकर दाने खाने वाली और फल सड़ाने वाली सूंडी।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "anar butterfly",
+          "pomegranate pest",
+          "pomegranate-butterfly"
+        ],
+        "keywords_hi": [
+          "अनार की तितली / अनार फल भेदक",
+          "Pomegranate कीड़ा"
+        ],
+        "keywords_romanized": [
+          "pomegranate keeda",
+          "anar butterfly pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-sugarcane-pyrilla",
+      "category": "pest",
+      "crop": "Sugarcane",
+      "topic": "Pyrilla",
+      "title": "Sugarcane Pyrilla / Leafhopper (Ganne ka Pyrilla)",
+      "title_hi": "गन्ने का पायरीला / पर्ण फुदका (Pyrilla)",
+      "description": "Straw-colored leafhoppers with snout sucking cane leaf sap.",
+      "description_hi": "चोंच वाले भूरे फुदके जो गन्ने की पत्ती का रस चूसते हैं।",
+      "metadata": {
+        "crop": "Sugarcane",
+        "severity": "Medium-High",
+        "symptoms": "Straw-colored leafhoppers with snout sucking cane leaf sap.",
+        "symptoms_hi": "चोंच वाले भूरे फुदके जो गन्ने की पत्ती का रस चूसते हैं।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "pyrilla",
+          "sugarcane pest",
+          "sugarcane-pyrilla"
+        ],
+        "keywords_hi": [
+          "गन्ने का पायरीला / पर्ण फुदका (Pyrilla)",
+          "Sugarcane कीड़ा"
+        ],
+        "keywords_romanized": [
+          "sugarcane keeda",
+          "pyrilla pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-white-grub-moongfali",
+      "category": "pest",
+      "crop": "Groundnut, Sugarcane",
+      "topic": "White Grub",
+      "title": "White Grub / Holotrichia (Ghabar Keeda / Safed Lart)",
+      "title_hi": "सफेद लट / घबर कीड़ा (White Grub)",
+      "description": "C-shaped white grub living in soil severing main root of groundnut plants.",
+      "description_hi": "अंग्रेजी के 'C' आकार की सफेद लट जो जमीन के अंदर मूंगफली की जड़ काटती है।",
+      "metadata": {
+        "crop": "Groundnut, Sugarcane",
+        "severity": "Medium-High",
+        "symptoms": "C-shaped white grub living in soil severing main root of groundnut plants.",
+        "symptoms_hi": "अंग्रेजी के 'C' आकार की सफेद लट जो जमीन के अंदर मूंगफली की जड़ काटती है।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "white grub",
+          "groundnut, sugarcane pest",
+          "white-grub-moongfali"
+        ],
+        "keywords_hi": [
+          "सफेद लट / घबर कीड़ा (White Grub)",
+          "Groundnut, Sugarcane कीड़ा"
+        ],
+        "keywords_romanized": [
+          "groundnut, sugarcane keeda",
+          "white grub pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-tobacco-caterpillar-spodoptera",
+      "category": "pest",
+      "crop": "Soybean, Cotton, Tobacco",
+      "topic": "Spodoptera Caterpillar",
+      "title": "Tobacco Caterpillar / Spodoptera (Kala Illi)",
+      "title_hi": "स्पोडोप्टेरा / तंबाकू की इल्ली (Spodoptera)",
+      "description": "Stout dark caterpillars feeding gregariously on foliage reducing leaves to skeletons.",
+      "description_hi": "पत्तियों को जाल (कंकाल) की तरह चाट जाने वाली काली इल्ली।",
+      "metadata": {
+        "crop": "Soybean, Cotton, Tobacco",
+        "severity": "Medium-High",
+        "symptoms": "Stout dark caterpillars feeding gregariously on foliage reducing leaves to skeletons.",
+        "symptoms_hi": "पत्तियों को जाल (कंकाल) की तरह चाट जाने वाली काली इल्ली।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "spodoptera caterpillar",
+          "soybean, cotton, tobacco pest",
+          "tobacco-caterpillar-spodoptera"
+        ],
+        "keywords_hi": [
+          "स्पोडोप्टेरा / तंबाकू की इल्ली (Spodoptera)",
+          "Soybean, Cotton, Tobacco कीड़ा"
+        ],
+        "keywords_romanized": [
+          "soybean, cotton, tobacco keeda",
+          "spodoptera caterpillar pest"
+        ]
+      }
+    },
+    {
+      "id": "pest-onion-maggot",
+      "category": "pest",
+      "crop": "Onion, Garlic",
+      "topic": "Onion Maggot",
+      "title": "Onion Maggot (Pyaz ka Kida)",
+      "title_hi": "प्याज़ की गंडोला / मैगट (Onion Maggot)",
+      "description": "Small white fly maggots boring inside subterranean onion bulbs causing rot.",
+      "description_hi": "प्याज़ की गांठ के अंदर घुसकर सड़ने वाले छोटे सफेद कीड़े।",
+      "metadata": {
+        "crop": "Onion, Garlic",
+        "severity": "Medium-High",
+        "symptoms": "Small white fly maggots boring inside subterranean onion bulbs causing rot.",
+        "symptoms_hi": "प्याज़ की गांठ के अंदर घुसकर सड़ने वाले छोटे सफेद कीड़े।",
+        "organicTreatment": "Spray Neem oil (5ml/L) or install sticky/pheromone traps.",
+        "organicTreatment_hi": "नीम का तेल (5 मिली/लीटर) या ट्रैप का प्रयोग करें।",
+        "chemicalTreatment": "Spray recommended insecticide as per severity.",
+        "chemicalTreatment_hi": "उपयुक्त कीटनाशक का अनुशंसित मात्रा में छिड़काव करें।",
+        "preventiveMeasures": "Maintain field sanitation and crop rotation.",
+        "preventiveMeasures_hi": "खेत की स्वच्छता बनाए रखें।",
+        "keywords": [
+          "onion maggot",
+          "onion, garlic pest",
+          "onion-maggot"
+        ],
+        "keywords_hi": [
+          "प्याज़ की गंडोला / मैगट (Onion Maggot)",
+          "Onion, Garlic कीड़ा"
+        ],
+        "keywords_romanized": [
+          "onion, garlic keeda",
+          "onion maggot pest"
+        ]
+      }
+    }
+  ],
+  "soil": [
+    {
+      "id": "soil-alluvial-clay-loam",
+      "category": "soil",
+      "title": "Alluvial Clay-Loam Soil (Domat Mitti)",
+      "title_hi": "जलोढ़ दोमट मिट्टी (Alluvial Soil)",
+      "description": "Common soil type in Indo-Gangetic river plains. High fertility, medium water retention.",
+      "description_hi": "सिंधु-गंगा के मैदानी इलाकों में पाई जाने वाली उपजाऊ दोमट मिट्टी। गेहूं, धान, आलू के लिए अति उपयुक्त।",
+      "metadata": {
+        "soilType": "Alluvial Clay-Loam",
+        "localName": "Domat Mitti / Kachhar Mitti",
+        "phRange": "6.5 - 7.8 (Neutral to slightly alkaline)",
+        "organicMatter": "0.62% (Low to medium)",
+        "waterRetention": "Medium to High",
+        "recommendedCrops": [
+          "Wheat",
+          "Paddy",
+          "Potato",
+          "Mustard",
+          "Sugarcane",
+          "Gram"
+        ],
+        "fertilizerAdvisory": "Apply 25kg Nitrogen (Urea), 15kg Phosphorus (DAP) per acre. Mix 5 tons organic cow compost (gobhar khad).",
+        "soilTestingAdvice": "Test soil every 3 years. Add organic manure regularly.",
+        "region": "North India - UP, Bihar, Punjab, Haryana, West Bengal",
+        "keywords": [
+          "alluvial soil",
+          "domat mitti",
+          "clay loam",
+          "gangetic soil",
+          "fertilizer alluvial"
+        ],
+        "keywords_hi": [
+          "दोमट मिट्टी",
+          "जलोढ़ मिट्टी",
+          "कछार मिट्टी",
+          "उपजाऊ मिट्टी"
+        ],
+        "keywords_romanized": [
+          "domat mitti",
+          "alluvial soil",
+          "kachhar mitti"
+        ]
+      }
+    },
+    {
+      "id": "soil-black-clayey",
+      "category": "soil",
+      "title": "Black Clayey Soil (Kaali Mitti / Regur Soil)",
+      "title_hi": "काली मिट्टी / रेगुर मिट्टी (Black Cotton Soil)",
+      "description": "High montmorillonite clay content, self-plowing nature, excellent water retention.",
+      "description_hi": "उच्च जल धारण क्षमता वाली काली मिट्टी। कपास, सोयाबीन, चना और तुअर की फसल के लिए सबसे अच्छी।",
+      "metadata": {
+        "soilType": "Black Clayey Soil",
+        "localName": "Kaali Mitti / Regur Soil",
+        "phRange": "7.2 - 8.5 (Slightly alkaline)",
+        "organicMatter": "1.15% (Optimal)",
+        "waterRetention": "Very High",
+        "recommendedCrops": [
+          "Cotton",
+          "Soybean",
+          "Pigeon Pea (Tur)",
+          "Chickpea",
+          "Wheat",
+          "Sorghum"
+        ],
+        "fertilizerAdvisory": "Rich in potash and lime. Add 10kg Zinc Sulphate per acre to enhance micro-nutrients. Add phosphorus.",
+        "soilTestingAdvice": "Avoid over-irrigation to prevent drainage congestion.",
+        "region": "Central & Deccan India - Maharashtra, MP, Gujarat, Telangana, Karnataka",
+        "keywords": [
+          "black soil",
+          "kaali mitti",
+          "regur soil",
+          "black cotton soil",
+          "crops for black soil"
+        ],
+        "keywords_hi": [
+          "काली मिट्टी",
+          "रेगुर मिट्टी",
+          "कपास की मिट्टी",
+          "काली मिट्टी फसल"
+        ],
+        "keywords_romanized": [
+          "kaali mitti",
+          "black soil crops",
+          "kaali mitti me konsi fasal"
+        ]
+      }
+    },
+    {
+      "id": "soil-red-sandy-loam",
+      "category": "soil",
+      "title": "Red Sandy Soil (Laal Mitti)",
+      "title_hi": "लाल मिट्टी (Red Soil)",
+      "description": "Iron oxide rich reddish soil, porous, well-drained, low nitrogen and humus.",
+      "description_hi": "लोहे के तत्वों से भरपूर लाल रंग की मिट्टी। मूंगफली, मक्का, बाजरा और दालों के लिए उत्तम।",
+      "metadata": {
+        "soilType": "Red Sandy Loam",
+        "localName": "Laal Mitti",
+        "phRange": "5.5 - 7.0 (Slightly acidic to neutral)",
+        "organicMatter": "0.35% (Low)",
+        "waterRetention": "Low",
+        "recommendedCrops": [
+          "Groundnut",
+          "Maize",
+          "Ragi / Millets",
+          "Pulses",
+          "Potato",
+          "Tobacco"
+        ],
+        "fertilizerAdvisory": "Apply bio-fertilizers, organic manure (FYM), and balanced NPK with sulfur.",
+        "soilTestingAdvice": "Incorporate organic compost to increase moisture retention.",
+        "region": "South & East India - Tamil Nadu, Karnataka, AP, Odisha, Jharkhand",
+        "keywords": [
+          "red soil",
+          "laal mitti",
+          "red sandy loam",
+          "groundnut red soil"
+        ],
+        "keywords_hi": [
+          "लाल मिट्टी",
+          "लाल मिट्टी की फसल"
+        ],
+        "keywords_romanized": [
+          "laal mitti",
+          "red soil"
+        ]
+      }
+    },
+    {
+      "id": "soil-laterite-acidic",
+      "category": "soil",
+      "title": "Laterite Soil (Laterite Mitti)",
+      "title_hi": "लैटेराइट मिट्टी (Laterite Soil)",
+      "description": "Highly leached acidic soil rich in iron and aluminum oxides, poor in nitrogen and potash.",
+      "description_hi": "भारी वर्षा वाले क्षेत्रों में पाई जाने वाली अम्लीय मिट्टी। चाय, कॉफी, काजू और नारियल के लिए उपयुक्त।",
+      "metadata": {
+        "soilType": "Laterite Soil",
+        "localName": "Laterite Mitti",
+        "phRange": "4.5 - 5.8 (Acidic)",
+        "organicMatter": "Medium (leached)",
+        "waterRetention": "Low",
+        "recommendedCrops": [
+          "Tea",
+          "Coffee",
+          "Cashew",
+          "Coconut",
+          "Rubber",
+          "Arecanut"
+        ],
+        "fertilizerAdvisory": "Apply agricultural lime (chuna) to neutralize acidity. Apply rock phosphate and organic manure.",
+        "soilTestingAdvice": "Liming required once every 2-3 years based on pH soil test.",
+        "region": "Western Ghats, Kerala, Karnataka, Assam hills, Odisha",
+        "keywords": [
+          "laterite soil",
+          "acidic soil",
+          "cashew soil",
+          "tea plantation soil"
+        ],
+        "keywords_hi": [
+          "लैटेराइट मिट्टी",
+          "अम्लीय मिट्टी"
+        ],
+        "keywords_romanized": [
+          "laterite mitti",
+          "laterite soil"
+        ]
+      }
+    },
+    {
+      "id": "soil-sandy-desert",
+      "category": "soil",
+      "title": "Sandy Desert Soil (Retili Mitti / Balui Mitti)",
+      "title_hi": "रेतीली / बलुई मिट्टी (Sandy Desert Soil)",
+      "description": "Coarse sand particles, very low organic matter, poor water retention, high percolation.",
+      "description_hi": "मोटे कणों वाली रेतीली मिट्टी। पानी बहुत कम रुकता है। बाजरा, ग्वार, सरसों और तिल के लिए उपयुक्त।",
+      "metadata": {
+        "soilType": "Sandy Arid Soil",
+        "localName": "Retili Mitti / Balui Mitti",
+        "phRange": "7.5 - 8.5 (Alkaline)",
+        "organicMatter": "0.15% (Very Low)",
+        "waterRetention": "Very Low",
+        "recommendedCrops": [
+          "Bajra (Pearl Millet)",
+          "Guar",
+          "Mustard",
+          "Sesame",
+          "Moth bean"
+        ],
+        "fertilizerAdvisory": "Use organic mulching, vermicompost, and split nitrogen doses with drip irrigation.",
+        "soilTestingAdvice": "Frequent light irrigations and organic matter additions required.",
+        "region": "Rajasthan, North Gujarat, SW Punjab",
+        "keywords": [
+          "sandy soil",
+          "balui mitti",
+          "retili mitti",
+          "desert soil"
+        ],
+        "keywords_hi": [
+          "रेतीली मिट्टी",
+          "बलुई मिट्टी",
+          "राजस्थान की मिट्टी"
+        ],
+        "keywords_romanized": [
+          "retili mitti",
+          "balui mitti",
+          "sandy soil"
+        ]
+      }
+    },
+    {
+      "id": "soil-saline-alkaline-usar",
+      "category": "soil",
+      "title": "Saline and Alkaline Soil (Usar / Reh / Kallar Mitti)",
+      "title_hi": "ऊसर / क्षारीय / लवणयुक्त मिट्टी (Saline Alkaline Soil)",
+      "description": "High white salt crust accumulation on soil surface, high pH, poor drainage.",
+      "description_hi": "सफेद नमक की परत वाली ऊसर/क्षारीय मिट्टी। जिप्सम उपचार और हरी खाद (ढैंचा) से सुधारी जाती है।",
+      "metadata": {
+        "soilType": "Saline & Sodic Soil",
+        "localName": "Usar / Reh / Kallar Mitti",
+        "phRange": "8.5 - 10.0 (High Alkaline / Sodic)",
+        "organicMatter": "Very Low",
+        "waterRetention": "Poor drainage",
+        "recommendedCrops": [
+          "Salt-tolerant Paddy (CSR-30)",
+          "Barley",
+          "Mustard",
+          "Dhaincha (Green Manure)"
+        ],
+        "fertilizerAdvisory": "Apply Agricultural Gypsum (4-5 tons/acre) followed by leaching with fresh water. Grow Dhaincha.",
+        "soilTestingAdvice": "Check EC (Electrical Conductivity) and ESP (Exchangeable Sodium Percentage).",
+        "region": "Canal irrigated regions of UP, Haryana, Punjab, Gujarat",
+        "keywords": [
+          "saline soil",
+          "usar mitti",
+          "alkaline soil",
+          "reh kallar",
+          "gypsum usar"
+        ],
+        "keywords_hi": [
+          "ऊसर मिट्टी",
+          "रेह मिट्टी",
+          "क्षारीय मिट्टी",
+          "ऊसर सुधार"
+        ],
+        "keywords_romanized": [
+          "usar mitti",
+          "reh mitti",
+          "saline soil usar"
+        ]
+      }
+    },
+    {
+      "id": "soil-testing-procedure",
+      "category": "soil",
+      "title": "How to Take Soil Samples for Soil Health Test (Mitti ki Jaanch)",
+      "title_hi": "मिट्टी की जांच कैसे करें (Soil Testing Method)",
+      "description": "Step-by-step guidance for farmers on collecting representative soil samples from agricultural fields.",
+      "description_hi": "खेत से मिट्टी का नमूना लेने की सही विधि: 'V' आकार का गड्ढा बनाकर 15 सेमी गहराई से मिट्टी लें।",
+      "metadata": {
+        "soilType": "All Soil Types",
+        "localName": "Mitti ki Jaanch Procedure",
+        "steps": [
+          "Divide field into uniform sampling units.",
+          "Dig a V-shaped pit up to 15 cm (6 inches) depth using spade.",
+          "Collect 1-2 cm thick slice of soil from top to bottom of V-cut.",
+          "Mix samples from 8-10 random spots in a clean plastic bucket.",
+          "Quarter the soil mixture to reduce to 500 grams, dry in shade, label bag and submit to Soil Testing Lab."
+        ],
+        "steps_hi": [
+          "खेत के 8-10 अलग-अलग स्थानों से अंग्रेजी के 'V' आकार का 15 सेमी गहरा गड्ढा खोदें।",
+          "गड्ढे की दीवार से 1 सेमी मोटी मिट्टी की परत निकालें।",
+          "सभी मिट्टी को बाल्टी में मिलाकर छाया में सुखाएं।",
+          "आधा किलो मिट्टी कपड़े की थैली में भरकर प्रयोगशाला भेजें।"
+        ],
+        "recommendedCrops": [
+          "All Crops"
+        ],
+        "fertilizerAdvisory": "Follow Soil Health Card fertilizer dosage recommendations.",
+        "keywords": [
+          "soil test",
+          "mitti ki jaanch",
+          "soil sampling procedure",
+          "soil health card test"
+        ],
+        "keywords_hi": [
+          "मिट्टी की जांच",
+          "मिट्टी परीक्षण",
+          "सैंपल कैसे लें"
+        ],
+        "keywords_romanized": [
+          "mitti ki jaanch",
+          "soil test kaise kare",
+          "mitti test"
+        ]
+      }
+    },
+    {
+      "id": "soil-clay-heavy",
+      "category": "soil",
+      "title": "Heavy Clay Soil (Chikni Mitti)",
+      "title_hi": "चिकनी मिट्टी (Heavy Clay Soil)",
+      "description": "High water retention, compact, poor aeration, best for paddy.",
+      "description_hi": "उच्च जल धारण, धान और ईख के लिए उत्तम।",
+      "metadata": {
+        "soilType": "Heavy Clay Soil (Chikni Mitti)",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "heavy clay soil (chikni mitti)",
+          "soil advisory",
+          "clay-heavy"
+        ],
+        "keywords_hi": [
+          "चिकनी मिट्टी (Heavy Clay Soil)",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "heavy clay soil (chikni mitti)"
+        ]
+      }
+    },
+    {
+      "id": "soil-loam-balanced",
+      "category": "soil",
+      "title": "Loamy Soil (Ideal Agricultural Soil)",
+      "title_hi": "दोमट मिट्टी (आदर्श कृषि मृदा)",
+      "description": "Equal balance of sand, silt, and clay. Ideal for all vegetable and grain crops.",
+      "description_hi": "रेत, सिल्ट और क्ले का सही संतुलन। सभी फसलों के लिए सर्वश्रेष्ठ।",
+      "metadata": {
+        "soilType": "Loamy Soil (Ideal Agricultural Soil)",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "loamy soil (ideal agricultural soil)",
+          "soil advisory",
+          "loam-balanced"
+        ],
+        "keywords_hi": [
+          "दोमट मिट्टी (आदर्श कृषि मृदा)",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "loamy soil (ideal agricultural soil)"
+        ]
+      }
+    },
+    {
+      "id": "soil-acidic-management",
+      "category": "soil",
+      "title": "Acidic Soil Management (Amliya Mitti Sudhaar)",
+      "title_hi": "अम्लीय मिट्टी का उपचार (Acid Soil Management)",
+      "description": "Correction of acidic soil (pH < 6.0) using agricultural lime/calcite.",
+      "description_hi": "चूना (Lime) डालकर अम्लीय मिट्टी का पीएच सुधारना।",
+      "metadata": {
+        "soilType": "Acidic Soil Management (Amliya Mitti Sudhaar)",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "acidic soil management (amliya mitti sudhaar)",
+          "soil advisory",
+          "acidic-management"
+        ],
+        "keywords_hi": [
+          "अम्लीय मिट्टी का उपचार (Acid Soil Management)",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "acidic soil management (amliya mitti sudhaar)"
+        ]
+      }
+    },
+    {
+      "id": "soil-organic-carbon",
+      "category": "soil",
+      "title": "Soil Organic Carbon & Humus (Jaivik Carbon)",
+      "title_hi": "मृदा जैविक कार्बन एवं ह्यूमस",
+      "description": "Importance of soil organic carbon for soil biology and water holding capacity.",
+      "description_hi": "गोबर खाद और केचुआ खाद से जैविक कार्बन बढ़ाना।",
+      "metadata": {
+        "soilType": "Soil Organic Carbon & Humus (Jaivik Carbon)",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "soil organic carbon & humus (jaivik carbon)",
+          "soil advisory",
+          "organic-carbon"
+        ],
+        "keywords_hi": [
+          "मृदा जैविक कार्बन एवं ह्यूमस",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "soil organic carbon & humus (jaivik carbon)"
+        ]
+      }
+    },
+    {
+      "id": "soil-ph-importance",
+      "category": "soil",
+      "title": "Soil pH Scale and Crop Yield Impact",
+      "title_hi": "मृदा पीएच (pH) का महत्व",
+      "description": "Understanding soil pH range (6.5-7.5 optimal) for maximum nutrient availability.",
+      "description_hi": "उर्वरक अवशोषण के लिए सही पीएच की आवश्यकता।",
+      "metadata": {
+        "soilType": "Soil pH Scale and Crop Yield Impact",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "soil ph scale and crop yield impact",
+          "soil advisory",
+          "ph-importance"
+        ],
+        "keywords_hi": [
+          "मृदा पीएच (pH) का महत्व",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "soil ph scale and crop yield impact"
+        ]
+      }
+    },
+    {
+      "id": "soil-zinc-deficiency",
+      "category": "soil",
+      "title": "Soil Zinc & Micronutrient Deficiency",
+      "title_hi": "मिट्टी में जिंक व सूक्ष्म पोषक तत्वों की कमी",
+      "description": "Symptoms and correction of zinc, iron, boron deficiency in Indian soils.",
+      "description_hi": "जिंक सल्फेट 10 किग्रा/एकड़ डालकर कमी दूर करना।",
+      "metadata": {
+        "soilType": "Soil Zinc & Micronutrient Deficiency",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "soil zinc & micronutrient deficiency",
+          "soil advisory",
+          "zinc-deficiency"
+        ],
+        "keywords_hi": [
+          "मिट्टी में जिंक व सूक्ष्म पोषक तत्वों की कमी",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "soil zinc & micronutrient deficiency"
+        ]
+      }
+    },
+    {
+      "id": "soil-gypsum-application",
+      "category": "soil",
+      "title": "Gypsum Application for Sodic Soils",
+      "title_hi": "ऊसर भूमि में जिप्सम का प्रयोग",
+      "description": "Using gypsum (calcium sulfate) to reclaim sodic soils.",
+      "description_hi": "क्षारीय मिट्टी सुधार के लिए जिप्सम का प्रयोग।",
+      "metadata": {
+        "soilType": "Gypsum Application for Sodic Soils",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "gypsum application for sodic soils",
+          "soil advisory",
+          "gypsum-application"
+        ],
+        "keywords_hi": [
+          "ऊसर भूमि में जिप्सम का प्रयोग",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "gypsum application for sodic soils"
+        ]
+      }
+    },
+    {
+      "id": "soil-green-manuring",
+      "category": "soil",
+      "title": "Green Manuring with Dhaincha and Sunnhemp",
+      "title_hi": "हरी खाद (ढैंचा और सनई)",
+      "description": "Growing and plowing green manure crops into soil to add nitrogen and humus.",
+      "description_hi": "ढैंचा को 45 दिन में खेत में जोतकर जैविक खाद बनाना।",
+      "metadata": {
+        "soilType": "Green Manuring with Dhaincha and Sunnhemp",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "green manuring with dhaincha and sunnhemp",
+          "soil advisory",
+          "green-manuring"
+        ],
+        "keywords_hi": [
+          "हरी खाद (ढैंचा और सनई)",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "green manuring with dhaincha and sunnhemp"
+        ]
+      }
+    },
+    {
+      "id": "soil-peaty-marshy",
+      "category": "soil",
+      "title": "Peaty and Marshy Soil (Kari/Bog Soil)",
+      "title_hi": "दलदली / पीठ मिट्टी (Peaty Soil)",
+      "description": "Black heavy acidic organic rich soil found in coastal waterlogged areas.",
+      "description_hi": "तटीय क्षेत्रों की काली भारी जलभराव वाली मिट्टी।",
+      "metadata": {
+        "soilType": "Peaty and Marshy Soil (Kari/Bog Soil)",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "peaty and marshy soil (kari/bog soil)",
+          "soil advisory",
+          "peaty-marshy"
+        ],
+        "keywords_hi": [
+          "दलदली / पीठ मिट्टी (Peaty Soil)",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "peaty and marshy soil (kari/bog soil)"
+        ]
+      }
+    },
+    {
+      "id": "soil-forest-hill",
+      "category": "soil",
+      "title": "Forest and Hill Soil (Pahadi Mitti)",
+      "title_hi": "पहाड़ी / वनीय मिट्टी (Forest Soil)",
+      "description": "Rich in humus, acidic in nature, suitable for fruits, tea, and spices.",
+      "description_hi": "ह्यूमस से भरपूर पहाड़ी मिट्टी, फलों और मसालों के लिए उत्तम।",
+      "metadata": {
+        "soilType": "Forest and Hill Soil (Pahadi Mitti)",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "forest and hill soil (pahadi mitti)",
+          "soil advisory",
+          "forest-hill"
+        ],
+        "keywords_hi": [
+          "पहाड़ी / वनीय मिट्टी (Forest Soil)",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "forest and hill soil (pahadi mitti)"
+        ]
+      }
+    },
+    {
+      "id": "soil-compaction-plowpan",
+      "category": "soil",
+      "title": "Soil Compaction & Hardpan Removal",
+      "title_hi": "मिट्टी की कठोर परत (Plowpan) तोड़ना",
+      "description": "Using subsoiler to break hardpan below plow depth to improve root penetration.",
+      "description_hi": "सबसॉइलर से नीचे की कठोर परत तोड़ना।",
+      "metadata": {
+        "soilType": "Soil Compaction & Hardpan Removal",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "soil compaction & hardpan removal",
+          "soil advisory",
+          "compaction-plowpan"
+        ],
+        "keywords_hi": [
+          "मिट्टी की कठोर परत (Plowpan) तोड़ना",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "soil compaction & hardpan removal"
+        ]
+      }
+    },
+    {
+      "id": "soil-moisture-conservation",
+      "category": "soil",
+      "title": "Soil Moisture Conservation Practices",
+      "title_hi": "मृदा नमी संरक्षण उपाय (Mulching & Bunding)",
+      "description": "Mulching, contour bunding, and broad-bed furrow system to save water.",
+      "description_hi": "मल्चिंग और मेड़बंदी द्वारा खेत की नमी बचाना।",
+      "metadata": {
+        "soilType": "Soil Moisture Conservation Practices",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "soil moisture conservation practices",
+          "soil advisory",
+          "moisture-conservation"
+        ],
+        "keywords_hi": [
+          "मृदा नमी संरक्षण उपाय (Mulching & Bunding)",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "soil moisture conservation practices"
+        ]
+      }
+    },
+    {
+      "id": "soil-vermicompost-usage",
+      "category": "soil",
+      "title": "Vermicompost Soil Amendment (Kechua Khad)",
+      "title_hi": "केचुआ खाद (Vermicompost) का महत्व",
+      "description": "Earthworm compost benefits for soil structure and microbial activity.",
+      "description_hi": "केचुआ खाद से मिट्टी की गुणवत्ता सुधारना।",
+      "metadata": {
+        "soilType": "Vermicompost Soil Amendment (Kechua Khad)",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "vermicompost soil amendment (kechua khad)",
+          "soil advisory",
+          "vermicompost-usage"
+        ],
+        "keywords_hi": [
+          "केचुआ खाद (Vermicompost) का महत्व",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "vermicompost soil amendment (kechua khad)"
+        ]
+      }
+    },
+    {
+      "id": "soil-biochar-amendment",
+      "category": "soil",
+      "title": "Biochar Soil Conditioner",
+      "title_hi": "बायोचार मृदा सुधारक (Biochar)",
+      "description": "Pyrolyzed biomass biochar for long-term carbon sequestration and water holding.",
+      "description_hi": "लकड़ी के कोयले के चूरे से नमी और उर्वरकता बढ़ाना।",
+      "metadata": {
+        "soilType": "Biochar Soil Conditioner",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "biochar soil conditioner",
+          "soil advisory",
+          "biochar-amendment"
+        ],
+        "keywords_hi": [
+          "बायोचार मृदा सुधारक (Biochar)",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "biochar soil conditioner"
+        ]
+      }
+    },
+    {
+      "id": "soil-mycorrhiza-biofertilizer",
+      "category": "soil",
+      "title": "VAM Mycorrhiza Soil Fungi",
+      "title_hi": "माइकोराइज़ा बायोफर्टिलाइज़र (VAM)",
+      "description": "Fungal root association enhancing phosphorus absorption 3-fold.",
+      "description_hi": "फॉस्फोरस अवशोषण बढ़ाने वाला मित्र फफूंद।",
+      "metadata": {
+        "soilType": "VAM Mycorrhiza Soil Fungi",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "vam mycorrhiza soil fungi",
+          "soil advisory",
+          "mycorrhiza-biofertilizer"
+        ],
+        "keywords_hi": [
+          "माइकोराइज़ा बायोफर्टिलाइज़र (VAM)",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "vam mycorrhiza soil fungi"
+        ]
+      }
+    },
+    {
+      "id": "soil-sandy-loam-wheat",
+      "category": "soil",
+      "title": "Sandy Loam Soil Management",
+      "title_hi": "बलुई दोमट मिट्टी प्रबंधन",
+      "description": "Light texture soil needing frequent light irrigations and potassium.",
+      "description_hi": "हल्की दोमट मिट्टी में पानी और पोटाश का प्रबंधन।",
+      "metadata": {
+        "soilType": "Sandy Loam Soil Management",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "sandy loam soil management",
+          "soil advisory",
+          "sandy-loam-wheat"
+        ],
+        "keywords_hi": [
+          "बलुई दोमट मिट्टी प्रबंधन",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "sandy loam soil management"
+        ]
+      }
+    },
+    {
+      "id": "soil-microbial-health",
+      "category": "soil",
+      "title": "Soil Microbial Health & Bio-agents",
+      "title_hi": "मृदा सूक्ष्मजीव स्वास्थ्य",
+      "description": "Role of beneficial bacteria (Azotobacter, PSB, Rhizobium) in soil.",
+      "description_hi": "जीवाणु खाद (राइजोबियम, पीएसबी) का प्रयोग।",
+      "metadata": {
+        "soilType": "Soil Microbial Health & Bio-agents",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "soil microbial health & bio-agents",
+          "soil advisory",
+          "microbial-health"
+        ],
+        "keywords_hi": [
+          "मृदा सूक्ष्मजीव स्वास्थ्य",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "soil microbial health & bio-agents"
+        ]
+      }
+    },
+    {
+      "id": "soil-nitrogen-fixation",
+      "category": "soil",
+      "title": "Biological Nitrogen Fixation in Soil",
+      "title_hi": "जैविक नाइट्रोजन स्थिरीकरण",
+      "description": "Pulse leguminous crops fixing atmospheric nitrogen through root nodules.",
+      "description_hi": "दलहनी फसलों की जड़ों से नाइट्रोजन स्थिरीकरण।",
+      "metadata": {
+        "soilType": "Biological Nitrogen Fixation in Soil",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "biological nitrogen fixation in soil",
+          "soil advisory",
+          "nitrogen-fixation"
+        ],
+        "keywords_hi": [
+          "जैविक नाइट्रोजन स्थिरीकरण",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "biological nitrogen fixation in soil"
+        ]
+      }
+    },
+    {
+      "id": "soil-erosion-control",
+      "category": "soil",
+      "title": "Soil Erosion Control & Cover Crops",
+      "title_hi": "मृदा क्षरण (Soil Erosion) रोकथाम",
+      "description": "Preventing topsoil loss from water and wind using cover crops.",
+      "description_hi": "कवर क्रॉप्स और कवर फार्मिंग द्वारा उपजाऊ मिट्टी बहने से रोकना।",
+      "metadata": {
+        "soilType": "Soil Erosion Control & Cover Crops",
+        "recommendedCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses"
+        ],
+        "fertilizerAdvisory": "Apply organic compost and balanced NPK as per soil test.",
+        "keywords": [
+          "soil erosion control & cover crops",
+          "soil advisory",
+          "erosion-control"
+        ],
+        "keywords_hi": [
+          "मृदा क्षरण (Soil Erosion) रोकथाम",
+          "मिट्टी सलाह"
+        ],
+        "keywords_romanized": [
+          "mitti advisory",
+          "soil erosion control & cover crops"
+        ]
+      }
+    }
+  ],
+  "fertilizers": [
+    {
+      "id": "fertilizer-urea-nitrogen",
+      "category": "fertilizer",
+      "title": "Urea / Neem Coated Urea (Nitrogen Fertilizer)",
+      "title_hi": "यूरिया / नीम लेपित यूरिया (Urea - Nitrogen)",
+      "description": "Primary nitrogen source (46% N). Essential for vegetative plant growth and tillering.",
+      "description_hi": "नाइट्रोजन (46%) का मुख्य स्रोत। पौधों की हरियाली, वानस्पतिक वृद्धि और कल्ले निकलने के लिए आवश्यक।",
+      "metadata": {
+        "nutrient": "Nitrogen (46% N)",
+        "application": "Apply in 2-3 split top-dressing doses (at sowing, crown root, flowering stages).",
+        "application_hi": "फसल काल में 2 से 3 बार टॉप ड्रेसिंग के रूप में डालें। सिंचाई के बाद या ओस छटने पर प्रयोग करें।",
+        "timing": "Do not apply during expected rain events above 50% or flooded waterlogged conditions to prevent washing off.",
+        "advisory": "Rain showers expected: postpone urea top-dressing. Never throw urea in standing water.",
+        "weatherCondition": "Apply when field is moist, avoid application right before heavy downpours.",
+        "compatibleCrops": [
+          "Wheat",
+          "Paddy",
+          "Maize",
+          "Sugarcane",
+          "Potato",
+          "Vegetables"
+        ],
+        "keywords": [
+          "urea",
+          "yuriya",
+          "nitrogen fertilizer",
+          "urea application",
+          "when to apply urea"
+        ],
+        "keywords_hi": [
+          "यूरिया",
+          "नाइट्रोजन खाद",
+          "यूरिया कब डालें",
+          "यूरिया मात्रा"
+        ],
+        "keywords_romanized": [
+          "yuriya",
+          "urea kab dale",
+          "yuriya khad",
+          "nitrogen khad"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-dap-phosphorus",
+      "category": "fertilizer",
+      "title": "DAP - Di-Ammonium Phosphate (18:46:0)",
+      "title_hi": "डीएपी - डाई अमोनियम फास्फेट (DAP 18:46:0)",
+      "description": "Primary basal fertilizer containing 18% Nitrogen and 46% Phosphorus for root development.",
+      "description_hi": "18% नाइट्रोजन और 46% फास्फोरस युक्त मुख्य बुआई खाद। जड़ों के विकास और तने की मजबूती के लिए अति आवश्यक।",
+      "metadata": {
+        "nutrient": "Phosphorus (46% P2O5) + Nitrogen (18% N)",
+        "application": "Apply at sowing time below the seed depth as a basal dose.",
+        "application_hi": "बुआई के समय बीज के नीचे आधार खुराक (Basal dose) के रूप में दें।",
+        "timing": "Apply in dry/moist field during seed bed preparation.",
+        "advisory": "Do not mix DAP with zinc sulphate directly during application.",
+        "weatherCondition": "Apply during land preparation before sowing.",
+        "compatibleCrops": [
+          "Wheat",
+          "Paddy",
+          "Mustard",
+          "Chickpea",
+          "Potato",
+          "Soybean"
+        ],
+        "keywords": [
+          "dap",
+          "di ammonium phosphate",
+          "dap vs urea",
+          "phosphorus fertilizer",
+          "dap khad"
+        ],
+        "keywords_hi": [
+          "डीएपी",
+          "डी०ए०पी०",
+          "फास्फोरस खाद",
+          "डीएपी कब डालें"
+        ],
+        "keywords_romanized": [
+          "dap khad",
+          "dap aur yuriya me antar",
+          "dap fertilizer"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-mop-potash",
+      "category": "fertilizer",
+      "title": "MOP - Muriate of Potash (60% K2O)",
+      "title_hi": "एमओपी / पोटाश (Muriate of Potash - 60% K)",
+      "description": "Primary potassium source fertilizer (60% K2O) providing drought tolerance, grain shine, and disease resistance.",
+      "description_hi": "60% पोटाश युक्त खाद। दानों में चमक, वजन बढ़ाने, सूखा सहनशीलता और बीमारियों से रक्षा हेतु आवश्यक।",
+      "metadata": {
+        "nutrient": "Potassium (60% K2O)",
+        "application": "Apply 50% at sowing and 50% at earhead/flowering stage.",
+        "application_hi": "आधा भाग बुआई के समय और आधा भाग बालियां/फूल आते समय दें।",
+        "timing": "Apply at basal stage and pre-flowering stage.",
+        "advisory": "Potash increases grain weight and crop resistance against lodging.",
+        "compatibleCrops": [
+          "Paddy",
+          "Wheat",
+          "Sugarcane",
+          "Potato",
+          "Banana",
+          "Fruit crops"
+        ],
+        "keywords": [
+          "mop",
+          "muriate of potash",
+          "potash",
+          "potash khad"
+        ],
+        "keywords_hi": [
+          "पोटाश",
+          "एमओपी",
+          "पोटाश खाद"
+        ],
+        "keywords_romanized": [
+          "potash khad",
+          "mop fertilizer"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-ssp-single-super-phosphate",
+      "category": "fertilizer",
+      "title": "SSP - Single Super Phosphate (16% P, 11% S, 19% Ca)",
+      "title_hi": "एसएसपी - सिंगल सुपर फास्फेट (SSP)",
+      "description": "Multi-nutrient basal fertilizer providing 16% Phosphorus, 11% Sulfur, and 19% Calcium. Excellent for oilseeds and pulses.",
+      "description_hi": "16% फास्फोरस, 11% सल्फर और 19% कैल्शियम युक्त खाद। सरसों, मूंगफली और दलहन के लिए उत्तम।",
+      "metadata": {
+        "nutrient": "Phosphorus (16%), Sulfur (11%), Calcium (19%)",
+        "application": "Apply at final land preparation before sowing.",
+        "application_hi": "अंतिम जुताई के समय बुआई से पहले खेत में मिलाएं।",
+        "timing": "Basal application at sowing time.",
+        "advisory": "SSP provides sulfur free of cost along with phosphorus, making mustard oil content higher.",
+        "compatibleCrops": [
+          "Mustard",
+          "Groundnut",
+          "Soybean",
+          "Gram",
+          "Pulses",
+          "Sugarcane"
+        ],
+        "keywords": [
+          "ssp",
+          "single super phosphate",
+          "sulfur phosphate",
+          "mustard ssp"
+        ],
+        "keywords_hi": [
+          "एसएसपी",
+          "सिंगल सुपर फास्फेट",
+          "सल्फर खाद"
+        ],
+        "keywords_romanized": [
+          "ssp khad",
+          "single super phosphate"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-zinc-sulphate",
+      "category": "fertilizer",
+      "title": "Zinc Sulphate (21% Zn or 33% Zn Chelated)",
+      "title_hi": "जिंक सल्फेट (Zinc Sulphate - 21% / 33%)",
+      "description": "Crucial micronutrient fertilizer correcting Khaira disease in rice and leaf yellowing in maize and wheat.",
+      "description_hi": "धान का खैरा रोग और पत्तियों का पीलापन दूर करने वाला मुख्य सूक्ष्म पोषक तत्व।",
+      "metadata": {
+        "nutrient": "Zinc (21% Zn or 33% Zn)",
+        "application": "Apply 10 kg Zinc Sulphate (21%) per acre at sowing or basal dose.",
+        "application_hi": "10 किग्रा जिंक सल्फेट (21%) प्रति एकड़ बुआई के समय मिट्टी में डालें।",
+        "timing": "Basal application or foliar spray (0.5% zinc sulphate + 0.25% lime solution).",
+        "advisory": "Never mix Zinc Sulphate directly with DAP in the same bucket during application.",
+        "compatibleCrops": [
+          "Paddy / Rice",
+          "Wheat",
+          "Maize",
+          "Cotton",
+          "Sugarcane"
+        ],
+        "keywords": [
+          "zinc sulphate",
+          "zinc khad",
+          "khaira disease zinc",
+          "zinc for rice"
+        ],
+        "keywords_hi": [
+          "जिंक सल्फेट",
+          "जिंक खाद",
+          "खैरा रोग जिंक"
+        ],
+        "keywords_romanized": [
+          "zinc khad",
+          "zinc sulphate dhaan"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-organic-compost",
+      "category": "fertilizer",
+      "title": "Organic Cow Compost / FYM (Gobhar Khad)",
+      "title_hi": "गोबर की खाद / एफवाइएम (FYM - Organic Compost)",
+      "description": "Well-decomposed farm yard manure improving soil structure, water holding capacity, and soil microbial carbon.",
+      "description_hi": "अच्छी सड़ी गोबर की खाद जो मिट्टी की बनावट, जलधारण क्षमता और जीवाणुओं की संख्या बढ़ाती है।",
+      "metadata": {
+        "nutrient": "Organic Matter (0.5% N, 0.2% P, 0.5% K + micronutrients)",
+        "application": "Apply 4-5 tons per acre 3-4 weeks before sowing during field preparation.",
+        "application_hi": "4-5 टन प्रति एकड़ बुआई से 3-4 सप्ताह पहले खेत में फैलाकर जुताई करें।",
+        "timing": "Pre-sowing field preparation.",
+        "advisory": "Always use fully decomposed compost to avoid white grub and termite attraction.",
+        "compatibleCrops": [
+          "All Crops - Grain, Vegetables, Fruits, Cash Crops"
+        ],
+        "keywords": [
+          "gobhar khad",
+          "fym",
+          "farm yard manure",
+          "cow compost",
+          "organic manure"
+        ],
+        "keywords_hi": [
+          "गोबर की खाद",
+          "जैविक खाद",
+          "कंपोस्ट"
+        ],
+        "keywords_romanized": [
+          "gobhar khad",
+          "organic manure",
+          "fym"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-npk-19-19-19",
+      "category": "fertilizer",
+      "title": "NPK 19:19:19 (Water Soluble)",
+      "title_hi": "एनपीके 19:19:19 (घुलनशील खाद)",
+      "description": "100% water soluble complex fertilizer for spray/drip providing balanced N, P, K.",
+      "description_hi": "स्प्रे और ड्रिप के लिए 100% घुलनशील खाद।",
+      "metadata": {
+        "nutrient": "NPK 19:19:19 (Water Soluble)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "npk 19:19:19 (water soluble)",
+          "fertilizer dosage",
+          "npk-19-19-19"
+        ],
+        "keywords_hi": [
+          "एनपीके 19:19:19 (घुलनशील खाद)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "npk 19:19:19 (water soluble)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-npk-12-32-16",
+      "category": "fertilizer",
+      "title": "NPK 12:32:16 (Complex Granular)",
+      "title_hi": "एनपीके 12:32:16 (दानेदार खाद)",
+      "description": "Granular complex fertilizer high in phosphorus and potassium for cereal crops.",
+      "description_hi": "अनाज फसलों के लिए उच्च फास्फोरस और पोटाश खाद।",
+      "metadata": {
+        "nutrient": "NPK 12:32:16 (Complex Granular)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "npk 12:32:16 (complex granular)",
+          "fertilizer dosage",
+          "npk-12-32-16"
+        ],
+        "keywords_hi": [
+          "एनपीके 12:32:16 (दानेदार खाद)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "npk 12:32:16 (complex granular)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-npk-20-20-0-13",
+      "category": "fertilizer",
+      "title": "NPK 20:20:0:13 (Ammonium Phosphate Sulphate)",
+      "title_hi": "एनपीके 20:20:0:13 (सल्फर युक्त खाद)",
+      "description": "Sulphur-fortified complex fertilizer ideal for pulses, oilseeds, and onions.",
+      "description_hi": "सरसों और प्याज़ के लिए सल्फर युक्त खाद।",
+      "metadata": {
+        "nutrient": "NPK 20:20:0:13 (Ammonium Phosphate Sulphate)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "npk 20:20:0:13 (ammonium phosphate sulphate)",
+          "fertilizer dosage",
+          "npk-20-20-0-13"
+        ],
+        "keywords_hi": [
+          "एनपीके 20:20:0:13 (सल्फर युक्त खाद)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "npk 20:20:0:13 (ammonium phosphate sulphate)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-vermicompost",
+      "category": "fertilizer",
+      "title": "Vermicompost (Kechua Khad)",
+      "title_hi": "केचुआ खाद / वर्मीकंपोस्ट",
+      "description": "Earthworm digested organic manure rich in enzymes, humic acid, and plant hormones.",
+      "description_hi": "एंजाइम और ह्यूमिक एसिड से भरपूर केचुआ खाद।",
+      "metadata": {
+        "nutrient": "Vermicompost (Kechua Khad)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "vermicompost (kechua khad)",
+          "fertilizer dosage",
+          "vermicompost"
+        ],
+        "keywords_hi": [
+          "केचुआ खाद / वर्मीकंपोस्ट",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "vermicompost (kechua khad)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-elemental-sulfur",
+      "category": "fertilizer",
+      "title": "Agricultural Sulfur (80% WDG / Bent-S)",
+      "title_hi": "सल्फर खाद (Sulfur 80% WDG)",
+      "description": "Essential secondary nutrient for oilseed crops increasing oil synthesis.",
+      "description_hi": "सरसों और तिलहन फसलों में तेल की मात्रा बढ़ाने वाली खाद।",
+      "metadata": {
+        "nutrient": "Agricultural Sulfur (80% WDG / Bent-S)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "agricultural sulfur (80% wdg / bent-s)",
+          "fertilizer dosage",
+          "elemental-sulfur"
+        ],
+        "keywords_hi": [
+          "सल्फर खाद (Sulfur 80% WDG)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "agricultural sulfur (80% wdg / bent-s)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-boron-borax",
+      "category": "fertilizer",
+      "title": "Boron / Borax (10.5% / 20% Solubor)",
+      "title_hi": "बोरोन खाद (Boron / Solubor)",
+      "description": "Micronutrient preventing fruit cracking in tomato, pomegranate, and grain emptiness in wheat.",
+      "description_hi": "फलों को फटने से रोकने और परागण सुधारने वाली खाद।",
+      "metadata": {
+        "nutrient": "Boron / Borax (10.5% / 20% Solubor)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "boron / borax (10.5% / 20% solubor)",
+          "fertilizer dosage",
+          "boron-borax"
+        ],
+        "keywords_hi": [
+          "बोरोन खाद (Boron / Solubor)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "boron / borax (10.5% / 20% solubor)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-calcium-nitrate",
+      "category": "fertilizer",
+      "title": "Calcium Nitrate (15.5% N, 18.5% Ca)",
+      "title_hi": "कैल्शियम नाइट्रेट (Calcium Nitrate)",
+      "description": "Water soluble calcium preventing blossom end rot in tomato and leaf tip burn in chilli.",
+      "description_hi": "टमाटर का निचला सड़न रोकने वाली खाद।",
+      "metadata": {
+        "nutrient": "Calcium Nitrate (15.5% N, 18.5% Ca)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "calcium nitrate (15.5% n, 18.5% ca)",
+          "fertilizer dosage",
+          "calcium-nitrate"
+        ],
+        "keywords_hi": [
+          "कैल्शियम नाइट्रेट (Calcium Nitrate)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "calcium nitrate (15.5% n, 18.5% ca)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-ferrous-sulphate",
+      "category": "fertilizer",
+      "title": "Ferrous Sulphate (Iron - 19% Fe)",
+      "title_hi": "फेरस सल्फेट / लोहा (Iron Fertilizer)",
+      "description": "Iron micronutrient correcting leaf interveinal chlorosis in paddy nurseries and sugarcane.",
+      "description_hi": "पत्तियों के पीलेपन को दूर करने वाली आयरन खाद।",
+      "metadata": {
+        "nutrient": "Ferrous Sulphate (Iron - 19% Fe)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "ferrous sulphate (iron - 19% fe)",
+          "fertilizer dosage",
+          "ferrous-sulphate"
+        ],
+        "keywords_hi": [
+          "फेरस सल्फेट / लोहा (Iron Fertilizer)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "ferrous sulphate (iron - 19% fe)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-magnesium-sulphate",
+      "category": "fertilizer",
+      "title": "Magnesium Sulphate (Epsom Salt)",
+      "title_hi": "मैग्नीशियम सल्फेट (एप्सम साल्ट)",
+      "description": "Essential component of chlorophyll correcting vein yellowing in cotton and banana.",
+      "description_hi": "क्लोरोफिल निर्माण के लिए आवश्यक मैग्नीशियम खाद।",
+      "metadata": {
+        "nutrient": "Magnesium Sulphate (Epsom Salt)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "magnesium sulphate (epsom salt)",
+          "fertilizer dosage",
+          "magnesium-sulphate"
+        ],
+        "keywords_hi": [
+          "मैग्नीशियम सल्फेट (एप्सम साल्ट)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "magnesium sulphate (epsom salt)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-biofertilizer-azotobacter",
+      "category": "fertilizer",
+      "title": "Azotobacter Biofertilizer",
+      "title_hi": "एज़ोटोबैक्टर जैविक खाद",
+      "description": "Free-living nitrogen fixing bio-agent fixing 20-25 kg N per acre from air.",
+      "description_hi": "हवा से नाइट्रोजन खींचने वाला जैविक बैक्टीरिया।",
+      "metadata": {
+        "nutrient": "Azotobacter Biofertilizer",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "azotobacter biofertilizer",
+          "fertilizer dosage",
+          "biofertilizer-azotobacter"
+        ],
+        "keywords_hi": [
+          "एज़ोटोबैक्टर जैविक खाद",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "azotobacter biofertilizer"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-biofertilizer-psb",
+      "category": "fertilizer",
+      "title": "Phosphate Solubilizing Bacteria (PSB)",
+      "title_hi": "पीएसबी (फास्फोरस घोलक जीवाणु)",
+      "description": "Biofertilizer solubilizing fixed soil phosphorus making it plant available.",
+      "description_hi": "मिट्टी के जमे फास्फोरस को घोलने वाला जीवाणु।",
+      "metadata": {
+        "nutrient": "Phosphate Solubilizing Bacteria (PSB)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "phosphate solubilizing bacteria (psb)",
+          "fertilizer dosage",
+          "biofertilizer-psb"
+        ],
+        "keywords_hi": [
+          "पीएसबी (फास्फोरस घोलक जीवाणु)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "phosphate solubilizing bacteria (psb)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-biofertilizer-rhizobium",
+      "category": "fertilizer",
+      "title": "Rhizobium Biofertilizer",
+      "title_hi": "राइजोबियम कल्चर (Rhizobium Culture)",
+      "description": "Symbiotic nitrogen-fixing bacterial culture for pulse crop seed treatment.",
+      "description_hi": "दलहनी बीजों के लिए नाइट्रोजन फिक्सिंग कल्चर।",
+      "metadata": {
+        "nutrient": "Rhizobium Biofertilizer",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "rhizobium biofertilizer",
+          "fertilizer dosage",
+          "biofertilizer-rhizobium"
+        ],
+        "keywords_hi": [
+          "राइजोबियम कल्चर (Rhizobium Culture)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "rhizobium biofertilizer"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-neem-cake",
+      "category": "fertilizer",
+      "title": "Neem Cake Organic Fertilizer (Neem ki Khali)",
+      "title_hi": "नीम की खली (Neem Cake)",
+      "description": "Organic fertilizer cum nematicide slowing down nitrogen leaching in soil.",
+      "description_hi": "मिट्टी में नाइट्रोजन रोककर दीमक और कीड़ों से बचाने वाली खली।",
+      "metadata": {
+        "nutrient": "Neem Cake Organic Fertilizer (Neem ki Khali)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "neem cake organic fertilizer (neem ki khali)",
+          "fertilizer dosage",
+          "neem-cake"
+        ],
+        "keywords_hi": [
+          "नीम की खली (Neem Cake)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "neem cake organic fertilizer (neem ki khali)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-prom-organic-phosphate",
+      "category": "fertilizer",
+      "title": "PROM - Phosphate Rich Organic Manure",
+      "title_hi": "प्रोम (PROM - Phosphate Organic Manure)",
+      "description": "Eco-friendly organic alternative to DAP made from rock phosphate and compost.",
+      "description_hi": "डी-एपी का जैविक विकल्प (फास्फोरस रिच ऑर्गेनिक मैन्योर)।",
+      "metadata": {
+        "nutrient": "PROM - Phosphate Rich Organic Manure",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "prom - phosphate rich organic manure",
+          "fertilizer dosage",
+          "prom-organic-phosphate"
+        ],
+        "keywords_hi": [
+          "प्रोम (PROM - Phosphate Organic Manure)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "prom - phosphate rich organic manure"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-0-0-50-sop",
+      "category": "fertilizer",
+      "title": "SOP - Sulphate of Potash (0:0:50)",
+      "title_hi": "एसओपी (0:0:50 - Potassium Sulphate)",
+      "description": "Cl-free potassium soluble fertilizer best for tobacco, potato, and grapes.",
+      "description_hi": "क्लोराइड-मुक्त पोटाश और सल्फर घुलनशील खाद।",
+      "metadata": {
+        "nutrient": "SOP - Sulphate of Potash (0:0:50)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "sop - sulphate of potash (0:0:50)",
+          "fertilizer dosage",
+          "0-0-50-sop"
+        ],
+        "keywords_hi": [
+          "एसओपी (0:0:50 - Potassium Sulphate)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "sop - sulphate of potash (0:0:50)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-13-0-45-potassium-nitrate",
+      "category": "fertilizer",
+      "title": "13:0:45 - Potassium Nitrate",
+      "title_hi": "13:0:45 (पोटेशियम नाइट्रेट)",
+      "description": "Foliar spray fertilizer for rapid grain filling, fruit size enlargement, and frost protection.",
+      "description_hi": "फलों का आकार बढ़ाने और पाले (Frost) से बचाने वाली स्प्रे खाद।",
+      "metadata": {
+        "nutrient": "13:0:45 - Potassium Nitrate",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "13:0:45 - potassium nitrate",
+          "fertilizer dosage",
+          "13-0-45-potassium-nitrate"
+        ],
+        "keywords_hi": [
+          "13:0:45 (पोटेशियम नाइट्रेट)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "13:0:45 - potassium nitrate"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-humic-acid",
+      "category": "fertilizer",
+      "title": "Humic Acid & Fulvic Acid Extract",
+      "title_hi": "ह्यूमिक एसिड (Humic Acid)",
+      "description": "Organic biostimulant enhancing root branching and nutrient uptake.",
+      "description_hi": "जड़ों का गुच्छा बनाने और पोषक तत्व खींचने वाला बायो-स्टिमुलेंट।",
+      "metadata": {
+        "nutrient": "Humic Acid & Fulvic Acid Extract",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "humic acid & fulvic acid extract",
+          "fertilizer dosage",
+          "humic-acid"
+        ],
+        "keywords_hi": [
+          "ह्यूमिक एसिड (Humic Acid)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "humic acid & fulvic acid extract"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-seaweed-extract",
+      "category": "fertilizer",
+      "title": "Seaweed Extract Biostimulant (Zyme / Sagarika)",
+      "title_hi": "सीवीड एक्सट्रैक्ट (सागरिका / ज़ाइम)",
+      "description": "Natural marine algae extract boosting plant immunity, tillering, and flowering.",
+      "description_hi": "पौधे का तनाव दूर करने वाला प्राकृतिक समुद्री शैवाल अर्क।",
+      "metadata": {
+        "nutrient": "Seaweed Extract Biostimulant (Zyme / Sagarika)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "seaweed extract biostimulant (zyme / sagarika)",
+          "fertilizer dosage",
+          "seaweed-extract"
+        ],
+        "keywords_hi": [
+          "सीवीड एक्सट्रैक्ट (सागरिका / ज़ाइम)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "seaweed extract biostimulant (zyme / sagarika)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-micronutrient-mixture",
+      "category": "fertilizer",
+      "title": "Grade-1 Micronutrient Mixture Spray",
+      "title_hi": "माइक्रोन्यूट्रिएंट मिक्सचर (Grade Mixture)",
+      "description": "Balanced spray mixture of Zn, Fe, Mn, Cu, B, Mo for multi-nutrient deficiency.",
+      "description_hi": "सभी 6 सूक्ष्म पोषक तत्वों का संतुलित मिश्रण स्प्रे।",
+      "metadata": {
+        "nutrient": "Grade-1 Micronutrient Mixture Spray",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "grade-1 micronutrient mixture spray",
+          "fertilizer dosage",
+          "micronutrient-mixture"
+        ],
+        "keywords_hi": [
+          "माइक्रोन्यूट्रिएंट मिक्सचर (Grade Mixture)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "grade-1 micronutrient mixture spray"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-kmb-potash-bacteria",
+      "category": "fertilizer",
+      "title": "Potash Mobilizing Bacteria (KMB)",
+      "title_hi": "केएमबी (पोटाश घोलक जीवाणु)",
+      "description": "Soil bacteria solubilizing insoluble potassium minerals into available plant K.",
+      "description_hi": "मिट्टी में फसे पोटाश को घोलने वाला बैक्टीरिया।",
+      "metadata": {
+        "nutrient": "Potash Mobilizing Bacteria (KMB)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "potash mobilizing bacteria (kmb)",
+          "fertilizer dosage",
+          "kmb-potash-bacteria"
+        ],
+        "keywords_hi": [
+          "केएमबी (पोटाश घोलक जीवाणु)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "potash mobilizing bacteria (kmb)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-city-compost",
+      "category": "fertilizer",
+      "title": "City Compost / Urban Organic Waste Compost",
+      "title_hi": "सिटी कंपोस्ट (City Compost)",
+      "description": "Organic soil conditioner enriched with carbon and humus.",
+      "description_hi": "जैविक कचरे से निर्मित कार्बन युक्त कंपोस्ट।",
+      "metadata": {
+        "nutrient": "City Compost / Urban Organic Waste Compost",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "city compost / urban organic waste compost",
+          "fertilizer dosage",
+          "city-compost"
+        ],
+        "keywords_hi": [
+          "सिटी कंपोस्ट (City Compost)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "city compost / urban organic waste compost"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-mustard-cake",
+      "category": "fertilizer",
+      "title": "Mustard Oil Cake (Sarson ki Khali)",
+      "title_hi": "सरसों की खली (Mustard Oil Cake)",
+      "description": "Traditional organic nitrogen and protein rich manure for vegetable gardens.",
+      "description_hi": "नाइट्रोजन से भरपूर पारंपरिक सरसों की खली।",
+      "metadata": {
+        "nutrient": "Mustard Oil Cake (Sarson ki Khali)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "mustard oil cake (sarson ki khali)",
+          "fertilizer dosage",
+          "mustard-cake"
+        ],
+        "keywords_hi": [
+          "सरसों की खली (Mustard Oil Cake)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "mustard oil cake (sarson ki khali)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-bone-meal",
+      "category": "fertilizer",
+      "title": "Raw Bone Meal (Organic Phosphorus)",
+      "title_hi": "बोन मील / हड्डी की खाद (Bone Meal)",
+      "description": "Slow-release organic phosphorus and calcium source for perennial fruit trees.",
+      "description_hi": "फलदार पौधों के लिए जैविक फास्फोरस का स्रोत।",
+      "metadata": {
+        "nutrient": "Raw Bone Meal (Organic Phosphorus)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "raw bone meal (organic phosphorus)",
+          "fertilizer dosage",
+          "bone-meal"
+        ],
+        "keywords_hi": [
+          "बोन मील / हड्डी की खाद (Bone Meal)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "raw bone meal (organic phosphorus)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-gypsum-calcium-sulfur",
+      "category": "fertilizer",
+      "title": "Gypsum (21% Ca, 18% S)",
+      "title_hi": "जिप्सम (Gypsum - Calcium + Sulfur)",
+      "description": "Soil amendment providing calcium and sulfur, essential for groundnut pod filling.",
+      "description_hi": "मूंगफली में दाना भरने के लिए आवश्यक कैल्शियम-सल्फर खाद।",
+      "metadata": {
+        "nutrient": "Gypsum (21% Ca, 18% S)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "gypsum (21% ca, 18% s)",
+          "fertilizer dosage",
+          "gypsum-calcium-sulfur"
+        ],
+        "keywords_hi": [
+          "जिप्सम (Gypsum - Calcium + Sulfur)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "gypsum (21% ca, 18% s)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-nano-urea",
+      "category": "fertilizer",
+      "title": "Liquid Nano Urea (IFFCO Nano Urea)",
+      "title_hi": "नेनो यूरिया तरल (Nano Urea Liquid)",
+      "description": "Liquid nano nitrogen spray fertilizer (4% N) absorbing directly through leaf stomata.",
+      "description_hi": "पत्तियों द्वारा सीधे अवशोषित होने वाली नैनो तरल यूरिया स्प्रे।",
+      "metadata": {
+        "nutrient": "Liquid Nano Urea (IFFCO Nano Urea)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "liquid nano urea (iffco nano urea)",
+          "fertilizer dosage",
+          "nano-urea"
+        ],
+        "keywords_hi": [
+          "नेनो यूरिया तरल (Nano Urea Liquid)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "liquid nano urea (iffco nano urea)"
+        ]
+      }
+    },
+    {
+      "id": "fertilizer-nano-dap",
+      "category": "fertilizer",
+      "title": "Liquid Nano DAP (IFFCO Nano DAP)",
+      "title_hi": "नैनो डीएपी तरल (Nano DAP Liquid)",
+      "description": "Nanotechnology liquid DAP for seed treatment and foliar spray reducing chemical DAP load.",
+      "description_hi": "बीज उपचार और छिड़काव के लिए नैनो डीएपी घोल।",
+      "metadata": {
+        "nutrient": "Liquid Nano DAP (IFFCO Nano DAP)",
+        "application": "Apply as per recommended crop dosage.",
+        "timing": "Basal or foliar application.",
+        "compatibleCrops": [
+          "Grain crops",
+          "Vegetables",
+          "Pulses",
+          "Oilseeds"
+        ],
+        "keywords": [
+          "liquid nano dap (iffco nano dap)",
+          "fertilizer dosage",
+          "nano-dap"
+        ],
+        "keywords_hi": [
+          "नैनो डीएपी तरल (Nano DAP Liquid)",
+          "खाद की मात्रा"
+        ],
+        "keywords_romanized": [
+          "khad dosage",
+          "liquid nano dap (iffco nano dap)"
+        ]
+      }
+    }
+  ],
+  "irrigation": [
+    {
+      "id": "irrigation-wheat-critical-stages",
+      "category": "irrigation",
+      "crop": "Wheat",
+      "topic": "Wheat Irrigation Stages",
+      "title": "Wheat Irrigation Critical Growth Stages (Gehun me Sinchai Kab Karein)",
+      "title_hi": "गेहूं में सिंचाई के मुख्य चरण (Critical Irrigation Stages in Wheat)",
+      "description": "Wheat crop requires 4-6 irrigations at specific critical growth stages to achieve maximum yield.",
+      "description_hi": "गेहूं में 4 से 6 सिंचाई की आवश्यकता होती है। क्राउन रूट (CRI stage) पर पहली सिंचाई सबसे महत्वपूर्ण है।",
+      "metadata": {
+        "crop": "Wheat",
+        "criticalStages": [
+          "CRI Stage (20-25 days after sowing) - MOST CRITICAL",
+          "Tillering Stage (40-45 days)",
+          "Jointing Stage (60-65 days)",
+          "Flowering / Boot Stage (80-85 days)",
+          "Milking Stage (100-105 days)",
+          "Dough Stage (115-120 days)"
+        ],
+        "criticalStages_hi": [
+          "क्राउन रूट स्टेज (बुआई के 20-25 दिन बाद) - अति महत्वपूर्ण",
+          "कल्ले निकलते समय (40-45 दिन)",
+          "गांठ बनते समय (60-65 दिन)",
+          "फूल/बालियां आते समय (80-85 दिन)",
+          "दूधिया अवस्था (100-105 दिन)",
+          "दाना सख्त होते समय (115-120 दिन)"
+        ],
+        "advisory": "Never skip CRI stage irrigation (20-25 days). Avoid heavy flooding to prevent lodging.",
+        "keywords": [
+          "wheat irrigation",
+          "gehun sinchai",
+          "cri stage wheat",
+          "how many irrigations wheat"
+        ],
+        "keywords_hi": [
+          "गेहूं की सिंचाई",
+          "गेहूं में पानी कब दें",
+          "सीआरआई स्टेज गेहूं"
+        ],
+        "keywords_romanized": [
+          "gehu me pani kab de",
+          "gehun sinchai",
+          "wheat irrigation stages"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-rice-awd-water-management",
+      "category": "irrigation",
+      "crop": "Paddy / Rice",
+      "topic": "Rice Water Management & AWD",
+      "title": "Rice Water Management & Alternate Wetting Drying (Dhaan me Paani Prabandhan)",
+      "title_hi": "धान में पानी का प्रबंधन एवं AWD तकनीक (Rice Water Management)",
+      "description": "Maintaining continuous 2-5cm water depth during initial transplanting, followed by AWD technique to prevent root rot and BPH.",
+      "description_hi": "धान की रोपाई के पहले 2-3 सप्ताह 2-5 सेमी पानी रखें। फिर पानी सुखाकर दोबारा सिंचाई (AWD) करें।",
+      "metadata": {
+        "crop": "Paddy / Rice",
+        "recommendations": [
+          "Keep 2-5 cm standing water for first 15-20 days after transplanting.",
+          "Practice Alternate Wetting and Drying (AWD) during tillering stage to encourage deep root growth.",
+          "Keep soil flooded during flowering and grain filling stages.",
+          "Drain field completely 10-15 days before harvest."
+        ],
+        "recommendations_hi": [
+          "रोपाई के शुरुआती 15-20 दिन 2-5 सेमी पानी खड़ा रखें।",
+          "कल्ले निकलने के समय पानी सुखाकर हल्का सूखने पर दोबारा पानी दें (AWD तकनीक)।",
+          "फूल आने और दाना भरते समय पानी की कमी न होने दें।",
+          "कटाई से 10-15 दिन पहले खेत का पानी पूरा निकाल दें।"
+        ],
+        "advisory": "Stagnant continuous flooding throughout season causes root rot and BPH hopperburn.",
+        "keywords": [
+          "rice water",
+          "dhaan paani",
+          "awd technique rice",
+          "paddy water management"
+        ],
+        "keywords_hi": [
+          "धान में पानी",
+          "धान की सिंचाई",
+          "धान में कितना पानी दें"
+        ],
+        "keywords_romanized": [
+          "dhan me pani kitna de",
+          "dhaan sinchai",
+          "rice water management"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-drip-system-benefits",
+      "category": "irrigation",
+      "crop": "Vegetables, Sugarcane, Cotton, Fruits",
+      "topic": "Drip Irrigation",
+      "title": "Drip Irrigation System (Tapak Sinchai / Drip Irrigation)",
+      "title_hi": "ड्रिप सिंचाई प्रणाली (टपक सिंचाई / Drip Irrigation)",
+      "description": "Micro-irrigation method applying water drop-by-drop directly to plant roots saving 50-70% water and fertilizers.",
+      "description_hi": "पौधों की जड़ों में बूंद-बूंद पानी देने की आधुनिक तकनीक जिससे 50-70% पानी की बचत होती है। 45-55% सरकारी सब्सिडी उपलब्ध है।",
+      "metadata": {
+        "crop": "Vegetables, Sugarcane, Cotton, Fruit Orchards",
+        "benefits": [
+          "Saves 50-70% water compared to flood irrigation.",
+          "Fertigation option: apply liquid fertilizers directly through drip lines.",
+          "Reduces weed growth and prevents soil erosion.",
+          "Up to 55% government subsidy available under PMKSY-PDMC scheme."
+        ],
+        "benefits_hi": [
+          "पारंपरिक सिंचाई की तुलना में 50-70% पानी की बचत।",
+          "फर्टिगेशन द्वारा खाद सीधे जड़ों तक पहुंचाना संभव।",
+          "खरपतवार कम उगते हैं और बीमारी कम फैलती है।",
+          "पीएमकेएसवाई (PMKSY) योजना के तहत 45-55% सब्सिडी उपलब्ध।"
+        ],
+        "keywords": [
+          "drip irrigation",
+          "tapak sinchai",
+          "drip subsidy",
+          "micro irrigation"
+        ],
+        "keywords_hi": [
+          "ड्रिप सिंचाई",
+          "टपक सिंचाई",
+          "ड्रिप सब्सिडी"
+        ],
+        "keywords_romanized": [
+          "drip sinchai",
+          "tapak sinchai",
+          "drip irrigation system"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-sprinkler-system",
+      "category": "irrigation",
+      "crop": "Mustard, Wheat, Gram, Potato",
+      "topic": "Sprinkler Irrigation",
+      "title": "Sprinkler Irrigation System (Fawwara Sinchai)",
+      "title_hi": "फव्वारा सिंचाई प्रणाली (Sprinkler Irrigation)",
+      "description": "Pressurized overhead rain-like water spraying system ideal for undulating sandy soils and close-spaced crops.",
+      "description_hi": "बारिश की तरह फव्वारे से पानी देने की तकनीक। रेतीली और असमतल भूमि पर 30-40% पानी बचाती है।",
+      "metadata": {
+        "crop": "Mustard, Chickpea, Wheat, Groundnut, Pulses",
+        "benefits": [
+          "Uniform water distribution on sandy/undulating fields.",
+          "Saves 35-40% water and prevents soil crusting.",
+          "Protects crops against light winter frost."
+        ],
+        "benefits_hi": [
+          "रेतीले व ऊंचे-नीचे खेतों में समान पानी वितरण।",
+          "35-40% पानी की बचत, ठंड में पाले से फसल का बचाव।"
+        ],
+        "keywords": [
+          "sprinkler irrigation",
+          "fawwara sinchai",
+          "sprinkler subsidy"
+        ],
+        "keywords_hi": [
+          "फव्वारा सिंचाई",
+          "फव्वारा सेट"
+        ],
+        "keywords_romanized": [
+          "fawwara sinchai",
+          "sprinkler irrigation"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-waterlogging-drainage",
+      "category": "irrigation",
+      "crop": "All Crops",
+      "topic": "Waterlogging Management",
+      "title": "Waterlogging & Drainage Management (Khet me Paani Bharna / Jal Nikasi)",
+      "title_hi": "जलभराव और जल निकासी प्रबंधन (Field Drainage & Waterlogging)",
+      "description": "Prevention of root rot and oxygen starvation caused by excess standing water in crop fields.",
+      "description_hi": "खेत में अत्यधिक पानी भरने पर जल निकासी के उपाय ताकि जड़ें सड़ने से बच सकें।",
+      "metadata": {
+        "crop": "Vegetables, Pulses, Maize, Potato, Cotton",
+        "advisory": "Create open surface drainage ditches at 15-20 meter intervals across field slopes. Drain standing water after heavy rain.",
+        "advisory_hi": "खेत में 15-20 मीटर की दूरी पर जल निकासी की नालियां बनाएं। भारी बारिश के बाद पानी तुरंत बाहर निकालें।",
+        "keywords": [
+          "waterlogging",
+          "field drainage",
+          "jal nikasi",
+          "stagnant water"
+        ],
+        "keywords_hi": [
+          "जल निकासी",
+          "खेत में पानी भरना",
+          "जलभराव"
+        ],
+        "keywords_romanized": [
+          "jal nikasi",
+          "paani bharna",
+          "waterlogging"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-maize-stages",
+      "category": "irrigation",
+      "crop": "Maize",
+      "topic": "Maize Critical Irrigation Stages",
+      "title": "Maize Critical Irrigation Stages",
+      "title_hi": "मक्का में सिंचाई के मुख्य चरण",
+      "description": "Tasseling and silking stages are critical for maize grain setting.",
+      "description_hi": "मंजरी (Tasselling) और भुट्टा (Silking) बनते समय पानी की कमी न होने दें।",
+      "metadata": {
+        "crop": "Maize",
+        "advisory": "मंजरी (Tasselling) और भुट्टा (Silking) बनते समय पानी की कमी न होने दें।",
+        "keywords": [
+          "maize critical irrigation stages",
+          "irrigation advice",
+          "maize-stages"
+        ],
+        "keywords_hi": [
+          "मक्का में सिंचाई के मुख्य चरण",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "maize critical irrigation stages"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-cotton-schedule",
+      "category": "irrigation",
+      "crop": "Cotton",
+      "topic": "Cotton Irrigation Schedule",
+      "title": "Cotton Irrigation Schedule",
+      "title_hi": "कपास में सिंचाई का समय",
+      "description": "Avoid water stress during square formation and boll development.",
+      "description_hi": "डोडे बनते समय सिंचाई अति आवश्यक है।",
+      "metadata": {
+        "crop": "Cotton",
+        "advisory": "डोडे बनते समय सिंचाई अति आवश्यक है।",
+        "keywords": [
+          "cotton irrigation schedule",
+          "irrigation advice",
+          "cotton-schedule"
+        ],
+        "keywords_hi": [
+          "कपास में सिंचाई का समय",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "cotton irrigation schedule"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-potato-water-management",
+      "category": "irrigation",
+      "crop": "Potato",
+      "topic": "Potato Irrigation & Tuberization",
+      "title": "Potato Irrigation & Tuberization",
+      "title_hi": "आलू में सिंचाई व कंद विकास",
+      "description": "Light frequent irrigation required at tuber initiation and enlargement.",
+      "description_hi": "आलू में कंद बनते समय हल्की और नियमित सिंचाई करें।",
+      "metadata": {
+        "crop": "Potato",
+        "advisory": "आलू में कंद बनते समय हल्की और नियमित सिंचाई करें।",
+        "keywords": [
+          "potato irrigation & tuberization",
+          "irrigation advice",
+          "potato-water-management"
+        ],
+        "keywords_hi": [
+          "आलू में सिंचाई व कंद विकास",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "potato irrigation & tuberization"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-mustard-stages",
+      "category": "irrigation",
+      "crop": "Mustard",
+      "topic": "Mustard Irrigation Stages",
+      "title": "Mustard Irrigation Stages",
+      "title_hi": "सरसों में सिंचाई के 2 मुख्य चरण",
+      "description": "Two critical irrigations: at flowering (35 days) and pod formation (65 days).",
+      "description_hi": "फूल आते समय (35 दिन) और फली बनते समय (65 दिन) सिंचाई करें।",
+      "metadata": {
+        "crop": "Mustard",
+        "advisory": "फूल आते समय (35 दिन) और फली बनते समय (65 दिन) सिंचाई करें।",
+        "keywords": [
+          "mustard irrigation stages",
+          "irrigation advice",
+          "mustard-stages"
+        ],
+        "keywords_hi": [
+          "सरसों में सिंचाई के 2 मुख्य चरण",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "mustard irrigation stages"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-pulses-water-sensitivity",
+      "category": "irrigation",
+      "crop": "Pulses",
+      "topic": "Pulses Water Sensitivity & Over-Irrigation Warning",
+      "title": "Pulses Water Sensitivity & Over-Irrigation Warning",
+      "title_hi": "दलहनी फसलों में अत्यधिक पानी से सावधान",
+      "description": "Pulses like chickpea and lentil are highly sensitive to excess water.",
+      "description_hi": "चने व अरहर में अधिक पानी देने से फसल पीली पड़कर सूखती है।",
+      "metadata": {
+        "crop": "Pulses",
+        "advisory": "चने व अरहर में अधिक पानी देने से फसल पीली पड़कर सूखती है।",
+        "keywords": [
+          "pulses water sensitivity & over-irrigation warning",
+          "irrigation advice",
+          "pulses-water-sensitivity"
+        ],
+        "keywords_hi": [
+          "दलहनी फसलों में अत्यधिक पानी से सावधान",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "pulses water sensitivity & over-irrigation warning"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-sugarcane-water-req",
+      "category": "irrigation",
+      "crop": "Sugarcane",
+      "topic": "Sugarcane Water Requirement & Trash Mulching",
+      "title": "Sugarcane Water Requirement & Trash Mulching",
+      "title_hi": "गन्ने में जल प्रबंधन व ट्रेश मल्चिंग",
+      "description": "Sugarcane requires 1500-2500mm water; use trash mulching to conserve moisture.",
+      "description_hi": "सूखी पत्तियों की मल्चिंग करके नमी बचाएं।",
+      "metadata": {
+        "crop": "Sugarcane",
+        "advisory": "सूखी पत्तियों की मल्चिंग करके नमी बचाएं।",
+        "keywords": [
+          "sugarcane water requirement & trash mulching",
+          "irrigation advice",
+          "sugarcane-water-req"
+        ],
+        "keywords_hi": [
+          "गन्ने में जल प्रबंधन व ट्रेश मल्चिंग",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "sugarcane water requirement & trash mulching"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-drought-stress-management",
+      "category": "irrigation",
+      "crop": "All Crops",
+      "topic": "Drought Stress Crop Management",
+      "title": "Drought Stress Crop Management",
+      "title_hi": "सूखा तनाव (Drought Stress) में फसल सुरक्षा",
+      "description": "Foliar spray of 1% Potassium Nitrate (13:0:45) to reduce transpiration loss under heat.",
+      "description_hi": "1% पोटेशियम नाइट्रेट छिड़ककर फसल की नमी बचाएं।",
+      "metadata": {
+        "crop": "All Crops",
+        "advisory": "1% पोटेशियम नाइट्रेट छिड़ककर फसल की नमी बचाएं।",
+        "keywords": [
+          "drought stress crop management",
+          "irrigation advice",
+          "drought-stress-management"
+        ],
+        "keywords_hi": [
+          "सूखा तनाव (Drought Stress) में फसल सुरक्षा",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "drought stress crop management"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-fertigation-drip",
+      "category": "irrigation",
+      "crop": "Vegetables, Fruits",
+      "topic": "Drip Fertigation Method",
+      "title": "Drip Fertigation Method",
+      "title_hi": "फर्टिगेशन - ड्रिप द्वारा खाद देना",
+      "description": "Applying water-soluble fertilizers directly through drip lines for 90% efficiency.",
+      "description_hi": "ड्रिप लाइन द्वारा पानी के साथ सीधी खाद देना।",
+      "metadata": {
+        "crop": "Vegetables, Fruits",
+        "advisory": "ड्रिप लाइन द्वारा पानी के साथ सीधी खाद देना।",
+        "keywords": [
+          "drip fertigation method",
+          "irrigation advice",
+          "fertigation-drip"
+        ],
+        "keywords_hi": [
+          "फर्टिगेशन - ड्रिप द्वारा खाद देना",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "drip fertigation method"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-solar-pump-usage",
+      "category": "irrigation",
+      "crop": "All Crops",
+      "topic": "Solar Pump Water Management (PM KUSUM)",
+      "title": "Solar Pump Water Management (PM KUSUM)",
+      "title_hi": "सोलर पंप द्वारा सिंचाई प्रबंधन",
+      "description": "Optimizing Daytime solar pumping with drip/sprinkler networks.",
+      "description_hi": "दिन के समय सौर ऊर्जा से निर्बाध सिंचाई।",
+      "metadata": {
+        "crop": "All Crops",
+        "advisory": "दिन के समय सौर ऊर्जा से निर्बाध सिंचाई।",
+        "keywords": [
+          "solar pump water management (pm kusum)",
+          "irrigation advice",
+          "solar-pump-usage"
+        ],
+        "keywords_hi": [
+          "सोलर पंप द्वारा सिंचाई प्रबंधन",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "solar pump water management (pm kusum)"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-canal-water-warabandi",
+      "category": "irrigation",
+      "crop": "All Crops",
+      "topic": "Canal Water Management & Warabandi",
+      "title": "Canal Water Management & Warabandi",
+      "title_hi": "नहर के पानी का कुशल उपयोग (वारबंदी)",
+      "description": "Scheduled turn-based canal irrigation and field channel lining.",
+      "description_hi": "नालियों की पक्की मरम्मत और वारबंदी अनुसार सिंचाई।",
+      "metadata": {
+        "crop": "All Crops",
+        "advisory": "नालियों की पक्की मरम्मत और वारबंदी अनुसार सिंचाई।",
+        "keywords": [
+          "canal water management & warabandi",
+          "irrigation advice",
+          "canal-water-warabandi"
+        ],
+        "keywords_hi": [
+          "नहर के पानी का कुशल उपयोग (वारबंदी)",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "canal water management & warabandi"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-subsurface-drip",
+      "category": "irrigation",
+      "crop": "Sugarcane, Cotton",
+      "topic": "Sub-surface Drip Irrigation (SDI)",
+      "title": "Sub-surface Drip Irrigation (SDI)",
+      "title_hi": "भूमिगत टपक सिंचाई (Sub-surface Drip)",
+      "description": "Drip lines buried 15-20cm below soil surface preventing evaporation loss.",
+      "description_hi": "जमीन के 15 सेमी नीचे पाइप दबाकर जड़ों को पानी देना।",
+      "metadata": {
+        "crop": "Sugarcane, Cotton",
+        "advisory": "जमीन के 15 सेमी नीचे पाइप दबाकर जड़ों को पानी देना।",
+        "keywords": [
+          "sub-surface drip irrigation (sdi)",
+          "irrigation advice",
+          "subsurface-drip"
+        ],
+        "keywords_hi": [
+          "भूमिगत टपक सिंचाई (Sub-surface Drip)",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "sub-surface drip irrigation (sdi)"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-rainwater-harvesting-farm-pond",
+      "category": "irrigation",
+      "crop": "All Crops",
+      "topic": "Farm Pond Rainwater Harvesting (Khet Talab)",
+      "title": "Farm Pond Rainwater Harvesting (Khet Talab)",
+      "title_hi": "खेत तालाब - वर्षा जल संचयन",
+      "description": "Harvesting monsoon runoff water in farm ponds for life-saving irrigations.",
+      "description_hi": "खेत में तालाब बनाकर बारिश का पानी जमा करना।",
+      "metadata": {
+        "crop": "All Crops",
+        "advisory": "खेत में तालाब बनाकर बारिश का पानी जमा करना।",
+        "keywords": [
+          "farm pond rainwater harvesting (khet talab)",
+          "irrigation advice",
+          "rainwater-harvesting-farm-pond"
+        ],
+        "keywords_hi": [
+          "खेत तालाब - वर्षा जल संचयन",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "farm pond rainwater harvesting (khet talab)"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-soil-moisture-feel-method",
+      "category": "irrigation",
+      "crop": "All Crops",
+      "topic": "Soil Moisture Testing by Hand Feel Method",
+      "title": "Soil Moisture Testing by Hand Feel Method",
+      "title_hi": "हाथ से मिट्टी की नमी जांचने की विधि",
+      "description": "Squeezing soil ball in palm to determine if field needs irrigation.",
+      "description_hi": "मिट्टी का लड्डू बनाकर नमी का आकलन करना।",
+      "metadata": {
+        "crop": "All Crops",
+        "advisory": "मिट्टी का लड्डू बनाकर नमी का आकलन करना।",
+        "keywords": [
+          "soil moisture testing by hand feel method",
+          "irrigation advice",
+          "soil-moisture-feel-method"
+        ],
+        "keywords_hi": [
+          "हाथ से मिट्टी की नमी जांचने की विधि",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "soil moisture testing by hand feel method"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-over-irrigation-harms",
+      "category": "irrigation",
+      "crop": "All Crops",
+      "topic": "Harms of Over-Irrigation on Soil Health",
+      "title": "Harms of Over-Irrigation on Soil Health",
+      "title_hi": "अत्यधिक सिंचाई के नुकसान",
+      "description": "Over-irrigation leads to nutrient leaching, root asphyxiation, and salinity.",
+      "description_hi": "अत्यधिक पानी से जड़ों में हवा रुकना और लवणता बढ़ना।",
+      "metadata": {
+        "crop": "All Crops",
+        "advisory": "अत्यधिक पानी से जड़ों में हवा रुकना और लवणता बढ़ना।",
+        "keywords": [
+          "harms of over-irrigation on soil health",
+          "irrigation advice",
+          "over-irrigation-harms"
+        ],
+        "keywords_hi": [
+          "अत्यधिक सिंचाई के नुकसान",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "harms of over-irrigation on soil health"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-critical-growth-stages-general",
+      "category": "irrigation",
+      "crop": "All Crops",
+      "topic": "Understanding Critical Crop Growth Stages",
+      "title": "Understanding Critical Crop Growth Stages",
+      "title_hi": "फसल की संवेदनशील विकास अवस्थाएं",
+      "description": "Phases during crop lifecycle where water shortage causes maximum yield loss.",
+      "description_hi": "वे चरण जब पानी की कमी से पैदावार सबसे ज्यादा घटती है।",
+      "metadata": {
+        "crop": "All Crops",
+        "advisory": "वे चरण जब पानी की कमी से पैदावार सबसे ज्यादा घटती है।",
+        "keywords": [
+          "understanding critical crop growth stages",
+          "irrigation advice",
+          "critical-growth-stages-general"
+        ],
+        "keywords_hi": [
+          "फसल की संवेदनशील विकास अवस्थाएं",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "understanding critical crop growth stages"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-micro-irrigation-maintenance",
+      "category": "irrigation",
+      "crop": "All Crops",
+      "topic": "Drip & Sprinkler System Maintenance",
+      "title": "Drip & Sprinkler System Maintenance",
+      "title_hi": "ड्रिप व फव्वारा सिस्टम का रख-रखाव",
+      "description": "Acid flushing with hydrochloric acid to clear emitter clogging.",
+      "description_hi": "ड्रिप लैटरल्स में नमक व काई जमने पर एसिड फ्लशिंग।",
+      "metadata": {
+        "crop": "All Crops",
+        "advisory": "ड्रिप लैटरल्स में नमक व काई जमने पर एसिड फ्लशिंग।",
+        "keywords": [
+          "drip & sprinkler system maintenance",
+          "irrigation advice",
+          "micro-irrigation-maintenance"
+        ],
+        "keywords_hi": [
+          "ड्रिप व फव्वारा सिस्टम का रख-रखाव",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "drip & sprinkler system maintenance"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-furrow-broadbed",
+      "category": "irrigation",
+      "crop": "Vegetables, Cotton",
+      "topic": "Broad Bed Furrow (BBF) Irrigation",
+      "title": "Broad Bed Furrow (BBF) Irrigation",
+      "title_hi": "चौड़ी केयारी व नाली (BBF) सिंचाई",
+      "description": "Sowing crops on raised beds and watering only through furrows to save 30% water.",
+      "description_hi": "उठी हुई बेड्स पर बुआई और नालियों से सिंचाई।",
+      "metadata": {
+        "crop": "Vegetables, Cotton",
+        "advisory": "उठी हुई बेड्स पर बुआई और नालियों से सिंचाई।",
+        "keywords": [
+          "broad bed furrow (bbf) irrigation",
+          "irrigation advice",
+          "furrow-broadbed"
+        ],
+        "keywords_hi": [
+          "चौड़ी केयारी व नाली (BBF) सिंचाई",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "broad bed furrow (bbf) irrigation"
+        ]
+      }
+    },
+    {
+      "id": "irrigation-vegetable-watering-rules",
+      "category": "irrigation",
+      "crop": "Vegetables",
+      "topic": "Vegetable Crops Watering Guidelines",
+      "title": "Vegetable Crops Watering Guidelines",
+      "title_hi": "सब्जियों में सिंचाई के सामान्य नियम",
+      "description": "Shallow frequent irrigations for short-rooted vegetable crops.",
+      "description_hi": "सब्जियों में हल्की और बार-बार सिंचाई करना।",
+      "metadata": {
+        "crop": "Vegetables",
+        "advisory": "सब्जियों में हल्की और बार-बार सिंचाई करना।",
+        "keywords": [
+          "vegetable crops watering guidelines",
+          "irrigation advice",
+          "vegetable-watering-rules"
+        ],
+        "keywords_hi": [
+          "सब्जियों में सिंचाई के सामान्य नियम",
+          "सिंचाई सलाह"
+        ],
+        "keywords_romanized": [
+          "sinchai advice",
+          "vegetable crops watering guidelines"
+        ]
       }
     }
   ],
@@ -573,6 +7690,518 @@ window.KRISHI_OFFLINE_KNOWLEDGE_BUNDLE = {
           "pm-fasal-bima"
         ]
       }
+    },
+    {
+      "id": "kisan-credit-card-kcc",
+      "category": "loan",
+      "title": "Kisan Credit Card (KCC) Loan Scheme",
+      "title_hi": "किसान क्रेडिट कार्ड योजना (Kisan Credit Card - KCC)",
+      "description": "Concessional short-term crop loans up to Rs.3 Lakhs at 4% effective interest rate with prompt repayment incentive.",
+      "description_hi": "किसानों को फसल बुआई, खाद-बीज खरीदने हेतु 3 लाख रु तक का सस्ता ऋण (4% प्रभावी ब्याज दर पर)।",
+      "metadata": {
+        "benefit": "Short term crop loan up to Rs. 3 Lakhs at 4% interest rate (with 3% prompt repayment subvention).",
+        "source": "Ministry of Agriculture / NABARD / RBI",
+        "officialLink": "https://pmkisan.gov.in/",
+        "eligibilityRules": {
+          "allowedStates": [
+            "All"
+          ],
+          "requiredOwnership": [
+            "Owner",
+            "Tenant",
+            "Sharecropper"
+          ]
+        },
+        "documents": [
+          "Aadhaar Card",
+          "Land record (Khasra/Jamabandi)",
+          "Bank Passbook",
+          "Passport Photo"
+        ],
+        "keywords": [
+          "kcc",
+          "kisan credit card",
+          "crop loan",
+          "kisan loan",
+          "4 percent interest loan"
+        ],
+        "keywords_hi": [
+          "किसान क्रेडिट कार्ड",
+          "केसीसी",
+          "फसल ऋण",
+          "किसान लोन"
+        ],
+        "keywords_romanized": [
+          "kcc loan",
+          "kisan credit card",
+          "kcc kaise banwaye"
+        ]
+      }
+    },
+    {
+      "id": "enam-national-market",
+      "category": "market",
+      "title": "e-NAM - National Agriculture Market",
+      "title_hi": "ई-नाम - राष्ट्रीय कृषि बाजार (e-NAM)",
+      "description": "Pan-India electronic trading portal networking existing APMC mandis to create a unified national market for agricultural commodities.",
+      "description_hi": "देश भर की मंडियों को जोड़ने वाला ऑनलाइन पोर्टल जहाँ किसान ऑनलाइन बोली द्वारा सही दाम पर फसल बेच सकते हैं।",
+      "metadata": {
+        "benefit": "Transparent online bidding, direct payment to bank account, access to buyers nationwide.",
+        "source": "Small Farmers Agribusiness Consortium (SFAC)",
+        "officialLink": "https://enam.gov.in/",
+        "eligibilityRules": {
+          "allowedStates": [
+            "All"
+          ],
+          "requiredOwnership": [
+            "Owner",
+            "Tenant",
+            "Sharecropper"
+          ]
+        },
+        "documents": [
+          "Aadhaar Card",
+          "Bank Account Details",
+          "Mandi Gate Pass / Lot details"
+        ],
+        "keywords": [
+          "enam",
+          "e-nam",
+          "online mandi",
+          "mandi online sell",
+          "national agriculture market"
+        ],
+        "keywords_hi": [
+          "ई नाम",
+          "ऑनलाइन मंडी",
+          "फसल ऑनलाइन बेचना"
+        ],
+        "keywords_romanized": [
+          "enam portal",
+          "online mandi sell",
+          "enam kisan"
+        ]
+      }
+    },
+    {
+      "id": "agri-infrastructure-fund-aif",
+      "category": "infrastructure",
+      "title": "Agriculture Infrastructure Fund (AIF)",
+      "title_hi": "कृषि इंफ्रास्ट्रक्चर फंड (Agriculture Infrastructure Fund)",
+      "description": "Financing facility for post-harvest management infrastructure such as cold storages, warehouses, custom hiring centers, and sorting units.",
+      "description_hi": "कोल्ड स्टोरेज, गोदाम, छंटाई केंद्र और कस्टम हायरिंग सेंटर बनाने के लिए 3% ब्याज छूट के साथ ऋण।",
+      "metadata": {
+        "benefit": "3% interest subvention per annum on loans up to Rs. 2 Crores for up to 7 years.",
+        "source": "Department of Agriculture and Farmers Welfare",
+        "officialLink": "https://agriinfra.dac.gov.in/",
+        "eligibilityRules": {
+          "allowedStates": [
+            "All"
+          ],
+          "requiredOwnership": [
+            "Owner",
+            "FPO",
+            "Agri Entrepreneur"
+          ]
+        },
+        "documents": [
+          "DPR (Detailed Project Report)",
+          "Aadhaar Card",
+          "Land papers",
+          "Bank Account details"
+        ],
+        "keywords": [
+          "aif",
+          "agri infra fund",
+          "cold storage subsidy",
+          "warehouse loan"
+        ],
+        "keywords_hi": [
+          "कृषि इंफ्रा फंड",
+          "कोल्ड स्टोरेज ऋण",
+          "गोदाम सब्सिडी"
+        ],
+        "keywords_romanized": [
+          "agri infra fund",
+          "cold storage subsidy"
+        ]
+      }
+    },
+    {
+      "id": "pm-matsya-sampada",
+      "category": "fisheries",
+      "title": "PM Matsya Sampada Yojana (PMMSY)",
+      "title_hi": "प्रधानमंत्री मत्स्य संपदा योजना (PMMSY - Fisheries)",
+      "description": "Scheme for development of inland fisheries, aquaculture ponds, biofloc units, and fish farming with 40-60% financial assistance.",
+      "description_hi": "मछली पालन, बायोफ्लॉक, तालाब निर्माण और मत्स्य व्यवसाय हेतु 40% से 60% तक सरकारी अनुदान।",
+      "metadata": {
+        "benefit": "40% subsidy for General category and 60% for SC/ST/Women for fish pond construction and aquaculture.",
+        "source": "Department of Fisheries",
+        "officialLink": "https://pmmsy.dof.gov.in/",
+        "eligibilityRules": {
+          "allowedStates": [
+            "All"
+          ],
+          "requiredOwnership": [
+            "Owner",
+            "Leased Land"
+          ]
+        },
+        "documents": [
+          "Aadhaar Card",
+          "Land record or Pond Lease agreement",
+          "Bank Passbook"
+        ],
+        "keywords": [
+          "pmmsy",
+          "matsya sampada",
+          "fish farming subsidy",
+          "machhli palan subsidy"
+        ],
+        "keywords_hi": [
+          "मत्स्य संपदा",
+          "मछली पालन सब्सिडी",
+          "तालाब योजना"
+        ],
+        "keywords_romanized": [
+          "machhli palan subsidy",
+          "matsya sampada"
+        ]
+      }
+    },
+    {
+      "id": "national-livestock-mission-nlm",
+      "category": "livestock",
+      "title": "National Livestock Mission (NLM)",
+      "title_hi": "राष्ट्रीय पशुधन मिशन (National Livestock Mission - NLM)",
+      "description": "Capital subsidy up to 50% for goat farming, sheep breeding, poultry units, piggery, and fodder production.",
+      "description_hi": "बकरी पालन, मुर्गी पालन और सुअर पालन फार्म स्थापित करने के लिए 50% तक कैपिटल सब्सिडी।",
+      "metadata": {
+        "benefit": "50% capital subsidy (up to Rs. 50 Lakhs for goat/sheep breeding, up to Rs. 25 Lakhs for poultry).",
+        "source": "Department of Animal Husbandry and Dairying",
+        "officialLink": "https://nlm.udyamimitra.in/",
+        "eligibilityRules": {
+          "allowedStates": [
+            "All"
+          ],
+          "requiredOwnership": [
+            "Owner",
+            "Leased Land"
+          ]
+        },
+        "documents": [
+          "Aadhaar Card",
+          "Project Report",
+          "Land Proof",
+          "Bank Loan Sanction letter"
+        ],
+        "keywords": [
+          "nlm",
+          "livestock mission",
+          "bakri palan subsidy",
+          "poultry farm subsidy"
+        ],
+        "keywords_hi": [
+          "पशुधन मिशन",
+          "बकरी पालन लोन",
+          "मुर्गी पालन सब्सिडी"
+        ],
+        "keywords_romanized": [
+          "bakri palan subsidy",
+          "poultry farm subsidy"
+        ]
+      }
+    },
+    {
+      "id": "pm-fme-food-processing",
+      "category": "processing",
+      "title": "PM Formalisation of Micro Food Processing Enterprises (PMFME)",
+      "title_hi": "पीएम एफएमई योजना (PM Formalisation of Micro Food Processing)",
+      "description": "35% credit-linked capital subsidy for setting up or upgrading micro food processing units (flour mills, oil ghanis, pickle making, fruit processing).",
+      "description_hi": "आटा चक्की, तेल पेलने का कोल्हू, मसाला पिसाई, अचार-पापड़ उद्योग के लिए 35% क्रेडिट-लिंक्ड सब्सिडी (अधिकतम 10 लाख रु)।",
+      "metadata": {
+        "benefit": "35% credit-linked capital subsidy up to Rs. 10 Lakhs for micro food processing enterprises.",
+        "source": "Ministry of Food Processing Industries (MoFPI)",
+        "officialLink": "https://pmfme.mofpi.gov.in/",
+        "eligibilityRules": {
+          "allowedStates": [
+            "All"
+          ],
+          "requiredOwnership": [
+            "Individual",
+            "SHG",
+            "FPO"
+          ]
+        },
+        "documents": [
+          "Aadhaar Card",
+          "Udyam Registration",
+          "Bank Account Details",
+          "Quotation for Machinery"
+        ],
+        "keywords": [
+          "pmfme",
+          "food processing subsidy",
+          "flour mill subsidy",
+          "oil mill loan"
+        ],
+        "keywords_hi": [
+          "खाद्य प्रसंस्करण सब्सिडी",
+          "आटा चक्की लोन",
+          "तेल कोल्हू सब्सिडी"
+        ],
+        "keywords_romanized": [
+          "pmfme scheme",
+          "food processing subsidy"
+        ]
+      }
+    },
+    {
+      "id": "rkvy-raftaar-scheme",
+      "category": "innovation",
+      "title": "Rashtriya Krishi Vikas Yojana (RKVY-RAFTAAR)",
+      "title_hi": "राष्ट्रीय कृषि विकास योजना (RKVY-RAFTAAR)",
+      "description": "Scheme supporting agricultural incubation, agri-startups, and state-specific infrastructure for farming innovation.",
+      "description_hi": "कृषि स्टार्ट-अप, नवाचार और एग्री-बिज़नेस के लिए 5 लाख से 25 लाख रु तक का अनुदान प्रोत्साहन।",
+      "metadata": {
+        "benefit": "Grant-in-aid support from Rs. 5 Lakhs (Idea stage) up to Rs. 25 Lakhs (Seed stage) for Agri Startups.",
+        "source": "Ministry of Agriculture and Farmers Welfare",
+        "officialLink": "https://rkvy.nic.in/",
+        "eligibilityRules": {
+          "allowedStates": [
+            "All"
+          ],
+          "requiredOwnership": [
+            "Startup",
+            "Farmer Innovator"
+          ]
+        },
+        "documents": [
+          "Aadhaar Card",
+          "Startup Pitch Deck / Project Proposal",
+          "Bank Account"
+        ],
+        "keywords": [
+          "rkvy",
+          "raftaar",
+          "agri startup grant",
+          "krishi vikas yojana"
+        ],
+        "keywords_hi": [
+          "राष्ट्रीय कृषि विकास योजना",
+          "कृषि स्टार्टअप अनुदान"
+        ],
+        "keywords_romanized": [
+          "rkvy raftaar",
+          "agri startup grant"
+        ]
+      }
+    },
+    {
+      "id": "sub-mission-seed-smsp",
+      "category": "seed",
+      "title": "Sub-Mission on Seeds and Planting Material (SMSP)",
+      "title_hi": "बीज एवं रोपण सामग्री पर उप-मिशन (SMSP Seed Scheme)",
+      "description": "Financial assistance for seed village program, certified seed distribution at subsidized rates, and seed processing infrastructure.",
+      "description_hi": "किसानों को रियायती दर पर प्रमाणित उन्नत बीज उपलब्ध कराना और बीज ग्राम योजना का संचालन।",
+      "metadata": {
+        "benefit": "50% subsidy on certified seeds distribution for food grains and oilseeds under Seed Village Scheme.",
+        "source": "Department of Agriculture, Cooperation and Farmers Welfare",
+        "officialLink": "https://seednet.gov.in/",
+        "eligibilityRules": {
+          "allowedStates": [
+            "All"
+          ],
+          "requiredOwnership": [
+            "Owner",
+            "Tenant"
+          ]
+        },
+        "documents": [
+          "Aadhaar Card",
+          "Land Jamabandi details"
+        ],
+        "keywords": [
+          "seed village scheme",
+          "certified seed subsidy",
+          "beej anudan",
+          "smsp"
+        ],
+        "keywords_hi": [
+          "बीज सब्सिडी",
+          "उन्नत बीज अनुदान",
+          "बीज ग्राम योजना"
+        ],
+        "keywords_romanized": [
+          "beej anudan",
+          "seed subsidy scheme"
+        ]
+      }
+    },
+    {
+      "id": "bhartiye-prakritik-krishi-bpkp",
+      "category": "organic",
+      "title": "Bhartiya Prakritik Krishi Paddhati (BPKP - Natural Farming)",
+      "title_hi": "भारतीय प्राकृतिक कृषि पद्धति (BPKP - Natural Farming)",
+      "description": "Sub-scheme under PKVY promoting chemical-free Natural Farming (Jeevamrit, Beejamrit, Mulching, Whapasa).",
+      "description_hi": "जीवामृत, बीजामृत और आच्छादन (मल्चिंग) आधारित प्राकृतिक खेती अपनाने के लिए 12,200 रु प्रति हेक्टेयर प्रोत्साहन।",
+      "metadata": {
+        "benefit": "Financial assistance of Rs. 12,200 per hectare for 3 years for natural farming inputs and cluster training.",
+        "source": "Ministry of Agriculture and Farmers Welfare",
+        "officialLink": "https://naturalfarming.dac.gov.in/",
+        "eligibilityRules": {
+          "allowedStates": [
+            "All"
+          ],
+          "requiredOwnership": [
+            "Owner",
+            "Tenant"
+          ]
+        },
+        "documents": [
+          "Aadhaar Card",
+          "Land Records",
+          "Cluster Registration"
+        ],
+        "keywords": [
+          "natural farming",
+          "prakritik krishi",
+          "jeevamrit",
+          "bpkp",
+          "zero budget farming"
+        ],
+        "keywords_hi": [
+          "प्राकृतिक खेती",
+          "जीवामृत",
+          "प्राकृतिक कृषि योजना"
+        ],
+        "keywords_romanized": [
+          "prakritik krishi",
+          "jeevamrit scheme"
+        ]
+      }
+    },
+    {
+      "id": "national-bamboo-mission-nbm",
+      "category": "plantation",
+      "title": "National Bamboo Mission (NBM)",
+      "title_hi": "राष्ट्रीय बांस मिशन (National Bamboo Mission)",
+      "description": "Financial assistance of Rs.120 per plant (50% subsidy) for commercial bamboo cultivation on farmland bunds.",
+      "description_hi": "खेत की मेड़ पर या जमीन पर व्यावसायिक बांस की खेती हेतु 50% अनुदान (120 रु प्रति पौधा सहायता)।",
+      "metadata": {
+        "benefit": "Rs. 120 per plant subsidy over 3 years for commercial bamboo planting.",
+        "source": "Ministry of Agriculture and Farmers Welfare",
+        "officialLink": "https://nbm.nic.in/",
+        "eligibilityRules": {
+          "allowedStates": [
+            "All"
+          ],
+          "requiredOwnership": [
+            "Owner"
+          ]
+        },
+        "documents": [
+          "Aadhaar Card",
+          "Land records (RoR)",
+          "Bank Details"
+        ],
+        "keywords": [
+          "bamboo mission",
+          "baans ki kheti subsidy",
+          "nbm scheme"
+        ],
+        "keywords_hi": [
+          "बांस मिशन",
+          "बांस की खेती सब्सिडी"
+        ],
+        "keywords_romanized": [
+          "bamboo mission",
+          "baans subsidy"
+        ]
+      }
+    },
+    {
+      "id": "national-beekeeping-nbhm",
+      "category": "beekeeping",
+      "title": "National Beekeeping and Honey Mission (NBHM)",
+      "title_hi": "राष्ट्रीय मधुमक्खी पालन एवं शहद मिशन (NBHM - Beekeeping)",
+      "description": "80% financial subsidy for honeybee boxes, bee colonies, honey extraction equipment, and training.",
+      "description_hi": "मधुमक्खी के बक्से (Bee boxes), कॉलोनी और शहद निष्कासन उपकरण पर 80% तक सब्सिडी। मीठी क्रांति अभियान।",
+      "metadata": {
+        "benefit": "Up to 80% subsidy for setting up 10 to 50 bee boxes and honey extraction units.",
+        "source": "National Bee Board (NBB)",
+        "officialLink": "https://nbhm.gov.in/",
+        "eligibilityRules": {
+          "allowedStates": [
+            "All"
+          ],
+          "requiredOwnership": [
+            "Owner",
+            "Landless"
+          ]
+        },
+        "documents": [
+          "Aadhaar Card",
+          "Training Certificate (NBB recognized)",
+          "Bank Passbook"
+        ],
+        "keywords": [
+          "beekeeping subsidy",
+          "madhumakkhi palan",
+          "honey mission",
+          "nbhm"
+        ],
+        "keywords_hi": [
+          "मधुमक्खी पालन",
+          "शहद मिशन",
+          "बी बॉक्स सब्सिडी"
+        ],
+        "keywords_romanized": [
+          "madhumakkhi palan",
+          "honey mission subsidy"
+        ]
+      }
+    },
+    {
+      "id": "pm-krishi-sinchayee-pmksy-general",
+      "category": "irrigation",
+      "title": "Pradhan Mantri Krishi Sinchayee Yojana (PMKSY - Har Khet Ko Pani)",
+      "title_hi": "प्रधानमंत्री कृषि सिंचाई योजना (PMKSY - हर खेत को पानी)",
+      "description": "Comprehensive national irrigation scheme expanding cultivable area under assured irrigation, check dams, and water harvesting.",
+      "description_hi": "हर खेत को पानी पहुंचाने के लिए नहरे, चेक डैम, खेत तालाब और जल संचयन संरचनाओं का निर्माण।",
+      "metadata": {
+        "benefit": "Creation of water harvesting structures, borewell recharge units, and community lift irrigation.",
+        "source": "Ministry of Jal Shakti & Agriculture",
+        "officialLink": "https://pmksy.gov.in/",
+        "eligibilityRules": {
+          "allowedStates": [
+            "All"
+          ],
+          "requiredOwnership": [
+            "Owner",
+            "Community"
+          ]
+        },
+        "documents": [
+          "Aadhaar Card",
+          "Land Khasra Record"
+        ],
+        "keywords": [
+          "pmksy",
+          "krishi sinchayee yojana",
+          "har khet ko pani",
+          "check dam scheme"
+        ],
+        "keywords_hi": [
+          "कृषि सिंचाई योजना",
+          "हर खेत को पानी",
+          "तालाब योजना"
+        ],
+        "keywords_romanized": [
+          "pmksy scheme",
+          "krishi sinchayee yojana"
+        ]
+      }
     }
   ],
   "weather": [
@@ -780,144 +8409,471 @@ window.KRISHI_OFFLINE_KNOWLEDGE_BUNDLE = {
         "fallbackBehavior": "If Gemini API is unavailable, fallback advisories are served based on rainProbability > 50% and humidity > 75% thresholds",
         "autoRefreshInterval": "15 minutes (900,000 ms)"
       }
-    }
-  ],
-  "soil": [
-    {
-      "id": "soil-alluvial-clay-loam",
-      "category": "soil",
-      "title": "Alluvial Clay-Loam Soil (Domat Mitti)",
-      "description": "Common soil type in UP river plains. Low organic matter, medium water retention. Suitable for wheat, potato, mustard, and gram.",
-      "metadata": {
-        "soilType": "Alluvial Clay-Loam",
-        "localName": "Domat Mitti",
-        "healthScore": "72/100",
-        "moisture": "14% (Dry - Low Moisture)",
-        "organicMatter": "0.62% (Low)",
-        "waterRetention": "Medium",
-        "recommendedCrops": [
-          "Wheat",
-          "Potato",
-          "Mustard",
-          "Gram"
-        ],
-        "fertilizerAdvisory": "Apply 25kg Nitrogen (Urea), 15kg Phosphorus (DAP) per acre. Mix 5 tons organic cow compost (gobhar khad).",
-        "region": "North India - Uttar Pradesh, Bihar river plains"
-      }
     },
     {
-      "id": "soil-black-clayey",
-      "category": "soil",
-      "title": "Black Clayey Soil (Kaali Mitti)",
-      "description": "High organic matter, high water retention soil type. Excellent for cotton, soybeans, pigeon pea, and paddy.",
+      "id": "weather-advisory-heatwave",
+      "category": "weather",
+      "title": "Extreme Heatwave Farming Advisory (Loo / Atiyadhik Garmi)",
+      "title_hi": "भीषण गर्मी एवं लू (Heatwave) फसल सुरक्षा सलाह",
+      "description": "General offline agricultural guidance for temperatures exceeding 40°C. Protect crops, nurseries, and livestock from heat stress.",
+      "description_hi": "40°C से ऊपर तापमान होने पर फसल और पशुओं को लू से बचाने के उपाय। नोट: लाइव मौसम के लिए ऑनलाइन डैशबोर्ड देखें।",
       "metadata": {
-        "soilType": "Black Clayey Soil",
-        "localName": "Kaali Mitti / Regur Soil",
-        "healthScore": "89/100",
-        "moisture": "28% (Optimal - High Moisture)",
-        "organicMatter": "1.15% (Optimal)",
-        "waterRetention": "High",
-        "recommendedCrops": [
-          "Cotton",
-          "Soybeans",
-          "Pigeon Pea",
-          "Paddy"
+        "type": "Extreme Temperature",
+        "offlineGuidance": "Provide light frequent irrigations in evening or early morning. Mulch vegetable beds with straw to lower soil temperature by 3-5°C.",
+        "offlineGuidance_hi": "शाम के समय या तड़के हल्की सिंचाई करें। सब्जियों में पुआल की मल्चिंग करें ताकि मिट्टी का तापमान न बढ़े। पशुओं को ठंडे छांव में बांधें।",
+        "isLiveWeather": false,
+        "keywords": [
+          "heatwave",
+          "loo",
+          "heat stress",
+          "garmi me kheti",
+          "extreme heat advisory"
         ],
-        "fertilizerAdvisory": "Soil health is highly rich. Add 10kg Zinc Sulphate per acre to enhance micro-nutrients. Regular compost sufficient.",
-        "region": "Central India - Maharashtra, MP, Telangana, Karnataka"
-      }
-    }
-  ],
-  "fertilizers": [
-    {
-      "id": "fertilizer-urea-nitrogen",
-      "category": "fertilizer",
-      "title": "Urea (Nitrogen Fertilizer)",
-      "description": "Primary nitrogen source fertilizer. Should not be applied before or during rain events to avoid wash-off and loss.",
-      "metadata": {
-        "nutrient": "Nitrogen (N)",
-        "application": "25kg Nitrogen (Urea) per acre for Alluvial Clay-Loam soil",
-        "timing": "Avoid application during rain probability above 50% or before expected heavy downpours",
-        "advisory": "Rain showers expected for the next 24 hours. Postpone nitrogen/urea fertilizer applications. Keep drainage channels open in vegetable beds to prevent water logging.",
-        "weatherCondition": "Do not apply in wet or waterlogged conditions",
-        "compatibleSoils": [
-          "Alluvial Clay-Loam",
-          "Sandy Loam"
+        "keywords_hi": [
+          "लू",
+          "गर्मी",
+          "गर्मी में सिंचाई",
+          "भीषण गर्मी सलाह"
         ],
-        "compatibleCrops": [
-          "Wheat",
-          "Paddy",
-          "Potato",
-          "Mustard"
+        "keywords_romanized": [
+          "loo garmi",
+          "heatwave advisory",
+          "garmi me paani"
         ]
       }
     },
     {
-      "id": "fertilizer-dap-phosphorus",
-      "category": "fertilizer",
-      "title": "DAP (Phosphorus Fertilizer)",
-      "description": "Di-Ammonium Phosphate - primary phosphorus and secondary nitrogen source for most crops.",
+      "id": "weather-advisory-frost-coldwave",
+      "category": "weather",
+      "title": "Frost and Cold Wave Advisory (Pala / Thand Advisory)",
+      "title_hi": "पाला (Frost) एवं शीत लहर से फसल बचाव सलाह",
+      "description": "General offline guidance for temperatures below 5°C. Protect potato, mustard, tomato, and papaya from frost damage.",
+      "description_hi": "पाले (Frost) और शीत लहर में आलू, सरसों, टमाटर और पपीते को बचाने के लिए रात में हल्की सिंचाई करें और धुआं करें।",
       "metadata": {
-        "nutrient": "Phosphorus (P)",
-        "application": "15kg Phosphorus (DAP) per acre for Alluvial Clay-Loam soil",
-        "timing": "Apply in dry soil before sowing for best absorption",
-        "advisory": "Avoid applying urea or top-dressing fertilizers when rain will wash it away.",
-        "weatherCondition": "Apply during dry breaks in weather; avoid during rain",
-        "compatibleSoils": [
-          "Alluvial Clay-Loam",
-          "Black Clayey Soil"
+        "type": "Cold Temperature / Frost",
+        "offlineGuidance": "Apply light night irrigation to raise soil temperature. Burn farm waste/trash around field boundaries to create smoke layer. Spray 0.1% Soluble Sulfur or 13:0:45.",
+        "offlineGuidance_hi": "रात को खेत में हल्की सिंचाई करें। मेड़ पर धुआं करें। आलू-टमाटर पर 0.1% सल्फर का छिड़काव करें।",
+        "isLiveWeather": false,
+        "keywords": [
+          "frost",
+          "pala",
+          "cold wave",
+          "thand advisory",
+          "winter crop protection"
         ],
-        "compatibleCrops": [
-          "Wheat",
-          "Paddy",
-          "Mustard",
-          "Gram"
+        "keywords_hi": [
+          "पाला",
+          "शीत लहर",
+          "पाले से बचाव",
+          "ठंड में फसल"
+        ],
+        "keywords_romanized": [
+          "pala se bachav",
+          "frost advisory",
+          "thand me kheti"
         ]
       }
     },
     {
-      "id": "fertilizer-organic-compost",
-      "category": "fertilizer",
-      "title": "Organic Cow Compost (Gobhar Khad)",
-      "description": "Farm yard manure / organic compost that improves soil organic carbon, water retention, and microbial activity.",
+      "id": "weather-advisory-heavy-rain-flood",
+      "category": "weather",
+      "title": "Heavy Rainfall and Flood Protection Advisory (Bhari Barish / Jalnikasi)",
+      "title_hi": "भारी बारिश एवं बाढ़ से बचाव सलाह (Heavy Rain Advisory)",
+      "description": "General offline guidance for heavy rainfall events exceeding 50mm. Drain fields and postpone spray operations.",
+      "description_hi": "भारी वर्षा की चेतावनी पर कीटनाशक व खाद का छिड़काव रोक दें और खेत से अतिरिक्त पानी निकालने की व्यवस्था करें।",
       "metadata": {
-        "nutrient": "Organic Matter",
-        "application": "Mix 5 tons organic cow compost (gobhar khad) per acre. For Black Clayey Soil: regular compost is sufficient.",
-        "timing": "Apply before sowing season for best results",
-        "advisory": "Alluvial soil organic matter is 0.62% (Low). Apply gobhar khad to improve fertility.",
-        "weatherCondition": "Can be applied in any weather condition",
-        "compatibleSoils": [
-          "Alluvial Clay-Loam",
-          "Black Clayey Soil"
+        "type": "Precipitation",
+        "offlineGuidance": "Postpone all nitrogen/urea and pesticide spraying operations. Keep field drainage channels open. Stake tall crops to prevent lodging.",
+        "offlineGuidance_hi": "यूरिया व दवाओं का छिड़काव तुरंत स्थगित करें। जल निकासी नालियां साफ रखें। टमाटर-मिर्च के पौधों को डंडे से सहारा दें।",
+        "isLiveWeather": false,
+        "keywords": [
+          "heavy rain",
+          "bhari barish",
+          "flood advisory",
+          "rain drainage",
+          "monsoon storm"
         ],
-        "compatibleCrops": [
-          "Wheat",
-          "Paddy",
-          "Potato",
-          "Cotton",
-          "Soybeans"
+        "keywords_hi": [
+          "भारी बारिश",
+          "वर्षा सलाह",
+          "जल निकासी",
+          "बारिश में खाद"
+        ],
+        "keywords_romanized": [
+          "bhari barish",
+          "rain advisory",
+          "barish me kya karein"
         ]
       }
     },
     {
-      "id": "fertilizer-zinc-sulphate",
-      "category": "fertilizer",
-      "title": "Zinc Sulphate (Micronutrient)",
-      "description": "Zinc micronutrient fertilizer used in Black Clayey Soil to enhance micronutrient availability.",
+      "id": "weather-advisory-high-humidity-fungus",
+      "category": "weather",
+      "title": "High Humidity Fungal Outbreak Advisory (Nami / Fafund Khatra)",
+      "title_hi": "उच्च आर्द्रता (Humidity > 80%) फफूंद रोग सलाह",
+      "description": "General offline advisory for high humidity periods causing fungal spore germination (blast, blight, mildew).",
+      "description_hi": "80% से अधिक नमी होने पर फफूंद जनित रोगों (ब्लास्ट, झुलसा, गेरूई) का खतरा बढ़ जाता है। अग्रिम छिड़काव करें।",
       "metadata": {
-        "nutrient": "Zinc (Zn)",
-        "application": "Add 10kg Zinc Sulphate per acre to enhance micro-nutrients in Black Clayey Soil",
-        "timing": "Apply during base fertilizer application before sowing",
-        "advisory": "Soil health is highly rich in Black Clayey Soil. Add Zinc Sulphate to fill micronutrient gaps.",
-        "weatherCondition": "Apply in dry conditions",
-        "compatibleSoils": [
-          "Black Clayey Soil"
+        "type": "Humidity / Disease Risk",
+        "offlineGuidance": "Spray preventive bio-fungicide Trichoderma or Copper Oxychloride when relative humidity remains above 80% for consecutive days.",
+        "offlineGuidance_hi": "लगातार नमी रहने पर अग्रिम फफूंदनाशी (जैसे ट्राइकोड्रामा 5 ग्राम/लीटर) का छिड़काव करें।",
+        "isLiveWeather": false,
+        "keywords": [
+          "humidity fungus",
+          "nami fafund",
+          "cloudy weather disease",
+          "high humidity alert"
         ],
-        "compatibleCrops": [
-          "Cotton",
-          "Soybeans",
-          "Pigeon Pea",
-          "Paddy"
+        "keywords_hi": [
+          "नमी और बीमारी",
+          "फफूंद चेतावनी",
+          "आर्द्रता"
+        ],
+        "keywords_romanized": [
+          "nami bimari",
+          "humidity fungus advisory"
+        ]
+      }
+    },
+    {
+      "id": "weather-advisory-strong-wind-lodging",
+      "category": "weather",
+      "title": "High Wind Velocity & Crop Lodging Advisory (Teez Hava / Girna)",
+      "title_hi": "तेज हवा एवं फसल गिरने (Lodging) से बचाव सलाह",
+      "description": "General offline guidance during wind speeds exceeding 25 km/h to prevent crop lodging in wheat, sugarcane, and paddy.",
+      "description_hi": "25 किमी/घंटा से तेज हवा में सिंचाई न करें और गन्ने की बंधाई (Tying) करें ताकि फसल न गिरे।",
+      "metadata": {
+        "type": "Wind Speed",
+        "offlineGuidance": "Stop flood irrigation when strong winds blow to prevent soil loosening. Tie sugarcane stalks together in groups of 4-5.",
+        "offlineGuidance_hi": "तेज हवा में सिंचाई बिल्कुल न करें। गन्ने के पौधों को आपस में बांधें (Tying).",
+        "isLiveWeather": false,
+        "keywords": [
+          "strong wind",
+          "teez hava",
+          "crop lodging",
+          "sugarcane tying"
+        ],
+        "keywords_hi": [
+          "तेज हवा",
+          "फसल गिरना",
+          "गन्ना बंधाई"
+        ],
+        "keywords_romanized": [
+          "teez hava",
+          "crop lodging",
+          "wind advisory"
+        ]
+      }
+    },
+    {
+      "id": "weather-advisory-hailstorm",
+      "category": "weather",
+      "title": "Hailstorm Damage & Recovery Advisory (Olabristi / Aole Advisory)",
+      "title_hi": "ओलावृष्टि (Hailstorm) के बाद फसल पुनर्प्राप्ति सलाह",
+      "description": "General offline guidance following hailstorm damage to wheat, mustard, and vegetables.",
+      "description_hi": "ओले गिरने के बाद फसल पर 1% 19:19:19 और फफूंदनाशी का छिड़काव करें ताकि नए कल्ले फूट सकें।",
+      "metadata": {
+        "type": "Severe Weather",
+        "offlineGuidance": "Spray 19:19:19 water soluble fertilizer (10g/L) along with Carbendazim (1g/L) to heal damaged plant tissue and prevent secondary fungal infection.",
+        "offlineGuidance_hi": "ओलावृष्टि के बाद घाव भरने के लिए 19:19:19 (10 ग्राम/लीटर) और कार्बेन्डाजिम का छिड़काव करें।",
+        "isLiveWeather": false,
+        "keywords": [
+          "hailstorm",
+          "olabristi",
+          "aole girna",
+          "hail damage recovery"
+        ],
+        "keywords_hi": [
+          "ओलावृष्टि",
+          "ओले गिरना",
+          "ओला नुकसान"
+        ],
+        "keywords_romanized": [
+          "olabristi",
+          "aole girna",
+          "hailstorm damage"
+        ]
+      }
+    },
+    {
+      "id": "weather-advisory-fog-smog",
+      "category": "weather",
+      "title": "Dense Fog & Sunlight Deficit Advisory (Kohra / Dhund)",
+      "title_hi": "घना कोहरा एवं धूप की कमी (Fog Advisory)",
+      "description": "General offline advisory for prolonged fog conditions reducing photosynthesis and triggering late blight in potato.",
+      "description_hi": "लगातार कोहरा रहने पर आलू में पछेती झुलसा का खतरा बढ़ता है। अग्रिम फफूंदनाशी मैनकोज़ेब का छिड़काव करें।",
+      "metadata": {
+        "type": "Atmospheric Visibility",
+        "offlineGuidance": "Preventive spray of Mancozeb 75 WP at 2g/L on potato and tomato during continuous foggy days.",
+        "offlineGuidance_hi": "कोहरे के दौरान आलू-टमाटर पर मैनकोज़ेब (2 ग्राम/लीटर) का छिड़काव अवश्य करें।",
+        "isLiveWeather": false,
+        "keywords": [
+          "fog advisory",
+          "kohra",
+          "dhund",
+          "fog potato blight"
+        ],
+        "keywords_hi": [
+          "कोहरा",
+          "धुंध",
+          "कोहरे में रोग"
+        ],
+        "keywords_romanized": [
+          "kohra advisory",
+          "fog disease potato"
+        ]
+      }
+    },
+    {
+      "id": "weather-advisory-lightning-thunderstorm",
+      "category": "weather",
+      "title": "Thunderstorm & Lightning Safety for Farmers (Aakashia Bijli)",
+      "title_hi": "आकाशीय बिजली एवं कड़क के समय किसान सुरक्षा सलाह",
+      "description": "Safety guidelines during electrical storms for field workers.",
+      "description_hi": "खेत में काम करते समय आकाशीय बिजली चमकने पर ऊंचे पेड़ या लोहे के खंभे के नीचे न खड़े हों।",
+      "metadata": {
+        "type": "Safety Hazard",
+        "offlineGuidance": "Do not stand under isolated tall trees or open metal tractors. Squat low with feet together in low ground.",
+        "offlineGuidance_hi": "अकेले लंबे पेड़ या ट्रैक्टर के पास न रहें। उकड़ू बैठकर सिर घुटनों के बीच रखें।",
+        "isLiveWeather": false,
+        "keywords": [
+          "lightning",
+          "thunderstorm safety",
+          "aakashia bijli",
+          "bijli chamakna"
+        ],
+        "keywords_hi": [
+          "आकाशीय बिजली",
+          "बिजली कड़कना",
+          "तूफान सुरक्षा"
+        ],
+        "keywords_romanized": [
+          "bijli chamakna",
+          "lightning safety",
+          "aakashia bijli"
+        ]
+      }
+    },
+    {
+      "id": "weather-advisory-drought-dry-spell",
+      "category": "weather",
+      "title": "Monsoon Dry Spell & Drought Advisory (Sookha / Monsoon Break)",
+      "title_hi": "मानसून में सूखा व ब्रेक (Dry Spell) फसल प्रबंधन",
+      "description": "Offline guidelines when monsoon rains are delayed or dry spells exceed 15 days.",
+      "description_hi": "15 दिन से अधिक बारिश न होने पर जीवन रक्षक सिंचाई दें और खेत में मल्चिंग करें।",
+      "metadata": {
+        "type": "Drought / Rain Deficit",
+        "offlineGuidance": "Give life-saving irrigation using farm pond water. Spray anti-transpirant like Kaolin clay (5%) or Potassium Nitrate.",
+        "offlineGuidance_hi": "जीवन रक्षक सिंचाई दें। 5% काओलिन क्ले का छिड़काव करके वाष्पोत्सर्जन घटाएं।",
+        "isLiveWeather": false,
+        "keywords": [
+          "drought advisory",
+          "sookha",
+          "monsoon dry spell",
+          "barish na hona"
+        ],
+        "keywords_hi": [
+          "सूखा",
+          "बारिश न होना",
+          "मानसून ब्रेक"
+        ],
+        "keywords_romanized": [
+          "sookha advisory",
+          "barish nahi ho rahi"
+        ]
+      }
+    },
+    {
+      "id": "weather-advisory-cyclonic-rain",
+      "category": "weather",
+      "title": "Cyclonic Storm & Coastal Advisory (Tufan / Chakravat)",
+      "title_hi": "चक्रवाती तूफान एवं तटीय वर्षा सुरक्षा सलाह",
+      "description": "Pre-cyclonic offline instructions for coastal and rainstorm affected belts.",
+      "description_hi": "चक्रवात से पहले तैयार फसल काटकर सुरक्षित स्थान पर रखें और खेत की नालियां खोलें।",
+      "metadata": {
+        "type": "Cyclonic Storm",
+        "offlineGuidance": "Harvest mature crops immediately. Store harvested produce under waterproof tarpaulins.",
+        "offlineGuidance_hi": "पकी फसल तुरंत काट लें और तिरपाल से ढककर ऊंचे स्थान पर रखें।",
+        "isLiveWeather": false,
+        "keywords": [
+          "cyclone advisory",
+          "chakravat",
+          "tufan barish",
+          "cyclonic storm"
+        ],
+        "keywords_hi": [
+          "चक्रवात",
+          "तूफान",
+          "समुद्री तूफान"
+        ],
+        "keywords_romanized": [
+          "tufan advisory",
+          "cyclone warning"
+        ]
+      }
+    },
+    {
+      "id": "weather-advisory-livestock-heat-protection",
+      "category": "weather",
+      "title": "Livestock Care in Extreme Weather (Pashu Garmi / Thand Care)",
+      "title_hi": "पशुओं का मौसम आधारित रखरखाव (Livestock Weather Protection)",
+      "description": "Care instructions for dairy cows and buffaloes during heatwaves and cold spells.",
+      "description_hi": "गर्मी में दुधारू पशुओं को दिन में 3-4 बार नहलाएं और ठंड में बोरी से ढकें।",
+      "metadata": {
+        "type": "Livestock Weather Care",
+        "offlineGuidance": "Provide clean cool drinking water, add electrolytes in summer. Ensure proper shed ventilation.",
+        "offlineGuidance_hi": "गर्मी में पशुओं को ठंडा पानी पिलाएं और पंखा/फॉगर चलाएं। ठंड में बोरे की झूल पहनाएं।",
+        "isLiveWeather": false,
+        "keywords": [
+          "livestock weather",
+          "pashu garmi care",
+          "cow heat stress"
+        ],
+        "keywords_hi": [
+          "पशु सुरक्षा",
+          "गाय भैंस गर्मी",
+          "पशुपालक सलाह"
+        ],
+        "keywords_romanized": [
+          "pashu garmi",
+          "cow heat protection"
+        ]
+      }
+    },
+    {
+      "id": "weather-advisory-solar-pumping-clear-sky",
+      "category": "weather",
+      "title": "Solar Pumping Efficiency under Clear Sky Weather",
+      "title_hi": "साफ मौसम में सोलर पंप सिंचाई का अधिकतम उपयोग",
+      "description": "Advice on utilizing sunny clear days for solar pump irrigation.",
+      "description_hi": "धूप वाले साफ दिनों में सोलर पंप से ड्रिप/फव्वारा सिंचाई चलाकर ऊर्जा का पूरा लाभ उठाएं।",
+      "metadata": {
+        "type": "Solar Irrigation Weather",
+        "offlineGuidance": "Run micro-irrigation systems during peak sun hours (10 AM to 3 PM) for maximum solar pump water output.",
+        "offlineGuidance_hi": "सुबह 10 से दोपहर 3 बजे तक सोलर पंप की पूरी शक्ति का उपयोग करें।",
+        "isLiveWeather": false,
+        "keywords": [
+          "solar pump weather",
+          "sunny day irrigation",
+          "solar energy farming"
+        ],
+        "keywords_hi": [
+          "सोलर पंप मौसम",
+          "धूप में सिंचाई"
+        ],
+        "keywords_romanized": [
+          "solar pump irrigation",
+          "clear sky solar"
+        ]
+      }
+    },
+    {
+      "id": "weather-advisory-post-monsoon-sowing",
+      "category": "weather",
+      "title": "Post-Monsoon Residual Moisture Sowing Advisory (Rabi Sowing)",
+      "title_hi": "रबी फसलों की बुआई हेतु संरक्षित नमी का उपयोग",
+      "description": "Advice on utilizing post-monsoon soil moisture for mustard and gram sowing.",
+      "description_hi": "मानसून के बाद खेत की नमी उड़ने से पहले पाटा (Plank) चलाकर सरसों व चने की बुआई करें।",
+      "metadata": {
+        "type": "Soil Moisture Weather",
+        "offlineGuidance": "Run wooden plank (Pata) immediately after plowing to conserve soil moisture for Rabi crop germination.",
+        "offlineGuidance_hi": "जुताई के तुरंत बाद पाटा लगाएं ताकि नमी सुरक्षित रहे।",
+        "isLiveWeather": false,
+        "keywords": [
+          "post monsoon sowing",
+          "rabi soil moisture",
+          "pata chalan"
+        ],
+        "keywords_hi": [
+          "रबी बुआई",
+          "मानसून बाद बुआई"
+        ],
+        "keywords_romanized": [
+          "rabi sowing moisture",
+          "pata chalana"
+        ]
+      }
+    },
+    {
+      "id": "weather-advisory-stubble-burning-smog",
+      "category": "weather",
+      "title": "Air Quality & Stubble Management Advisory (Parali Na Jalaayein)",
+      "title_hi": "वायु प्रदूषण एवं पराली न जलाने की सलाह (Stubble Advisory)",
+      "description": "Guidance on in-situ crop residue management using Happy Seeder and Pusa Decomposer.",
+      "description_hi": "धान के अवशेष (पराली) जलाने के बजाय पूसा डीकंपोजर या हैप्पी सीडर से खेत में ही मिलाएं।",
+      "metadata": {
+        "type": "Air Quality / Environment",
+        "offlineGuidance": "Use Happy Seeder for direct wheat sowing in rice residues. Apply Pusa Decomposer capsules.",
+        "offlineGuidance_hi": "पराली में आग न लगाएं, हैप्पी सीडर से सीधी बुआई करें।",
+        "isLiveWeather": false,
+        "keywords": [
+          "stubble burning",
+          "parali",
+          "pusa decomposer",
+          "air quality farming"
+        ],
+        "keywords_hi": [
+          "पराली",
+          "पराली न जलाएं",
+          "हैप्पी सीडर"
+        ],
+        "keywords_romanized": [
+          "parali na jalayein",
+          "stubble burning"
+        ]
+      }
+    },
+    {
+      "id": "weather-advisory-greenhouse-polyhouse-temp",
+      "category": "weather",
+      "title": "Protected Cultivation Polyhouse Climate Control Advisory",
+      "title_hi": "पॉलीहाउस / शेडनेट में मौसम नियंत्रण सलाह",
+      "description": "Managing temperature and ventilation inside green/polyhouse structures.",
+      "description_hi": "गर्मी में शेडनेट और फॉगर चलाएं, ठंड में पॉलीहाउस की वेंटिलेशन शाम को बंद करें।",
+      "metadata": {
+        "type": "Protected Agriculture Climate",
+        "offlineGuidance": "Close side curtains before sunset during winter nights; run foggers during hot summer noon.",
+        "offlineGuidance_hi": "ठंड की रात में पर्दे बंद करें, गर्मी में फॉगर चलाएं।",
+        "isLiveWeather": false,
+        "keywords": [
+          "polyhouse climate",
+          "greenhouse temperature",
+          "polyhouse garmi"
+        ],
+        "keywords_hi": [
+          "पॉलीहाउस मौसम",
+          "शेडनेट वेंटिलेशन"
+        ],
+        "keywords_romanized": [
+          "polyhouse weather",
+          "greenhouse temp"
+        ]
+      }
+    },
+    {
+      "id": "weather-advisory-evaporative-water-loss",
+      "category": "weather",
+      "title": "Reducing Evaporative Water Loss in High Temp Seasons",
+      "title_hi": "उच्च तापमान में वाष्पीकरण रोकने के उपाय",
+      "description": "Techniques to reduce evapotranspiration loss during hot windy summer periods.",
+      "description_hi": "गर्मी में पलवार (Mulching) बिछाकर पानी के वाष्पीकरण को 40% तक कम करें।",
+      "metadata": {
+        "type": "Water Evaporation",
+        "offlineGuidance": "Use black plastic mulch or paddy straw mulch on vegetable ridges.",
+        "offlineGuidance_hi": "प्लास्टिक या पुआल मल्च का प्रयोग करें।",
+        "isLiveWeather": false,
+        "keywords": [
+          "evaporation loss",
+          "mulching weather",
+          "water saving summer"
+        ],
+        "keywords_hi": [
+          "वाष्पीकरण रोको",
+          "मल्चिंग तकनीक"
+        ],
+        "keywords_romanized": [
+          "evaporation loss",
+          "mulching summer"
         ]
       }
     }
@@ -1108,150 +9064,1202 @@ window.KRISHI_OFFLINE_KNOWLEDGE_BUNDLE = {
         ],
         "note": "Kishanpur Mandi is paying premium Rs.1800/Qtl today for tomatoes due to low supply."
       }
+    },
+    {
+      "id": "mandi-msp-minimum-support-price",
+      "category": "mandi",
+      "title": "Minimum Support Price (MSP) Advisory & Mandi Rates",
+      "title_hi": "न्यूनतम समर्थन मूल्य (MSP) और मंडी भाव सलाह",
+      "description": "Government guaranteed benchmark price for agricultural crops (Wheat, Paddy, Mustard, Gram).",
+      "description_hi": "सरकारी न्यूनतम समर्थन मूल्य (MSP) की जानकारी। यदि मंडी में व्यापारी MSP से कम रेट दें, तो सरकारी क्रय केंद्र पर फसल बेचें।",
+      "metadata": {
+        "concept": "MSP (Minimum Support Price)",
+        "advisory": "Compare private mandi quotes with official MSP rates. Never sell below MSP at government procurement centers.",
+        "advisory_hi": "प्राइवेट व्यापारी के भाव की तुलना सरकारी MSP से करें। सरकारी क्रय केंद्र पर पंजीयन कराएं।",
+        "isLivePrice": false,
+        "keywords": [
+          "msp",
+          "minimum support price",
+          "sarkari bhav",
+          "gehun msp",
+          "dhaan msp"
+        ],
+        "keywords_hi": [
+          "एमएसपी",
+          "सरकारी भाव",
+          "न्यूनतम समर्थन मूल्य"
+        ],
+        "keywords_romanized": [
+          "msp bhav",
+          "sarkari rate",
+          "minimum support price"
+        ]
+      }
+    },
+    {
+      "id": "mandi-moisture-deduction-rules",
+      "category": "mandi",
+      "title": "Mandi Moisture Cut & Quality Grading (Nami Katoti / Quality Standard)",
+      "title_hi": "मंडी में नमी कटौती और गुणवत्ता ग्रेडिंग (Moisture Cuts)",
+      "description": "Understanding standard moisture limits (12-14%) to avoid trader price deductions.",
+      "description_hi": "फसल में 12-14% से अधिक नमी होने पर व्यापारी भाव काटते हैं। धूप में सुखाकर ही मंडी ले जाएं।",
+      "metadata": {
+        "concept": "Moisture Content Standard",
+        "advisory": "Ensure grain moisture is below 12% for Wheat and 14% for Paddy before bringing produce to APMC mandi.",
+        "advisory_hi": "गेहूं में 12% और धान में 14% से कम नमी रखें ताकि कटौती न हो।",
+        "isLivePrice": false,
+        "keywords": [
+          "mandi moisture",
+          "nami katoti",
+          "grain moisture limit",
+          "mandi grading"
+        ],
+        "keywords_hi": [
+          "नमी कटौती",
+          "मंडी में कटौती",
+          "दाना सुखाना"
+        ],
+        "keywords_romanized": [
+          "nami katoti",
+          "mandi moisture"
+        ]
+      }
+    },
+    {
+      "id": "mandi-transportation-economics",
+      "category": "mandi",
+      "title": "Mandi Transport Cost vs Profit Comparison (Mandi Chunaav)",
+      "title_hi": "मंडी चुनाव एवं परिवहन खर्च का हिसाब",
+      "description": "How to calculate net profit considering transport cost between local and distantly located APMCs.",
+      "description_hi": "दूर की मंडी में ऊंचे भाव मिलने पर भी भाड़ा (Transport cost) घटाकर ही शुद्ध लाभ का हिसाब लगाएं।",
+      "metadata": {
+        "concept": "Transport Economics",
+        "advisory": "Calculate Net Profit = (Price per Qtl * Quintals) - (Trolley Transport + Hammali charges).",
+        "advisory_hi": "शुद्ध लाभ = (कुल भाव) - (ट्रैक्टर भाड़ा + हम्माली मजदूरी)।",
+        "isLivePrice": false,
+        "keywords": [
+          "mandi transport",
+          "which mandi to sell",
+          "mandi price comparison",
+          "net mandi profit"
+        ],
+        "keywords_hi": [
+          "मंडी भाड़ा",
+          "कौन सी मंडी में बेचें",
+          "मंडी मुनाफा"
+        ],
+        "keywords_romanized": [
+          "mandi bhada",
+          "konsi mandi me beche"
+        ]
+      }
+    },
+    {
+      "id": "mandi-azamgarh-apmc",
+      "category": "mandi",
+      "title": "Azamgarh Main APMC Mandi",
+      "title_hi": "आजमगढ़ मुख्य मंडी समिति (Azamgarh APMC)",
+      "description": "Major eastern UP mandi for vegetables, mustard, and pulses trading.",
+      "description_hi": "सब्जियों, सरसों और दलहन व्यापार हेतु पूर्वी उत्तर प्रदेश की बड़ी मंडी।",
+      "metadata": {
+        "type": "Government APMC",
+        "distance": "45km",
+        "highlightedFor": [
+          "mustard",
+          "chilli",
+          "potato",
+          "onion"
+        ],
+        "isLivePrice": false,
+        "keywords": [
+          "azamgarh mandi",
+          "azamgarh apmc",
+          "mustard price azamgarh"
+        ],
+        "keywords_hi": [
+          "आजमगढ़ मंडी",
+          "सरसों भाव आजमगढ़"
+        ],
+        "keywords_romanized": [
+          "azamgarh mandi",
+          "azamgarh bhav"
+        ]
+      }
+    },
+    {
+      "id": "mandi-varanasi-pindra",
+      "category": "mandi",
+      "title": "Varanasi Pindra APMC Mandi",
+      "title_hi": "वाराणसी पिंडरा मंडी समिति (Varanasi Mandi)",
+      "description": "Hub for tomato, green chilli, and paddy auctions in Purvanchal.",
+      "description_hi": "टमाटर, हरी मिर्च और धान के लिए पूर्वांचल की प्रमुख मंडी।",
+      "metadata": {
+        "type": "Government APMC",
+        "distance": "85km",
+        "highlightedFor": [
+          "tomato",
+          "green chilli",
+          "paddy"
+        ],
+        "isLivePrice": false,
+        "keywords": [
+          "varanasi mandi",
+          "pindra mandi",
+          "tomato varanasi price"
+        ],
+        "keywords_hi": [
+          "वाराणसी मंडी",
+          "टमाटर भाव बनारस"
+        ],
+        "keywords_romanized": [
+          "varanasi mandi",
+          "banaras mandi bhav"
+        ]
+      }
+    },
+    {
+      "id": "mandi-kanpur-chakeri",
+      "category": "mandi",
+      "title": "Kanpur Chakeri Grain & Oilseed Mandi",
+      "title_hi": "कानपुर चकेरी गल्ला व तिलहन मंडी",
+      "description": "Major central UP trading hub for wheat, pulses, and mustard oilseeds.",
+      "description_hi": "गेहूं, चना, सरसों और तिलहन व्यापार की सबसे बड़ी मध्य उत्तर प्रदेश मंडी।",
+      "metadata": {
+        "type": "Government APMC",
+        "distance": "160km",
+        "highlightedFor": [
+          "wheat",
+          "gram",
+          "mustard",
+          "soybean"
+        ],
+        "isLivePrice": false,
+        "keywords": [
+          "kanpur mandi",
+          "kanpur galla mandi",
+          "wheat kanpur price"
+        ],
+        "keywords_hi": [
+          "कानपुर मंडी",
+          "गल्ला मंडी कानपुर"
+        ],
+        "keywords_romanized": [
+          "kanpur mandi",
+          "kanpur bhav"
+        ]
+      }
+    },
+    {
+      "id": "mandi-offline-disclaimer",
+      "category": "mandi",
+      "title": "Offline Mandi Information Policy & Real-time Update Guide",
+      "title_hi": "ऑफलाइन मंडी भाव संबंधी दिशा-निर्देश",
+      "description": "Guidance on offline vs online mandi price updates in KrishiMitra.",
+      "description_hi": "ऑफलाइन मोड में हाल के रुझान और औसत भाव दिखाए जाते हैं। ताज़ा आज के लाइव भाव के लिए इंटरनेट से कनेक्ट करें।",
+      "metadata": {
+        "concept": "Offline Mandi Policy",
+        "advisory": "Offline RAG presents historical benchmarks and trends. Connect online for live daily e-NAM prices.",
+        "advisory_hi": "ऑफलाइन ज्ञानकोष बेंचमार्क दरें दिखाता है। ताज़ा लाइव भाव हेतु इंटरनेट कनेक्ट करें।",
+        "isLivePrice": false,
+        "keywords": [
+          "mandi policy",
+          "offline mandi price",
+          "live vs cached mandi"
+        ],
+        "keywords_hi": [
+          "मंडी भाव पॉलिसी",
+          "ऑफलाइन भाव"
+        ],
+        "keywords_romanized": [
+          "offline mandi bhav",
+          "live mandi price"
+        ]
+      }
     }
   ],
   "faq": [
     {
-      "id": "faq-wheat-price",
+      "id": "faq-gehu-sowing-time",
       "category": "faq",
-      "title": "What is the wheat price in Mandi today?",
-      "description": "Wheat (Lokwan) mandi price query answered by KrishiMitra Voice AI.",
+      "title": "When should wheat be sown? (Gehun kab bona chahiye?)",
+      "title_hi": "गेहूं कब बोना चाहिए?",
+      "description": "Optimal sowing time window for wheat crops in North and Central India.",
       "metadata": {
         "trigger": [
-          "wheat",
           "gehu",
-          "lokwan",
-          "kanak"
+          "wheat",
+          "bona",
+          "sowing",
+          "sowing time",
+          "gehun kab ropna"
         ],
-        "voiceResponse": "The highest price for Wheat (Lokwan) is Rs.2275/Qtl at Gorakhpur Sadar Mandi (18km). The lowest price is Rs.2150/Qtl at Laxmipur APMC (12km). Wheat rates are highest in Gorakhpur Sadar Mandi. We advise wait 3 days as prices are rising.",
-        "relatedModule": "Market / Mandi Prices",
-        "language": "en"
+        "question_hi": "गेहूं कब बोना चाहिए?",
+        "question_romanized": "gehu kab bona chahiye?",
+        "answer_hi": "गेहूं की बुआई का सबसे उपयुक्त समय 1 से 25 नवंबर तक (अगेती/समय पर बुआई) होता है। देर से बुआई के लिए 25 नवंबर से 15 दिसंबर तक का समय उचित है।",
+        "answer_en": "The best time for sowing wheat is from November 1 to November 25 for timely sowing. For late sowing, complete by December 15.",
+        "language": "hi"
       }
     },
     {
-      "id": "faq-rice-blast-cure",
+      "id": "faq-rice-water-requirement",
       "category": "faq",
-      "title": "How do I cure rice brown spots?",
-      "description": "Voice AI response for rice disease queries. Directs farmer to Vision Lab for AI diagnosis.",
+      "title": "How much water should be given to paddy? (Dhaan me paani kitna de?)",
+      "title_hi": "धान में पानी कितना देना चाहिए?",
+      "description": "Water management guidance for paddy fields.",
       "metadata": {
         "trigger": [
-          "disease",
-          "spots",
-          "rog",
-          "bimari",
-          "blast"
-        ],
-        "voiceResponse": "If your leaves have brown spots, it could be Rice Blast. Switch to the 'Vision Lab' tab, upload a picture, and our AI scanner will diagnose it immediately and give organic and chemical treatments.",
-        "relatedModule": "Vision Lab - Disease Scanner",
-        "language": "en"
-      }
-    },
-    {
-      "id": "faq-pm-kusum-scheme",
-      "category": "faq",
-      "title": "What is PM Kusum Scheme?",
-      "description": "Voice AI explanation of PM KUSUM Yojana for solar water pump subsidy.",
-      "metadata": {
-        "trigger": [
-          "kusum",
-          "solar",
-          "pump",
-          "subsidy"
-        ],
-        "voiceResponse": "Under PM Kusum Yojana, you can get a 60% government subsidy to install Solar water pumps. Required documents: Land Jamabandi ownership papers, borewell certification, and Aadhaar card.",
-        "relatedModule": "Schemes - PM KUSUM",
-        "language": "en"
-      }
-    },
-    {
-      "id": "faq-weather-advisory",
-      "category": "faq",
-      "title": "What is the weather advisory today?",
-      "description": "Voice AI weather response including current conditions and crop advisory.",
-      "metadata": {
-        "trigger": [
-          "weather",
-          "rain",
-          "mausam",
-          "barish",
-          "varsha",
-          "hava"
-        ],
-        "voiceResponse": "Today is 29°C with Light Rain (80% probability). AI Crop Advisory: Rain is expected, so postpone spraying nitrogen/urea fertilizer or pesticides today.",
-        "relatedModule": "Weather",
-        "language": "en"
-      }
-    },
-    {
-      "id": "faq-soil-recommendation",
-      "category": "faq",
-      "title": "What crop is best for my soil?",
-      "description": "Voice AI answer for soil type based crop recommendations.",
-      "metadata": {
-        "trigger": [
-          "soil",
-          "mitti",
-          "maati",
-          "zameen"
-        ],
-        "voiceResponse": "For Alluvial Soil, we recommend growing Wheat, Paddy, and Potato crops. Use organic compost (gobhar khad) to improve low organic carbon levels. Check Vision Lab to analyze soil images.",
-        "relatedModule": "Vision Lab - Soil Analyzer",
-        "language": "en"
-      }
-    },
-    {
-      "id": "faq-pm-kisan-samman",
-      "category": "faq",
-      "title": "How do I get PM Kisan Samman Nidhi money?",
-      "description": "Voice AI answer explaining PM-Kisan direct benefit transfer process.",
-      "metadata": {
-        "trigger": [
-          "kisan",
-          "samman",
-          "6000",
-          "pm kisan",
-          "income support"
-        ],
-        "voiceResponse": "PM Kisan Samman Nidhi gives Rs.6,000 yearly income support directly into farmers' bank accounts. Link your Aadhaar card with your bank to receive installments.",
-        "relatedModule": "Schemes - PM Kisan",
-        "language": "en"
-      }
-    },
-    {
-      "id": "faq-paddy-price",
-      "category": "faq",
-      "title": "What is the paddy price today?",
-      "description": "Voice AI response for paddy mandi price queries.",
-      "metadata": {
-        "trigger": [
-          "paddy",
-          "rice",
           "dhaan",
-          "dhan",
-          "chawal",
-          "tandul",
-          "jhona"
+          "rice",
+          "paddy",
+          "paani",
+          "water",
+          "dhan me pani"
         ],
-        "voiceResponse": "Rice Paddy prices today: Highest is Rs.2350/Qtl in Laxmipur APMC (12km). Lowest is Rs.2050/Qtl in Kishanpur Mandi (4km). Selling at Laxmipur APMC gives Rs.300/quintal more. Transport cost is Rs.40, net profit is higher.",
-        "relatedModule": "Market / Mandi Prices",
-        "language": "en"
+        "question_hi": "धान में पानी कितना देना चाहिए?",
+        "question_romanized": "dhaan me paani kitna देना चाहिए?",
+        "answer_hi": "रोपाई के शुरुआती 15-20 दिन खेत में 2 से 5 सेमी पानी खड़ा रखें। कल्ले निकलते समय पानी सुखाकर (AWD तकनीक) सिंचाई करें। फूल आने पर पानी की कमी न होने दें।",
+        "answer_en": "Keep 2-5 cm standing water for the first 15-20 days after transplanting. Practice Alternate Wetting and Drying (AWD) during tillering.",
+        "language": "hi"
       }
     },
     {
-      "id": "faq-tomato-price",
+      "id": "faq-black-soil-best-crop",
       "category": "faq",
-      "title": "What is the tomato price in mandi today?",
-      "description": "Voice AI response for tomato mandi price queries.",
+      "title": "Which crops grow best in black soil? (Kaali mitti me konsi fasal achhi hai?)",
+      "title_hi": "काली मिट्टी में कौन सी फसल अच्छी होती है?",
+      "description": "Crop recommendations for black clayey soil.",
       "metadata": {
         "trigger": [
-          "tomato",
-          "tamatar",
-          "tameta",
-          "tamatar"
+          "kaali mitti",
+          "black soil",
+          "regur",
+          "konsi fasal",
+          "best crop black soil"
         ],
-        "voiceResponse": "Tomatoes are selling at an excellent rate today! Highest is Rs.1800/Qtl in Kishanpur Mandi (4km). Lowest is Rs.1400/Qtl in Gorakhpur Sadar Mandi.",
-        "relatedModule": "Market / Mandi Prices",
-        "language": "en"
+        "question_hi": "काली मिट्टी में कौन सी फसल अच्छी होती है?",
+        "question_romanized": "kaali mitti me कौन सी fasal achhi hai?",
+        "answer_hi": "काली मिट्टी (Regur soil) में कपास (Cotton), सोयाबीन, चना, तुअर (अरहर), और गेहूं की फसल बहुत अच्छी होती है क्योंकि इसमें जल धारण क्षमता अधिक होती है।",
+        "answer_en": "Black clayey soil has high water retention and is ideal for Cotton, Soybean, Chickpea, Pigeon Pea, and Wheat.",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-tomato-leaf-curl-reason",
+      "category": "faq",
+      "title": "Why are tomato leaves curling? (Tamatar ki pattiyan kyu mud rahi hain?)",
+      "title_hi": "टमाटर की पत्तियां क्यों मुड़ रही हैं?",
+      "description": "Causes and remedies for tomato leaf curling.",
+      "metadata": {
+        "trigger": [
+          "tamatar",
+          "tomato",
+          "pattiyan mudna",
+          "curling leaves",
+          "leaf curl",
+          "tamatar mudna"
+        ],
+        "question_hi": "टमाटर की पत्तियां क्यों मुड़ रही हैं?",
+        "question_romanized": "tamatar ki pattiyan kyu mud rahi hain?",
+        "answer_hi": "टमाटर की पत्तियां मुड़ने का मुख्य कारण 'पत्ती मरोड़ वायरस' (Leaf Curl Virus) या थ्रिप्स/सफेद मक्खी कीट का प्रकोप होता है। नियंत्रण के लिए पीले चिपचिपे कार्ड लगाएं और इमिडाक्लोप्रिड या नीम तेल का छिड़काव करें।",
+        "answer_en": "Tomato leaf curling is caused by Leaf Curl Virus transmitted by whiteflies. Use yellow sticky traps and spray Imidacloprid or Neem oil.",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-yellow-leaves-remedy",
+      "category": "faq",
+      "title": "Why are plant leaves turning yellow? (Paudhon ki pattiyan peeli kyu ho rahi hain?)",
+      "title_hi": "पौधों की पत्तियां पीली क्यों हो रही हैं?",
+      "description": "General diagnosis for leaf yellowing in crops.",
+      "metadata": {
+        "trigger": [
+          "peeli pattiyan",
+          "yellow leaves",
+          "pattiyan peeli",
+          "leaf yellowing",
+          "nitrogen deficiency"
+        ],
+        "question_hi": "पौधों की पत्तियां पीली क्यों हो रही हैं?",
+        "question_romanized": "paudhon ki pattiyan peeli kyu ho rahi hain?",
+        "answer_hi": "पत्तियां पीली होने के 3 मुख्य कारण हैं: 1. नाइट्रोजन या जिंक की कमी, 2. खेत में अत्यधिक जलभराव, 3. पीला रतुआ या फफूंद रोग। मिट्टी की नमी जांचें और आवश्यकतानुसार यूरिया/जिंक का छिड़काव करें।",
+        "answer_en": "Leaf yellowing is mainly caused by Nitrogen/Zinc deficiency, waterlogging, or fungal/viral infection. Inspect soil moisture and apply recommended urea/zinc.",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-urea-application-timing",
+      "category": "faq",
+      "title": "When should Urea be applied? (Urea kab dalein?)",
+      "title_hi": "यूरिया कब डालना चाहिए?",
+      "description": "Timing and precautions for urea top dressing.",
+      "metadata": {
+        "trigger": [
+          "urea",
+          "yuriya",
+          "kab dalein",
+          "top dressing",
+          "urea timing"
+        ],
+        "question_hi": "यूरिया कब डालना चाहिए?",
+        "question_romanized": "urea kab dalna chahiye?",
+        "answer_hi": "यूरिया का प्रयोग बुआई के 20-25 दिन बाद (पहला पानी देने के बाद) और दूसरा 40-45 दिन बाद कल्ले निकलते समय टॉप ड्रेसिंग के रूप में करें। बारिश होने की संभावना में यूरिया न डालें।",
+        "answer_en": "Apply Urea as top dressing 20-25 days after sowing (after 1st irrigation) and 40-45 days during tillering. Avoid applying before heavy rain.",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-dap-vs-urea-difference",
+      "category": "faq",
+      "title": "What is the difference between DAP and Urea? (DAP aur Urea me kya antar hai?)",
+      "title_hi": "डीएपी और यूरिया में क्या अंतर है?",
+      "description": "Nutrient content and application timing difference between DAP and Urea.",
+      "metadata": {
+        "trigger": [
+          "dap",
+          "urea",
+          "difference",
+          "antar",
+          "dap vs urea"
+        ],
+        "question_hi": "डीएपी और यूरिया में क्या अंतर है?",
+        "question_romanized": "dap aur urea me kya antar hai?",
+        "answer_hi": "डीएपी (DAP) में 18% नाइट्रोजन और 46% फास्फोरस होता है जो जड़ों के विकास हेतु बुआई के समय दिया जाता है। यूरिया में 46% नाइट्रोजन होता है जो फसल की वानस्पतिक वृद्धि हेतु बाद में छिड़काव किया जाता है।",
+        "answer_en": "DAP contains 18% Nitrogen and 46% Phosphorus applied at sowing for root growth. Urea contains 46% Nitrogen applied later for foliage growth.",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-soil-test-method",
+      "category": "faq",
+      "title": "How to perform soil testing? (Mitti ki jaanch kaise karein?)",
+      "title_hi": "मिट्टी की जांच कैसे करें?",
+      "description": "Guidance on soil health card testing.",
+      "metadata": {
+        "trigger": [
+          "mitti jaanch",
+          "soil test",
+          "soil health card",
+          "mitti ki jaanch kaise kare"
+        ],
+        "question_hi": "मिट्टी की जांच कैसे करें?",
+        "question_romanized": "mitti ki jaanch kaise karein?",
+        "answer_hi": "खेत के 8-10 स्थानों से V-आकार का 15 सेमी गहरा गड्ढा बनाकर 500 ग्राम मिट्टी का मिश्रण बनाएं। सुखाकर पास के मृदा परीक्षण प्रयोगशाला (Soil Testing Lab) में जमा करें।",
+        "answer_en": "Collect soil samples from 8-10 field spots at 15 cm depth using a V-shaped cut, dry in shade, and submit 500g sample to the nearest Soil Testing Lab.",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-pm-kisan-details",
+      "category": "faq",
+      "title": "What is PM Kisan Samman Nidhi? (PM Kisan kya hai?)",
+      "title_hi": "पीएम किसान योजना क्या है?",
+      "description": "Details of PM-KISAN 6000 annual benefit.",
+      "metadata": {
+        "trigger": [
+          "pm kisan",
+          "samman nidhi",
+          "6000",
+          "pm kisan kya hai"
+        ],
+        "question_hi": "पीएम किसान योजना क्या है?",
+        "question_romanized": "pm kisan yojana kya hai?",
+        "answer_hi": "पीएम किसान सम्मान निधि योजना के तहत सभी पात्र किसान परिवारों को प्रति वर्ष 6,000 रुपये की वित्तीय सहायता 2,000 रुपये की 3 किस्तों में सीधे बैंक खाते (DBT) में दी जाती है।",
+        "answer_en": "PM-KISAN scheme provides Rs.6,000 per year in 3 equal installments of Rs.2,000 directly into eligible farmers' bank accounts via Direct Benefit Transfer.",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-crop-insurance-pmfby",
+      "category": "faq",
+      "title": "How to insure crops under PMFBY? (Fasal bima kaise karein?)",
+      "title_hi": "फसल बीमा कैसे करें?",
+      "description": "Crop insurance procedure under PMFBY.",
+      "metadata": {
+        "trigger": [
+          "fasal bima",
+          "pmfby",
+          "crop insurance",
+          "bima kaise karein"
+        ],
+        "question_hi": "फसल बीमा कैसे करें?",
+        "question_romanized": "fasal bima kaise karein?",
+        "answer_hi": "प्रधानमंत्री फसल बीमा योजना (PMFBY) के तहत सीएससी सेंटर, बैंक या pmfby.gov.in पोर्टल पर जाकर रबी (1.5% प्रीमियम) या खरीफ (2% प्रीमियम) फसल की बुआई रसीद और भू-अभिलेख के साथ आवेदन करें।",
+        "answer_en": "Apply for crop insurance at nearest CSC center, bank branch, or pmfby.gov.in with land records and sowing certificate at low 1.5% to 2% premium.",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-11",
+      "category": "faq",
+      "title": "सरसों में माहू कीड़ा कैसे रोकें?",
+      "title_hi": "सरसों में माहू कीड़ा कैसे रोकें?",
+      "description": "सरसों में माहू कीड़ा कैसे रोकें?",
+      "metadata": {
+        "trigger": [
+          "sarson me maho keeda kaise rokein?",
+          "सरसों में माहू कीड़ा कैसे रोकें?"
+        ],
+        "question_hi": "सरसों में माहू कीड़ा कैसे रोकें?",
+        "question_romanized": "sarson me maho keeda kaise rokein?",
+        "answer_hi": "सरसों में माहू (Aphid) नियंत्रण हेतु पीले चिपचिपे कार्ड लगाएं या नीम तेल 5 मिली/लीटर या इमिडाक्लोप्रिड 0.5 मिली/लीटर पानी में मिलाकर छिड़कें।",
+        "answer_en": "सरसों में माहू (Aphid) नियंत्रण हेतु पीले चिपचिपे कार्ड लगाएं या नीम तेल 5 मिली/लीटर या इमिडाक्लोप्रिड 0.5 मिली/लीटर पानी में मिलाकर छिड़कें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-12",
+      "category": "faq",
+      "title": "चने में इल्ली का इलाज क्या है?",
+      "title_hi": "चने में इल्ली का इलाज क्या है?",
+      "description": "चने में इल्ली का इलाज क्या है?",
+      "metadata": {
+        "trigger": [
+          "chane me illi ka ilaj kya hai?",
+          "चने में इल्ली का इलाज क्या है?"
+        ],
+        "question_hi": "चने में इल्ली का इलाज क्या है?",
+        "question_romanized": "chane me illi ka ilaj kya hai?",
+        "answer_hi": "चने की फली छेदक इल्ली (Helicoverpa) के लिए खेत में टी-आकार के पक्षी बसेरे लगाएं और इमामेक्टिन बेंजोएट (0.4 ग्राम/लीटर) का छिड़काव करें।",
+        "answer_en": "चने की फली छेदक इल्ली (Helicoverpa) के लिए खेत में टी-आकार के पक्षी बसेरे लगाएं और इमामेक्टिन बेंजोएट (0.4 ग्राम/लीटर) का छिड़काव करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-13",
+      "category": "faq",
+      "title": "गन्ने में लाल सड़न (Red Rot) रोग क्या है?",
+      "title_hi": "गन्ने में लाल सड़न (Red Rot) रोग क्या है?",
+      "description": "गन्ने में लाल सड़न (Red Rot) रोग क्या है?",
+      "metadata": {
+        "trigger": [
+          "ganne me laal galan rog kya hai?",
+          "गन्ने में लाल सड़न (red rot) रोग क्या है?"
+        ],
+        "question_hi": "गन्ने में लाल सड़न (Red Rot) रोग क्या है?",
+        "question_romanized": "ganne me laal galan rog kya hai?",
+        "answer_hi": "गन्ने का लाल सड़न रोग (Red Rot) कवक जनित है जिसमें गन्ना अंदर से लाल होकर सिरके की गंध देता है। बुआई से पहले गन्ने के टुकड़ों को कार्बेन्डाजिम से उपचारित करें।",
+        "answer_en": "गन्ने का लाल सड़न रोग (Red Rot) कवक जनित है जिसमें गन्ना अंदर से लाल होकर सिरके की गंध देता है। बुआई से पहले गन्ने के टुकड़ों को कार्बेन्डाजिम से उपचारित करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-14",
+      "category": "faq",
+      "title": "ड्रिप सिंचाई पर सब्सिडी कैसे मिलेगी?",
+      "title_hi": "ड्रिप सिंचाई पर सब्सिडी कैसे मिलेगी?",
+      "description": "ड्रिप सिंचाई पर सब्सिडी कैसे मिलेगी?",
+      "metadata": {
+        "trigger": [
+          "drip sinchai par subsidy kaise milegi?",
+          "ड्रिप सिंचाई पर सब्सिडी कैसे मिलेगी?"
+        ],
+        "question_hi": "ड्रिप सिंचाई पर सब्सिडी कैसे मिलेगी?",
+        "question_romanized": "drip sinchai par subsidy kaise milegi?",
+        "answer_hi": "पीएमकेएसवाई (PMKSY-PDMC) योजना के तहत उद्यान विभाग के पोर्टल पर आवेदन करके ड्रिप और फव्वारा सिंचाई पर 45% से 55% तक सब्सिडी प्राप्त की जा सकती है।",
+        "answer_en": "पीएमकेएसवाई (PMKSY-PDMC) योजना के तहत उद्यान विभाग के पोर्टल पर आवेदन करके ड्रिप और फव्वारा सिंचाई पर 45% से 55% तक सब्सिडी प्राप्त की जा सकती है।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-15",
+      "category": "faq",
+      "title": "खेत में गोबर की खाद कब डालें?",
+      "title_hi": "खेत में गोबर की खाद कब डालें?",
+      "description": "खेत में गोबर की खाद कब डालें?",
+      "metadata": {
+        "trigger": [
+          "khet me gobhar khad kab dalein?",
+          "खेत में गोबर की खाद कब डालें?"
+        ],
+        "question_hi": "खेत में गोबर की खाद कब डालें?",
+        "question_romanized": "khet me gobhar khad kab dalein?",
+        "answer_hi": "अच्छी सड़ी हुई गोबर की खाद (FYM) बुआई से 3-4 सप्ताह पहले अंतिम जुताई के समय खेत में मिलाकर मिट्टी में जोत देनी चाहिए।",
+        "answer_en": "अच्छी सड़ी हुई गोबर की खाद (FYM) बुआई से 3-4 सप्ताह पहले अंतिम जुताई के समय खेत में मिलाकर मिट्टी में जोत देनी चाहिए।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-16",
+      "category": "faq",
+      "title": "जिंक की कमी के क्या लक्षण हैं?",
+      "title_hi": "जिंक की कमी के क्या लक्षण हैं?",
+      "description": "जिंक की कमी के क्या लक्षण हैं?",
+      "metadata": {
+        "trigger": [
+          "zinc ki kami ke lakshan kya hain?",
+          "जिंक की कमी के क्या लक्षण हैं?"
+        ],
+        "question_hi": "जिंक की कमी के क्या लक्षण हैं?",
+        "question_romanized": "zinc ki kami ke lakshan kya hain?",
+        "answer_hi": "जिंक की कमी से धान में खैरा रोग (पत्तियों पर जंग जैसे धब्बे) तथा मक्के व गेहूं की नई पत्तियों का पीला/सफेद पड़ना प्रमुख लक्षण है।",
+        "answer_en": "जिंक की कमी से धान में खैरा रोग (पत्तियों पर जंग जैसे धब्बे) तथा मक्के व गेहूं की नई पत्तियों का पीला/सफेद पड़ना प्रमुख लक्षण है।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-17",
+      "category": "faq",
+      "title": "जैविक खेती कैसे शुरू करें?",
+      "title_hi": "जैविक खेती कैसे शुरू करें?",
+      "description": "जैविक खेती कैसे शुरू करें?",
+      "metadata": {
+        "trigger": [
+          "jaivik kheti kaise shuru karein?",
+          "जैविक खेती कैसे शुरू करें?"
+        ],
+        "question_hi": "जैविक खेती कैसे शुरू करें?",
+        "question_romanized": "jaivik kheti kaise shuru karein?",
+        "answer_hi": "जैविक खेती शुरू करने के लिए रासायनिक खाद बंद करके गोबर खाद, वर्मीकंपोस्ट, जीवामृत, और नीम आधारित कीटनाशकों का प्रयोग करें। PKVY योजना से जुड़ें।",
+        "answer_en": "जैविक खेती शुरू करने के लिए रासायनिक खाद बंद करके गोबर खाद, वर्मीकंपोस्ट, जीवामृत, और नीम आधारित कीटनाशकों का प्रयोग करें। PKVY योजना से जुड़ें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-18",
+      "category": "faq",
+      "title": "आलू में अगेती व पछेती झुलसा का अंतर क्या है?",
+      "title_hi": "आलू में अगेती व पछेती झुलसा का अंतर क्या है?",
+      "description": "आलू में अगेती व पछेती झुलसा का अंतर क्या है?",
+      "metadata": {
+        "trigger": [
+          "aalu me jhulsa ka antar kya hai?",
+          "आलू में अगेती व पछेती झुलसा का अंतर क्या है?"
+        ],
+        "question_hi": "आलू में अगेती व पछेती झुलसा का अंतर क्या है?",
+        "question_romanized": "aalu me jhulsa ka antar kya hai?",
+        "answer_hi": "अगेती झुलसा में पत्तियों पर गोल छल्लेदार (Target board) धब्बे बनते हैं, जबकि पछेती झुलसा में कोहरे के मौसम में पत्तियां काली पड़कर तेजी से गलती हैं।",
+        "answer_en": "अगेती झुलसा में पत्तियों पर गोल छल्लेदार (Target board) धब्बे बनते हैं, जबकि पछेती झुलसा में कोहरे के मौसम में पत्तियां काली पड़कर तेजी से गलती हैं।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-19",
+      "category": "faq",
+      "title": "कपास में सफेद मक्खी कैसे नियंत्रित करें?",
+      "title_hi": "कपास में सफेद मक्खी कैसे नियंत्रित करें?",
+      "description": "कपास में सफेद मक्खी कैसे नियंत्रित करें?",
+      "metadata": {
+        "trigger": [
+          "kapas me safed makkhi control kaise karein?",
+          "कपास में सफेद मक्खी कैसे नियंत्रित करें?"
+        ],
+        "question_hi": "कपास में सफेद मक्खी कैसे नियंत्रित करें?",
+        "question_romanized": "kapas me safed makkhi control kaise karein?",
+        "answer_hi": "कपास में सफेद मक्खी रोकने हेतु 15 पीले चिपचिपे कार्ड प्रति एकड़ लगाएं और स्पाइरोमेसिफेन या नीम तेल का छिड़काव करें।",
+        "answer_en": "कपास में सफेद मक्खी रोकने हेतु 15 पीले चिपचिपे कार्ड प्रति एकड़ लगाएं और स्पाइरोमेसिफेन या नीम तेल का छिड़काव करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-20",
+      "category": "faq",
+      "title": "मिर्च में चुरड़ा मुड़ड़ा रोग का इलाज क्या है?",
+      "title_hi": "मिर्च में चुरड़ा मुड़ड़ा रोग का इलाज क्या है?",
+      "description": "मिर्च में चुरड़ा मुड़ड़ा रोग का इलाज क्या है?",
+      "metadata": {
+        "trigger": [
+          "mirch me churda murda ilaj kya hai?",
+          "मिर्च में चुरड़ा मुड़ड़ा रोग का इलाज क्या है?"
+        ],
+        "question_hi": "मिर्च में चुरड़ा मुड़ड़ा रोग का इलाज क्या है?",
+        "question_romanized": "mirch me churda murda ilaj kya hai?",
+        "answer_hi": "मिर्च का चुरड़ा-मुड़ड़ा थ्रिप्स कीट के कारण होता है। नीले चिपचिपे कार्ड लगाएं और फिप्रोनिल 5 SC (1.5 मिली/लीटर) का छिड़काव करें।",
+        "answer_en": "मिर्च का चुरड़ा-मुड़ड़ा थ्रिप्स कीट के कारण होता है। नीले चिपचिपे कार्ड लगाएं और फिप्रोनिल 5 SC (1.5 मिली/लीटर) का छिड़काव करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-21",
+      "category": "faq",
+      "title": "मक्के में फॉल आर्मीवर्म कैसे नष्ट करें?",
+      "title_hi": "मक्के में फॉल आर्मीवर्म कैसे नष्ट करें?",
+      "description": "मक्के में फॉल आर्मीवर्म कैसे नष्ट करें?",
+      "metadata": {
+        "trigger": [
+          "makke me fall armyworm kaise nasht karein?",
+          "मक्के में फॉल आर्मीवर्म कैसे नष्ट करें?"
+        ],
+        "question_hi": "मक्के में फॉल आर्मीवर्म कैसे नष्ट करें?",
+        "question_romanized": "makke me fall armyworm kaise nasht karein?",
+        "answer_hi": "मक्के की गोभ में फॉल आर्मीवर्म इल्ली दिखने पर इमामेक्टिन बेंजोएट (0.4 ग्राम/लीटर) नोजल से सीधे गोभ में छिड़कें या रेत-नीम खली का मिश्रण डालें।",
+        "answer_en": "मक्के की गोभ में फॉल आर्मीवर्म इल्ली दिखने पर इमामेक्टिन बेंजोएट (0.4 ग्राम/लीटर) नोजल से सीधे गोभ में छिड़कें या रेत-नीम खली का मिश्रण डालें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-22",
+      "category": "faq",
+      "title": "प्याज में थ्रिप्स कैसे नियंत्रित करें?",
+      "title_hi": "प्याज में थ्रिप्स कैसे नियंत्रित करें?",
+      "description": "प्याज में थ्रिप्स कैसे नियंत्रित करें?",
+      "metadata": {
+        "trigger": [
+          "pyaj me thrips kaise niyantrit karein?",
+          "प्याज में थ्रिप्स कैसे नियंत्रित करें?"
+        ],
+        "question_hi": "प्याज में थ्रिप्स कैसे नियंत्रित करें?",
+        "question_romanized": "pyaj me thrips kaise niyantrit karein?",
+        "answer_hi": "प्याज़ की पत्तियों पर नीली-सफेद धारियां थ्रिप्स का लक्षण हैं। नीले कार्ड लगाएं और फिप्रोनिल का छिड़काव करें।",
+        "answer_en": "प्याज़ की पत्तियों पर नीली-सफेद धारियां थ्रिप्स का लक्षण हैं। नीले कार्ड लगाएं और फिप्रोनिल का छिड़काव करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-23",
+      "category": "faq",
+      "title": "नीम के तेल का छिड़काव कैसे बनाएं?",
+      "title_hi": "नीम के तेल का छिड़काव कैसे बनाएं?",
+      "description": "नीम के तेल का छिड़काव कैसे बनाएं?",
+      "metadata": {
+        "trigger": [
+          "neem oil spray kaise banayein?",
+          "नीम के तेल का छिड़काव कैसे बनाएं?"
+        ],
+        "question_hi": "नीम के तेल का छिड़काव कैसे बनाएं?",
+        "question_romanized": "neem oil spray kaise banayein?",
+        "answer_hi": "1 लीटर पानी में 3 से 5 मिली नीम का तेल (3000 ppm) और 1 ग्राम डिटर्जेंट/शैम्पू मिलाकर अच्छी तरह हिलाकर छिड़काव करें।",
+        "answer_en": "1 लीटर पानी में 3 से 5 मिली नीम का तेल (3000 ppm) और 1 ग्राम डिटर्जेंट/शैम्पू मिलाकर अच्छी तरह हिलाकर छिड़काव करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-24",
+      "category": "faq",
+      "title": "गेहूं का पीला रतुआ क्या है?",
+      "title_hi": "गेहूं का पीला रतुआ क्या है?",
+      "description": "गेहूं का पीला रतुआ क्या है?",
+      "metadata": {
+        "trigger": [
+          "gehun ka peela ratua kya hai?",
+          "गेहूं का पीला रतुआ क्या है?"
+        ],
+        "question_hi": "गेहूं का पीला रतुआ क्या है?",
+        "question_romanized": "gehun ka peela ratua kya hai?",
+        "answer_hi": "पीला रतुआ ठंड में पत्तियों पर पीली धारियां और पीला पाउडर जमने वाला कवक रोग है। इसके लिए प्रोपीकोनाज़ोल (1 मिली/लीटर) का छिड़काव करें।",
+        "answer_en": "पीला रतुआ ठंड में पत्तियों पर पीली धारियां और पीला पाउडर जमने वाला कवक रोग है। इसके लिए प्रोपीकोनाज़ोल (1 मिली/लीटर) का छिड़काव करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-25",
+      "category": "faq",
+      "title": "किसान क्रेडिट कार्ड (KCC) कैसे बनवायें?",
+      "title_hi": "किसान क्रेडिट कार्ड (KCC) कैसे बनवायें?",
+      "description": "किसान क्रेडिट कार्ड (KCC) कैसे बनवायें?",
+      "metadata": {
+        "trigger": [
+          "kisan credit card kaise banwayein?",
+          "किसान क्रेडिट कार्ड (kcc) कैसे बनवायें?"
+        ],
+        "question_hi": "किसान क्रेडिट कार्ड (KCC) कैसे बनवायें?",
+        "question_romanized": "kisan credit card kaise banwayein?",
+        "answer_hi": "अपने बैंक की शाखा में आधार कार्ड, जमीन की खसरा/खतौनी की नकल और पासपोर्ट फोटो जमा करके KCC फॉर्म भरें।",
+        "answer_en": "अपने बैंक की शाखा में आधार कार्ड, जमीन की खसरा/खतौनी की नकल और पासपोर्ट फोटो जमा करके KCC फॉर्म भरें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-26",
+      "category": "faq",
+      "title": "ड्रिप फर्टिगेशन क्या है?",
+      "title_hi": "ड्रिप फर्टिगेशन क्या है?",
+      "description": "ड्रिप फर्टिगेशन क्या है?",
+      "metadata": {
+        "trigger": [
+          "drip fertigation kya hai?",
+          "ड्रिप फर्टिगेशन क्या है?"
+        ],
+        "question_hi": "ड्रिप फर्टिगेशन क्या है?",
+        "question_romanized": "drip fertigation kya hai?",
+        "answer_hi": "ड्रिप सिंचाई पाइपलाइन के माध्यम से घुलनशील उर्वरकों (जैसे 19:19:19) को सीधे पौधों की जड़ों तक पहुंचाने की प्रक्रिया फर्टिगेशन कहलाती है।",
+        "answer_en": "ड्रिप सिंचाई पाइपलाइन के माध्यम से घुलनशील उर्वरकों (जैसे 19:19:19) को सीधे पौधों की जड़ों तक पहुंचाने की प्रक्रिया फर्टिगेशन कहलाती है।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-27",
+      "category": "faq",
+      "title": "खेत में पानी भराव से फसल कैसे बचाएं?",
+      "title_hi": "खेत में पानी भराव से फसल कैसे बचाएं?",
+      "description": "खेत में पानी भराव से फसल कैसे बचाएं?",
+      "metadata": {
+        "trigger": [
+          "khet me paani bharav se kaise bachayein?",
+          "खेत में पानी भराव से फसल कैसे बचाएं?"
+        ],
+        "question_hi": "खेत में पानी भराव से फसल कैसे बचाएं?",
+        "question_romanized": "khet me paani bharav se kaise bachayein?",
+        "answer_hi": "खेत की ढलान की तरफ 15-20 मीटर पर जल निकासी की नालियां (Drainage channels) बनाकर खड़े पानी को तुरंत बाहर निकालें।",
+        "answer_en": "खेत की ढलान की तरफ 15-20 मीटर पर जल निकासी की नालियां (Drainage channels) बनाकर खड़े पानी को तुरंत बाहर निकालें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-28",
+      "category": "faq",
+      "title": "पाले से फसल कैसे बचाएं?",
+      "title_hi": "पाले से फसल कैसे बचाएं?",
+      "description": "पाले से फसल कैसे बचाएं?",
+      "metadata": {
+        "trigger": [
+          "paale se fasal kaise bachayein?",
+          "पाले से फसल कैसे बचाएं?"
+        ],
+        "question_hi": "पाले से फसल कैसे बचाएं?",
+        "question_romanized": "paale se fasal kaise bachayein?",
+        "answer_hi": "शीत लहर में रात को हल्की सिंचाई करें, खेत की मेड़ पर धुआं करें और 0.1% घुलनशील सल्फर का छिड़काव करें।",
+        "answer_en": "शीत लहर में रात को हल्की सिंचाई करें, खेत की मेड़ पर धुआं करें और 0.1% घुलनशील सल्फर का छिड़काव करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-29",
+      "category": "faq",
+      "title": "बीज उपचार क्यों जरूरी है?",
+      "title_hi": "बीज उपचार क्यों जरूरी है?",
+      "description": "बीज उपचार क्यों जरूरी है?",
+      "metadata": {
+        "trigger": [
+          "beej upchar kyu zaruri hai?",
+          "बीज उपचार क्यों जरूरी है?"
+        ],
+        "question_hi": "बीज उपचार क्यों जरूरी है?",
+        "question_romanized": "beej upchar kyu zaruri hai?",
+        "answer_hi": "बीज उपचार करने से बीजों को मृदा और बीज जनित रोगों (उकठा, कगुआ, ब्लास्ट) से शुरुआती 30-40 दिनों तक सुरक्षा मिलती है।",
+        "answer_en": "बीज उपचार करने से बीजों को मृदा और बीज जनित रोगों (उकठा, कगुआ, ब्लास्ट) से शुरुआती 30-40 दिनों तक सुरक्षा मिलती है।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-30",
+      "category": "faq",
+      "title": "मिट्टी का pH मान कैसे सुधारें?",
+      "title_hi": "मिट्टी का pH मान कैसे सुधारें?",
+      "description": "मिट्टी का pH मान कैसे सुधारें?",
+      "metadata": {
+        "trigger": [
+          "mitti ka ph kaise sudharein?",
+          "मिट्टी का ph मान कैसे सुधारें?"
+        ],
+        "question_hi": "मिट्टी का pH मान कैसे सुधारें?",
+        "question_romanized": "mitti ka ph kaise sudharein?",
+        "answer_hi": "अम्लीय मिट्टी (pH < 6) में चूना (Lime) डालें और क्षारीय/ऊसर मिट्टी (pH > 8.5) में कृषि जिप्सम (Gypsum) और ढैंचा की हरी खाद का प्रयोग करें।",
+        "answer_en": "अम्लीय मिट्टी (pH < 6) में चूना (Lime) डालें और क्षारीय/ऊसर मिट्टी (pH > 8.5) में कृषि जिप्सम (Gypsum) और ढैंचा की हरी खाद का प्रयोग करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-31",
+      "category": "faq",
+      "title": "मूंगफली में टिक्का रोग का इलाज?",
+      "title_hi": "मूंगफली में टिक्का रोग का इलाज?",
+      "description": "मूंगफली में टिक्का रोग का इलाज?",
+      "metadata": {
+        "trigger": [
+          "moongfali me tikka rog ka ilaj?",
+          "मूंगफली में टिक्का रोग का इलाज?"
+        ],
+        "question_hi": "मूंगफली में टिक्का रोग का इलाज?",
+        "question_romanized": "moongfali me tikka rog ka ilaj?",
+        "answer_hi": "मूंगफली की पत्तों पर गोल काले धब्बों (टिक्का रोग) के लिए मैनकोज़ेब (2 ग्राम/लीटर) का छिड़काव करें।",
+        "answer_en": "मूंगफली की पत्तों पर गोल काले धब्बों (टिक्का रोग) के लिए मैनकोज़ेब (2 ग्राम/लीटर) का छिड़काव करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-32",
+      "category": "faq",
+      "title": "आम का बौर क्यों गिरता है?",
+      "title_hi": "आम का बौर क्यों गिरता है?",
+      "description": "आम का बौर क्यों गिरता है?",
+      "metadata": {
+        "trigger": [
+          "aam ka baur kyu girta hai?",
+          "आम का बौर क्यों गिरता है?"
+        ],
+        "question_hi": "आम का बौर क्यों गिरता है?",
+        "question_romanized": "aam ka baur kyu girta hai?",
+        "answer_hi": "आम का बौर भुनका कीट (Hopper) या चूर्णी फफूंद (Powdery Mildew) से गिरता है। सरसों के दाने जितने टिकोरे बनने पर हेक्साकोनाज़ोल या इमिडाक्लोप्रिड छिड़कें।",
+        "answer_en": "आम का बौर भुनका कीट (Hopper) या चूर्णी फफूंद (Powdery Mildew) से गिरता है। सरसों के दाने जितने टिकोरे बनने पर हेक्साकोनाज़ोल या इमिडाक्लोप्रिड छिड़कें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-33",
+      "category": "faq",
+      "title": "केले का सिगाटोका रोग क्या है?",
+      "title_hi": "केले का सिगाटोका रोग क्या है?",
+      "description": "केले का सिगाटोका रोग क्या है?",
+      "metadata": {
+        "trigger": [
+          "kela sigatoka rog kya hai?",
+          "केले का सिगाटोका रोग क्या है?"
+        ],
+        "question_hi": "केले का सिगाटोका रोग क्या है?",
+        "question_romanized": "kela sigatoka rog kya hai?",
+        "answer_hi": "केले के पत्तों पर भूरे-काले धब्बे सिगाटोका हैं। ग्रसित पत्ते काटकर जलाएं और प्रोपीकोनाज़ोल का छिड़काव करें।",
+        "answer_en": "केले के पत्तों पर भूरे-काले धब्बे सिगाटोका हैं। ग्रसित पत्ते काटकर जलाएं और प्रोपीकोनाज़ोल का छिड़काव करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-34",
+      "category": "faq",
+      "title": "भिंडी में पीला मोज़ेक वायरस?",
+      "title_hi": "भिंडी में पीला मोज़ेक वायरस?",
+      "description": "भिंडी में पीला मोज़ेक वायरस?",
+      "metadata": {
+        "trigger": [
+          "bhindi me peela mosaic virus?",
+          "भिंडी में पीला मोज़ेक वायरस?"
+        ],
+        "question_hi": "भिंडी में पीला मोज़ेक वायरस?",
+        "question_romanized": "bhindi me peela mosaic virus?",
+        "answer_hi": "भिंडी की नसें पीली पड़ना सफेद मक्खी द्वारा फैलाया वायरस है। पीले कार्ड लगाएं और प्रतिरोधी किस्म अर्क अनामिका बोएं।",
+        "answer_en": "भिंडी की नसें पीली पड़ना सफेद मक्खी द्वारा फैलाया वायरस है। पीले कार्ड लगाएं और प्रतिरोधी किस्म अर्क अनामिका बोएं।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-35",
+      "category": "faq",
+      "title": "सोलर पंप पर 60% सब्सिडी कैसे मिलेगी?",
+      "title_hi": "सोलर पंप पर 60% सब्सिडी कैसे मिलेगी?",
+      "description": "सोलर पंप पर 60% सब्सिडी कैसे मिलेगी?",
+      "metadata": {
+        "trigger": [
+          "solar pump subsidy kaise milegi?",
+          "सोलर पंप पर 60% सब्सिडी कैसे मिलेगी?"
+        ],
+        "question_hi": "सोलर पंप पर 60% सब्सिडी कैसे मिलेगी?",
+        "question_romanized": "solar pump subsidy kaise milegi?",
+        "answer_hi": "पीएम-कुसुम (PM-KUSUM) योजना के तहत राज्य के नवीकरणीय ऊर्जा विभाग के पोर्टल पर आवेदन करके 60% सब्सिडी प्राप्त कर सकते हैं।",
+        "answer_en": "पीएम-कुसुम (PM-KUSUM) योजना के तहत राज्य के नवीकरणीय ऊर्जा विभाग के पोर्टल पर आवेदन करके 60% सब्सिडी प्राप्त कर सकते हैं।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-36",
+      "category": "faq",
+      "title": "ई-नाम (e-NAM) पर फसल कैसे बेचें?",
+      "title_hi": "ई-नाम (e-NAM) पर फसल कैसे बेचें?",
+      "description": "ई-नाम (e-NAM) पर फसल कैसे बेचें?",
+      "metadata": {
+        "trigger": [
+          "enam par fasal kaise bechein?",
+          "ई-नाम (e-nam) पर फसल कैसे बेचें?"
+        ],
+        "question_hi": "ई-नाम (e-NAM) पर फसल कैसे बेचें?",
+        "question_romanized": "enam par fasal kaise bechein?",
+        "answer_hi": "e-NAM पोर्टल पर पंजीकृत होकर निकटतम ई-नाम मंडी में लॉट जमा करें। ऑनलाइन बोली के बाद सीधे बैंक खाते में भुगतान मिलेगा।",
+        "answer_en": "e-NAM पोर्टल पर पंजीकृत होकर निकटतम ई-नाम मंडी में लॉट जमा करें। ऑनलाइन बोली के बाद सीधे बैंक खाते में भुगतान मिलेगा।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-37",
+      "category": "faq",
+      "title": "वर्मीकंपोस्ट कैसे बनाएं?",
+      "title_hi": "वर्मीकंपोस्ट कैसे बनाएं?",
+      "description": "वर्मीकंपोस्ट कैसे बनाएं?",
+      "metadata": {
+        "trigger": [
+          "vermicompost kaise banayein?",
+          "वर्मीकंपोस्ट कैसे बनाएं?"
+        ],
+        "question_hi": "वर्मीकंपोस्ट कैसे बनाएं?",
+        "question_romanized": "vermicompost kaise banayein?",
+        "answer_hi": "गोबर और कृषि अवशेषों के ढेर में इसैनिया फेटिडा प्रजाति के केचुए छोड़कर 45-60 दिनों में उत्तम जैविक खाद तैयार की जा सकती है।",
+        "answer_en": "गोबर और कृषि अवशेषों के ढेर में इसैनिया फेटिडा प्रजाति के केचुए छोड़कर 45-60 दिनों में उत्तम जैविक खाद तैयार की जा सकती है।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-38",
+      "category": "faq",
+      "title": "ट्राइकोड्रामा का उपयोग कैसे करें?",
+      "title_hi": "ट्राइकोड्रामा का उपयोग कैसे करें?",
+      "description": "ट्राइकोड्रामा का उपयोग कैसे करें?",
+      "metadata": {
+        "trigger": [
+          "trichoderma ka upyog kaise karein?",
+          "ट्राइकोड्रामा का उपयोग कैसे करें?"
+        ],
+        "question_hi": "ट्राइकोड्रामा का उपयोग कैसे करें?",
+        "question_romanized": "trichoderma ka upyog kaise karein?",
+        "answer_hi": "ट्राइकोड्रामा जैविक फफूंदनाशी है। इसका प्रयोग बीज उपचार (5-10 ग्राम/किग्रा) या 2.5 किग्रा/एकड़ गोबर खाद में मिलाकर मिट्टी में करने हेतु होता है।",
+        "answer_en": "ट्राइकोड्रामा जैविक फफूंदनाशी है। इसका प्रयोग बीज उपचार (5-10 ग्राम/किग्रा) या 2.5 किग्रा/एकड़ गोबर खाद में मिलाकर मिट्टी में करने हेतु होता है।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-39",
+      "category": "faq",
+      "title": "फसल चक्र (Crop Rotation) क्यों अपनाना चाहिए?",
+      "title_hi": "फसल चक्र (Crop Rotation) क्यों अपनाना चाहिए?",
+      "description": "फसल चक्र (Crop Rotation) क्यों अपनाना चाहिए?",
+      "metadata": {
+        "trigger": [
+          "fasal chakra kyu apnayein?",
+          "फसल चक्र (crop rotation) क्यों अपनाना चाहिए?"
+        ],
+        "question_hi": "फसल चक्र (Crop Rotation) क्यों अपनाना चाहिए?",
+        "question_romanized": "fasal chakra kyu apnayein?",
+        "answer_hi": "गहरे और उथले जड़ वाले तथा अनाज और दलहनी फसलों को बदलकर बोने से मिट्टी की उर्वरता बनी रहती है और कीट-रोगों का चक्र टूटता है।",
+        "answer_en": "गहरे और उथले जड़ वाले तथा अनाज और दलहनी फसलों को बदलकर बोने से मिट्टी की उर्वरता बनी रहती है और कीट-रोगों का चक्र टूटता है।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-40",
+      "category": "faq",
+      "title": "खेत में दीमक से बचाव कैसे करें?",
+      "title_hi": "खेत में दीमक से बचाव कैसे करें?",
+      "description": "खेत में दीमक से बचाव कैसे करें?",
+      "metadata": {
+        "trigger": [
+          "khet me deemak se bachav kaise karein?",
+          "खेत में दीमक से बचाव कैसे करें?"
+        ],
+        "question_hi": "खेत में दीमक से बचाव कैसे करें?",
+        "question_romanized": "khet me deemak se bachav kaise karein?",
+        "answer_hi": "खेत में कच्ची गोबर खाद न डालें। नीम की खली (100 किग्रा/एकड़) मिलाएं या सिंचाई के साथ क्लोरपायरीफॉस बहाएं।",
+        "answer_en": "खेत में कच्ची गोबर खाद न डालें। नीम की खली (100 किग्रा/एकड़) मिलाएं या सिंचाई के साथ क्लोरपायरीफॉस बहाएं।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-41",
+      "category": "faq",
+      "title": "धान में तना छेदक का इलाज क्या है?",
+      "title_hi": "धान में तना छेदक का इलाज क्या है?",
+      "description": "धान में तना छेदक का इलाज क्या है?",
+      "metadata": {
+        "trigger": [
+          "dhaan me tana chedak ilaj?",
+          "धान में तना छेदक का इलाज क्या है?"
+        ],
+        "question_hi": "धान में तना छेदक का इलाज क्या है?",
+        "question_romanized": "dhaan me tana chedak ilaj?",
+        "answer_hi": "धान में गोभ सूखने पर कार्टैप हाइड्रोक्लोराइड 4G दानेदार (7.5 किग्रा/एकड़) या कोराजन का छिड़काव करें।",
+        "answer_en": "धान में गोभ सूखने पर कार्टैप हाइड्रोक्लोराइड 4G दानेदार (7.5 किग्रा/एकड़) या कोराजन का छिड़काव करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-42",
+      "category": "faq",
+      "title": "सरसों में अगेती बुआई का क्या लाभ है?",
+      "title_hi": "सरसों में अगेती बुआई का क्या लाभ है?",
+      "description": "सरसों में अगेती बुआई का क्या लाभ है?",
+      "metadata": {
+        "trigger": [
+          "sarson me ageti buai ka labh?",
+          "सरसों में अगेती बुआई का क्या लाभ है?"
+        ],
+        "question_hi": "सरसों में अगेती बुआई का क्या लाभ है?",
+        "question_romanized": "sarson me ageti buai ka labh?",
+        "answer_hi": "15 अक्टूबर तक सरसों बोने से फसल माहू (Aphid) कीट और अल्टरनेरिया झुलसा के प्रकोप से बच जाती है।",
+        "answer_en": "15 अक्टूबर तक सरसों बोने से फसल माहू (Aphid) कीट और अल्टरनेरिया झुलसा के प्रकोप से बच जाती है।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-43",
+      "category": "faq",
+      "title": "सोयाबीन में पीला मोज़ेक वायरस?",
+      "title_hi": "सोयाबीन में पीला मोज़ेक वायरस?",
+      "description": "सोयाबीन में पीला मोज़ेक वायरस?",
+      "metadata": {
+        "trigger": [
+          "soybean me peela mosaic virus?",
+          "सोयाबीन में पीला मोज़ेक वायरस?"
+        ],
+        "question_hi": "सोयाबीन में पीला मोज़ेक वायरस?",
+        "question_romanized": "soybean me peela mosaic virus?",
+        "answer_hi": "सोयाबीन की पत्तियां पीली पड़ना सफेद मक्खी का प्रकोप है। इमिडाक्लोप्रिड या थियामेथॉक्सम का छिड़काव करें।",
+        "answer_en": "सोयाबीन की पत्तियां पीली पड़ना सफेद मक्खी का प्रकोप है। इमिडाक्लोप्रिड या थियामेथॉक्सम का छिड़काव करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-44",
+      "category": "faq",
+      "title": "बैंगन में छोटी पत्ती रोग (Little Leaf)?",
+      "title_hi": "बैंगन में छोटी पत्ती रोग (Little Leaf)?",
+      "description": "बैंगन में छोटी पत्ती रोग (Little Leaf)?",
+      "metadata": {
+        "trigger": [
+          "baingan me chhoti patti rog?",
+          "बैंगन में छोटी पत्ती रोग (little leaf)?"
+        ],
+        "question_hi": "बैंगन में छोटी पत्ती रोग (Little Leaf)?",
+        "question_romanized": "baingan me chhoti patti rog?",
+        "answer_hi": "पत्तियां अत्यधिक छोटी और पौधा झाड़ी बनने पर ग्रसित पौधे उखाड़ दें तथा लीफहॉपर कीट नियंत्रण हेतु डाइमेथोएट छिड़कें।",
+        "answer_en": "पत्तियां अत्यधिक छोटी और पौधा झाड़ी बनने पर ग्रसित पौधे उखाड़ दें तथा लीफहॉपर कीट नियंत्रण हेतु डाइमेथोएट छिड़कें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-45",
+      "category": "faq",
+      "title": "फल छेदक के लिए फेरोमोन ट्रैप कैसे लगाएं?",
+      "title_hi": "फल छेदक के लिए फेरोमोन ट्रैप कैसे लगाएं?",
+      "description": "फल छेदक के लिए फेरोमोन ट्रैप कैसे लगाएं?",
+      "metadata": {
+        "trigger": [
+          "pheromone trap kaise lagayein?",
+          "फल छेदक के लिए फेरोमोन ट्रैप कैसे लगाएं?"
+        ],
+        "question_hi": "फल छेदक के लिए फेरोमोन ट्रैप कैसे लगाएं?",
+        "question_romanized": "pheromone trap kaise lagayein?",
+        "answer_hi": "एकड़ में 5-8 फेरोमोन ट्रैप फसल की ऊंचाई से 1 फीट ऊपर लगाएं ताकि नर पतंगे फंसकर प्रजनन चक्र टूट सके।",
+        "answer_en": "एकड़ में 5-8 फेरोमोन ट्रैप फसल की ऊंचाई से 1 फीट ऊपर लगाएं ताकि नर पतंगे फंसकर प्रजनन चक्र टूट सके।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-46",
+      "category": "faq",
+      "title": "गेहूं में पहली सिंचाई कब करें?",
+      "title_hi": "गेहूं में पहली सिंचाई कब करें?",
+      "description": "गेहूं में पहली सिंचाई कब करें?",
+      "metadata": {
+        "trigger": [
+          "gehun me pehli sinchai kab karein?",
+          "गेहूं में पहली सिंचाई कब करें?"
+        ],
+        "question_hi": "गेहूं में पहली सिंचाई कब करें?",
+        "question_romanized": "gehun me pehli sinchai kab karein?",
+        "answer_hi": "गेहूं की पहली सिंचाई बुआई के 20 से 25 दिन बाद क्राउन रूट (CRI stage) बनने पर अवश्य करें।",
+        "answer_en": "गेहूं की पहली सिंचाई बुआई के 20 से 25 दिन बाद क्राउन रूट (CRI stage) बनने पर अवश्य करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-47",
+      "category": "faq",
+      "title": "खरपतवार नाशक का उपयोग करते समय सावधानियां?",
+      "title_hi": "खरपतवार नाशक का उपयोग करते समय सावधानियां?",
+      "description": "खरपतवार नाशक का उपयोग करते समय सावधानियां?",
+      "metadata": {
+        "trigger": [
+          "weedicide precautions?",
+          "खरपतवार नाशक का उपयोग करते समय सावधानियां?"
+        ],
+        "question_hi": "खरपतवार नाशक का उपयोग करते समय सावधानियां?",
+        "question_romanized": "weedicide precautions?",
+        "answer_hi": "खरपतवार नाशक का छिड़काव फ्लैट फैन नोजल से नमी वाले खेत में करें। हवा के बहाव की दिशा में छिड़कें।",
+        "answer_en": "खरपतवार नाशक का छिड़काव फ्लैट फैन नोजल से नमी वाले खेत में करें। हवा के बहाव की दिशा में छिड़कें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-48",
+      "category": "faq",
+      "title": "मिट्टी में पोटाश का क्या महत्व है?",
+      "title_hi": "मिट्टी में पोटाश का क्या महत्व है?",
+      "description": "मिट्टी में पोटाश का क्या महत्व है?",
+      "metadata": {
+        "trigger": [
+          "mitti me potash ka mahatva?",
+          "मिट्टी में पोटाश का क्या महत्व है?"
+        ],
+        "question_hi": "मिट्टी में पोटाश का क्या महत्व है?",
+        "question_romanized": "mitti me potash ka mahatva?",
+        "answer_hi": "पोटाश पौधों को सूखा और बीमारी सहने की शक्ति देता है तथा अनाज और फलों में वजन व चमक बढ़ाता है।",
+        "answer_en": "पोटाश पौधों को सूखा और बीमारी सहने की शक्ति देता है तथा अनाज और फलों में वजन व चमक बढ़ाता है।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-49",
+      "category": "faq",
+      "title": "जैविक कीटनाशक (दशपर्णी अर्क) कैसे बनाएं?",
+      "title_hi": "जैविक कीटनाशक (दशपर्णी अर्क) कैसे बनाएं?",
+      "description": "जैविक कीटनाशक (दशपर्णी अर्क) कैसे बनाएं?",
+      "metadata": {
+        "trigger": [
+          "jaivik keetnashak dashparni ark?",
+          "जैविक कीटनाशक (दशपर्णी अर्क) कैसे बनाएं?"
+        ],
+        "question_hi": "जैविक कीटनाशक (दशपर्णी अर्क) कैसे बनाएं?",
+        "question_romanized": "jaivik keetnashak dashparni ark?",
+        "answer_hi": "नीम, धतूरा, आक, करंज आदि 10 पत्तियों को गोमूत्र व गोबर में 15 दिन सड़ाकर छाने गए घोल का छिड़काव करें।",
+        "answer_en": "नीम, धतूरा, आक, करंज आदि 10 पत्तियों को गोमूत्र व गोबर में 15 दिन सड़ाकर छाने गए घोल का छिड़काव करें।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-50",
+      "category": "faq",
+      "title": "पराली (Stubble) का प्रबंधन कैसे करें?",
+      "title_hi": "पराली (Stubble) का प्रबंधन कैसे करें?",
+      "description": "पराली (Stubble) का प्रबंधन कैसे करें?",
+      "metadata": {
+        "trigger": [
+          "parali prabandhan kaise karein?",
+          "पराली (stubble) का प्रबंधन कैसे करें?"
+        ],
+        "question_hi": "पराली (Stubble) का प्रबंधन कैसे करें?",
+        "question_romanized": "parali prabandhan kaise karein?",
+        "answer_hi": "पराली जलाने के बजाय पूसा डीकंपोजर छिड़ककर मिट्टी में जोतें या हैप्पी सीडर से बिना जलाए गेहूं बोएं।",
+        "answer_en": "पराली जलाने के बजाय पूसा डीकंपोजर छिड़ककर मिट्टी में जोतें या हैप्पी सीडर से बिना जलाए गेहूं बोएं।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-51",
+      "category": "faq",
+      "title": "ऑनलाइन और ऑफलाइन कृषि मित्र चैट में अंतर?",
+      "title_hi": "ऑनलाइन और ऑफलाइन कृषि मित्र चैट में अंतर?",
+      "description": "ऑनलाइन और ऑफलाइन कृषि मित्र चैट में अंतर?",
+      "metadata": {
+        "trigger": [
+          "online offline chat me antar?",
+          "ऑनलाइन और ऑफलाइन कृषि मित्र चैट में अंतर?"
+        ],
+        "question_hi": "ऑनलाइन और ऑफलाइन कृषि मित्र चैट में अंतर?",
+        "question_romanized": "online offline chat me antar?",
+        "answer_hi": "कृषि मित्र बिना इंटरनेट के स्थानीय ज्ञानकोष (Offline RAG) से 100% सटीक कृषि उत्तर देता है। ऑनलाइन में ताज़ा मौसम व मंडी लाइव जुड़ते हैं।",
+        "answer_en": "कृषि मित्र बिना इंटरनेट के स्थानीय ज्ञानकोष (Offline RAG) से 100% सटीक कृषि उत्तर देता है। ऑनलाइन में ताज़ा मौसम व मंडी लाइव जुड़ते हैं।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-52",
+      "category": "faq",
+      "title": "कृषि मित्र का उपयोग कौन सी भाषाओं में कर सकते हैं?",
+      "title_hi": "कृषि मित्र का उपयोग कौन सी भाषाओं में कर सकते हैं?",
+      "description": "कृषि मित्र का उपयोग कौन सी भाषाओं में कर सकते हैं?",
+      "metadata": {
+        "trigger": [
+          "krishimitra bhasha support?",
+          "कृषि मित्र का उपयोग कौन सी भाषाओं में कर सकते हैं?"
+        ],
+        "question_hi": "कृषि मित्र का उपयोग कौन सी भाषाओं में कर सकते हैं?",
+        "question_romanized": "krishimitra bhasha support?",
+        "answer_hi": "कृषि मित्र हिंदी (देवनागरी), अंग्रेजी और हिंग्लिश/रोमन हिंदी इनपुट स्वीकार करके शुद्ध देवनागरी हिंदी और अंग्रेजी उत्तर देता है।",
+        "answer_en": "कृषि मित्र हिंदी (देवनागरी), अंग्रेजी और हिंग्लिश/रोमन हिंदी इनपुट स्वीकार करके शुद्ध देवनागरी हिंदी और अंग्रेजी उत्तर देता है।",
+        "language": "hi"
+      }
+    },
+    {
+      "id": "faq-expanded-53",
+      "category": "faq",
+      "title": "सोयाबीन में कौन सी खाद डालें?",
+      "title_hi": "सोयाबीन में कौन सी खाद डालें?",
+      "description": "सोयाबीन में कौन सी खाद डालें?",
+      "metadata": {
+        "trigger": [
+          "soybean me konsi khad dalein?",
+          "सोयाबीन में कौन सी खाद डालें?"
+        ],
+        "question_hi": "सोयाबीन में कौन सी खाद डालें?",
+        "question_romanized": "soybean me konsi khad dalein?",
+        "answer_hi": "सोयाबीन में बुआई के समय 20 किग्रा एनपीके या एसएसपी (Single Super Phosphate) खाद डालें क्योंकि इसमें सल्फर होता है।",
+        "answer_en": "सोयाबीन में बुआई के समय 20 किग्रा एनपीके या एसएसपी (Single Super Phosphate) खाद डालें क्योंकि इसमें सल्फर होता है।",
+        "language": "hi"
       }
     }
   ]

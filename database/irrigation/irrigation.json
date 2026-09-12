@@ -1,0 +1,683 @@
+[
+  {
+    "id": "irrigation-wheat-critical-stages",
+    "category": "irrigation",
+    "crop": "Wheat",
+    "topic": "Wheat Irrigation Stages",
+    "title": "Wheat Irrigation Critical Growth Stages (Gehun me Sinchai Kab Karein)",
+    "title_hi": "गेहूं में सिंचाई के मुख्य चरण (Critical Irrigation Stages in Wheat)",
+    "description": "Wheat crop requires 4-6 irrigations at specific critical growth stages to achieve maximum yield.",
+    "description_hi": "गेहूं में 4 से 6 सिंचाई की आवश्यकता होती है। क्राउन रूट (CRI stage) पर पहली सिंचाई सबसे महत्वपूर्ण है।",
+    "metadata": {
+      "crop": "Wheat",
+      "criticalStages": [
+        "CRI Stage (20-25 days after sowing) - MOST CRITICAL",
+        "Tillering Stage (40-45 days)",
+        "Jointing Stage (60-65 days)",
+        "Flowering / Boot Stage (80-85 days)",
+        "Milking Stage (100-105 days)",
+        "Dough Stage (115-120 days)"
+      ],
+      "criticalStages_hi": [
+        "क्राउन रूट स्टेज (बुआई के 20-25 दिन बाद) - अति महत्वपूर्ण",
+        "कल्ले निकलते समय (40-45 दिन)",
+        "गांठ बनते समय (60-65 दिन)",
+        "फूल/बालियां आते समय (80-85 दिन)",
+        "दूधिया अवस्था (100-105 दिन)",
+        "दाना सख्त होते समय (115-120 दिन)"
+      ],
+      "advisory": "Never skip CRI stage irrigation (20-25 days). Avoid heavy flooding to prevent lodging.",
+      "keywords": [
+        "wheat irrigation",
+        "gehun sinchai",
+        "cri stage wheat",
+        "how many irrigations wheat"
+      ],
+      "keywords_hi": [
+        "गेहूं की सिंचाई",
+        "गेहूं में पानी कब दें",
+        "सीआरआई स्टेज गेहूं"
+      ],
+      "keywords_romanized": [
+        "gehu me pani kab de",
+        "gehun sinchai",
+        "wheat irrigation stages"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-rice-awd-water-management",
+    "category": "irrigation",
+    "crop": "Paddy / Rice",
+    "topic": "Rice Water Management & AWD",
+    "title": "Rice Water Management & Alternate Wetting Drying (Dhaan me Paani Prabandhan)",
+    "title_hi": "धान में पानी का प्रबंधन एवं AWD तकनीक (Rice Water Management)",
+    "description": "Maintaining continuous 2-5cm water depth during initial transplanting, followed by AWD technique to prevent root rot and BPH.",
+    "description_hi": "धान की रोपाई के पहले 2-3 सप्ताह 2-5 सेमी पानी रखें। फिर पानी सुखाकर दोबारा सिंचाई (AWD) करें।",
+    "metadata": {
+      "crop": "Paddy / Rice",
+      "recommendations": [
+        "Keep 2-5 cm standing water for first 15-20 days after transplanting.",
+        "Practice Alternate Wetting and Drying (AWD) during tillering stage to encourage deep root growth.",
+        "Keep soil flooded during flowering and grain filling stages.",
+        "Drain field completely 10-15 days before harvest."
+      ],
+      "recommendations_hi": [
+        "रोपाई के शुरुआती 15-20 दिन 2-5 सेमी पानी खड़ा रखें।",
+        "कल्ले निकलने के समय पानी सुखाकर हल्का सूखने पर दोबारा पानी दें (AWD तकनीक)।",
+        "फूल आने और दाना भरते समय पानी की कमी न होने दें।",
+        "कटाई से 10-15 दिन पहले खेत का पानी पूरा निकाल दें।"
+      ],
+      "advisory": "Stagnant continuous flooding throughout season causes root rot and BPH hopperburn.",
+      "keywords": [
+        "rice water",
+        "dhaan paani",
+        "awd technique rice",
+        "paddy water management"
+      ],
+      "keywords_hi": [
+        "धान में पानी",
+        "धान की सिंचाई",
+        "धान में कितना पानी दें"
+      ],
+      "keywords_romanized": [
+        "dhan me pani kitna de",
+        "dhaan sinchai",
+        "rice water management"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-drip-system-benefits",
+    "category": "irrigation",
+    "crop": "Vegetables, Sugarcane, Cotton, Fruits",
+    "topic": "Drip Irrigation",
+    "title": "Drip Irrigation System (Tapak Sinchai / Drip Irrigation)",
+    "title_hi": "ड्रिप सिंचाई प्रणाली (टपक सिंचाई / Drip Irrigation)",
+    "description": "Micro-irrigation method applying water drop-by-drop directly to plant roots saving 50-70% water and fertilizers.",
+    "description_hi": "पौधों की जड़ों में बूंद-बूंद पानी देने की आधुनिक तकनीक जिससे 50-70% पानी की बचत होती है। 45-55% सरकारी सब्सिडी उपलब्ध है।",
+    "metadata": {
+      "crop": "Vegetables, Sugarcane, Cotton, Fruit Orchards",
+      "benefits": [
+        "Saves 50-70% water compared to flood irrigation.",
+        "Fertigation option: apply liquid fertilizers directly through drip lines.",
+        "Reduces weed growth and prevents soil erosion.",
+        "Up to 55% government subsidy available under PMKSY-PDMC scheme."
+      ],
+      "benefits_hi": [
+        "पारंपरिक सिंचाई की तुलना में 50-70% पानी की बचत।",
+        "फर्टिगेशन द्वारा खाद सीधे जड़ों तक पहुंचाना संभव।",
+        "खरपतवार कम उगते हैं और बीमारी कम फैलती है।",
+        "पीएमकेएसवाई (PMKSY) योजना के तहत 45-55% सब्सिडी उपलब्ध।"
+      ],
+      "keywords": [
+        "drip irrigation",
+        "tapak sinchai",
+        "drip subsidy",
+        "micro irrigation"
+      ],
+      "keywords_hi": [
+        "ड्रिप सिंचाई",
+        "टपक सिंचाई",
+        "ड्रिप सब्सिडी"
+      ],
+      "keywords_romanized": [
+        "drip sinchai",
+        "tapak sinchai",
+        "drip irrigation system"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-sprinkler-system",
+    "category": "irrigation",
+    "crop": "Mustard, Wheat, Gram, Potato",
+    "topic": "Sprinkler Irrigation",
+    "title": "Sprinkler Irrigation System (Fawwara Sinchai)",
+    "title_hi": "फव्वारा सिंचाई प्रणाली (Sprinkler Irrigation)",
+    "description": "Pressurized overhead rain-like water spraying system ideal for undulating sandy soils and close-spaced crops.",
+    "description_hi": "बारिश की तरह फव्वारे से पानी देने की तकनीक। रेतीली और असमतल भूमि पर 30-40% पानी बचाती है।",
+    "metadata": {
+      "crop": "Mustard, Chickpea, Wheat, Groundnut, Pulses",
+      "benefits": [
+        "Uniform water distribution on sandy/undulating fields.",
+        "Saves 35-40% water and prevents soil crusting.",
+        "Protects crops against light winter frost."
+      ],
+      "benefits_hi": [
+        "रेतीले व ऊंचे-नीचे खेतों में समान पानी वितरण।",
+        "35-40% पानी की बचत, ठंड में पाले से फसल का बचाव।"
+      ],
+      "keywords": [
+        "sprinkler irrigation",
+        "fawwara sinchai",
+        "sprinkler subsidy"
+      ],
+      "keywords_hi": [
+        "फव्वारा सिंचाई",
+        "फव्वारा सेट"
+      ],
+      "keywords_romanized": [
+        "fawwara sinchai",
+        "sprinkler irrigation"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-waterlogging-drainage",
+    "category": "irrigation",
+    "crop": "All Crops",
+    "topic": "Waterlogging Management",
+    "title": "Waterlogging & Drainage Management (Khet me Paani Bharna / Jal Nikasi)",
+    "title_hi": "जलभराव और जल निकासी प्रबंधन (Field Drainage & Waterlogging)",
+    "description": "Prevention of root rot and oxygen starvation caused by excess standing water in crop fields.",
+    "description_hi": "खेत में अत्यधिक पानी भरने पर जल निकासी के उपाय ताकि जड़ें सड़ने से बच सकें।",
+    "metadata": {
+      "crop": "Vegetables, Pulses, Maize, Potato, Cotton",
+      "advisory": "Create open surface drainage ditches at 15-20 meter intervals across field slopes. Drain standing water after heavy rain.",
+      "advisory_hi": "खेत में 15-20 मीटर की दूरी पर जल निकासी की नालियां बनाएं। भारी बारिश के बाद पानी तुरंत बाहर निकालें।",
+      "keywords": [
+        "waterlogging",
+        "field drainage",
+        "jal nikasi",
+        "stagnant water"
+      ],
+      "keywords_hi": [
+        "जल निकासी",
+        "खेत में पानी भरना",
+        "जलभराव"
+      ],
+      "keywords_romanized": [
+        "jal nikasi",
+        "paani bharna",
+        "waterlogging"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-maize-stages",
+    "category": "irrigation",
+    "crop": "Maize",
+    "topic": "Maize Critical Irrigation Stages",
+    "title": "Maize Critical Irrigation Stages",
+    "title_hi": "मक्का में सिंचाई के मुख्य चरण",
+    "description": "Tasseling and silking stages are critical for maize grain setting.",
+    "description_hi": "मंजरी (Tasselling) और भुट्टा (Silking) बनते समय पानी की कमी न होने दें।",
+    "metadata": {
+      "crop": "Maize",
+      "advisory": "मंजरी (Tasselling) और भुट्टा (Silking) बनते समय पानी की कमी न होने दें।",
+      "keywords": [
+        "maize critical irrigation stages",
+        "irrigation advice",
+        "maize-stages"
+      ],
+      "keywords_hi": [
+        "मक्का में सिंचाई के मुख्य चरण",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "maize critical irrigation stages"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-cotton-schedule",
+    "category": "irrigation",
+    "crop": "Cotton",
+    "topic": "Cotton Irrigation Schedule",
+    "title": "Cotton Irrigation Schedule",
+    "title_hi": "कपास में सिंचाई का समय",
+    "description": "Avoid water stress during square formation and boll development.",
+    "description_hi": "डोडे बनते समय सिंचाई अति आवश्यक है।",
+    "metadata": {
+      "crop": "Cotton",
+      "advisory": "डोडे बनते समय सिंचाई अति आवश्यक है।",
+      "keywords": [
+        "cotton irrigation schedule",
+        "irrigation advice",
+        "cotton-schedule"
+      ],
+      "keywords_hi": [
+        "कपास में सिंचाई का समय",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "cotton irrigation schedule"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-potato-water-management",
+    "category": "irrigation",
+    "crop": "Potato",
+    "topic": "Potato Irrigation & Tuberization",
+    "title": "Potato Irrigation & Tuberization",
+    "title_hi": "आलू में सिंचाई व कंद विकास",
+    "description": "Light frequent irrigation required at tuber initiation and enlargement.",
+    "description_hi": "आलू में कंद बनते समय हल्की और नियमित सिंचाई करें।",
+    "metadata": {
+      "crop": "Potato",
+      "advisory": "आलू में कंद बनते समय हल्की और नियमित सिंचाई करें।",
+      "keywords": [
+        "potato irrigation & tuberization",
+        "irrigation advice",
+        "potato-water-management"
+      ],
+      "keywords_hi": [
+        "आलू में सिंचाई व कंद विकास",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "potato irrigation & tuberization"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-mustard-stages",
+    "category": "irrigation",
+    "crop": "Mustard",
+    "topic": "Mustard Irrigation Stages",
+    "title": "Mustard Irrigation Stages",
+    "title_hi": "सरसों में सिंचाई के 2 मुख्य चरण",
+    "description": "Two critical irrigations: at flowering (35 days) and pod formation (65 days).",
+    "description_hi": "फूल आते समय (35 दिन) और फली बनते समय (65 दिन) सिंचाई करें।",
+    "metadata": {
+      "crop": "Mustard",
+      "advisory": "फूल आते समय (35 दिन) और फली बनते समय (65 दिन) सिंचाई करें।",
+      "keywords": [
+        "mustard irrigation stages",
+        "irrigation advice",
+        "mustard-stages"
+      ],
+      "keywords_hi": [
+        "सरसों में सिंचाई के 2 मुख्य चरण",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "mustard irrigation stages"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-pulses-water-sensitivity",
+    "category": "irrigation",
+    "crop": "Pulses",
+    "topic": "Pulses Water Sensitivity & Over-Irrigation Warning",
+    "title": "Pulses Water Sensitivity & Over-Irrigation Warning",
+    "title_hi": "दलहनी फसलों में अत्यधिक पानी से सावधान",
+    "description": "Pulses like chickpea and lentil are highly sensitive to excess water.",
+    "description_hi": "चने व अरहर में अधिक पानी देने से फसल पीली पड़कर सूखती है।",
+    "metadata": {
+      "crop": "Pulses",
+      "advisory": "चने व अरहर में अधिक पानी देने से फसल पीली पड़कर सूखती है।",
+      "keywords": [
+        "pulses water sensitivity & over-irrigation warning",
+        "irrigation advice",
+        "pulses-water-sensitivity"
+      ],
+      "keywords_hi": [
+        "दलहनी फसलों में अत्यधिक पानी से सावधान",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "pulses water sensitivity & over-irrigation warning"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-sugarcane-water-req",
+    "category": "irrigation",
+    "crop": "Sugarcane",
+    "topic": "Sugarcane Water Requirement & Trash Mulching",
+    "title": "Sugarcane Water Requirement & Trash Mulching",
+    "title_hi": "गन्ने में जल प्रबंधन व ट्रेश मल्चिंग",
+    "description": "Sugarcane requires 1500-2500mm water; use trash mulching to conserve moisture.",
+    "description_hi": "सूखी पत्तियों की मल्चिंग करके नमी बचाएं।",
+    "metadata": {
+      "crop": "Sugarcane",
+      "advisory": "सूखी पत्तियों की मल्चिंग करके नमी बचाएं।",
+      "keywords": [
+        "sugarcane water requirement & trash mulching",
+        "irrigation advice",
+        "sugarcane-water-req"
+      ],
+      "keywords_hi": [
+        "गन्ने में जल प्रबंधन व ट्रेश मल्चिंग",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "sugarcane water requirement & trash mulching"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-drought-stress-management",
+    "category": "irrigation",
+    "crop": "All Crops",
+    "topic": "Drought Stress Crop Management",
+    "title": "Drought Stress Crop Management",
+    "title_hi": "सूखा तनाव (Drought Stress) में फसल सुरक्षा",
+    "description": "Foliar spray of 1% Potassium Nitrate (13:0:45) to reduce transpiration loss under heat.",
+    "description_hi": "1% पोटेशियम नाइट्रेट छिड़ककर फसल की नमी बचाएं।",
+    "metadata": {
+      "crop": "All Crops",
+      "advisory": "1% पोटेशियम नाइट्रेट छिड़ककर फसल की नमी बचाएं।",
+      "keywords": [
+        "drought stress crop management",
+        "irrigation advice",
+        "drought-stress-management"
+      ],
+      "keywords_hi": [
+        "सूखा तनाव (Drought Stress) में फसल सुरक्षा",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "drought stress crop management"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-fertigation-drip",
+    "category": "irrigation",
+    "crop": "Vegetables, Fruits",
+    "topic": "Drip Fertigation Method",
+    "title": "Drip Fertigation Method",
+    "title_hi": "फर्टिगेशन - ड्रिप द्वारा खाद देना",
+    "description": "Applying water-soluble fertilizers directly through drip lines for 90% efficiency.",
+    "description_hi": "ड्रिप लाइन द्वारा पानी के साथ सीधी खाद देना।",
+    "metadata": {
+      "crop": "Vegetables, Fruits",
+      "advisory": "ड्रिप लाइन द्वारा पानी के साथ सीधी खाद देना।",
+      "keywords": [
+        "drip fertigation method",
+        "irrigation advice",
+        "fertigation-drip"
+      ],
+      "keywords_hi": [
+        "फर्टिगेशन - ड्रिप द्वारा खाद देना",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "drip fertigation method"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-solar-pump-usage",
+    "category": "irrigation",
+    "crop": "All Crops",
+    "topic": "Solar Pump Water Management (PM KUSUM)",
+    "title": "Solar Pump Water Management (PM KUSUM)",
+    "title_hi": "सोलर पंप द्वारा सिंचाई प्रबंधन",
+    "description": "Optimizing Daytime solar pumping with drip/sprinkler networks.",
+    "description_hi": "दिन के समय सौर ऊर्जा से निर्बाध सिंचाई।",
+    "metadata": {
+      "crop": "All Crops",
+      "advisory": "दिन के समय सौर ऊर्जा से निर्बाध सिंचाई।",
+      "keywords": [
+        "solar pump water management (pm kusum)",
+        "irrigation advice",
+        "solar-pump-usage"
+      ],
+      "keywords_hi": [
+        "सोलर पंप द्वारा सिंचाई प्रबंधन",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "solar pump water management (pm kusum)"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-canal-water-warabandi",
+    "category": "irrigation",
+    "crop": "All Crops",
+    "topic": "Canal Water Management & Warabandi",
+    "title": "Canal Water Management & Warabandi",
+    "title_hi": "नहर के पानी का कुशल उपयोग (वारबंदी)",
+    "description": "Scheduled turn-based canal irrigation and field channel lining.",
+    "description_hi": "नालियों की पक्की मरम्मत और वारबंदी अनुसार सिंचाई।",
+    "metadata": {
+      "crop": "All Crops",
+      "advisory": "नालियों की पक्की मरम्मत और वारबंदी अनुसार सिंचाई।",
+      "keywords": [
+        "canal water management & warabandi",
+        "irrigation advice",
+        "canal-water-warabandi"
+      ],
+      "keywords_hi": [
+        "नहर के पानी का कुशल उपयोग (वारबंदी)",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "canal water management & warabandi"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-subsurface-drip",
+    "category": "irrigation",
+    "crop": "Sugarcane, Cotton",
+    "topic": "Sub-surface Drip Irrigation (SDI)",
+    "title": "Sub-surface Drip Irrigation (SDI)",
+    "title_hi": "भूमिगत टपक सिंचाई (Sub-surface Drip)",
+    "description": "Drip lines buried 15-20cm below soil surface preventing evaporation loss.",
+    "description_hi": "जमीन के 15 सेमी नीचे पाइप दबाकर जड़ों को पानी देना।",
+    "metadata": {
+      "crop": "Sugarcane, Cotton",
+      "advisory": "जमीन के 15 सेमी नीचे पाइप दबाकर जड़ों को पानी देना।",
+      "keywords": [
+        "sub-surface drip irrigation (sdi)",
+        "irrigation advice",
+        "subsurface-drip"
+      ],
+      "keywords_hi": [
+        "भूमिगत टपक सिंचाई (Sub-surface Drip)",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "sub-surface drip irrigation (sdi)"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-rainwater-harvesting-farm-pond",
+    "category": "irrigation",
+    "crop": "All Crops",
+    "topic": "Farm Pond Rainwater Harvesting (Khet Talab)",
+    "title": "Farm Pond Rainwater Harvesting (Khet Talab)",
+    "title_hi": "खेत तालाब - वर्षा जल संचयन",
+    "description": "Harvesting monsoon runoff water in farm ponds for life-saving irrigations.",
+    "description_hi": "खेत में तालाब बनाकर बारिश का पानी जमा करना।",
+    "metadata": {
+      "crop": "All Crops",
+      "advisory": "खेत में तालाब बनाकर बारिश का पानी जमा करना।",
+      "keywords": [
+        "farm pond rainwater harvesting (khet talab)",
+        "irrigation advice",
+        "rainwater-harvesting-farm-pond"
+      ],
+      "keywords_hi": [
+        "खेत तालाब - वर्षा जल संचयन",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "farm pond rainwater harvesting (khet talab)"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-soil-moisture-feel-method",
+    "category": "irrigation",
+    "crop": "All Crops",
+    "topic": "Soil Moisture Testing by Hand Feel Method",
+    "title": "Soil Moisture Testing by Hand Feel Method",
+    "title_hi": "हाथ से मिट्टी की नमी जांचने की विधि",
+    "description": "Squeezing soil ball in palm to determine if field needs irrigation.",
+    "description_hi": "मिट्टी का लड्डू बनाकर नमी का आकलन करना।",
+    "metadata": {
+      "crop": "All Crops",
+      "advisory": "मिट्टी का लड्डू बनाकर नमी का आकलन करना।",
+      "keywords": [
+        "soil moisture testing by hand feel method",
+        "irrigation advice",
+        "soil-moisture-feel-method"
+      ],
+      "keywords_hi": [
+        "हाथ से मिट्टी की नमी जांचने की विधि",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "soil moisture testing by hand feel method"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-over-irrigation-harms",
+    "category": "irrigation",
+    "crop": "All Crops",
+    "topic": "Harms of Over-Irrigation on Soil Health",
+    "title": "Harms of Over-Irrigation on Soil Health",
+    "title_hi": "अत्यधिक सिंचाई के नुकसान",
+    "description": "Over-irrigation leads to nutrient leaching, root asphyxiation, and salinity.",
+    "description_hi": "अत्यधिक पानी से जड़ों में हवा रुकना और लवणता बढ़ना।",
+    "metadata": {
+      "crop": "All Crops",
+      "advisory": "अत्यधिक पानी से जड़ों में हवा रुकना और लवणता बढ़ना।",
+      "keywords": [
+        "harms of over-irrigation on soil health",
+        "irrigation advice",
+        "over-irrigation-harms"
+      ],
+      "keywords_hi": [
+        "अत्यधिक सिंचाई के नुकसान",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "harms of over-irrigation on soil health"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-critical-growth-stages-general",
+    "category": "irrigation",
+    "crop": "All Crops",
+    "topic": "Understanding Critical Crop Growth Stages",
+    "title": "Understanding Critical Crop Growth Stages",
+    "title_hi": "फसल की संवेदनशील विकास अवस्थाएं",
+    "description": "Phases during crop lifecycle where water shortage causes maximum yield loss.",
+    "description_hi": "वे चरण जब पानी की कमी से पैदावार सबसे ज्यादा घटती है।",
+    "metadata": {
+      "crop": "All Crops",
+      "advisory": "वे चरण जब पानी की कमी से पैदावार सबसे ज्यादा घटती है।",
+      "keywords": [
+        "understanding critical crop growth stages",
+        "irrigation advice",
+        "critical-growth-stages-general"
+      ],
+      "keywords_hi": [
+        "फसल की संवेदनशील विकास अवस्थाएं",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "understanding critical crop growth stages"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-micro-irrigation-maintenance",
+    "category": "irrigation",
+    "crop": "All Crops",
+    "topic": "Drip & Sprinkler System Maintenance",
+    "title": "Drip & Sprinkler System Maintenance",
+    "title_hi": "ड्रिप व फव्वारा सिस्टम का रख-रखाव",
+    "description": "Acid flushing with hydrochloric acid to clear emitter clogging.",
+    "description_hi": "ड्रिप लैटरल्स में नमक व काई जमने पर एसिड फ्लशिंग।",
+    "metadata": {
+      "crop": "All Crops",
+      "advisory": "ड्रिप लैटरल्स में नमक व काई जमने पर एसिड फ्लशिंग।",
+      "keywords": [
+        "drip & sprinkler system maintenance",
+        "irrigation advice",
+        "micro-irrigation-maintenance"
+      ],
+      "keywords_hi": [
+        "ड्रिप व फव्वारा सिस्टम का रख-रखाव",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "drip & sprinkler system maintenance"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-furrow-broadbed",
+    "category": "irrigation",
+    "crop": "Vegetables, Cotton",
+    "topic": "Broad Bed Furrow (BBF) Irrigation",
+    "title": "Broad Bed Furrow (BBF) Irrigation",
+    "title_hi": "चौड़ी केयारी व नाली (BBF) सिंचाई",
+    "description": "Sowing crops on raised beds and watering only through furrows to save 30% water.",
+    "description_hi": "उठी हुई बेड्स पर बुआई और नालियों से सिंचाई।",
+    "metadata": {
+      "crop": "Vegetables, Cotton",
+      "advisory": "उठी हुई बेड्स पर बुआई और नालियों से सिंचाई।",
+      "keywords": [
+        "broad bed furrow (bbf) irrigation",
+        "irrigation advice",
+        "furrow-broadbed"
+      ],
+      "keywords_hi": [
+        "चौड़ी केयारी व नाली (BBF) सिंचाई",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "broad bed furrow (bbf) irrigation"
+      ]
+    }
+  },
+  {
+    "id": "irrigation-vegetable-watering-rules",
+    "category": "irrigation",
+    "crop": "Vegetables",
+    "topic": "Vegetable Crops Watering Guidelines",
+    "title": "Vegetable Crops Watering Guidelines",
+    "title_hi": "सब्जियों में सिंचाई के सामान्य नियम",
+    "description": "Shallow frequent irrigations for short-rooted vegetable crops.",
+    "description_hi": "सब्जियों में हल्की और बार-बार सिंचाई करना।",
+    "metadata": {
+      "crop": "Vegetables",
+      "advisory": "सब्जियों में हल्की और बार-बार सिंचाई करना।",
+      "keywords": [
+        "vegetable crops watering guidelines",
+        "irrigation advice",
+        "vegetable-watering-rules"
+      ],
+      "keywords_hi": [
+        "सब्जियों में सिंचाई के सामान्य नियम",
+        "सिंचाई सलाह"
+      ],
+      "keywords_romanized": [
+        "sinchai advice",
+        "vegetable crops watering guidelines"
+      ]
+    }
+  }
+]

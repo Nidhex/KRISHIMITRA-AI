@@ -17,25 +17,50 @@ const OUTPUT_JS = path.join(__dirname, '..', 'js', 'offline-knowledge-bundle.js'
 const FILE_MAP = {
   crops:       'crops/crops.json',
   diseases:    'diseases/diseases.json',
-  schemes:     'schemes/schemes.json',
-  weather:     'weather/weather.json',
+  pests:       'pests/pests.json',
   soil:        'soil/soil.json',
   fertilizers: 'fertilizers/fertilizers.json',
+  irrigation:  'irrigation/irrigation.json',
+  schemes:     'schemes/schemes.json',
+  weather:     'weather/weather.json',
   pesticides:  'pesticides/pesticides.json',
   mandi:       'mandi/mandi.json',
   faq:         'faq/faq.json'
 };
 
+function validateRecord(record, domain) {
+  if (!record || typeof record !== 'object') {
+    return { valid: false, error: 'Record is not an object' };
+  }
+  if (!record.id || typeof record.id !== 'string') {
+    return { valid: false, error: 'Missing or invalid id' };
+  }
+  if (!record.title && !record.name) {
+    return { valid: false, error: 'Missing title or name' };
+  }
+
+  // Security check (Phase 9): Ensure no sensitive API keys/tokens are leaked
+  const str = JSON.stringify(record);
+  if (/api_key|secret|password|bearer\s+[a-z0-9]/i.test(str)) {
+    return { valid: false, error: 'Record contains sensitive key or credentials!' };
+  }
+
+  return { valid: true };
+}
+
 function buildBundle() {
   console.log('[BUILD] Generating browser offline knowledge bundles...');
   const bundle = {
-    version: '1.0.0',
+    version: '2.0.0',
     generatedAt: new Date().toISOString(),
     data: {}
   };
 
   let totalRecords = 0;
   let domainsLoaded = 0;
+  const seenIds = new Set();
+  const duplicateIds = [];
+  const malformedRecords = [];
 
   for (const [domain, relPath] of Object.entries(FILE_MAP)) {
     const fullPath = path.join(DB_ROOT, relPath);
@@ -43,10 +68,28 @@ function buildBundle() {
       if (fs.existsSync(fullPath)) {
         const raw = fs.readFileSync(fullPath, 'utf8').replace(/^\uFEFF/, '');
         const records = JSON.parse(raw);
-        bundle.data[domain] = records;
-        totalRecords += records.length;
+
+        const validRecords = [];
+        records.forEach((rec, idx) => {
+          const val = validateRecord(rec, domain);
+          if (!val.valid) {
+            malformedRecords.push({ domain, index: idx, id: rec?.id, error: val.error });
+            return;
+          }
+
+          if (seenIds.has(rec.id)) {
+            duplicateIds.push({ domain, id: rec.id });
+          } else {
+            seenIds.add(rec.id);
+          }
+
+          validRecords.push(rec);
+        });
+
+        bundle.data[domain] = validRecords;
+        totalRecords += validRecords.length;
         domainsLoaded++;
-        console.log(`  ✓ Loaded ${records.length} records for ${domain}`);
+        console.log(`  ✓ Loaded ${validRecords.length} records for ${domain}`);
       } else {
         console.warn(`  ⚠ Warning: File missing for domain ${domain}: ${fullPath}`);
         bundle.data[domain] = [];
@@ -55,6 +98,13 @@ function buildBundle() {
       console.error(`  ✗ Error loading domain ${domain}: ${err.message}`);
       bundle.data[domain] = [];
     }
+  }
+
+  if (duplicateIds.length > 0) {
+    console.warn(`  ⚠ Warning: Found ${duplicateIds.length} duplicate IDs:`, duplicateIds);
+  }
+  if (malformedRecords.length > 0) {
+    console.warn(`  ⚠ Warning: Found ${malformedRecords.length} malformed records:`, malformedRecords);
   }
 
   // 1. Write JSON file

@@ -2,61 +2,1066 @@
   {
     "id": "fertilizer-urea-nitrogen",
     "category": "fertilizer",
-    "title": "Urea (Nitrogen Fertilizer)",
-    "description": "Primary nitrogen source fertilizer. Should not be applied before or during rain events to avoid wash-off and loss.",
+    "title": "Urea / Neem Coated Urea (Nitrogen Fertilizer)",
+    "title_hi": "यूरिया / नीम लेपित यूरिया (Urea - Nitrogen)",
+    "description": "Primary nitrogen source (46% N). Essential for vegetative plant growth and tillering.",
+    "description_hi": "नाइट्रोजन (46%) का मुख्य स्रोत। पौधों की हरियाली, वानस्पतिक वृद्धि और कल्ले निकलने के लिए आवश्यक।",
     "metadata": {
-      "nutrient": "Nitrogen (N)",
-      "application": "25kg Nitrogen (Urea) per acre for Alluvial Clay-Loam soil",
-      "timing": "Avoid application during rain probability above 50% or before expected heavy downpours",
-      "advisory": "Rain showers expected for the next 24 hours. Postpone nitrogen/urea fertilizer applications. Keep drainage channels open in vegetable beds to prevent water logging.",
-      "weatherCondition": "Do not apply in wet or waterlogged conditions",
-      "compatibleSoils": ["Alluvial Clay-Loam", "Sandy Loam"],
-      "compatibleCrops": ["Wheat", "Paddy", "Potato", "Mustard"]
+      "nutrient": "Nitrogen (46% N)",
+      "application": "Apply in 2-3 split top-dressing doses (at sowing, crown root, flowering stages).",
+      "application_hi": "फसल काल में 2 से 3 बार टॉप ड्रेसिंग के रूप में डालें। सिंचाई के बाद या ओस छटने पर प्रयोग करें।",
+      "timing": "Do not apply during expected rain events above 50% or flooded waterlogged conditions to prevent washing off.",
+      "advisory": "Rain showers expected: postpone urea top-dressing. Never throw urea in standing water.",
+      "weatherCondition": "Apply when field is moist, avoid application right before heavy downpours.",
+      "compatibleCrops": [
+        "Wheat",
+        "Paddy",
+        "Maize",
+        "Sugarcane",
+        "Potato",
+        "Vegetables"
+      ],
+      "keywords": [
+        "urea",
+        "yuriya",
+        "nitrogen fertilizer",
+        "urea application",
+        "when to apply urea"
+      ],
+      "keywords_hi": [
+        "यूरिया",
+        "नाइट्रोजन खाद",
+        "यूरिया कब डालें",
+        "यूरिया मात्रा"
+      ],
+      "keywords_romanized": [
+        "yuriya",
+        "urea kab dale",
+        "yuriya khad",
+        "nitrogen khad"
+      ]
     }
   },
   {
     "id": "fertilizer-dap-phosphorus",
     "category": "fertilizer",
-    "title": "DAP (Phosphorus Fertilizer)",
-    "description": "Di-Ammonium Phosphate - primary phosphorus and secondary nitrogen source for most crops.",
+    "title": "DAP - Di-Ammonium Phosphate (18:46:0)",
+    "title_hi": "डीएपी - डाई अमोनियम फास्फेट (DAP 18:46:0)",
+    "description": "Primary basal fertilizer containing 18% Nitrogen and 46% Phosphorus for root development.",
+    "description_hi": "18% नाइट्रोजन और 46% फास्फोरस युक्त मुख्य बुआई खाद। जड़ों के विकास और तने की मजबूती के लिए अति आवश्यक।",
     "metadata": {
-      "nutrient": "Phosphorus (P)",
-      "application": "15kg Phosphorus (DAP) per acre for Alluvial Clay-Loam soil",
-      "timing": "Apply in dry soil before sowing for best absorption",
-      "advisory": "Avoid applying urea or top-dressing fertilizers when rain will wash it away.",
-      "weatherCondition": "Apply during dry breaks in weather; avoid during rain",
-      "compatibleSoils": ["Alluvial Clay-Loam", "Black Clayey Soil"],
-      "compatibleCrops": ["Wheat", "Paddy", "Mustard", "Gram"]
+      "nutrient": "Phosphorus (46% P2O5) + Nitrogen (18% N)",
+      "application": "Apply at sowing time below the seed depth as a basal dose.",
+      "application_hi": "बुआई के समय बीज के नीचे आधार खुराक (Basal dose) के रूप में दें।",
+      "timing": "Apply in dry/moist field during seed bed preparation.",
+      "advisory": "Do not mix DAP with zinc sulphate directly during application.",
+      "weatherCondition": "Apply during land preparation before sowing.",
+      "compatibleCrops": [
+        "Wheat",
+        "Paddy",
+        "Mustard",
+        "Chickpea",
+        "Potato",
+        "Soybean"
+      ],
+      "keywords": [
+        "dap",
+        "di ammonium phosphate",
+        "dap vs urea",
+        "phosphorus fertilizer",
+        "dap khad"
+      ],
+      "keywords_hi": [
+        "डीएपी",
+        "डी०ए०पी०",
+        "फास्फोरस खाद",
+        "डीएपी कब डालें"
+      ],
+      "keywords_romanized": [
+        "dap khad",
+        "dap aur yuriya me antar",
+        "dap fertilizer"
+      ]
     }
   },
   {
-    "id": "fertilizer-organic-compost",
+    "id": "fertilizer-mop-potash",
     "category": "fertilizer",
-    "title": "Organic Cow Compost (Gobhar Khad)",
-    "description": "Farm yard manure / organic compost that improves soil organic carbon, water retention, and microbial activity.",
+    "title": "MOP - Muriate of Potash (60% K2O)",
+    "title_hi": "एमओपी / पोटाश (Muriate of Potash - 60% K)",
+    "description": "Primary potassium source fertilizer (60% K2O) providing drought tolerance, grain shine, and disease resistance.",
+    "description_hi": "60% पोटाश युक्त खाद। दानों में चमक, वजन बढ़ाने, सूखा सहनशीलता और बीमारियों से रक्षा हेतु आवश्यक।",
     "metadata": {
-      "nutrient": "Organic Matter",
-      "application": "Mix 5 tons organic cow compost (gobhar khad) per acre. For Black Clayey Soil: regular compost is sufficient.",
-      "timing": "Apply before sowing season for best results",
-      "advisory": "Alluvial soil organic matter is 0.62% (Low). Apply gobhar khad to improve fertility.",
-      "weatherCondition": "Can be applied in any weather condition",
-      "compatibleSoils": ["Alluvial Clay-Loam", "Black Clayey Soil"],
-      "compatibleCrops": ["Wheat", "Paddy", "Potato", "Cotton", "Soybeans"]
+      "nutrient": "Potassium (60% K2O)",
+      "application": "Apply 50% at sowing and 50% at earhead/flowering stage.",
+      "application_hi": "आधा भाग बुआई के समय और आधा भाग बालियां/फूल आते समय दें।",
+      "timing": "Apply at basal stage and pre-flowering stage.",
+      "advisory": "Potash increases grain weight and crop resistance against lodging.",
+      "compatibleCrops": [
+        "Paddy",
+        "Wheat",
+        "Sugarcane",
+        "Potato",
+        "Banana",
+        "Fruit crops"
+      ],
+      "keywords": [
+        "mop",
+        "muriate of potash",
+        "potash",
+        "potash khad"
+      ],
+      "keywords_hi": [
+        "पोटाश",
+        "एमओपी",
+        "पोटाश खाद"
+      ],
+      "keywords_romanized": [
+        "potash khad",
+        "mop fertilizer"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-ssp-single-super-phosphate",
+    "category": "fertilizer",
+    "title": "SSP - Single Super Phosphate (16% P, 11% S, 19% Ca)",
+    "title_hi": "एसएसपी - सिंगल सुपर फास्फेट (SSP)",
+    "description": "Multi-nutrient basal fertilizer providing 16% Phosphorus, 11% Sulfur, and 19% Calcium. Excellent for oilseeds and pulses.",
+    "description_hi": "16% फास्फोरस, 11% सल्फर और 19% कैल्शियम युक्त खाद। सरसों, मूंगफली और दलहन के लिए उत्तम।",
+    "metadata": {
+      "nutrient": "Phosphorus (16%), Sulfur (11%), Calcium (19%)",
+      "application": "Apply at final land preparation before sowing.",
+      "application_hi": "अंतिम जुताई के समय बुआई से पहले खेत में मिलाएं।",
+      "timing": "Basal application at sowing time.",
+      "advisory": "SSP provides sulfur free of cost along with phosphorus, making mustard oil content higher.",
+      "compatibleCrops": [
+        "Mustard",
+        "Groundnut",
+        "Soybean",
+        "Gram",
+        "Pulses",
+        "Sugarcane"
+      ],
+      "keywords": [
+        "ssp",
+        "single super phosphate",
+        "sulfur phosphate",
+        "mustard ssp"
+      ],
+      "keywords_hi": [
+        "एसएसपी",
+        "सिंगल सुपर फास्फेट",
+        "सल्फर खाद"
+      ],
+      "keywords_romanized": [
+        "ssp khad",
+        "single super phosphate"
+      ]
     }
   },
   {
     "id": "fertilizer-zinc-sulphate",
     "category": "fertilizer",
-    "title": "Zinc Sulphate (Micronutrient)",
-    "description": "Zinc micronutrient fertilizer used in Black Clayey Soil to enhance micronutrient availability.",
+    "title": "Zinc Sulphate (21% Zn or 33% Zn Chelated)",
+    "title_hi": "जिंक सल्फेट (Zinc Sulphate - 21% / 33%)",
+    "description": "Crucial micronutrient fertilizer correcting Khaira disease in rice and leaf yellowing in maize and wheat.",
+    "description_hi": "धान का खैरा रोग और पत्तियों का पीलापन दूर करने वाला मुख्य सूक्ष्म पोषक तत्व।",
     "metadata": {
-      "nutrient": "Zinc (Zn)",
-      "application": "Add 10kg Zinc Sulphate per acre to enhance micro-nutrients in Black Clayey Soil",
-      "timing": "Apply during base fertilizer application before sowing",
-      "advisory": "Soil health is highly rich in Black Clayey Soil. Add Zinc Sulphate to fill micronutrient gaps.",
-      "weatherCondition": "Apply in dry conditions",
-      "compatibleSoils": ["Black Clayey Soil"],
-      "compatibleCrops": ["Cotton", "Soybeans", "Pigeon Pea", "Paddy"]
+      "nutrient": "Zinc (21% Zn or 33% Zn)",
+      "application": "Apply 10 kg Zinc Sulphate (21%) per acre at sowing or basal dose.",
+      "application_hi": "10 किग्रा जिंक सल्फेट (21%) प्रति एकड़ बुआई के समय मिट्टी में डालें।",
+      "timing": "Basal application or foliar spray (0.5% zinc sulphate + 0.25% lime solution).",
+      "advisory": "Never mix Zinc Sulphate directly with DAP in the same bucket during application.",
+      "compatibleCrops": [
+        "Paddy / Rice",
+        "Wheat",
+        "Maize",
+        "Cotton",
+        "Sugarcane"
+      ],
+      "keywords": [
+        "zinc sulphate",
+        "zinc khad",
+        "khaira disease zinc",
+        "zinc for rice"
+      ],
+      "keywords_hi": [
+        "जिंक सल्फेट",
+        "जिंक खाद",
+        "खैरा रोग जिंक"
+      ],
+      "keywords_romanized": [
+        "zinc khad",
+        "zinc sulphate dhaan"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-organic-compost",
+    "category": "fertilizer",
+    "title": "Organic Cow Compost / FYM (Gobhar Khad)",
+    "title_hi": "गोबर की खाद / एफवाइएम (FYM - Organic Compost)",
+    "description": "Well-decomposed farm yard manure improving soil structure, water holding capacity, and soil microbial carbon.",
+    "description_hi": "अच्छी सड़ी गोबर की खाद जो मिट्टी की बनावट, जलधारण क्षमता और जीवाणुओं की संख्या बढ़ाती है।",
+    "metadata": {
+      "nutrient": "Organic Matter (0.5% N, 0.2% P, 0.5% K + micronutrients)",
+      "application": "Apply 4-5 tons per acre 3-4 weeks before sowing during field preparation.",
+      "application_hi": "4-5 टन प्रति एकड़ बुआई से 3-4 सप्ताह पहले खेत में फैलाकर जुताई करें।",
+      "timing": "Pre-sowing field preparation.",
+      "advisory": "Always use fully decomposed compost to avoid white grub and termite attraction.",
+      "compatibleCrops": [
+        "All Crops - Grain, Vegetables, Fruits, Cash Crops"
+      ],
+      "keywords": [
+        "gobhar khad",
+        "fym",
+        "farm yard manure",
+        "cow compost",
+        "organic manure"
+      ],
+      "keywords_hi": [
+        "गोबर की खाद",
+        "जैविक खाद",
+        "कंपोस्ट"
+      ],
+      "keywords_romanized": [
+        "gobhar khad",
+        "organic manure",
+        "fym"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-npk-19-19-19",
+    "category": "fertilizer",
+    "title": "NPK 19:19:19 (Water Soluble)",
+    "title_hi": "एनपीके 19:19:19 (घुलनशील खाद)",
+    "description": "100% water soluble complex fertilizer for spray/drip providing balanced N, P, K.",
+    "description_hi": "स्प्रे और ड्रिप के लिए 100% घुलनशील खाद।",
+    "metadata": {
+      "nutrient": "NPK 19:19:19 (Water Soluble)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "npk 19:19:19 (water soluble)",
+        "fertilizer dosage",
+        "npk-19-19-19"
+      ],
+      "keywords_hi": [
+        "एनपीके 19:19:19 (घुलनशील खाद)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "npk 19:19:19 (water soluble)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-npk-12-32-16",
+    "category": "fertilizer",
+    "title": "NPK 12:32:16 (Complex Granular)",
+    "title_hi": "एनपीके 12:32:16 (दानेदार खाद)",
+    "description": "Granular complex fertilizer high in phosphorus and potassium for cereal crops.",
+    "description_hi": "अनाज फसलों के लिए उच्च फास्फोरस और पोटाश खाद।",
+    "metadata": {
+      "nutrient": "NPK 12:32:16 (Complex Granular)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "npk 12:32:16 (complex granular)",
+        "fertilizer dosage",
+        "npk-12-32-16"
+      ],
+      "keywords_hi": [
+        "एनपीके 12:32:16 (दानेदार खाद)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "npk 12:32:16 (complex granular)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-npk-20-20-0-13",
+    "category": "fertilizer",
+    "title": "NPK 20:20:0:13 (Ammonium Phosphate Sulphate)",
+    "title_hi": "एनपीके 20:20:0:13 (सल्फर युक्त खाद)",
+    "description": "Sulphur-fortified complex fertilizer ideal for pulses, oilseeds, and onions.",
+    "description_hi": "सरसों और प्याज़ के लिए सल्फर युक्त खाद।",
+    "metadata": {
+      "nutrient": "NPK 20:20:0:13 (Ammonium Phosphate Sulphate)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "npk 20:20:0:13 (ammonium phosphate sulphate)",
+        "fertilizer dosage",
+        "npk-20-20-0-13"
+      ],
+      "keywords_hi": [
+        "एनपीके 20:20:0:13 (सल्फर युक्त खाद)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "npk 20:20:0:13 (ammonium phosphate sulphate)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-vermicompost",
+    "category": "fertilizer",
+    "title": "Vermicompost (Kechua Khad)",
+    "title_hi": "केचुआ खाद / वर्मीकंपोस्ट",
+    "description": "Earthworm digested organic manure rich in enzymes, humic acid, and plant hormones.",
+    "description_hi": "एंजाइम और ह्यूमिक एसिड से भरपूर केचुआ खाद।",
+    "metadata": {
+      "nutrient": "Vermicompost (Kechua Khad)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "vermicompost (kechua khad)",
+        "fertilizer dosage",
+        "vermicompost"
+      ],
+      "keywords_hi": [
+        "केचुआ खाद / वर्मीकंपोस्ट",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "vermicompost (kechua khad)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-elemental-sulfur",
+    "category": "fertilizer",
+    "title": "Agricultural Sulfur (80% WDG / Bent-S)",
+    "title_hi": "सल्फर खाद (Sulfur 80% WDG)",
+    "description": "Essential secondary nutrient for oilseed crops increasing oil synthesis.",
+    "description_hi": "सरसों और तिलहन फसलों में तेल की मात्रा बढ़ाने वाली खाद।",
+    "metadata": {
+      "nutrient": "Agricultural Sulfur (80% WDG / Bent-S)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "agricultural sulfur (80% wdg / bent-s)",
+        "fertilizer dosage",
+        "elemental-sulfur"
+      ],
+      "keywords_hi": [
+        "सल्फर खाद (Sulfur 80% WDG)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "agricultural sulfur (80% wdg / bent-s)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-boron-borax",
+    "category": "fertilizer",
+    "title": "Boron / Borax (10.5% / 20% Solubor)",
+    "title_hi": "बोरोन खाद (Boron / Solubor)",
+    "description": "Micronutrient preventing fruit cracking in tomato, pomegranate, and grain emptiness in wheat.",
+    "description_hi": "फलों को फटने से रोकने और परागण सुधारने वाली खाद।",
+    "metadata": {
+      "nutrient": "Boron / Borax (10.5% / 20% Solubor)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "boron / borax (10.5% / 20% solubor)",
+        "fertilizer dosage",
+        "boron-borax"
+      ],
+      "keywords_hi": [
+        "बोरोन खाद (Boron / Solubor)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "boron / borax (10.5% / 20% solubor)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-calcium-nitrate",
+    "category": "fertilizer",
+    "title": "Calcium Nitrate (15.5% N, 18.5% Ca)",
+    "title_hi": "कैल्शियम नाइट्रेट (Calcium Nitrate)",
+    "description": "Water soluble calcium preventing blossom end rot in tomato and leaf tip burn in chilli.",
+    "description_hi": "टमाटर का निचला सड़न रोकने वाली खाद।",
+    "metadata": {
+      "nutrient": "Calcium Nitrate (15.5% N, 18.5% Ca)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "calcium nitrate (15.5% n, 18.5% ca)",
+        "fertilizer dosage",
+        "calcium-nitrate"
+      ],
+      "keywords_hi": [
+        "कैल्शियम नाइट्रेट (Calcium Nitrate)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "calcium nitrate (15.5% n, 18.5% ca)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-ferrous-sulphate",
+    "category": "fertilizer",
+    "title": "Ferrous Sulphate (Iron - 19% Fe)",
+    "title_hi": "फेरस सल्फेट / लोहा (Iron Fertilizer)",
+    "description": "Iron micronutrient correcting leaf interveinal chlorosis in paddy nurseries and sugarcane.",
+    "description_hi": "पत्तियों के पीलेपन को दूर करने वाली आयरन खाद।",
+    "metadata": {
+      "nutrient": "Ferrous Sulphate (Iron - 19% Fe)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "ferrous sulphate (iron - 19% fe)",
+        "fertilizer dosage",
+        "ferrous-sulphate"
+      ],
+      "keywords_hi": [
+        "फेरस सल्फेट / लोहा (Iron Fertilizer)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "ferrous sulphate (iron - 19% fe)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-magnesium-sulphate",
+    "category": "fertilizer",
+    "title": "Magnesium Sulphate (Epsom Salt)",
+    "title_hi": "मैग्नीशियम सल्फेट (एप्सम साल्ट)",
+    "description": "Essential component of chlorophyll correcting vein yellowing in cotton and banana.",
+    "description_hi": "क्लोरोफिल निर्माण के लिए आवश्यक मैग्नीशियम खाद।",
+    "metadata": {
+      "nutrient": "Magnesium Sulphate (Epsom Salt)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "magnesium sulphate (epsom salt)",
+        "fertilizer dosage",
+        "magnesium-sulphate"
+      ],
+      "keywords_hi": [
+        "मैग्नीशियम सल्फेट (एप्सम साल्ट)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "magnesium sulphate (epsom salt)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-biofertilizer-azotobacter",
+    "category": "fertilizer",
+    "title": "Azotobacter Biofertilizer",
+    "title_hi": "एज़ोटोबैक्टर जैविक खाद",
+    "description": "Free-living nitrogen fixing bio-agent fixing 20-25 kg N per acre from air.",
+    "description_hi": "हवा से नाइट्रोजन खींचने वाला जैविक बैक्टीरिया।",
+    "metadata": {
+      "nutrient": "Azotobacter Biofertilizer",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "azotobacter biofertilizer",
+        "fertilizer dosage",
+        "biofertilizer-azotobacter"
+      ],
+      "keywords_hi": [
+        "एज़ोटोबैक्टर जैविक खाद",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "azotobacter biofertilizer"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-biofertilizer-psb",
+    "category": "fertilizer",
+    "title": "Phosphate Solubilizing Bacteria (PSB)",
+    "title_hi": "पीएसबी (फास्फोरस घोलक जीवाणु)",
+    "description": "Biofertilizer solubilizing fixed soil phosphorus making it plant available.",
+    "description_hi": "मिट्टी के जमे फास्फोरस को घोलने वाला जीवाणु।",
+    "metadata": {
+      "nutrient": "Phosphate Solubilizing Bacteria (PSB)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "phosphate solubilizing bacteria (psb)",
+        "fertilizer dosage",
+        "biofertilizer-psb"
+      ],
+      "keywords_hi": [
+        "पीएसबी (फास्फोरस घोलक जीवाणु)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "phosphate solubilizing bacteria (psb)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-biofertilizer-rhizobium",
+    "category": "fertilizer",
+    "title": "Rhizobium Biofertilizer",
+    "title_hi": "राइजोबियम कल्चर (Rhizobium Culture)",
+    "description": "Symbiotic nitrogen-fixing bacterial culture for pulse crop seed treatment.",
+    "description_hi": "दलहनी बीजों के लिए नाइट्रोजन फिक्सिंग कल्चर।",
+    "metadata": {
+      "nutrient": "Rhizobium Biofertilizer",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "rhizobium biofertilizer",
+        "fertilizer dosage",
+        "biofertilizer-rhizobium"
+      ],
+      "keywords_hi": [
+        "राइजोबियम कल्चर (Rhizobium Culture)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "rhizobium biofertilizer"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-neem-cake",
+    "category": "fertilizer",
+    "title": "Neem Cake Organic Fertilizer (Neem ki Khali)",
+    "title_hi": "नीम की खली (Neem Cake)",
+    "description": "Organic fertilizer cum nematicide slowing down nitrogen leaching in soil.",
+    "description_hi": "मिट्टी में नाइट्रोजन रोककर दीमक और कीड़ों से बचाने वाली खली।",
+    "metadata": {
+      "nutrient": "Neem Cake Organic Fertilizer (Neem ki Khali)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "neem cake organic fertilizer (neem ki khali)",
+        "fertilizer dosage",
+        "neem-cake"
+      ],
+      "keywords_hi": [
+        "नीम की खली (Neem Cake)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "neem cake organic fertilizer (neem ki khali)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-prom-organic-phosphate",
+    "category": "fertilizer",
+    "title": "PROM - Phosphate Rich Organic Manure",
+    "title_hi": "प्रोम (PROM - Phosphate Organic Manure)",
+    "description": "Eco-friendly organic alternative to DAP made from rock phosphate and compost.",
+    "description_hi": "डी-एपी का जैविक विकल्प (फास्फोरस रिच ऑर्गेनिक मैन्योर)।",
+    "metadata": {
+      "nutrient": "PROM - Phosphate Rich Organic Manure",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "prom - phosphate rich organic manure",
+        "fertilizer dosage",
+        "prom-organic-phosphate"
+      ],
+      "keywords_hi": [
+        "प्रोम (PROM - Phosphate Organic Manure)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "prom - phosphate rich organic manure"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-0-0-50-sop",
+    "category": "fertilizer",
+    "title": "SOP - Sulphate of Potash (0:0:50)",
+    "title_hi": "एसओपी (0:0:50 - Potassium Sulphate)",
+    "description": "Cl-free potassium soluble fertilizer best for tobacco, potato, and grapes.",
+    "description_hi": "क्लोराइड-मुक्त पोटाश और सल्फर घुलनशील खाद।",
+    "metadata": {
+      "nutrient": "SOP - Sulphate of Potash (0:0:50)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "sop - sulphate of potash (0:0:50)",
+        "fertilizer dosage",
+        "0-0-50-sop"
+      ],
+      "keywords_hi": [
+        "एसओपी (0:0:50 - Potassium Sulphate)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "sop - sulphate of potash (0:0:50)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-13-0-45-potassium-nitrate",
+    "category": "fertilizer",
+    "title": "13:0:45 - Potassium Nitrate",
+    "title_hi": "13:0:45 (पोटेशियम नाइट्रेट)",
+    "description": "Foliar spray fertilizer for rapid grain filling, fruit size enlargement, and frost protection.",
+    "description_hi": "फलों का आकार बढ़ाने और पाले (Frost) से बचाने वाली स्प्रे खाद।",
+    "metadata": {
+      "nutrient": "13:0:45 - Potassium Nitrate",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "13:0:45 - potassium nitrate",
+        "fertilizer dosage",
+        "13-0-45-potassium-nitrate"
+      ],
+      "keywords_hi": [
+        "13:0:45 (पोटेशियम नाइट्रेट)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "13:0:45 - potassium nitrate"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-humic-acid",
+    "category": "fertilizer",
+    "title": "Humic Acid & Fulvic Acid Extract",
+    "title_hi": "ह्यूमिक एसिड (Humic Acid)",
+    "description": "Organic biostimulant enhancing root branching and nutrient uptake.",
+    "description_hi": "जड़ों का गुच्छा बनाने और पोषक तत्व खींचने वाला बायो-स्टिमुलेंट।",
+    "metadata": {
+      "nutrient": "Humic Acid & Fulvic Acid Extract",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "humic acid & fulvic acid extract",
+        "fertilizer dosage",
+        "humic-acid"
+      ],
+      "keywords_hi": [
+        "ह्यूमिक एसिड (Humic Acid)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "humic acid & fulvic acid extract"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-seaweed-extract",
+    "category": "fertilizer",
+    "title": "Seaweed Extract Biostimulant (Zyme / Sagarika)",
+    "title_hi": "सीवीड एक्सट्रैक्ट (सागरिका / ज़ाइम)",
+    "description": "Natural marine algae extract boosting plant immunity, tillering, and flowering.",
+    "description_hi": "पौधे का तनाव दूर करने वाला प्राकृतिक समुद्री शैवाल अर्क।",
+    "metadata": {
+      "nutrient": "Seaweed Extract Biostimulant (Zyme / Sagarika)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "seaweed extract biostimulant (zyme / sagarika)",
+        "fertilizer dosage",
+        "seaweed-extract"
+      ],
+      "keywords_hi": [
+        "सीवीड एक्सट्रैक्ट (सागरिका / ज़ाइम)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "seaweed extract biostimulant (zyme / sagarika)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-micronutrient-mixture",
+    "category": "fertilizer",
+    "title": "Grade-1 Micronutrient Mixture Spray",
+    "title_hi": "माइक्रोन्यूट्रिएंट मिक्सचर (Grade Mixture)",
+    "description": "Balanced spray mixture of Zn, Fe, Mn, Cu, B, Mo for multi-nutrient deficiency.",
+    "description_hi": "सभी 6 सूक्ष्म पोषक तत्वों का संतुलित मिश्रण स्प्रे।",
+    "metadata": {
+      "nutrient": "Grade-1 Micronutrient Mixture Spray",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "grade-1 micronutrient mixture spray",
+        "fertilizer dosage",
+        "micronutrient-mixture"
+      ],
+      "keywords_hi": [
+        "माइक्रोन्यूट्रिएंट मिक्सचर (Grade Mixture)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "grade-1 micronutrient mixture spray"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-kmb-potash-bacteria",
+    "category": "fertilizer",
+    "title": "Potash Mobilizing Bacteria (KMB)",
+    "title_hi": "केएमबी (पोटाश घोलक जीवाणु)",
+    "description": "Soil bacteria solubilizing insoluble potassium minerals into available plant K.",
+    "description_hi": "मिट्टी में फसे पोटाश को घोलने वाला बैक्टीरिया।",
+    "metadata": {
+      "nutrient": "Potash Mobilizing Bacteria (KMB)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "potash mobilizing bacteria (kmb)",
+        "fertilizer dosage",
+        "kmb-potash-bacteria"
+      ],
+      "keywords_hi": [
+        "केएमबी (पोटाश घोलक जीवाणु)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "potash mobilizing bacteria (kmb)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-city-compost",
+    "category": "fertilizer",
+    "title": "City Compost / Urban Organic Waste Compost",
+    "title_hi": "सिटी कंपोस्ट (City Compost)",
+    "description": "Organic soil conditioner enriched with carbon and humus.",
+    "description_hi": "जैविक कचरे से निर्मित कार्बन युक्त कंपोस्ट।",
+    "metadata": {
+      "nutrient": "City Compost / Urban Organic Waste Compost",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "city compost / urban organic waste compost",
+        "fertilizer dosage",
+        "city-compost"
+      ],
+      "keywords_hi": [
+        "सिटी कंपोस्ट (City Compost)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "city compost / urban organic waste compost"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-mustard-cake",
+    "category": "fertilizer",
+    "title": "Mustard Oil Cake (Sarson ki Khali)",
+    "title_hi": "सरसों की खली (Mustard Oil Cake)",
+    "description": "Traditional organic nitrogen and protein rich manure for vegetable gardens.",
+    "description_hi": "नाइट्रोजन से भरपूर पारंपरिक सरसों की खली।",
+    "metadata": {
+      "nutrient": "Mustard Oil Cake (Sarson ki Khali)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "mustard oil cake (sarson ki khali)",
+        "fertilizer dosage",
+        "mustard-cake"
+      ],
+      "keywords_hi": [
+        "सरसों की खली (Mustard Oil Cake)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "mustard oil cake (sarson ki khali)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-bone-meal",
+    "category": "fertilizer",
+    "title": "Raw Bone Meal (Organic Phosphorus)",
+    "title_hi": "बोन मील / हड्डी की खाद (Bone Meal)",
+    "description": "Slow-release organic phosphorus and calcium source for perennial fruit trees.",
+    "description_hi": "फलदार पौधों के लिए जैविक फास्फोरस का स्रोत।",
+    "metadata": {
+      "nutrient": "Raw Bone Meal (Organic Phosphorus)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "raw bone meal (organic phosphorus)",
+        "fertilizer dosage",
+        "bone-meal"
+      ],
+      "keywords_hi": [
+        "बोन मील / हड्डी की खाद (Bone Meal)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "raw bone meal (organic phosphorus)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-gypsum-calcium-sulfur",
+    "category": "fertilizer",
+    "title": "Gypsum (21% Ca, 18% S)",
+    "title_hi": "जिप्सम (Gypsum - Calcium + Sulfur)",
+    "description": "Soil amendment providing calcium and sulfur, essential for groundnut pod filling.",
+    "description_hi": "मूंगफली में दाना भरने के लिए आवश्यक कैल्शियम-सल्फर खाद।",
+    "metadata": {
+      "nutrient": "Gypsum (21% Ca, 18% S)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "gypsum (21% ca, 18% s)",
+        "fertilizer dosage",
+        "gypsum-calcium-sulfur"
+      ],
+      "keywords_hi": [
+        "जिप्सम (Gypsum - Calcium + Sulfur)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "gypsum (21% ca, 18% s)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-nano-urea",
+    "category": "fertilizer",
+    "title": "Liquid Nano Urea (IFFCO Nano Urea)",
+    "title_hi": "नेनो यूरिया तरल (Nano Urea Liquid)",
+    "description": "Liquid nano nitrogen spray fertilizer (4% N) absorbing directly through leaf stomata.",
+    "description_hi": "पत्तियों द्वारा सीधे अवशोषित होने वाली नैनो तरल यूरिया स्प्रे।",
+    "metadata": {
+      "nutrient": "Liquid Nano Urea (IFFCO Nano Urea)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "liquid nano urea (iffco nano urea)",
+        "fertilizer dosage",
+        "nano-urea"
+      ],
+      "keywords_hi": [
+        "नेनो यूरिया तरल (Nano Urea Liquid)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "liquid nano urea (iffco nano urea)"
+      ]
+    }
+  },
+  {
+    "id": "fertilizer-nano-dap",
+    "category": "fertilizer",
+    "title": "Liquid Nano DAP (IFFCO Nano DAP)",
+    "title_hi": "नैनो डीएपी तरल (Nano DAP Liquid)",
+    "description": "Nanotechnology liquid DAP for seed treatment and foliar spray reducing chemical DAP load.",
+    "description_hi": "बीज उपचार और छिड़काव के लिए नैनो डीएपी घोल।",
+    "metadata": {
+      "nutrient": "Liquid Nano DAP (IFFCO Nano DAP)",
+      "application": "Apply as per recommended crop dosage.",
+      "timing": "Basal or foliar application.",
+      "compatibleCrops": [
+        "Grain crops",
+        "Vegetables",
+        "Pulses",
+        "Oilseeds"
+      ],
+      "keywords": [
+        "liquid nano dap (iffco nano dap)",
+        "fertilizer dosage",
+        "nano-dap"
+      ],
+      "keywords_hi": [
+        "नैनो डीएपी तरल (Nano DAP Liquid)",
+        "खाद की मात्रा"
+      ],
+      "keywords_romanized": [
+        "khad dosage",
+        "liquid nano dap (iffco nano dap)"
+      ]
     }
   }
 ]

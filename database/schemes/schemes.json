@@ -11,8 +11,12 @@
       "lastUpdated": "2026-08-01",
       "deadline": null,
       "eligibilityRules": {
-        "allowedStates": ["All"],
-        "requiredOwnership": ["Owner"],
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner"
+        ],
         "maxLandSizeAcres": null,
         "requiredFarmingType": "any",
         "requiredIrrigation": "any"
@@ -23,7 +27,11 @@
         "Bank Passbook linked with Aadhaar",
         "Mobile Number linked with Aadhaar"
       ],
-      "relatedSchemes": ["pm-fasal-bima", "soil-health-card", "pm-kusum"]
+      "relatedSchemes": [
+        "pm-fasal-bima",
+        "soil-health-card",
+        "pm-kusum"
+      ]
     }
   },
   {
@@ -38,8 +46,14 @@
       "lastUpdated": "2026-08-01",
       "deadline": "2026-08-31",
       "eligibilityRules": {
-        "allowedStates": ["All"],
-        "requiredOwnership": ["Owner", "Tenant", "Sharecropper"],
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Tenant",
+          "Sharecropper"
+        ],
         "maxLandSizeAcres": null,
         "requiredFarmingType": "any",
         "requiredIrrigation": "any"
@@ -50,7 +64,10 @@
         "Sowing Certificate issued by Patwari/Gram Panchayat",
         "Bank Account Details (with Cancelled Cheque)"
       ],
-      "relatedSchemes": ["pm-kisan", "soil-health-card"]
+      "relatedSchemes": [
+        "pm-kisan",
+        "soil-health-card"
+      ]
     }
   },
   {
@@ -65,11 +82,18 @@
       "lastUpdated": "2026-08-03",
       "deadline": "2026-09-30",
       "eligibilityRules": {
-        "allowedStates": ["All"],
-        "requiredOwnership": ["Owner"],
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner"
+        ],
         "maxLandSizeAcres": 12.5,
         "requiredFarmingType": "any",
-        "requiredIrrigation": ["Borewell/Tubewell", "Canal"]
+        "requiredIrrigation": [
+          "Borewell/Tubewell",
+          "Canal"
+        ]
       },
       "documents": [
         "Aadhaar Card",
@@ -79,7 +103,10 @@
         "Bank Passbook",
         "Passport Size Photo"
       ],
-      "relatedSchemes": ["pm-kisan", "pmksy-pdmc"]
+      "relatedSchemes": [
+        "pm-kisan",
+        "pmksy-pdmc"
+      ]
     }
   },
   {
@@ -94,8 +121,14 @@
       "lastUpdated": "2026-07-28",
       "deadline": null,
       "eligibilityRules": {
-        "allowedStates": ["All"],
-        "requiredOwnership": ["Owner", "Tenant", "Sharecropper"],
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Tenant",
+          "Sharecropper"
+        ],
         "maxLandSizeAcres": null,
         "requiredFarmingType": "any",
         "requiredIrrigation": "any"
@@ -104,7 +137,10 @@
         "Aadhaar Card",
         "Soil sample collection details (Khasra No.)"
       ],
-      "relatedSchemes": ["pm-kisan", "pkvy-organic"]
+      "relatedSchemes": [
+        "pm-kisan",
+        "pkvy-organic"
+      ]
     }
   },
   {
@@ -119,9 +155,14 @@
       "lastUpdated": "2026-08-01",
       "deadline": null,
       "eligibilityRules": {
-        "allowedStates": ["All"],
-        "requiredOwnership": ["Owner", "Tenant"],
-        "maxLandSizeAcres": 10.0,
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Tenant"
+        ],
+        "maxLandSizeAcres": 10,
         "requiredFarmingType": "organic",
         "requiredIrrigation": "any"
       },
@@ -131,7 +172,10 @@
         "Cluster membership certificate",
         "Bank details"
       ],
-      "relatedSchemes": ["soil-health-card", "pmksy-pdmc"]
+      "relatedSchemes": [
+        "soil-health-card",
+        "pmksy-pdmc"
+      ]
     }
   },
   {
@@ -146,8 +190,13 @@
       "lastUpdated": "2026-08-04",
       "deadline": "2026-10-15",
       "eligibilityRules": {
-        "allowedStates": ["All"],
-        "requiredOwnership": ["Owner", "Tenant"],
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Tenant"
+        ],
         "maxLandSizeAcres": null,
         "requiredFarmingType": "any",
         "requiredIrrigation": "any"
@@ -159,7 +208,10 @@
         "Caste/Category Certificate (for higher SC/ST subsidy)",
         "Tractor registration copy (if buying implements)"
       ],
-      "relatedSchemes": ["pm-kisan", "pm-kusum"]
+      "relatedSchemes": [
+        "pm-kisan",
+        "pm-kusum"
+      ]
     }
   },
   {
@@ -174,11 +226,20 @@
       "lastUpdated": "2026-07-30",
       "deadline": null,
       "eligibilityRules": {
-        "allowedStates": ["All"],
-        "requiredOwnership": ["Owner", "Tenant"],
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Tenant"
+        ],
         "maxLandSizeAcres": 12.5,
         "requiredFarmingType": "any",
-        "requiredIrrigation": ["Drip/Sprinkler", "Borewell/Tubewell", "Canal"]
+        "requiredIrrigation": [
+          "Drip/Sprinkler",
+          "Borewell/Tubewell",
+          "Canal"
+        ]
       },
       "documents": [
         "Aadhaar Card",
@@ -187,7 +248,10 @@
         "Borewell/Water source details",
         "Bank details"
       ],
-      "relatedSchemes": ["pm-kusum", "soil-health-card"]
+      "relatedSchemes": [
+        "pm-kusum",
+        "soil-health-card"
+      ]
     }
   },
   {
@@ -202,8 +266,13 @@
       "lastUpdated": "2026-08-01",
       "deadline": null,
       "eligibilityRules": {
-        "allowedStates": ["Telangana", "Andhra Pradesh"],
-        "requiredOwnership": ["Owner"],
+        "allowedStates": [
+          "Telangana",
+          "Andhra Pradesh"
+        ],
+        "requiredOwnership": [
+          "Owner"
+        ],
         "maxLandSizeAcres": null,
         "requiredFarmingType": "any",
         "requiredIrrigation": "any"
@@ -213,7 +282,522 @@
         "Aadhaar Card",
         "Bank Account details linked with Aadhaar"
       ],
-      "relatedSchemes": ["pm-kisan", "pm-fasal-bima"]
+      "relatedSchemes": [
+        "pm-kisan",
+        "pm-fasal-bima"
+      ]
+    }
+  },
+  {
+    "id": "kisan-credit-card-kcc",
+    "category": "loan",
+    "title": "Kisan Credit Card (KCC) Loan Scheme",
+    "title_hi": "किसान क्रेडिट कार्ड योजना (Kisan Credit Card - KCC)",
+    "description": "Concessional short-term crop loans up to Rs.3 Lakhs at 4% effective interest rate with prompt repayment incentive.",
+    "description_hi": "किसानों को फसल बुआई, खाद-बीज खरीदने हेतु 3 लाख रु तक का सस्ता ऋण (4% प्रभावी ब्याज दर पर)।",
+    "metadata": {
+      "benefit": "Short term crop loan up to Rs. 3 Lakhs at 4% interest rate (with 3% prompt repayment subvention).",
+      "source": "Ministry of Agriculture / NABARD / RBI",
+      "officialLink": "https://pmkisan.gov.in/",
+      "eligibilityRules": {
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Tenant",
+          "Sharecropper"
+        ]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Land record (Khasra/Jamabandi)",
+        "Bank Passbook",
+        "Passport Photo"
+      ],
+      "keywords": [
+        "kcc",
+        "kisan credit card",
+        "crop loan",
+        "kisan loan",
+        "4 percent interest loan"
+      ],
+      "keywords_hi": [
+        "किसान क्रेडिट कार्ड",
+        "केसीसी",
+        "फसल ऋण",
+        "किसान लोन"
+      ],
+      "keywords_romanized": [
+        "kcc loan",
+        "kisan credit card",
+        "kcc kaise banwaye"
+      ]
+    }
+  },
+  {
+    "id": "enam-national-market",
+    "category": "market",
+    "title": "e-NAM - National Agriculture Market",
+    "title_hi": "ई-नाम - राष्ट्रीय कृषि बाजार (e-NAM)",
+    "description": "Pan-India electronic trading portal networking existing APMC mandis to create a unified national market for agricultural commodities.",
+    "description_hi": "देश भर की मंडियों को जोड़ने वाला ऑनलाइन पोर्टल जहाँ किसान ऑनलाइन बोली द्वारा सही दाम पर फसल बेच सकते हैं।",
+    "metadata": {
+      "benefit": "Transparent online bidding, direct payment to bank account, access to buyers nationwide.",
+      "source": "Small Farmers Agribusiness Consortium (SFAC)",
+      "officialLink": "https://enam.gov.in/",
+      "eligibilityRules": {
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Tenant",
+          "Sharecropper"
+        ]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Bank Account Details",
+        "Mandi Gate Pass / Lot details"
+      ],
+      "keywords": [
+        "enam",
+        "e-nam",
+        "online mandi",
+        "mandi online sell",
+        "national agriculture market"
+      ],
+      "keywords_hi": [
+        "ई नाम",
+        "ऑनलाइन मंडी",
+        "फसल ऑनलाइन बेचना"
+      ],
+      "keywords_romanized": [
+        "enam portal",
+        "online mandi sell",
+        "enam kisan"
+      ]
+    }
+  },
+  {
+    "id": "agri-infrastructure-fund-aif",
+    "category": "infrastructure",
+    "title": "Agriculture Infrastructure Fund (AIF)",
+    "title_hi": "कृषि इंफ्रास्ट्रक्चर फंड (Agriculture Infrastructure Fund)",
+    "description": "Financing facility for post-harvest management infrastructure such as cold storages, warehouses, custom hiring centers, and sorting units.",
+    "description_hi": "कोल्ड स्टोरेज, गोदाम, छंटाई केंद्र और कस्टम हायरिंग सेंटर बनाने के लिए 3% ब्याज छूट के साथ ऋण।",
+    "metadata": {
+      "benefit": "3% interest subvention per annum on loans up to Rs. 2 Crores for up to 7 years.",
+      "source": "Department of Agriculture and Farmers Welfare",
+      "officialLink": "https://agriinfra.dac.gov.in/",
+      "eligibilityRules": {
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "FPO",
+          "Agri Entrepreneur"
+        ]
+      },
+      "documents": [
+        "DPR (Detailed Project Report)",
+        "Aadhaar Card",
+        "Land papers",
+        "Bank Account details"
+      ],
+      "keywords": [
+        "aif",
+        "agri infra fund",
+        "cold storage subsidy",
+        "warehouse loan"
+      ],
+      "keywords_hi": [
+        "कृषि इंफ्रा फंड",
+        "कोल्ड स्टोरेज ऋण",
+        "गोदाम सब्सिडी"
+      ],
+      "keywords_romanized": [
+        "agri infra fund",
+        "cold storage subsidy"
+      ]
+    }
+  },
+  {
+    "id": "pm-matsya-sampada",
+    "category": "fisheries",
+    "title": "PM Matsya Sampada Yojana (PMMSY)",
+    "title_hi": "प्रधानमंत्री मत्स्य संपदा योजना (PMMSY - Fisheries)",
+    "description": "Scheme for development of inland fisheries, aquaculture ponds, biofloc units, and fish farming with 40-60% financial assistance.",
+    "description_hi": "मछली पालन, बायोफ्लॉक, तालाब निर्माण और मत्स्य व्यवसाय हेतु 40% से 60% तक सरकारी अनुदान।",
+    "metadata": {
+      "benefit": "40% subsidy for General category and 60% for SC/ST/Women for fish pond construction and aquaculture.",
+      "source": "Department of Fisheries",
+      "officialLink": "https://pmmsy.dof.gov.in/",
+      "eligibilityRules": {
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Leased Land"
+        ]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Land record or Pond Lease agreement",
+        "Bank Passbook"
+      ],
+      "keywords": [
+        "pmmsy",
+        "matsya sampada",
+        "fish farming subsidy",
+        "machhli palan subsidy"
+      ],
+      "keywords_hi": [
+        "मत्स्य संपदा",
+        "मछली पालन सब्सिडी",
+        "तालाब योजना"
+      ],
+      "keywords_romanized": [
+        "machhli palan subsidy",
+        "matsya sampada"
+      ]
+    }
+  },
+  {
+    "id": "national-livestock-mission-nlm",
+    "category": "livestock",
+    "title": "National Livestock Mission (NLM)",
+    "title_hi": "राष्ट्रीय पशुधन मिशन (National Livestock Mission - NLM)",
+    "description": "Capital subsidy up to 50% for goat farming, sheep breeding, poultry units, piggery, and fodder production.",
+    "description_hi": "बकरी पालन, मुर्गी पालन और सुअर पालन फार्म स्थापित करने के लिए 50% तक कैपिटल सब्सिडी।",
+    "metadata": {
+      "benefit": "50% capital subsidy (up to Rs. 50 Lakhs for goat/sheep breeding, up to Rs. 25 Lakhs for poultry).",
+      "source": "Department of Animal Husbandry and Dairying",
+      "officialLink": "https://nlm.udyamimitra.in/",
+      "eligibilityRules": {
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Leased Land"
+        ]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Project Report",
+        "Land Proof",
+        "Bank Loan Sanction letter"
+      ],
+      "keywords": [
+        "nlm",
+        "livestock mission",
+        "bakri palan subsidy",
+        "poultry farm subsidy"
+      ],
+      "keywords_hi": [
+        "पशुधन मिशन",
+        "बकरी पालन लोन",
+        "मुर्गी पालन सब्सिडी"
+      ],
+      "keywords_romanized": [
+        "bakri palan subsidy",
+        "poultry farm subsidy"
+      ]
+    }
+  },
+  {
+    "id": "pm-fme-food-processing",
+    "category": "processing",
+    "title": "PM Formalisation of Micro Food Processing Enterprises (PMFME)",
+    "title_hi": "पीएम एफएमई योजना (PM Formalisation of Micro Food Processing)",
+    "description": "35% credit-linked capital subsidy for setting up or upgrading micro food processing units (flour mills, oil ghanis, pickle making, fruit processing).",
+    "description_hi": "आटा चक्की, तेल पेलने का कोल्हू, मसाला पिसाई, अचार-पापड़ उद्योग के लिए 35% क्रेडिट-लिंक्ड सब्सिडी (अधिकतम 10 लाख रु)।",
+    "metadata": {
+      "benefit": "35% credit-linked capital subsidy up to Rs. 10 Lakhs for micro food processing enterprises.",
+      "source": "Ministry of Food Processing Industries (MoFPI)",
+      "officialLink": "https://pmfme.mofpi.gov.in/",
+      "eligibilityRules": {
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Individual",
+          "SHG",
+          "FPO"
+        ]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Udyam Registration",
+        "Bank Account Details",
+        "Quotation for Machinery"
+      ],
+      "keywords": [
+        "pmfme",
+        "food processing subsidy",
+        "flour mill subsidy",
+        "oil mill loan"
+      ],
+      "keywords_hi": [
+        "खाद्य प्रसंस्करण सब्सिडी",
+        "आटा चक्की लोन",
+        "तेल कोल्हू सब्सिडी"
+      ],
+      "keywords_romanized": [
+        "pmfme scheme",
+        "food processing subsidy"
+      ]
+    }
+  },
+  {
+    "id": "rkvy-raftaar-scheme",
+    "category": "innovation",
+    "title": "Rashtriya Krishi Vikas Yojana (RKVY-RAFTAAR)",
+    "title_hi": "राष्ट्रीय कृषि विकास योजना (RKVY-RAFTAAR)",
+    "description": "Scheme supporting agricultural incubation, agri-startups, and state-specific infrastructure for farming innovation.",
+    "description_hi": "कृषि स्टार्ट-अप, नवाचार और एग्री-बिज़नेस के लिए 5 लाख से 25 लाख रु तक का अनुदान प्रोत्साहन।",
+    "metadata": {
+      "benefit": "Grant-in-aid support from Rs. 5 Lakhs (Idea stage) up to Rs. 25 Lakhs (Seed stage) for Agri Startups.",
+      "source": "Ministry of Agriculture and Farmers Welfare",
+      "officialLink": "https://rkvy.nic.in/",
+      "eligibilityRules": {
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Startup",
+          "Farmer Innovator"
+        ]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Startup Pitch Deck / Project Proposal",
+        "Bank Account"
+      ],
+      "keywords": [
+        "rkvy",
+        "raftaar",
+        "agri startup grant",
+        "krishi vikas yojana"
+      ],
+      "keywords_hi": [
+        "राष्ट्रीय कृषि विकास योजना",
+        "कृषि स्टार्टअप अनुदान"
+      ],
+      "keywords_romanized": [
+        "rkvy raftaar",
+        "agri startup grant"
+      ]
+    }
+  },
+  {
+    "id": "sub-mission-seed-smsp",
+    "category": "seed",
+    "title": "Sub-Mission on Seeds and Planting Material (SMSP)",
+    "title_hi": "बीज एवं रोपण सामग्री पर उप-मिशन (SMSP Seed Scheme)",
+    "description": "Financial assistance for seed village program, certified seed distribution at subsidized rates, and seed processing infrastructure.",
+    "description_hi": "किसानों को रियायती दर पर प्रमाणित उन्नत बीज उपलब्ध कराना और बीज ग्राम योजना का संचालन।",
+    "metadata": {
+      "benefit": "50% subsidy on certified seeds distribution for food grains and oilseeds under Seed Village Scheme.",
+      "source": "Department of Agriculture, Cooperation and Farmers Welfare",
+      "officialLink": "https://seednet.gov.in/",
+      "eligibilityRules": {
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Tenant"
+        ]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Land Jamabandi details"
+      ],
+      "keywords": [
+        "seed village scheme",
+        "certified seed subsidy",
+        "beej anudan",
+        "smsp"
+      ],
+      "keywords_hi": [
+        "बीज सब्सिडी",
+        "उन्नत बीज अनुदान",
+        "बीज ग्राम योजना"
+      ],
+      "keywords_romanized": [
+        "beej anudan",
+        "seed subsidy scheme"
+      ]
+    }
+  },
+  {
+    "id": "bhartiye-prakritik-krishi-bpkp",
+    "category": "organic",
+    "title": "Bhartiya Prakritik Krishi Paddhati (BPKP - Natural Farming)",
+    "title_hi": "भारतीय प्राकृतिक कृषि पद्धति (BPKP - Natural Farming)",
+    "description": "Sub-scheme under PKVY promoting chemical-free Natural Farming (Jeevamrit, Beejamrit, Mulching, Whapasa).",
+    "description_hi": "जीवामृत, बीजामृत और आच्छादन (मल्चिंग) आधारित प्राकृतिक खेती अपनाने के लिए 12,200 रु प्रति हेक्टेयर प्रोत्साहन।",
+    "metadata": {
+      "benefit": "Financial assistance of Rs. 12,200 per hectare for 3 years for natural farming inputs and cluster training.",
+      "source": "Ministry of Agriculture and Farmers Welfare",
+      "officialLink": "https://naturalfarming.dac.gov.in/",
+      "eligibilityRules": {
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Tenant"
+        ]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Land Records",
+        "Cluster Registration"
+      ],
+      "keywords": [
+        "natural farming",
+        "prakritik krishi",
+        "jeevamrit",
+        "bpkp",
+        "zero budget farming"
+      ],
+      "keywords_hi": [
+        "प्राकृतिक खेती",
+        "जीवामृत",
+        "प्राकृतिक कृषि योजना"
+      ],
+      "keywords_romanized": [
+        "prakritik krishi",
+        "jeevamrit scheme"
+      ]
+    }
+  },
+  {
+    "id": "national-bamboo-mission-nbm",
+    "category": "plantation",
+    "title": "National Bamboo Mission (NBM)",
+    "title_hi": "राष्ट्रीय बांस मिशन (National Bamboo Mission)",
+    "description": "Financial assistance of Rs.120 per plant (50% subsidy) for commercial bamboo cultivation on farmland bunds.",
+    "description_hi": "खेत की मेड़ पर या जमीन पर व्यावसायिक बांस की खेती हेतु 50% अनुदान (120 रु प्रति पौधा सहायता)।",
+    "metadata": {
+      "benefit": "Rs. 120 per plant subsidy over 3 years for commercial bamboo planting.",
+      "source": "Ministry of Agriculture and Farmers Welfare",
+      "officialLink": "https://nbm.nic.in/",
+      "eligibilityRules": {
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner"
+        ]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Land records (RoR)",
+        "Bank Details"
+      ],
+      "keywords": [
+        "bamboo mission",
+        "baans ki kheti subsidy",
+        "nbm scheme"
+      ],
+      "keywords_hi": [
+        "बांस मिशन",
+        "बांस की खेती सब्सिडी"
+      ],
+      "keywords_romanized": [
+        "bamboo mission",
+        "baans subsidy"
+      ]
+    }
+  },
+  {
+    "id": "national-beekeeping-nbhm",
+    "category": "beekeeping",
+    "title": "National Beekeeping and Honey Mission (NBHM)",
+    "title_hi": "राष्ट्रीय मधुमक्खी पालन एवं शहद मिशन (NBHM - Beekeeping)",
+    "description": "80% financial subsidy for honeybee boxes, bee colonies, honey extraction equipment, and training.",
+    "description_hi": "मधुमक्खी के बक्से (Bee boxes), कॉलोनी और शहद निष्कासन उपकरण पर 80% तक सब्सिडी। मीठी क्रांति अभियान।",
+    "metadata": {
+      "benefit": "Up to 80% subsidy for setting up 10 to 50 bee boxes and honey extraction units.",
+      "source": "National Bee Board (NBB)",
+      "officialLink": "https://nbhm.gov.in/",
+      "eligibilityRules": {
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Landless"
+        ]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Training Certificate (NBB recognized)",
+        "Bank Passbook"
+      ],
+      "keywords": [
+        "beekeeping subsidy",
+        "madhumakkhi palan",
+        "honey mission",
+        "nbhm"
+      ],
+      "keywords_hi": [
+        "मधुमक्खी पालन",
+        "शहद मिशन",
+        "बी बॉक्स सब्सिडी"
+      ],
+      "keywords_romanized": [
+        "madhumakkhi palan",
+        "honey mission subsidy"
+      ]
+    }
+  },
+  {
+    "id": "pm-krishi-sinchayee-pmksy-general",
+    "category": "irrigation",
+    "title": "Pradhan Mantri Krishi Sinchayee Yojana (PMKSY - Har Khet Ko Pani)",
+    "title_hi": "प्रधानमंत्री कृषि सिंचाई योजना (PMKSY - हर खेत को पानी)",
+    "description": "Comprehensive national irrigation scheme expanding cultivable area under assured irrigation, check dams, and water harvesting.",
+    "description_hi": "हर खेत को पानी पहुंचाने के लिए नहरे, चेक डैम, खेत तालाब और जल संचयन संरचनाओं का निर्माण।",
+    "metadata": {
+      "benefit": "Creation of water harvesting structures, borewell recharge units, and community lift irrigation.",
+      "source": "Ministry of Jal Shakti & Agriculture",
+      "officialLink": "https://pmksy.gov.in/",
+      "eligibilityRules": {
+        "allowedStates": [
+          "All"
+        ],
+        "requiredOwnership": [
+          "Owner",
+          "Community"
+        ]
+      },
+      "documents": [
+        "Aadhaar Card",
+        "Land Khasra Record"
+      ],
+      "keywords": [
+        "pmksy",
+        "krishi sinchayee yojana",
+        "har khet ko pani",
+        "check dam scheme"
+      ],
+      "keywords_hi": [
+        "कृषि सिंचाई योजना",
+        "हर खेत को पानी",
+        "तालाब योजना"
+      ],
+      "keywords_romanized": [
+        "pmksy scheme",
+        "krishi sinchayee yojana"
+      ]
     }
   }
 ]

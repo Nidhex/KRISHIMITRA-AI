@@ -1,98 +1,986 @@
 [
   {
-    "id": "faq-wheat-price",
+    "id": "faq-gehu-sowing-time",
     "category": "faq",
-    "title": "What is the wheat price in Mandi today?",
-    "description": "Wheat (Lokwan) mandi price query answered by KrishiMitra Voice AI.",
+    "title": "When should wheat be sown? (Gehun kab bona chahiye?)",
+    "title_hi": "गेहूं कब बोना चाहिए?",
+    "description": "Optimal sowing time window for wheat crops in North and Central India.",
     "metadata": {
-      "trigger": ["wheat", "gehu", "lokwan", "kanak"],
-      "voiceResponse": "The highest price for Wheat (Lokwan) is Rs.2275/Qtl at Gorakhpur Sadar Mandi (18km). The lowest price is Rs.2150/Qtl at Laxmipur APMC (12km). Wheat rates are highest in Gorakhpur Sadar Mandi. We advise wait 3 days as prices are rising.",
-      "relatedModule": "Market / Mandi Prices",
-      "language": "en"
+      "trigger": [
+        "gehu",
+        "wheat",
+        "bona",
+        "sowing",
+        "sowing time",
+        "gehun kab ropna"
+      ],
+      "question_hi": "गेहूं कब बोना चाहिए?",
+      "question_romanized": "gehu kab bona chahiye?",
+      "answer_hi": "गेहूं की बुआई का सबसे उपयुक्त समय 1 से 25 नवंबर तक (अगेती/समय पर बुआई) होता है। देर से बुआई के लिए 25 नवंबर से 15 दिसंबर तक का समय उचित है।",
+      "answer_en": "The best time for sowing wheat is from November 1 to November 25 for timely sowing. For late sowing, complete by December 15.",
+      "language": "hi"
     }
   },
   {
-    "id": "faq-rice-blast-cure",
+    "id": "faq-rice-water-requirement",
     "category": "faq",
-    "title": "How do I cure rice brown spots?",
-    "description": "Voice AI response for rice disease queries. Directs farmer to Vision Lab for AI diagnosis.",
+    "title": "How much water should be given to paddy? (Dhaan me paani kitna de?)",
+    "title_hi": "धान में पानी कितना देना चाहिए?",
+    "description": "Water management guidance for paddy fields.",
     "metadata": {
-      "trigger": ["disease", "spots", "rog", "bimari", "blast"],
-      "voiceResponse": "If your leaves have brown spots, it could be Rice Blast. Switch to the 'Vision Lab' tab, upload a picture, and our AI scanner will diagnose it immediately and give organic and chemical treatments.",
-      "relatedModule": "Vision Lab - Disease Scanner",
-      "language": "en"
+      "trigger": [
+        "dhaan",
+        "rice",
+        "paddy",
+        "paani",
+        "water",
+        "dhan me pani"
+      ],
+      "question_hi": "धान में पानी कितना देना चाहिए?",
+      "question_romanized": "dhaan me paani kitna देना चाहिए?",
+      "answer_hi": "रोपाई के शुरुआती 15-20 दिन खेत में 2 से 5 सेमी पानी खड़ा रखें। कल्ले निकलते समय पानी सुखाकर (AWD तकनीक) सिंचाई करें। फूल आने पर पानी की कमी न होने दें।",
+      "answer_en": "Keep 2-5 cm standing water for the first 15-20 days after transplanting. Practice Alternate Wetting and Drying (AWD) during tillering.",
+      "language": "hi"
     }
   },
   {
-    "id": "faq-pm-kusum-scheme",
+    "id": "faq-black-soil-best-crop",
     "category": "faq",
-    "title": "What is PM Kusum Scheme?",
-    "description": "Voice AI explanation of PM KUSUM Yojana for solar water pump subsidy.",
+    "title": "Which crops grow best in black soil? (Kaali mitti me konsi fasal achhi hai?)",
+    "title_hi": "काली मिट्टी में कौन सी फसल अच्छी होती है?",
+    "description": "Crop recommendations for black clayey soil.",
     "metadata": {
-      "trigger": ["kusum", "solar", "pump", "subsidy"],
-      "voiceResponse": "Under PM Kusum Yojana, you can get a 60% government subsidy to install Solar water pumps. Required documents: Land Jamabandi ownership papers, borewell certification, and Aadhaar card.",
-      "relatedModule": "Schemes - PM KUSUM",
-      "language": "en"
+      "trigger": [
+        "kaali mitti",
+        "black soil",
+        "regur",
+        "konsi fasal",
+        "best crop black soil"
+      ],
+      "question_hi": "काली मिट्टी में कौन सी फसल अच्छी होती है?",
+      "question_romanized": "kaali mitti me कौन सी fasal achhi hai?",
+      "answer_hi": "काली मिट्टी (Regur soil) में कपास (Cotton), सोयाबीन, चना, तुअर (अरहर), और गेहूं की फसल बहुत अच्छी होती है क्योंकि इसमें जल धारण क्षमता अधिक होती है।",
+      "answer_en": "Black clayey soil has high water retention and is ideal for Cotton, Soybean, Chickpea, Pigeon Pea, and Wheat.",
+      "language": "hi"
     }
   },
   {
-    "id": "faq-weather-advisory",
+    "id": "faq-tomato-leaf-curl-reason",
     "category": "faq",
-    "title": "What is the weather advisory today?",
-    "description": "Voice AI weather response including current conditions and crop advisory.",
+    "title": "Why are tomato leaves curling? (Tamatar ki pattiyan kyu mud rahi hain?)",
+    "title_hi": "टमाटर की पत्तियां क्यों मुड़ रही हैं?",
+    "description": "Causes and remedies for tomato leaf curling.",
     "metadata": {
-      "trigger": ["weather", "rain", "mausam", "barish", "varsha", "hava"],
-      "voiceResponse": "Today is 29°C with Light Rain (80% probability). AI Crop Advisory: Rain is expected, so postpone spraying nitrogen/urea fertilizer or pesticides today.",
-      "relatedModule": "Weather",
-      "language": "en"
+      "trigger": [
+        "tamatar",
+        "tomato",
+        "pattiyan mudna",
+        "curling leaves",
+        "leaf curl",
+        "tamatar mudna"
+      ],
+      "question_hi": "टमाटर की पत्तियां क्यों मुड़ रही हैं?",
+      "question_romanized": "tamatar ki pattiyan kyu mud rahi hain?",
+      "answer_hi": "टमाटर की पत्तियां मुड़ने का मुख्य कारण 'पत्ती मरोड़ वायरस' (Leaf Curl Virus) या थ्रिप्स/सफेद मक्खी कीट का प्रकोप होता है। नियंत्रण के लिए पीले चिपचिपे कार्ड लगाएं और इमिडाक्लोप्रिड या नीम तेल का छिड़काव करें।",
+      "answer_en": "Tomato leaf curling is caused by Leaf Curl Virus transmitted by whiteflies. Use yellow sticky traps and spray Imidacloprid or Neem oil.",
+      "language": "hi"
     }
   },
   {
-    "id": "faq-soil-recommendation",
+    "id": "faq-yellow-leaves-remedy",
     "category": "faq",
-    "title": "What crop is best for my soil?",
-    "description": "Voice AI answer for soil type based crop recommendations.",
+    "title": "Why are plant leaves turning yellow? (Paudhon ki pattiyan peeli kyu ho rahi hain?)",
+    "title_hi": "पौधों की पत्तियां पीली क्यों हो रही हैं?",
+    "description": "General diagnosis for leaf yellowing in crops.",
     "metadata": {
-      "trigger": ["soil", "mitti", "maati", "zameen"],
-      "voiceResponse": "For Alluvial Soil, we recommend growing Wheat, Paddy, and Potato crops. Use organic compost (gobhar khad) to improve low organic carbon levels. Check Vision Lab to analyze soil images.",
-      "relatedModule": "Vision Lab - Soil Analyzer",
-      "language": "en"
+      "trigger": [
+        "peeli pattiyan",
+        "yellow leaves",
+        "pattiyan peeli",
+        "leaf yellowing",
+        "nitrogen deficiency"
+      ],
+      "question_hi": "पौधों की पत्तियां पीली क्यों हो रही हैं?",
+      "question_romanized": "paudhon ki pattiyan peeli kyu ho rahi hain?",
+      "answer_hi": "पत्तियां पीली होने के 3 मुख्य कारण हैं: 1. नाइट्रोजन या जिंक की कमी, 2. खेत में अत्यधिक जलभराव, 3. पीला रतुआ या फफूंद रोग। मिट्टी की नमी जांचें और आवश्यकतानुसार यूरिया/जिंक का छिड़काव करें।",
+      "answer_en": "Leaf yellowing is mainly caused by Nitrogen/Zinc deficiency, waterlogging, or fungal/viral infection. Inspect soil moisture and apply recommended urea/zinc.",
+      "language": "hi"
     }
   },
   {
-    "id": "faq-pm-kisan-samman",
+    "id": "faq-urea-application-timing",
     "category": "faq",
-    "title": "How do I get PM Kisan Samman Nidhi money?",
-    "description": "Voice AI answer explaining PM-Kisan direct benefit transfer process.",
+    "title": "When should Urea be applied? (Urea kab dalein?)",
+    "title_hi": "यूरिया कब डालना चाहिए?",
+    "description": "Timing and precautions for urea top dressing.",
     "metadata": {
-      "trigger": ["kisan", "samman", "6000", "pm kisan", "income support"],
-      "voiceResponse": "PM Kisan Samman Nidhi gives Rs.6,000 yearly income support directly into farmers' bank accounts. Link your Aadhaar card with your bank to receive installments.",
-      "relatedModule": "Schemes - PM Kisan",
-      "language": "en"
+      "trigger": [
+        "urea",
+        "yuriya",
+        "kab dalein",
+        "top dressing",
+        "urea timing"
+      ],
+      "question_hi": "यूरिया कब डालना चाहिए?",
+      "question_romanized": "urea kab dalna chahiye?",
+      "answer_hi": "यूरिया का प्रयोग बुआई के 20-25 दिन बाद (पहला पानी देने के बाद) और दूसरा 40-45 दिन बाद कल्ले निकलते समय टॉप ड्रेसिंग के रूप में करें। बारिश होने की संभावना में यूरिया न डालें।",
+      "answer_en": "Apply Urea as top dressing 20-25 days after sowing (after 1st irrigation) and 40-45 days during tillering. Avoid applying before heavy rain.",
+      "language": "hi"
     }
   },
   {
-    "id": "faq-paddy-price",
+    "id": "faq-dap-vs-urea-difference",
     "category": "faq",
-    "title": "What is the paddy price today?",
-    "description": "Voice AI response for paddy mandi price queries.",
+    "title": "What is the difference between DAP and Urea? (DAP aur Urea me kya antar hai?)",
+    "title_hi": "डीएपी और यूरिया में क्या अंतर है?",
+    "description": "Nutrient content and application timing difference between DAP and Urea.",
     "metadata": {
-      "trigger": ["paddy", "rice", "dhaan", "dhan", "chawal", "tandul", "jhona"],
-      "voiceResponse": "Rice Paddy prices today: Highest is Rs.2350/Qtl in Laxmipur APMC (12km). Lowest is Rs.2050/Qtl in Kishanpur Mandi (4km). Selling at Laxmipur APMC gives Rs.300/quintal more. Transport cost is Rs.40, net profit is higher.",
-      "relatedModule": "Market / Mandi Prices",
-      "language": "en"
+      "trigger": [
+        "dap",
+        "urea",
+        "difference",
+        "antar",
+        "dap vs urea"
+      ],
+      "question_hi": "डीएपी और यूरिया में क्या अंतर है?",
+      "question_romanized": "dap aur urea me kya antar hai?",
+      "answer_hi": "डीएपी (DAP) में 18% नाइट्रोजन और 46% फास्फोरस होता है जो जड़ों के विकास हेतु बुआई के समय दिया जाता है। यूरिया में 46% नाइट्रोजन होता है जो फसल की वानस्पतिक वृद्धि हेतु बाद में छिड़काव किया जाता है।",
+      "answer_en": "DAP contains 18% Nitrogen and 46% Phosphorus applied at sowing for root growth. Urea contains 46% Nitrogen applied later for foliage growth.",
+      "language": "hi"
     }
   },
   {
-    "id": "faq-tomato-price",
+    "id": "faq-soil-test-method",
     "category": "faq",
-    "title": "What is the tomato price in mandi today?",
-    "description": "Voice AI response for tomato mandi price queries.",
+    "title": "How to perform soil testing? (Mitti ki jaanch kaise karein?)",
+    "title_hi": "मिट्टी की जांच कैसे करें?",
+    "description": "Guidance on soil health card testing.",
     "metadata": {
-      "trigger": ["tomato", "tamatar", "tameta", "tamatar"],
-      "voiceResponse": "Tomatoes are selling at an excellent rate today! Highest is Rs.1800/Qtl in Kishanpur Mandi (4km). Lowest is Rs.1400/Qtl in Gorakhpur Sadar Mandi.",
-      "relatedModule": "Market / Mandi Prices",
-      "language": "en"
+      "trigger": [
+        "mitti jaanch",
+        "soil test",
+        "soil health card",
+        "mitti ki jaanch kaise kare"
+      ],
+      "question_hi": "मिट्टी की जांच कैसे करें?",
+      "question_romanized": "mitti ki jaanch kaise karein?",
+      "answer_hi": "खेत के 8-10 स्थानों से V-आकार का 15 सेमी गहरा गड्ढा बनाकर 500 ग्राम मिट्टी का मिश्रण बनाएं। सुखाकर पास के मृदा परीक्षण प्रयोगशाला (Soil Testing Lab) में जमा करें।",
+      "answer_en": "Collect soil samples from 8-10 field spots at 15 cm depth using a V-shaped cut, dry in shade, and submit 500g sample to the nearest Soil Testing Lab.",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-pm-kisan-details",
+    "category": "faq",
+    "title": "What is PM Kisan Samman Nidhi? (PM Kisan kya hai?)",
+    "title_hi": "पीएम किसान योजना क्या है?",
+    "description": "Details of PM-KISAN 6000 annual benefit.",
+    "metadata": {
+      "trigger": [
+        "pm kisan",
+        "samman nidhi",
+        "6000",
+        "pm kisan kya hai"
+      ],
+      "question_hi": "पीएम किसान योजना क्या है?",
+      "question_romanized": "pm kisan yojana kya hai?",
+      "answer_hi": "पीएम किसान सम्मान निधि योजना के तहत सभी पात्र किसान परिवारों को प्रति वर्ष 6,000 रुपये की वित्तीय सहायता 2,000 रुपये की 3 किस्तों में सीधे बैंक खाते (DBT) में दी जाती है।",
+      "answer_en": "PM-KISAN scheme provides Rs.6,000 per year in 3 equal installments of Rs.2,000 directly into eligible farmers' bank accounts via Direct Benefit Transfer.",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-crop-insurance-pmfby",
+    "category": "faq",
+    "title": "How to insure crops under PMFBY? (Fasal bima kaise karein?)",
+    "title_hi": "फसल बीमा कैसे करें?",
+    "description": "Crop insurance procedure under PMFBY.",
+    "metadata": {
+      "trigger": [
+        "fasal bima",
+        "pmfby",
+        "crop insurance",
+        "bima kaise karein"
+      ],
+      "question_hi": "फसल बीमा कैसे करें?",
+      "question_romanized": "fasal bima kaise karein?",
+      "answer_hi": "प्रधानमंत्री फसल बीमा योजना (PMFBY) के तहत सीएससी सेंटर, बैंक या pmfby.gov.in पोर्टल पर जाकर रबी (1.5% प्रीमियम) या खरीफ (2% प्रीमियम) फसल की बुआई रसीद और भू-अभिलेख के साथ आवेदन करें।",
+      "answer_en": "Apply for crop insurance at nearest CSC center, bank branch, or pmfby.gov.in with land records and sowing certificate at low 1.5% to 2% premium.",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-11",
+    "category": "faq",
+    "title": "सरसों में माहू कीड़ा कैसे रोकें?",
+    "title_hi": "सरसों में माहू कीड़ा कैसे रोकें?",
+    "description": "सरसों में माहू कीड़ा कैसे रोकें?",
+    "metadata": {
+      "trigger": [
+        "sarson me maho keeda kaise rokein?",
+        "सरसों में माहू कीड़ा कैसे रोकें?"
+      ],
+      "question_hi": "सरसों में माहू कीड़ा कैसे रोकें?",
+      "question_romanized": "sarson me maho keeda kaise rokein?",
+      "answer_hi": "सरसों में माहू (Aphid) नियंत्रण हेतु पीले चिपचिपे कार्ड लगाएं या नीम तेल 5 मिली/लीटर या इमिडाक्लोप्रिड 0.5 मिली/लीटर पानी में मिलाकर छिड़कें।",
+      "answer_en": "सरसों में माहू (Aphid) नियंत्रण हेतु पीले चिपचिपे कार्ड लगाएं या नीम तेल 5 मिली/लीटर या इमिडाक्लोप्रिड 0.5 मिली/लीटर पानी में मिलाकर छिड़कें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-12",
+    "category": "faq",
+    "title": "चने में इल्ली का इलाज क्या है?",
+    "title_hi": "चने में इल्ली का इलाज क्या है?",
+    "description": "चने में इल्ली का इलाज क्या है?",
+    "metadata": {
+      "trigger": [
+        "chane me illi ka ilaj kya hai?",
+        "चने में इल्ली का इलाज क्या है?"
+      ],
+      "question_hi": "चने में इल्ली का इलाज क्या है?",
+      "question_romanized": "chane me illi ka ilaj kya hai?",
+      "answer_hi": "चने की फली छेदक इल्ली (Helicoverpa) के लिए खेत में टी-आकार के पक्षी बसेरे लगाएं और इमामेक्टिन बेंजोएट (0.4 ग्राम/लीटर) का छिड़काव करें।",
+      "answer_en": "चने की फली छेदक इल्ली (Helicoverpa) के लिए खेत में टी-आकार के पक्षी बसेरे लगाएं और इमामेक्टिन बेंजोएट (0.4 ग्राम/लीटर) का छिड़काव करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-13",
+    "category": "faq",
+    "title": "गन्ने में लाल सड़न (Red Rot) रोग क्या है?",
+    "title_hi": "गन्ने में लाल सड़न (Red Rot) रोग क्या है?",
+    "description": "गन्ने में लाल सड़न (Red Rot) रोग क्या है?",
+    "metadata": {
+      "trigger": [
+        "ganne me laal galan rog kya hai?",
+        "गन्ने में लाल सड़न (red rot) रोग क्या है?"
+      ],
+      "question_hi": "गन्ने में लाल सड़न (Red Rot) रोग क्या है?",
+      "question_romanized": "ganne me laal galan rog kya hai?",
+      "answer_hi": "गन्ने का लाल सड़न रोग (Red Rot) कवक जनित है जिसमें गन्ना अंदर से लाल होकर सिरके की गंध देता है। बुआई से पहले गन्ने के टुकड़ों को कार्बेन्डाजिम से उपचारित करें।",
+      "answer_en": "गन्ने का लाल सड़न रोग (Red Rot) कवक जनित है जिसमें गन्ना अंदर से लाल होकर सिरके की गंध देता है। बुआई से पहले गन्ने के टुकड़ों को कार्बेन्डाजिम से उपचारित करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-14",
+    "category": "faq",
+    "title": "ड्रिप सिंचाई पर सब्सिडी कैसे मिलेगी?",
+    "title_hi": "ड्रिप सिंचाई पर सब्सिडी कैसे मिलेगी?",
+    "description": "ड्रिप सिंचाई पर सब्सिडी कैसे मिलेगी?",
+    "metadata": {
+      "trigger": [
+        "drip sinchai par subsidy kaise milegi?",
+        "ड्रिप सिंचाई पर सब्सिडी कैसे मिलेगी?"
+      ],
+      "question_hi": "ड्रिप सिंचाई पर सब्सिडी कैसे मिलेगी?",
+      "question_romanized": "drip sinchai par subsidy kaise milegi?",
+      "answer_hi": "पीएमकेएसवाई (PMKSY-PDMC) योजना के तहत उद्यान विभाग के पोर्टल पर आवेदन करके ड्रिप और फव्वारा सिंचाई पर 45% से 55% तक सब्सिडी प्राप्त की जा सकती है।",
+      "answer_en": "पीएमकेएसवाई (PMKSY-PDMC) योजना के तहत उद्यान विभाग के पोर्टल पर आवेदन करके ड्रिप और फव्वारा सिंचाई पर 45% से 55% तक सब्सिडी प्राप्त की जा सकती है।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-15",
+    "category": "faq",
+    "title": "खेत में गोबर की खाद कब डालें?",
+    "title_hi": "खेत में गोबर की खाद कब डालें?",
+    "description": "खेत में गोबर की खाद कब डालें?",
+    "metadata": {
+      "trigger": [
+        "khet me gobhar khad kab dalein?",
+        "खेत में गोबर की खाद कब डालें?"
+      ],
+      "question_hi": "खेत में गोबर की खाद कब डालें?",
+      "question_romanized": "khet me gobhar khad kab dalein?",
+      "answer_hi": "अच्छी सड़ी हुई गोबर की खाद (FYM) बुआई से 3-4 सप्ताह पहले अंतिम जुताई के समय खेत में मिलाकर मिट्टी में जोत देनी चाहिए।",
+      "answer_en": "अच्छी सड़ी हुई गोबर की खाद (FYM) बुआई से 3-4 सप्ताह पहले अंतिम जुताई के समय खेत में मिलाकर मिट्टी में जोत देनी चाहिए।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-16",
+    "category": "faq",
+    "title": "जिंक की कमी के क्या लक्षण हैं?",
+    "title_hi": "जिंक की कमी के क्या लक्षण हैं?",
+    "description": "जिंक की कमी के क्या लक्षण हैं?",
+    "metadata": {
+      "trigger": [
+        "zinc ki kami ke lakshan kya hain?",
+        "जिंक की कमी के क्या लक्षण हैं?"
+      ],
+      "question_hi": "जिंक की कमी के क्या लक्षण हैं?",
+      "question_romanized": "zinc ki kami ke lakshan kya hain?",
+      "answer_hi": "जिंक की कमी से धान में खैरा रोग (पत्तियों पर जंग जैसे धब्बे) तथा मक्के व गेहूं की नई पत्तियों का पीला/सफेद पड़ना प्रमुख लक्षण है।",
+      "answer_en": "जिंक की कमी से धान में खैरा रोग (पत्तियों पर जंग जैसे धब्बे) तथा मक्के व गेहूं की नई पत्तियों का पीला/सफेद पड़ना प्रमुख लक्षण है।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-17",
+    "category": "faq",
+    "title": "जैविक खेती कैसे शुरू करें?",
+    "title_hi": "जैविक खेती कैसे शुरू करें?",
+    "description": "जैविक खेती कैसे शुरू करें?",
+    "metadata": {
+      "trigger": [
+        "jaivik kheti kaise shuru karein?",
+        "जैविक खेती कैसे शुरू करें?"
+      ],
+      "question_hi": "जैविक खेती कैसे शुरू करें?",
+      "question_romanized": "jaivik kheti kaise shuru karein?",
+      "answer_hi": "जैविक खेती शुरू करने के लिए रासायनिक खाद बंद करके गोबर खाद, वर्मीकंपोस्ट, जीवामृत, और नीम आधारित कीटनाशकों का प्रयोग करें। PKVY योजना से जुड़ें।",
+      "answer_en": "जैविक खेती शुरू करने के लिए रासायनिक खाद बंद करके गोबर खाद, वर्मीकंपोस्ट, जीवामृत, और नीम आधारित कीटनाशकों का प्रयोग करें। PKVY योजना से जुड़ें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-18",
+    "category": "faq",
+    "title": "आलू में अगेती व पछेती झुलसा का अंतर क्या है?",
+    "title_hi": "आलू में अगेती व पछेती झुलसा का अंतर क्या है?",
+    "description": "आलू में अगेती व पछेती झुलसा का अंतर क्या है?",
+    "metadata": {
+      "trigger": [
+        "aalu me jhulsa ka antar kya hai?",
+        "आलू में अगेती व पछेती झुलसा का अंतर क्या है?"
+      ],
+      "question_hi": "आलू में अगेती व पछेती झुलसा का अंतर क्या है?",
+      "question_romanized": "aalu me jhulsa ka antar kya hai?",
+      "answer_hi": "अगेती झुलसा में पत्तियों पर गोल छल्लेदार (Target board) धब्बे बनते हैं, जबकि पछेती झुलसा में कोहरे के मौसम में पत्तियां काली पड़कर तेजी से गलती हैं।",
+      "answer_en": "अगेती झुलसा में पत्तियों पर गोल छल्लेदार (Target board) धब्बे बनते हैं, जबकि पछेती झुलसा में कोहरे के मौसम में पत्तियां काली पड़कर तेजी से गलती हैं।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-19",
+    "category": "faq",
+    "title": "कपास में सफेद मक्खी कैसे नियंत्रित करें?",
+    "title_hi": "कपास में सफेद मक्खी कैसे नियंत्रित करें?",
+    "description": "कपास में सफेद मक्खी कैसे नियंत्रित करें?",
+    "metadata": {
+      "trigger": [
+        "kapas me safed makkhi control kaise karein?",
+        "कपास में सफेद मक्खी कैसे नियंत्रित करें?"
+      ],
+      "question_hi": "कपास में सफेद मक्खी कैसे नियंत्रित करें?",
+      "question_romanized": "kapas me safed makkhi control kaise karein?",
+      "answer_hi": "कपास में सफेद मक्खी रोकने हेतु 15 पीले चिपचिपे कार्ड प्रति एकड़ लगाएं और स्पाइरोमेसिफेन या नीम तेल का छिड़काव करें।",
+      "answer_en": "कपास में सफेद मक्खी रोकने हेतु 15 पीले चिपचिपे कार्ड प्रति एकड़ लगाएं और स्पाइरोमेसिफेन या नीम तेल का छिड़काव करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-20",
+    "category": "faq",
+    "title": "मिर्च में चुरड़ा मुड़ड़ा रोग का इलाज क्या है?",
+    "title_hi": "मिर्च में चुरड़ा मुड़ड़ा रोग का इलाज क्या है?",
+    "description": "मिर्च में चुरड़ा मुड़ड़ा रोग का इलाज क्या है?",
+    "metadata": {
+      "trigger": [
+        "mirch me churda murda ilaj kya hai?",
+        "मिर्च में चुरड़ा मुड़ड़ा रोग का इलाज क्या है?"
+      ],
+      "question_hi": "मिर्च में चुरड़ा मुड़ड़ा रोग का इलाज क्या है?",
+      "question_romanized": "mirch me churda murda ilaj kya hai?",
+      "answer_hi": "मिर्च का चुरड़ा-मुड़ड़ा थ्रिप्स कीट के कारण होता है। नीले चिपचिपे कार्ड लगाएं और फिप्रोनिल 5 SC (1.5 मिली/लीटर) का छिड़काव करें।",
+      "answer_en": "मिर्च का चुरड़ा-मुड़ड़ा थ्रिप्स कीट के कारण होता है। नीले चिपचिपे कार्ड लगाएं और फिप्रोनिल 5 SC (1.5 मिली/लीटर) का छिड़काव करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-21",
+    "category": "faq",
+    "title": "मक्के में फॉल आर्मीवर्म कैसे नष्ट करें?",
+    "title_hi": "मक्के में फॉल आर्मीवर्म कैसे नष्ट करें?",
+    "description": "मक्के में फॉल आर्मीवर्म कैसे नष्ट करें?",
+    "metadata": {
+      "trigger": [
+        "makke me fall armyworm kaise nasht karein?",
+        "मक्के में फॉल आर्मीवर्म कैसे नष्ट करें?"
+      ],
+      "question_hi": "मक्के में फॉल आर्मीवर्म कैसे नष्ट करें?",
+      "question_romanized": "makke me fall armyworm kaise nasht karein?",
+      "answer_hi": "मक्के की गोभ में फॉल आर्मीवर्म इल्ली दिखने पर इमामेक्टिन बेंजोएट (0.4 ग्राम/लीटर) नोजल से सीधे गोभ में छिड़कें या रेत-नीम खली का मिश्रण डालें।",
+      "answer_en": "मक्के की गोभ में फॉल आर्मीवर्म इल्ली दिखने पर इमामेक्टिन बेंजोएट (0.4 ग्राम/लीटर) नोजल से सीधे गोभ में छिड़कें या रेत-नीम खली का मिश्रण डालें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-22",
+    "category": "faq",
+    "title": "प्याज में थ्रिप्स कैसे नियंत्रित करें?",
+    "title_hi": "प्याज में थ्रिप्स कैसे नियंत्रित करें?",
+    "description": "प्याज में थ्रिप्स कैसे नियंत्रित करें?",
+    "metadata": {
+      "trigger": [
+        "pyaj me thrips kaise niyantrit karein?",
+        "प्याज में थ्रिप्स कैसे नियंत्रित करें?"
+      ],
+      "question_hi": "प्याज में थ्रिप्स कैसे नियंत्रित करें?",
+      "question_romanized": "pyaj me thrips kaise niyantrit karein?",
+      "answer_hi": "प्याज़ की पत्तियों पर नीली-सफेद धारियां थ्रिप्स का लक्षण हैं। नीले कार्ड लगाएं और फिप्रोनिल का छिड़काव करें।",
+      "answer_en": "प्याज़ की पत्तियों पर नीली-सफेद धारियां थ्रिप्स का लक्षण हैं। नीले कार्ड लगाएं और फिप्रोनिल का छिड़काव करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-23",
+    "category": "faq",
+    "title": "नीम के तेल का छिड़काव कैसे बनाएं?",
+    "title_hi": "नीम के तेल का छिड़काव कैसे बनाएं?",
+    "description": "नीम के तेल का छिड़काव कैसे बनाएं?",
+    "metadata": {
+      "trigger": [
+        "neem oil spray kaise banayein?",
+        "नीम के तेल का छिड़काव कैसे बनाएं?"
+      ],
+      "question_hi": "नीम के तेल का छिड़काव कैसे बनाएं?",
+      "question_romanized": "neem oil spray kaise banayein?",
+      "answer_hi": "1 लीटर पानी में 3 से 5 मिली नीम का तेल (3000 ppm) और 1 ग्राम डिटर्जेंट/शैम्पू मिलाकर अच्छी तरह हिलाकर छिड़काव करें।",
+      "answer_en": "1 लीटर पानी में 3 से 5 मिली नीम का तेल (3000 ppm) और 1 ग्राम डिटर्जेंट/शैम्पू मिलाकर अच्छी तरह हिलाकर छिड़काव करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-24",
+    "category": "faq",
+    "title": "गेहूं का पीला रतुआ क्या है?",
+    "title_hi": "गेहूं का पीला रतुआ क्या है?",
+    "description": "गेहूं का पीला रतुआ क्या है?",
+    "metadata": {
+      "trigger": [
+        "gehun ka peela ratua kya hai?",
+        "गेहूं का पीला रतुआ क्या है?"
+      ],
+      "question_hi": "गेहूं का पीला रतुआ क्या है?",
+      "question_romanized": "gehun ka peela ratua kya hai?",
+      "answer_hi": "पीला रतुआ ठंड में पत्तियों पर पीली धारियां और पीला पाउडर जमने वाला कवक रोग है। इसके लिए प्रोपीकोनाज़ोल (1 मिली/लीटर) का छिड़काव करें।",
+      "answer_en": "पीला रतुआ ठंड में पत्तियों पर पीली धारियां और पीला पाउडर जमने वाला कवक रोग है। इसके लिए प्रोपीकोनाज़ोल (1 मिली/लीटर) का छिड़काव करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-25",
+    "category": "faq",
+    "title": "किसान क्रेडिट कार्ड (KCC) कैसे बनवायें?",
+    "title_hi": "किसान क्रेडिट कार्ड (KCC) कैसे बनवायें?",
+    "description": "किसान क्रेडिट कार्ड (KCC) कैसे बनवायें?",
+    "metadata": {
+      "trigger": [
+        "kisan credit card kaise banwayein?",
+        "किसान क्रेडिट कार्ड (kcc) कैसे बनवायें?"
+      ],
+      "question_hi": "किसान क्रेडिट कार्ड (KCC) कैसे बनवायें?",
+      "question_romanized": "kisan credit card kaise banwayein?",
+      "answer_hi": "अपने बैंक की शाखा में आधार कार्ड, जमीन की खसरा/खतौनी की नकल और पासपोर्ट फोटो जमा करके KCC फॉर्म भरें।",
+      "answer_en": "अपने बैंक की शाखा में आधार कार्ड, जमीन की खसरा/खतौनी की नकल और पासपोर्ट फोटो जमा करके KCC फॉर्म भरें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-26",
+    "category": "faq",
+    "title": "ड्रिप फर्टिगेशन क्या है?",
+    "title_hi": "ड्रिप फर्टिगेशन क्या है?",
+    "description": "ड्रिप फर्टिगेशन क्या है?",
+    "metadata": {
+      "trigger": [
+        "drip fertigation kya hai?",
+        "ड्रिप फर्टिगेशन क्या है?"
+      ],
+      "question_hi": "ड्रिप फर्टिगेशन क्या है?",
+      "question_romanized": "drip fertigation kya hai?",
+      "answer_hi": "ड्रिप सिंचाई पाइपलाइन के माध्यम से घुलनशील उर्वरकों (जैसे 19:19:19) को सीधे पौधों की जड़ों तक पहुंचाने की प्रक्रिया फर्टिगेशन कहलाती है।",
+      "answer_en": "ड्रिप सिंचाई पाइपलाइन के माध्यम से घुलनशील उर्वरकों (जैसे 19:19:19) को सीधे पौधों की जड़ों तक पहुंचाने की प्रक्रिया फर्टिगेशन कहलाती है।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-27",
+    "category": "faq",
+    "title": "खेत में पानी भराव से फसल कैसे बचाएं?",
+    "title_hi": "खेत में पानी भराव से फसल कैसे बचाएं?",
+    "description": "खेत में पानी भराव से फसल कैसे बचाएं?",
+    "metadata": {
+      "trigger": [
+        "khet me paani bharav se kaise bachayein?",
+        "खेत में पानी भराव से फसल कैसे बचाएं?"
+      ],
+      "question_hi": "खेत में पानी भराव से फसल कैसे बचाएं?",
+      "question_romanized": "khet me paani bharav se kaise bachayein?",
+      "answer_hi": "खेत की ढलान की तरफ 15-20 मीटर पर जल निकासी की नालियां (Drainage channels) बनाकर खड़े पानी को तुरंत बाहर निकालें।",
+      "answer_en": "खेत की ढलान की तरफ 15-20 मीटर पर जल निकासी की नालियां (Drainage channels) बनाकर खड़े पानी को तुरंत बाहर निकालें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-28",
+    "category": "faq",
+    "title": "पाले से फसल कैसे बचाएं?",
+    "title_hi": "पाले से फसल कैसे बचाएं?",
+    "description": "पाले से फसल कैसे बचाएं?",
+    "metadata": {
+      "trigger": [
+        "paale se fasal kaise bachayein?",
+        "पाले से फसल कैसे बचाएं?"
+      ],
+      "question_hi": "पाले से फसल कैसे बचाएं?",
+      "question_romanized": "paale se fasal kaise bachayein?",
+      "answer_hi": "शीत लहर में रात को हल्की सिंचाई करें, खेत की मेड़ पर धुआं करें और 0.1% घुलनशील सल्फर का छिड़काव करें।",
+      "answer_en": "शीत लहर में रात को हल्की सिंचाई करें, खेत की मेड़ पर धुआं करें और 0.1% घुलनशील सल्फर का छिड़काव करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-29",
+    "category": "faq",
+    "title": "बीज उपचार क्यों जरूरी है?",
+    "title_hi": "बीज उपचार क्यों जरूरी है?",
+    "description": "बीज उपचार क्यों जरूरी है?",
+    "metadata": {
+      "trigger": [
+        "beej upchar kyu zaruri hai?",
+        "बीज उपचार क्यों जरूरी है?"
+      ],
+      "question_hi": "बीज उपचार क्यों जरूरी है?",
+      "question_romanized": "beej upchar kyu zaruri hai?",
+      "answer_hi": "बीज उपचार करने से बीजों को मृदा और बीज जनित रोगों (उकठा, कगुआ, ब्लास्ट) से शुरुआती 30-40 दिनों तक सुरक्षा मिलती है।",
+      "answer_en": "बीज उपचार करने से बीजों को मृदा और बीज जनित रोगों (उकठा, कगुआ, ब्लास्ट) से शुरुआती 30-40 दिनों तक सुरक्षा मिलती है।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-30",
+    "category": "faq",
+    "title": "मिट्टी का pH मान कैसे सुधारें?",
+    "title_hi": "मिट्टी का pH मान कैसे सुधारें?",
+    "description": "मिट्टी का pH मान कैसे सुधारें?",
+    "metadata": {
+      "trigger": [
+        "mitti ka ph kaise sudharein?",
+        "मिट्टी का ph मान कैसे सुधारें?"
+      ],
+      "question_hi": "मिट्टी का pH मान कैसे सुधारें?",
+      "question_romanized": "mitti ka ph kaise sudharein?",
+      "answer_hi": "अम्लीय मिट्टी (pH < 6) में चूना (Lime) डालें और क्षारीय/ऊसर मिट्टी (pH > 8.5) में कृषि जिप्सम (Gypsum) और ढैंचा की हरी खाद का प्रयोग करें।",
+      "answer_en": "अम्लीय मिट्टी (pH < 6) में चूना (Lime) डालें और क्षारीय/ऊसर मिट्टी (pH > 8.5) में कृषि जिप्सम (Gypsum) और ढैंचा की हरी खाद का प्रयोग करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-31",
+    "category": "faq",
+    "title": "मूंगफली में टिक्का रोग का इलाज?",
+    "title_hi": "मूंगफली में टिक्का रोग का इलाज?",
+    "description": "मूंगफली में टिक्का रोग का इलाज?",
+    "metadata": {
+      "trigger": [
+        "moongfali me tikka rog ka ilaj?",
+        "मूंगफली में टिक्का रोग का इलाज?"
+      ],
+      "question_hi": "मूंगफली में टिक्का रोग का इलाज?",
+      "question_romanized": "moongfali me tikka rog ka ilaj?",
+      "answer_hi": "मूंगफली की पत्तों पर गोल काले धब्बों (टिक्का रोग) के लिए मैनकोज़ेब (2 ग्राम/लीटर) का छिड़काव करें।",
+      "answer_en": "मूंगफली की पत्तों पर गोल काले धब्बों (टिक्का रोग) के लिए मैनकोज़ेब (2 ग्राम/लीटर) का छिड़काव करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-32",
+    "category": "faq",
+    "title": "आम का बौर क्यों गिरता है?",
+    "title_hi": "आम का बौर क्यों गिरता है?",
+    "description": "आम का बौर क्यों गिरता है?",
+    "metadata": {
+      "trigger": [
+        "aam ka baur kyu girta hai?",
+        "आम का बौर क्यों गिरता है?"
+      ],
+      "question_hi": "आम का बौर क्यों गिरता है?",
+      "question_romanized": "aam ka baur kyu girta hai?",
+      "answer_hi": "आम का बौर भुनका कीट (Hopper) या चूर्णी फफूंद (Powdery Mildew) से गिरता है। सरसों के दाने जितने टिकोरे बनने पर हेक्साकोनाज़ोल या इमिडाक्लोप्रिड छिड़कें।",
+      "answer_en": "आम का बौर भुनका कीट (Hopper) या चूर्णी फफूंद (Powdery Mildew) से गिरता है। सरसों के दाने जितने टिकोरे बनने पर हेक्साकोनाज़ोल या इमिडाक्लोप्रिड छिड़कें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-33",
+    "category": "faq",
+    "title": "केले का सिगाटोका रोग क्या है?",
+    "title_hi": "केले का सिगाटोका रोग क्या है?",
+    "description": "केले का सिगाटोका रोग क्या है?",
+    "metadata": {
+      "trigger": [
+        "kela sigatoka rog kya hai?",
+        "केले का सिगाटोका रोग क्या है?"
+      ],
+      "question_hi": "केले का सिगाटोका रोग क्या है?",
+      "question_romanized": "kela sigatoka rog kya hai?",
+      "answer_hi": "केले के पत्तों पर भूरे-काले धब्बे सिगाटोका हैं। ग्रसित पत्ते काटकर जलाएं और प्रोपीकोनाज़ोल का छिड़काव करें।",
+      "answer_en": "केले के पत्तों पर भूरे-काले धब्बे सिगाटोका हैं। ग्रसित पत्ते काटकर जलाएं और प्रोपीकोनाज़ोल का छिड़काव करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-34",
+    "category": "faq",
+    "title": "भिंडी में पीला मोज़ेक वायरस?",
+    "title_hi": "भिंडी में पीला मोज़ेक वायरस?",
+    "description": "भिंडी में पीला मोज़ेक वायरस?",
+    "metadata": {
+      "trigger": [
+        "bhindi me peela mosaic virus?",
+        "भिंडी में पीला मोज़ेक वायरस?"
+      ],
+      "question_hi": "भिंडी में पीला मोज़ेक वायरस?",
+      "question_romanized": "bhindi me peela mosaic virus?",
+      "answer_hi": "भिंडी की नसें पीली पड़ना सफेद मक्खी द्वारा फैलाया वायरस है। पीले कार्ड लगाएं और प्रतिरोधी किस्म अर्क अनामिका बोएं।",
+      "answer_en": "भिंडी की नसें पीली पड़ना सफेद मक्खी द्वारा फैलाया वायरस है। पीले कार्ड लगाएं और प्रतिरोधी किस्म अर्क अनामिका बोएं।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-35",
+    "category": "faq",
+    "title": "सोलर पंप पर 60% सब्सिडी कैसे मिलेगी?",
+    "title_hi": "सोलर पंप पर 60% सब्सिडी कैसे मिलेगी?",
+    "description": "सोलर पंप पर 60% सब्सिडी कैसे मिलेगी?",
+    "metadata": {
+      "trigger": [
+        "solar pump subsidy kaise milegi?",
+        "सोलर पंप पर 60% सब्सिडी कैसे मिलेगी?"
+      ],
+      "question_hi": "सोलर पंप पर 60% सब्सिडी कैसे मिलेगी?",
+      "question_romanized": "solar pump subsidy kaise milegi?",
+      "answer_hi": "पीएम-कुसुम (PM-KUSUM) योजना के तहत राज्य के नवीकरणीय ऊर्जा विभाग के पोर्टल पर आवेदन करके 60% सब्सिडी प्राप्त कर सकते हैं।",
+      "answer_en": "पीएम-कुसुम (PM-KUSUM) योजना के तहत राज्य के नवीकरणीय ऊर्जा विभाग के पोर्टल पर आवेदन करके 60% सब्सिडी प्राप्त कर सकते हैं।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-36",
+    "category": "faq",
+    "title": "ई-नाम (e-NAM) पर फसल कैसे बेचें?",
+    "title_hi": "ई-नाम (e-NAM) पर फसल कैसे बेचें?",
+    "description": "ई-नाम (e-NAM) पर फसल कैसे बेचें?",
+    "metadata": {
+      "trigger": [
+        "enam par fasal kaise bechein?",
+        "ई-नाम (e-nam) पर फसल कैसे बेचें?"
+      ],
+      "question_hi": "ई-नाम (e-NAM) पर फसल कैसे बेचें?",
+      "question_romanized": "enam par fasal kaise bechein?",
+      "answer_hi": "e-NAM पोर्टल पर पंजीकृत होकर निकटतम ई-नाम मंडी में लॉट जमा करें। ऑनलाइन बोली के बाद सीधे बैंक खाते में भुगतान मिलेगा।",
+      "answer_en": "e-NAM पोर्टल पर पंजीकृत होकर निकटतम ई-नाम मंडी में लॉट जमा करें। ऑनलाइन बोली के बाद सीधे बैंक खाते में भुगतान मिलेगा।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-37",
+    "category": "faq",
+    "title": "वर्मीकंपोस्ट कैसे बनाएं?",
+    "title_hi": "वर्मीकंपोस्ट कैसे बनाएं?",
+    "description": "वर्मीकंपोस्ट कैसे बनाएं?",
+    "metadata": {
+      "trigger": [
+        "vermicompost kaise banayein?",
+        "वर्मीकंपोस्ट कैसे बनाएं?"
+      ],
+      "question_hi": "वर्मीकंपोस्ट कैसे बनाएं?",
+      "question_romanized": "vermicompost kaise banayein?",
+      "answer_hi": "गोबर और कृषि अवशेषों के ढेर में इसैनिया फेटिडा प्रजाति के केचुए छोड़कर 45-60 दिनों में उत्तम जैविक खाद तैयार की जा सकती है।",
+      "answer_en": "गोबर और कृषि अवशेषों के ढेर में इसैनिया फेटिडा प्रजाति के केचुए छोड़कर 45-60 दिनों में उत्तम जैविक खाद तैयार की जा सकती है।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-38",
+    "category": "faq",
+    "title": "ट्राइकोड्रामा का उपयोग कैसे करें?",
+    "title_hi": "ट्राइकोड्रामा का उपयोग कैसे करें?",
+    "description": "ट्राइकोड्रामा का उपयोग कैसे करें?",
+    "metadata": {
+      "trigger": [
+        "trichoderma ka upyog kaise karein?",
+        "ट्राइकोड्रामा का उपयोग कैसे करें?"
+      ],
+      "question_hi": "ट्राइकोड्रामा का उपयोग कैसे करें?",
+      "question_romanized": "trichoderma ka upyog kaise karein?",
+      "answer_hi": "ट्राइकोड्रामा जैविक फफूंदनाशी है। इसका प्रयोग बीज उपचार (5-10 ग्राम/किग्रा) या 2.5 किग्रा/एकड़ गोबर खाद में मिलाकर मिट्टी में करने हेतु होता है।",
+      "answer_en": "ट्राइकोड्रामा जैविक फफूंदनाशी है। इसका प्रयोग बीज उपचार (5-10 ग्राम/किग्रा) या 2.5 किग्रा/एकड़ गोबर खाद में मिलाकर मिट्टी में करने हेतु होता है।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-39",
+    "category": "faq",
+    "title": "फसल चक्र (Crop Rotation) क्यों अपनाना चाहिए?",
+    "title_hi": "फसल चक्र (Crop Rotation) क्यों अपनाना चाहिए?",
+    "description": "फसल चक्र (Crop Rotation) क्यों अपनाना चाहिए?",
+    "metadata": {
+      "trigger": [
+        "fasal chakra kyu apnayein?",
+        "फसल चक्र (crop rotation) क्यों अपनाना चाहिए?"
+      ],
+      "question_hi": "फसल चक्र (Crop Rotation) क्यों अपनाना चाहिए?",
+      "question_romanized": "fasal chakra kyu apnayein?",
+      "answer_hi": "गहरे और उथले जड़ वाले तथा अनाज और दलहनी फसलों को बदलकर बोने से मिट्टी की उर्वरता बनी रहती है और कीट-रोगों का चक्र टूटता है।",
+      "answer_en": "गहरे और उथले जड़ वाले तथा अनाज और दलहनी फसलों को बदलकर बोने से मिट्टी की उर्वरता बनी रहती है और कीट-रोगों का चक्र टूटता है।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-40",
+    "category": "faq",
+    "title": "खेत में दीमक से बचाव कैसे करें?",
+    "title_hi": "खेत में दीमक से बचाव कैसे करें?",
+    "description": "खेत में दीमक से बचाव कैसे करें?",
+    "metadata": {
+      "trigger": [
+        "khet me deemak se bachav kaise karein?",
+        "खेत में दीमक से बचाव कैसे करें?"
+      ],
+      "question_hi": "खेत में दीमक से बचाव कैसे करें?",
+      "question_romanized": "khet me deemak se bachav kaise karein?",
+      "answer_hi": "खेत में कच्ची गोबर खाद न डालें। नीम की खली (100 किग्रा/एकड़) मिलाएं या सिंचाई के साथ क्लोरपायरीफॉस बहाएं।",
+      "answer_en": "खेत में कच्ची गोबर खाद न डालें। नीम की खली (100 किग्रा/एकड़) मिलाएं या सिंचाई के साथ क्लोरपायरीफॉस बहाएं।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-41",
+    "category": "faq",
+    "title": "धान में तना छेदक का इलाज क्या है?",
+    "title_hi": "धान में तना छेदक का इलाज क्या है?",
+    "description": "धान में तना छेदक का इलाज क्या है?",
+    "metadata": {
+      "trigger": [
+        "dhaan me tana chedak ilaj?",
+        "धान में तना छेदक का इलाज क्या है?"
+      ],
+      "question_hi": "धान में तना छेदक का इलाज क्या है?",
+      "question_romanized": "dhaan me tana chedak ilaj?",
+      "answer_hi": "धान में गोभ सूखने पर कार्टैप हाइड्रोक्लोराइड 4G दानेदार (7.5 किग्रा/एकड़) या कोराजन का छिड़काव करें।",
+      "answer_en": "धान में गोभ सूखने पर कार्टैप हाइड्रोक्लोराइड 4G दानेदार (7.5 किग्रा/एकड़) या कोराजन का छिड़काव करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-42",
+    "category": "faq",
+    "title": "सरसों में अगेती बुआई का क्या लाभ है?",
+    "title_hi": "सरसों में अगेती बुआई का क्या लाभ है?",
+    "description": "सरसों में अगेती बुआई का क्या लाभ है?",
+    "metadata": {
+      "trigger": [
+        "sarson me ageti buai ka labh?",
+        "सरसों में अगेती बुआई का क्या लाभ है?"
+      ],
+      "question_hi": "सरसों में अगेती बुआई का क्या लाभ है?",
+      "question_romanized": "sarson me ageti buai ka labh?",
+      "answer_hi": "15 अक्टूबर तक सरसों बोने से फसल माहू (Aphid) कीट और अल्टरनेरिया झुलसा के प्रकोप से बच जाती है।",
+      "answer_en": "15 अक्टूबर तक सरसों बोने से फसल माहू (Aphid) कीट और अल्टरनेरिया झुलसा के प्रकोप से बच जाती है।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-43",
+    "category": "faq",
+    "title": "सोयाबीन में पीला मोज़ेक वायरस?",
+    "title_hi": "सोयाबीन में पीला मोज़ेक वायरस?",
+    "description": "सोयाबीन में पीला मोज़ेक वायरस?",
+    "metadata": {
+      "trigger": [
+        "soybean me peela mosaic virus?",
+        "सोयाबीन में पीला मोज़ेक वायरस?"
+      ],
+      "question_hi": "सोयाबीन में पीला मोज़ेक वायरस?",
+      "question_romanized": "soybean me peela mosaic virus?",
+      "answer_hi": "सोयाबीन की पत्तियां पीली पड़ना सफेद मक्खी का प्रकोप है। इमिडाक्लोप्रिड या थियामेथॉक्सम का छिड़काव करें।",
+      "answer_en": "सोयाबीन की पत्तियां पीली पड़ना सफेद मक्खी का प्रकोप है। इमिडाक्लोप्रिड या थियामेथॉक्सम का छिड़काव करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-44",
+    "category": "faq",
+    "title": "बैंगन में छोटी पत्ती रोग (Little Leaf)?",
+    "title_hi": "बैंगन में छोटी पत्ती रोग (Little Leaf)?",
+    "description": "बैंगन में छोटी पत्ती रोग (Little Leaf)?",
+    "metadata": {
+      "trigger": [
+        "baingan me chhoti patti rog?",
+        "बैंगन में छोटी पत्ती रोग (little leaf)?"
+      ],
+      "question_hi": "बैंगन में छोटी पत्ती रोग (Little Leaf)?",
+      "question_romanized": "baingan me chhoti patti rog?",
+      "answer_hi": "पत्तियां अत्यधिक छोटी और पौधा झाड़ी बनने पर ग्रसित पौधे उखाड़ दें तथा लीफहॉपर कीट नियंत्रण हेतु डाइमेथोएट छिड़कें।",
+      "answer_en": "पत्तियां अत्यधिक छोटी और पौधा झाड़ी बनने पर ग्रसित पौधे उखाड़ दें तथा लीफहॉपर कीट नियंत्रण हेतु डाइमेथोएट छिड़कें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-45",
+    "category": "faq",
+    "title": "फल छेदक के लिए फेरोमोन ट्रैप कैसे लगाएं?",
+    "title_hi": "फल छेदक के लिए फेरोमोन ट्रैप कैसे लगाएं?",
+    "description": "फल छेदक के लिए फेरोमोन ट्रैप कैसे लगाएं?",
+    "metadata": {
+      "trigger": [
+        "pheromone trap kaise lagayein?",
+        "फल छेदक के लिए फेरोमोन ट्रैप कैसे लगाएं?"
+      ],
+      "question_hi": "फल छेदक के लिए फेरोमोन ट्रैप कैसे लगाएं?",
+      "question_romanized": "pheromone trap kaise lagayein?",
+      "answer_hi": "एकड़ में 5-8 फेरोमोन ट्रैप फसल की ऊंचाई से 1 फीट ऊपर लगाएं ताकि नर पतंगे फंसकर प्रजनन चक्र टूट सके।",
+      "answer_en": "एकड़ में 5-8 फेरोमोन ट्रैप फसल की ऊंचाई से 1 फीट ऊपर लगाएं ताकि नर पतंगे फंसकर प्रजनन चक्र टूट सके।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-46",
+    "category": "faq",
+    "title": "गेहूं में पहली सिंचाई कब करें?",
+    "title_hi": "गेहूं में पहली सिंचाई कब करें?",
+    "description": "गेहूं में पहली सिंचाई कब करें?",
+    "metadata": {
+      "trigger": [
+        "gehun me pehli sinchai kab karein?",
+        "गेहूं में पहली सिंचाई कब करें?"
+      ],
+      "question_hi": "गेहूं में पहली सिंचाई कब करें?",
+      "question_romanized": "gehun me pehli sinchai kab karein?",
+      "answer_hi": "गेहूं की पहली सिंचाई बुआई के 20 से 25 दिन बाद क्राउन रूट (CRI stage) बनने पर अवश्य करें।",
+      "answer_en": "गेहूं की पहली सिंचाई बुआई के 20 से 25 दिन बाद क्राउन रूट (CRI stage) बनने पर अवश्य करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-47",
+    "category": "faq",
+    "title": "खरपतवार नाशक का उपयोग करते समय सावधानियां?",
+    "title_hi": "खरपतवार नाशक का उपयोग करते समय सावधानियां?",
+    "description": "खरपतवार नाशक का उपयोग करते समय सावधानियां?",
+    "metadata": {
+      "trigger": [
+        "weedicide precautions?",
+        "खरपतवार नाशक का उपयोग करते समय सावधानियां?"
+      ],
+      "question_hi": "खरपतवार नाशक का उपयोग करते समय सावधानियां?",
+      "question_romanized": "weedicide precautions?",
+      "answer_hi": "खरपतवार नाशक का छिड़काव फ्लैट फैन नोजल से नमी वाले खेत में करें। हवा के बहाव की दिशा में छिड़कें।",
+      "answer_en": "खरपतवार नाशक का छिड़काव फ्लैट फैन नोजल से नमी वाले खेत में करें। हवा के बहाव की दिशा में छिड़कें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-48",
+    "category": "faq",
+    "title": "मिट्टी में पोटाश का क्या महत्व है?",
+    "title_hi": "मिट्टी में पोटाश का क्या महत्व है?",
+    "description": "मिट्टी में पोटाश का क्या महत्व है?",
+    "metadata": {
+      "trigger": [
+        "mitti me potash ka mahatva?",
+        "मिट्टी में पोटाश का क्या महत्व है?"
+      ],
+      "question_hi": "मिट्टी में पोटाश का क्या महत्व है?",
+      "question_romanized": "mitti me potash ka mahatva?",
+      "answer_hi": "पोटाश पौधों को सूखा और बीमारी सहने की शक्ति देता है तथा अनाज और फलों में वजन व चमक बढ़ाता है।",
+      "answer_en": "पोटाश पौधों को सूखा और बीमारी सहने की शक्ति देता है तथा अनाज और फलों में वजन व चमक बढ़ाता है।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-49",
+    "category": "faq",
+    "title": "जैविक कीटनाशक (दशपर्णी अर्क) कैसे बनाएं?",
+    "title_hi": "जैविक कीटनाशक (दशपर्णी अर्क) कैसे बनाएं?",
+    "description": "जैविक कीटनाशक (दशपर्णी अर्क) कैसे बनाएं?",
+    "metadata": {
+      "trigger": [
+        "jaivik keetnashak dashparni ark?",
+        "जैविक कीटनाशक (दशपर्णी अर्क) कैसे बनाएं?"
+      ],
+      "question_hi": "जैविक कीटनाशक (दशपर्णी अर्क) कैसे बनाएं?",
+      "question_romanized": "jaivik keetnashak dashparni ark?",
+      "answer_hi": "नीम, धतूरा, आक, करंज आदि 10 पत्तियों को गोमूत्र व गोबर में 15 दिन सड़ाकर छाने गए घोल का छिड़काव करें।",
+      "answer_en": "नीम, धतूरा, आक, करंज आदि 10 पत्तियों को गोमूत्र व गोबर में 15 दिन सड़ाकर छाने गए घोल का छिड़काव करें।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-50",
+    "category": "faq",
+    "title": "पराली (Stubble) का प्रबंधन कैसे करें?",
+    "title_hi": "पराली (Stubble) का प्रबंधन कैसे करें?",
+    "description": "पराली (Stubble) का प्रबंधन कैसे करें?",
+    "metadata": {
+      "trigger": [
+        "parali prabandhan kaise karein?",
+        "पराली (stubble) का प्रबंधन कैसे करें?"
+      ],
+      "question_hi": "पराली (Stubble) का प्रबंधन कैसे करें?",
+      "question_romanized": "parali prabandhan kaise karein?",
+      "answer_hi": "पराली जलाने के बजाय पूसा डीकंपोजर छिड़ककर मिट्टी में जोतें या हैप्पी सीडर से बिना जलाए गेहूं बोएं।",
+      "answer_en": "पराली जलाने के बजाय पूसा डीकंपोजर छिड़ककर मिट्टी में जोतें या हैप्पी सीडर से बिना जलाए गेहूं बोएं।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-51",
+    "category": "faq",
+    "title": "ऑनलाइन और ऑफलाइन कृषि मित्र चैट में अंतर?",
+    "title_hi": "ऑनलाइन और ऑफलाइन कृषि मित्र चैट में अंतर?",
+    "description": "ऑनलाइन और ऑफलाइन कृषि मित्र चैट में अंतर?",
+    "metadata": {
+      "trigger": [
+        "online offline chat me antar?",
+        "ऑनलाइन और ऑफलाइन कृषि मित्र चैट में अंतर?"
+      ],
+      "question_hi": "ऑनलाइन और ऑफलाइन कृषि मित्र चैट में अंतर?",
+      "question_romanized": "online offline chat me antar?",
+      "answer_hi": "कृषि मित्र बिना इंटरनेट के स्थानीय ज्ञानकोष (Offline RAG) से 100% सटीक कृषि उत्तर देता है। ऑनलाइन में ताज़ा मौसम व मंडी लाइव जुड़ते हैं।",
+      "answer_en": "कृषि मित्र बिना इंटरनेट के स्थानीय ज्ञानकोष (Offline RAG) से 100% सटीक कृषि उत्तर देता है। ऑनलाइन में ताज़ा मौसम व मंडी लाइव जुड़ते हैं।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-52",
+    "category": "faq",
+    "title": "कृषि मित्र का उपयोग कौन सी भाषाओं में कर सकते हैं?",
+    "title_hi": "कृषि मित्र का उपयोग कौन सी भाषाओं में कर सकते हैं?",
+    "description": "कृषि मित्र का उपयोग कौन सी भाषाओं में कर सकते हैं?",
+    "metadata": {
+      "trigger": [
+        "krishimitra bhasha support?",
+        "कृषि मित्र का उपयोग कौन सी भाषाओं में कर सकते हैं?"
+      ],
+      "question_hi": "कृषि मित्र का उपयोग कौन सी भाषाओं में कर सकते हैं?",
+      "question_romanized": "krishimitra bhasha support?",
+      "answer_hi": "कृषि मित्र हिंदी (देवनागरी), अंग्रेजी और हिंग्लिश/रोमन हिंदी इनपुट स्वीकार करके शुद्ध देवनागरी हिंदी और अंग्रेजी उत्तर देता है।",
+      "answer_en": "कृषि मित्र हिंदी (देवनागरी), अंग्रेजी और हिंग्लिश/रोमन हिंदी इनपुट स्वीकार करके शुद्ध देवनागरी हिंदी और अंग्रेजी उत्तर देता है।",
+      "language": "hi"
+    }
+  },
+  {
+    "id": "faq-expanded-53",
+    "category": "faq",
+    "title": "सोयाबीन में कौन सी खाद डालें?",
+    "title_hi": "सोयाबीन में कौन सी खाद डालें?",
+    "description": "सोयाबीन में कौन सी खाद डालें?",
+    "metadata": {
+      "trigger": [
+        "soybean me konsi khad dalein?",
+        "सोयाबीन में कौन सी खाद डालें?"
+      ],
+      "question_hi": "सोयाबीन में कौन सी खाद डालें?",
+      "question_romanized": "soybean me konsi khad dalein?",
+      "answer_hi": "सोयाबीन में बुआई के समय 20 किग्रा एनपीके या एसएसपी (Single Super Phosphate) खाद डालें क्योंकि इसमें सल्फर होता है।",
+      "answer_en": "सोयाबीन में बुआई के समय 20 किग्रा एनपीके या एसएसपी (Single Super Phosphate) खाद डालें क्योंकि इसमें सल्फर होता है।",
+      "language": "hi"
     }
   }
 ]

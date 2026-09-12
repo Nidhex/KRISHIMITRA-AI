@@ -8,13 +8,32 @@
       "distance": "12km",
       "type": "Government APMC",
       "cropPrices": {
-        "paddy": { "price": 2350, "trend": "up" },
-        "wheat": { "price": 2150, "trend": "down" },
-        "tomato": { "price": 1650, "trend": "up" },
-        "potato": { "price": 1350, "trend": "stable" },
-        "mustard": { "price": 5300, "trend": "stable" }
+        "paddy": {
+          "price": 2350,
+          "trend": "up"
+        },
+        "wheat": {
+          "price": 2150,
+          "trend": "down"
+        },
+        "tomato": {
+          "price": 1650,
+          "trend": "up"
+        },
+        "potato": {
+          "price": 1350,
+          "trend": "stable"
+        },
+        "mustard": {
+          "price": 5300,
+          "trend": "stable"
+        }
       },
-      "highlightedFor": ["paddy", "tomato", "potato"]
+      "highlightedFor": [
+        "paddy",
+        "tomato",
+        "potato"
+      ]
     }
   },
   {
@@ -26,13 +45,31 @@
       "distance": "18km",
       "type": "Government APMC",
       "cropPrices": {
-        "paddy": { "price": 2210, "trend": "up" },
-        "wheat": { "price": 2275, "trend": "up" },
-        "tomato": { "price": 1400, "trend": "down" },
-        "potato": { "price": 1280, "trend": "up" },
-        "mustard": { "price": 5450, "trend": "up" }
+        "paddy": {
+          "price": 2210,
+          "trend": "up"
+        },
+        "wheat": {
+          "price": 2275,
+          "trend": "up"
+        },
+        "tomato": {
+          "price": 1400,
+          "trend": "down"
+        },
+        "potato": {
+          "price": 1280,
+          "trend": "up"
+        },
+        "mustard": {
+          "price": 5450,
+          "trend": "up"
+        }
       },
-      "highlightedFor": ["wheat", "mustard"]
+      "highlightedFor": [
+        "wheat",
+        "mustard"
+      ]
     }
   },
   {
@@ -44,14 +81,242 @@
       "distance": "4km",
       "type": "Local Mandi",
       "cropPrices": {
-        "paddy": { "price": 2050, "trend": "down" },
-        "wheat": { "price": 2200, "trend": "stable" },
-        "tomato": { "price": 1800, "trend": "up" },
-        "potato": { "price": 1100, "trend": "down" },
-        "mustard": { "price": 5100, "trend": "down" }
+        "paddy": {
+          "price": 2050,
+          "trend": "down"
+        },
+        "wheat": {
+          "price": 2200,
+          "trend": "stable"
+        },
+        "tomato": {
+          "price": 1800,
+          "trend": "up"
+        },
+        "potato": {
+          "price": 1100,
+          "trend": "down"
+        },
+        "mustard": {
+          "price": 5100,
+          "trend": "down"
+        }
       },
-      "highlightedFor": ["tomato"],
+      "highlightedFor": [
+        "tomato"
+      ],
       "note": "Kishanpur Mandi is paying premium Rs.1800/Qtl today for tomatoes due to low supply."
+    }
+  },
+  {
+    "id": "mandi-msp-minimum-support-price",
+    "category": "mandi",
+    "title": "Minimum Support Price (MSP) Advisory & Mandi Rates",
+    "title_hi": "न्यूनतम समर्थन मूल्य (MSP) और मंडी भाव सलाह",
+    "description": "Government guaranteed benchmark price for agricultural crops (Wheat, Paddy, Mustard, Gram).",
+    "description_hi": "सरकारी न्यूनतम समर्थन मूल्य (MSP) की जानकारी। यदि मंडी में व्यापारी MSP से कम रेट दें, तो सरकारी क्रय केंद्र पर फसल बेचें।",
+    "metadata": {
+      "concept": "MSP (Minimum Support Price)",
+      "advisory": "Compare private mandi quotes with official MSP rates. Never sell below MSP at government procurement centers.",
+      "advisory_hi": "प्राइवेट व्यापारी के भाव की तुलना सरकारी MSP से करें। सरकारी क्रय केंद्र पर पंजीयन कराएं।",
+      "isLivePrice": false,
+      "keywords": [
+        "msp",
+        "minimum support price",
+        "sarkari bhav",
+        "gehun msp",
+        "dhaan msp"
+      ],
+      "keywords_hi": [
+        "एमएसपी",
+        "सरकारी भाव",
+        "न्यूनतम समर्थन मूल्य"
+      ],
+      "keywords_romanized": [
+        "msp bhav",
+        "sarkari rate",
+        "minimum support price"
+      ]
+    }
+  },
+  {
+    "id": "mandi-moisture-deduction-rules",
+    "category": "mandi",
+    "title": "Mandi Moisture Cut & Quality Grading (Nami Katoti / Quality Standard)",
+    "title_hi": "मंडी में नमी कटौती और गुणवत्ता ग्रेडिंग (Moisture Cuts)",
+    "description": "Understanding standard moisture limits (12-14%) to avoid trader price deductions.",
+    "description_hi": "फसल में 12-14% से अधिक नमी होने पर व्यापारी भाव काटते हैं। धूप में सुखाकर ही मंडी ले जाएं।",
+    "metadata": {
+      "concept": "Moisture Content Standard",
+      "advisory": "Ensure grain moisture is below 12% for Wheat and 14% for Paddy before bringing produce to APMC mandi.",
+      "advisory_hi": "गेहूं में 12% और धान में 14% से कम नमी रखें ताकि कटौती न हो।",
+      "isLivePrice": false,
+      "keywords": [
+        "mandi moisture",
+        "nami katoti",
+        "grain moisture limit",
+        "mandi grading"
+      ],
+      "keywords_hi": [
+        "नमी कटौती",
+        "मंडी में कटौती",
+        "दाना सुखाना"
+      ],
+      "keywords_romanized": [
+        "nami katoti",
+        "mandi moisture"
+      ]
+    }
+  },
+  {
+    "id": "mandi-transportation-economics",
+    "category": "mandi",
+    "title": "Mandi Transport Cost vs Profit Comparison (Mandi Chunaav)",
+    "title_hi": "मंडी चुनाव एवं परिवहन खर्च का हिसाब",
+    "description": "How to calculate net profit considering transport cost between local and distantly located APMCs.",
+    "description_hi": "दूर की मंडी में ऊंचे भाव मिलने पर भी भाड़ा (Transport cost) घटाकर ही शुद्ध लाभ का हिसाब लगाएं।",
+    "metadata": {
+      "concept": "Transport Economics",
+      "advisory": "Calculate Net Profit = (Price per Qtl * Quintals) - (Trolley Transport + Hammali charges).",
+      "advisory_hi": "शुद्ध लाभ = (कुल भाव) - (ट्रैक्टर भाड़ा + हम्माली मजदूरी)।",
+      "isLivePrice": false,
+      "keywords": [
+        "mandi transport",
+        "which mandi to sell",
+        "mandi price comparison",
+        "net mandi profit"
+      ],
+      "keywords_hi": [
+        "मंडी भाड़ा",
+        "कौन सी मंडी में बेचें",
+        "मंडी मुनाफा"
+      ],
+      "keywords_romanized": [
+        "mandi bhada",
+        "konsi mandi me beche"
+      ]
+    }
+  },
+  {
+    "id": "mandi-azamgarh-apmc",
+    "category": "mandi",
+    "title": "Azamgarh Main APMC Mandi",
+    "title_hi": "आजमगढ़ मुख्य मंडी समिति (Azamgarh APMC)",
+    "description": "Major eastern UP mandi for vegetables, mustard, and pulses trading.",
+    "description_hi": "सब्जियों, सरसों और दलहन व्यापार हेतु पूर्वी उत्तर प्रदेश की बड़ी मंडी।",
+    "metadata": {
+      "type": "Government APMC",
+      "distance": "45km",
+      "highlightedFor": [
+        "mustard",
+        "chilli",
+        "potato",
+        "onion"
+      ],
+      "isLivePrice": false,
+      "keywords": [
+        "azamgarh mandi",
+        "azamgarh apmc",
+        "mustard price azamgarh"
+      ],
+      "keywords_hi": [
+        "आजमगढ़ मंडी",
+        "सरसों भाव आजमगढ़"
+      ],
+      "keywords_romanized": [
+        "azamgarh mandi",
+        "azamgarh bhav"
+      ]
+    }
+  },
+  {
+    "id": "mandi-varanasi-pindra",
+    "category": "mandi",
+    "title": "Varanasi Pindra APMC Mandi",
+    "title_hi": "वाराणसी पिंडरा मंडी समिति (Varanasi Mandi)",
+    "description": "Hub for tomato, green chilli, and paddy auctions in Purvanchal.",
+    "description_hi": "टमाटर, हरी मिर्च और धान के लिए पूर्वांचल की प्रमुख मंडी।",
+    "metadata": {
+      "type": "Government APMC",
+      "distance": "85km",
+      "highlightedFor": [
+        "tomato",
+        "green chilli",
+        "paddy"
+      ],
+      "isLivePrice": false,
+      "keywords": [
+        "varanasi mandi",
+        "pindra mandi",
+        "tomato varanasi price"
+      ],
+      "keywords_hi": [
+        "वाराणसी मंडी",
+        "टमाटर भाव बनारस"
+      ],
+      "keywords_romanized": [
+        "varanasi mandi",
+        "banaras mandi bhav"
+      ]
+    }
+  },
+  {
+    "id": "mandi-kanpur-chakeri",
+    "category": "mandi",
+    "title": "Kanpur Chakeri Grain & Oilseed Mandi",
+    "title_hi": "कानपुर चकेरी गल्ला व तिलहन मंडी",
+    "description": "Major central UP trading hub for wheat, pulses, and mustard oilseeds.",
+    "description_hi": "गेहूं, चना, सरसों और तिलहन व्यापार की सबसे बड़ी मध्य उत्तर प्रदेश मंडी।",
+    "metadata": {
+      "type": "Government APMC",
+      "distance": "160km",
+      "highlightedFor": [
+        "wheat",
+        "gram",
+        "mustard",
+        "soybean"
+      ],
+      "isLivePrice": false,
+      "keywords": [
+        "kanpur mandi",
+        "kanpur galla mandi",
+        "wheat kanpur price"
+      ],
+      "keywords_hi": [
+        "कानपुर मंडी",
+        "गल्ला मंडी कानपुर"
+      ],
+      "keywords_romanized": [
+        "kanpur mandi",
+        "kanpur bhav"
+      ]
+    }
+  },
+  {
+    "id": "mandi-offline-disclaimer",
+    "category": "mandi",
+    "title": "Offline Mandi Information Policy & Real-time Update Guide",
+    "title_hi": "ऑफलाइन मंडी भाव संबंधी दिशा-निर्देश",
+    "description": "Guidance on offline vs online mandi price updates in KrishiMitra.",
+    "description_hi": "ऑफलाइन मोड में हाल के रुझान और औसत भाव दिखाए जाते हैं। ताज़ा आज के लाइव भाव के लिए इंटरनेट से कनेक्ट करें।",
+    "metadata": {
+      "concept": "Offline Mandi Policy",
+      "advisory": "Offline RAG presents historical benchmarks and trends. Connect online for live daily e-NAM prices.",
+      "advisory_hi": "ऑफलाइन ज्ञानकोष बेंचमार्क दरें दिखाता है। ताज़ा लाइव भाव हेतु इंटरनेट कनेक्ट करें।",
+      "isLivePrice": false,
+      "keywords": [
+        "mandi policy",
+        "offline mandi price",
+        "live vs cached mandi"
+      ],
+      "keywords_hi": [
+        "मंडी भाव पॉलिसी",
+        "ऑफलाइन भाव"
+      ],
+      "keywords_romanized": [
+        "offline mandi bhav",
+        "live mandi price"
+      ]
     }
   }
 ]
