@@ -27,11 +27,14 @@ async function analyseImage(imagePath, moduleType = 'disease') {
     const AI_DIR = path.resolve(__dirname, '..', '..', 'ai');
 
     // Python executable check
-    let PYTHON = path.join(AI_DIR, '.venv', 'Scripts', 'python.exe');
-    if (!fs.existsSync(PYTHON)) {
-      PYTHON = path.join(AI_DIR, '.venv', 'bin', 'python');
+    let PYTHON = process.env.PYTHON_PATH || '';
+    if (!PYTHON || !fs.existsSync(PYTHON)) {
+      PYTHON = path.join(AI_DIR, '.venv', 'Scripts', 'python.exe');
       if (!fs.existsSync(PYTHON)) {
-        PYTHON = 'python';
+        PYTHON = path.join(AI_DIR, '.venv', 'bin', 'python');
+        if (!fs.existsSync(PYTHON)) {
+          PYTHON = process.platform === 'win32' ? 'python' : 'python3';
+        }
       }
     }
 
