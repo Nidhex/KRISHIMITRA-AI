@@ -11,6 +11,7 @@ from tensorflow.keras.preprocessing import image
 # Determine paths relative to this script
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_PATH = BASE_DIR / "models" / "soil_classifier_v4.keras"
+H5_PATH = BASE_DIR / "models" / "soil_classifier_v4.h5"
 LABELS_PATH = BASE_DIR / "models" / "soil_labels_v4.json"
 
 def load_labels():
@@ -41,10 +42,16 @@ def preprocess_image(image_path):
 
 def predict_soil(image_path, verbose=False):
     # Load model and labels
-    if not MODEL_PATH.exists():
+    if not MODEL_PATH.exists() and not H5_PATH.exists():
         raise FileNotFoundError(f"Trained model not found at: {MODEL_PATH.resolve()}")
         
-    model = tf.keras.models.load_model(str(MODEL_PATH))
+    try:
+        model = tf.keras.models.load_model(str(MODEL_PATH))
+    except Exception as e:
+        if H5_PATH.exists():
+            model = tf.keras.models.load_model(str(H5_PATH))
+        else:
+            raise e
     labels_dict = load_labels()
     
     # Preprocess
