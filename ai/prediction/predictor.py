@@ -67,6 +67,12 @@ class FixedRandomFlip(tf.keras.layers.RandomFlip):
             config.pop('dtype')
         return super().from_config(config)
 
+class DTypePolicy:
+    @classmethod
+    def from_config(cls, config):
+        name = config.get('name', 'float32') if isinstance(config, dict) else 'float32'
+        return tf.keras.mixed_precision.Policy(name)
+
 def _is_keras_deserialization_error(e):
     msg = str(e)
     signatures = [
@@ -92,7 +98,8 @@ except Exception as e:
         custom_objs = {
             'InputLayer': FixedInputLayer,
             'Rescaling': FixedRescaling,
-            'RandomFlip': FixedRandomFlip
+            'RandomFlip': FixedRandomFlip,
+            'DTypePolicy': DTypePolicy
         }
         model = tf.keras.models.load_model(str(H5_PATH), custom_objects=custom_objs)
     else:
