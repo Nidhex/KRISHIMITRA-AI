@@ -35,22 +35,31 @@ if not MODEL_PATH.exists() and not H5_PATH.exists():
 if not LABELS_PATH.exists():
     raise FileNotFoundError(f"Labels file not found at: {LABELS_PATH.resolve()}")
 
-# Load model using native Keras 3 (compile=False for inference)
-model = keras.models.load_model(str(MODEL_PATH), compile=False)
-gc.collect()
-
 # Load labels
 with open(LABELS_PATH, "r", encoding="utf-8-sig") as file:
     class_labels = json.load(file)
 
+_model = None
+
+def get_model():
+    global _model
+    if _model is None:
+        _model = keras.models.load_model(str(MODEL_PATH), compile=False)
+        gc.collect()
+    return _model
+
 def predict(image_path):
     processed_image = preprocess_image(image_path)
+    model_instance = get_model()
 
-    prediction = model.predict(processed_image, verbose=0)
+    prediction = model_instance.predict(processed_image, verbose=0)
 
     predicted_index = np.argmax(prediction)
     confidence = float(np.max(prediction))
 
     predicted_class = class_labels[str(predicted_index)]
+
+    del processed_image, prediction
+    gc.collect()
 
     return predicted_class, confidence

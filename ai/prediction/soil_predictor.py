@@ -57,17 +57,26 @@ def preprocess_image(image_path):
 if not MODEL_PATH.exists() and not H5_PATH.exists():
     raise FileNotFoundError(f"Trained model not found at: {MODEL_PATH.resolve()}")
 
-# Load model using native Keras 3 (compile=False for inference)
-model = keras.models.load_model(str(MODEL_PATH), compile=False)
+import gc
 
 labels_dict = load_labels()
+
+_model = None
+
+def get_model():
+    global _model
+    if _model is None:
+        _model = keras.models.load_model(str(MODEL_PATH), compile=False)
+        gc.collect()
+    return _model
 
 def predict_soil(image_path, verbose=False):
     # Preprocess
     img_array = preprocess_image(image_path)
     
     # Predict
-    preds = model.predict(img_array, verbose=0)[0]
+    model_instance = get_model()
+    preds = model_instance.predict(img_array, verbose=0)[0]
     
     # Sort classes by probability descending
     class_probs = []
@@ -86,6 +95,9 @@ def predict_soil(image_path, verbose=False):
         for class_name, prob in class_probs:
             print(f"  {class_name:<20} {prob * 100:>6.2f}%")
         
+    del img_array, preds
+    gc.collect()
+
     return best_class, best_prob, class_probs
 
 if __name__ == "__main__":
