@@ -201,11 +201,14 @@ class MobileApiClient {
   /**
    * Crop Disease / Soil Scan — POST /api/vision (Multipart)
    * Uses native Expo FileSystem.uploadAsync on devices for maximum Android compatibility.
+   * Configured with dedicated 120-second timeout (ApiConfig.visionTimeoutMs = 120000).
    */
   async scanVision(
     imageInput: string | { uri: string; name?: string; type?: string; fileName?: string; mimeType?: string },
     moduleType: 'disease' | 'soil' = 'disease'
   ): Promise<VisionResponseData> {
+    const visionTimeoutMs = ApiConfig.visionTimeoutMs || 120000;
+
     try {
       // 1. Extract and validate URI string
       const rawUri = typeof imageInput === 'string' ? imageInput : imageInput?.uri;
@@ -238,129 +241,180 @@ class MobileApiClient {
       if (safeMimeType === 'image/png') safeFilename = 'crop_scan.png';
       if (safeMimeType === 'image/webp') safeFilename = 'crop_scan.webp';
 
-      // 3. Determine upload implementation: Native Expo FileSystem vs Fallback
-      if (FileSystem && typeof FileSystem.uploadAsync === 'function') {
-        let targetFileUri = cleanUri;
+      // 120-second timeout promise controller
+      let timeoutId: any = null;
+      const timeoutPromise = new Promise<never>((_, reject) => {
+        timeoutId = setTimeout(() => {
+          reject(
+            new ApiError(
+              'Vision analysis timed out. Please try again with a clearer image.',
+              'Vision analysis timed out. Please try again with a clearer image.',
+              408,
+              'TIMEOUT'
+            )
+          );
+        }, visionTimeoutMs);
+      });
 
-        // Copy content:// URIs to local cache directory if needed
-        if (cleanUri.startsWith('content://') && FileSystem.copyAsync && FileSystem.cacheDirectory) {
-          const tempCacheUri = `${FileSystem.cacheDirectory}vision_upload_${Date.now()}.${safeFilename.split('.').pop()}`;
-          try {
-            await FileSystem.copyAsync({
-              from: cleanUri,
-              to: tempCacheUri,
-            });
-            targetFileUri = tempCacheUri;
-          } catch (copyErr) {
-            console.warn('[VISION UPLOAD] Content URI copy warning, attempting direct URI:', copyErr);
-          }
-        }
+      try {
+        // 3. Determine upload implementation: Native Expo FileSystem vs Fallback
+        if (FileSystem && typeof FileSystem.uploadAsync === 'function') {
+          let targetFileUri = cleanUri;
 
-        // Verify file existence before upload
-        if (FileSystem.getInfoAsync) {
-          try {
-            const fileInfo = await FileSystem.getInfoAsync(targetFileUri);
-            if (!fileInfo.exists) {
-              return {
-                success: false,
-                confidence: 0,
-                probabilities: {},
-                imagePath: '',
-                error: 'IMAGE_FILE_UNREADABLE: Selected image file cannot be read from device storage.',
-              };
+          // Copy content:// URIs to local cache directory if needed
+          if (cleanUri.startsWith('content://') && FileSystem.copyAsync && FileSystem.cacheDirectory) {
+            const tempCacheUri = `${FileSystem.cacheDirectory}vision_upload_${Date.now()}.${safeFilename.split('.').pop()}`;
+            try {
+              await FileSystem.copyAsync({
+                from: cleanUri,
+                to: tempCacheUri,
+              });
+              targetFileUri = tempCacheUri;
+            } catch (copyErr) {
+              console.warn('[VISION UPLOAD] Content URI copy warning, attempting direct URI:', copyErr);
             }
-          } catch (infoErr) {
-            // Ignore info check errors for virtual schemes
           }
-        }
 
-        if (typeof __DEV__ !== 'undefined' && __DEV__) {
-          console.log('[VISION NATIVE UPLOAD]', {
-            platform: 'native_file_system',
-            uri: targetFileUri,
-            uriScheme: targetFileUri.split(':')[0],
-            mimeType: safeMimeType,
-            filename: safeFilename,
-            module: moduleType,
-            uploadMethod: 'FileSystem.uploadAsync',
-          });
-        }
+          // Verify file existence before upload
+          if (FileSystem.getInfoAsync) {
+            try {
+              const fileInfo = await FileSystem.getInfoAsync(targetFileUri);
+              if (!fileInfo.exists) {
+                clearTimeout(timeoutId);
+                return {
+                  success: false,
+                  confidence: 0,
+                  probabilities: {},
+                  imagePath: '',
+                  error: 'IMAGE_FILE_UNREADABLE: Selected image file cannot be read from device storage.',
+                };
+              }
+            } catch (infoErr) {
+              // Ignore info check errors for virtual schemes
+            }
+          }
 
-        const uploadResult = await FileSystem.uploadAsync(
-          this.getUrl(Endpoints.vision),
-          targetFileUri,
-          {
-            httpMethod: 'POST',
-            uploadType: FileSystem.FileSystemUploadType.MULTIPART,
-            fieldName: 'image',
-            mimeType: safeMimeType,
-            parameters: {
-              module: String(moduleType),
+          if (typeof __DEV__ !== 'undefined' && __DEV__) {
+            console.log('[VISION NATIVE UPLOAD]', {
+              platform: 'native_file_system',
+              uri: targetFileUri,
+              uriScheme: targetFileUri.split(':')[0],
+              mimeType: safeMimeType,
+              filename: safeFilename,
+              module: moduleType,
+              uploadMethod: 'FileSystem.uploadAsync',
+              timeoutMs: visionTimeoutMs,
+            });
+          }
+
+          const uploadTask = FileSystem.uploadAsync(
+            this.getUrl(Endpoints.vision),
+            targetFileUri,
+            {
+              httpMethod: 'POST',
+              uploadType: FileSystem.FileSystemUploadType.MULTIPART,
+              fieldName: 'image',
+              mimeType: safeMimeType,
+              parameters: {
+                module: String(moduleType),
+              },
+            }
+          );
+
+          const uploadResult: any = await Promise.race([uploadTask, timeoutPromise]);
+          clearTimeout(timeoutId);
+
+          let data: any = {};
+          try {
+            data = JSON.parse(uploadResult.body);
+          } catch (parseErr) {
+            data = { error: uploadResult.body };
+          }
+
+          if (typeof __DEV__ !== 'undefined' && __DEV__) {
+            console.log('[VISION RESPONSE]', {
+              status: uploadResult.status,
+              success: data?.success,
+              error: data?.error,
+            });
+          }
+
+          if (uploadResult.status !== 200 || !data.success) {
+            return {
+              success: false,
+              confidence: 0,
+              probabilities: {},
+              imagePath: '',
+              error: data.error || `Server error ${uploadResult.status}: Crop vision analysis failed`,
+            };
+          }
+
+          return data;
+        } else {
+          // --- FALLBACK FOR CLI NODE UNIT TEST ENVIRONMENT ---
+          const formData = new FormData();
+          const imagePart = {
+            uri: String(cleanUri),
+            name: String(safeFilename),
+            type: String(safeMimeType),
+          };
+          formData.append('image', imagePart as any);
+          formData.append('module', String(moduleType));
+
+          const fetchTask = fetchWithTimeout(
+            this.getUrl(Endpoints.vision),
+            {
+              method: 'POST',
+              body: formData,
             },
+            visionTimeoutMs
+          );
+
+          const res: Response = await Promise.race([fetchTask, timeoutPromise]);
+          clearTimeout(timeoutId);
+
+          const data = await res.json();
+          if (!res.ok) {
+            return {
+              success: false,
+              confidence: 0,
+              probabilities: {},
+              imagePath: '',
+              error: data.error || `Server error ${res.status}: Crop vision analysis failed`,
+            };
           }
-        );
-
-        let data: any = {};
-        try {
-          data = JSON.parse(uploadResult.body);
-        } catch (parseErr) {
-          data = { error: uploadResult.body };
-        }
-
-        if (typeof __DEV__ !== 'undefined' && __DEV__) {
-          console.log('[VISION RESPONSE]', {
-            status: uploadResult.status,
-            success: data?.success,
-            error: data?.error,
-          });
-        }
-
-        if (uploadResult.status !== 200 || !data.success) {
           return {
-            success: false,
-            confidence: 0,
-            probabilities: {},
-            imagePath: '',
-            error: data.error || `Server error ${uploadResult.status}: Crop vision analysis failed`,
+            success: data.success ?? true,
+            ...data,
           };
         }
-
-        return data;
-      } else {
-        // --- FALLBACK FOR CLI NODE UNIT TEST ENVIRONMENT ---
-        const formData = new FormData();
-        const imagePart = {
-          uri: String(cleanUri),
-          name: String(safeFilename),
-          type: String(safeMimeType),
-        };
-        formData.append('image', imagePart as any);
-        formData.append('module', String(moduleType));
-
-        const res = await fetchWithTimeout(this.getUrl(Endpoints.vision), {
-          method: 'POST',
-          body: formData,
-        });
-
-        const data = await res.json();
-        if (!res.ok) {
-          return {
-            success: false,
-            confidence: 0,
-            probabilities: {},
-            imagePath: '',
-            error: data.error || `Server error ${res.status}: Crop vision analysis failed`,
-          };
-        }
-        return {
-          success: data.success ?? true,
-          ...data,
-        };
+      } catch (innerErr: any) {
+        clearTimeout(timeoutId);
+        throw innerErr;
       }
     } catch (err: any) {
       if (typeof __DEV__ !== 'undefined' && __DEV__) {
         console.error('[VISION ERROR]', err);
       }
+
+      const errStr = String(err?.message || err?.userMessage || err || '').toLowerCase();
+      if (
+        err?.errorCode === 'TIMEOUT' ||
+        err?.name === 'AbortError' ||
+        errStr.includes('timeout') ||
+        errStr.includes('timed out')
+      ) {
+        return {
+          success: false,
+          confidence: 0,
+          probabilities: {},
+          imagePath: '',
+          error: 'Vision analysis timed out. Please try again with a clearer image.',
+          userError: 'Vision analysis timed out. Please try again with a clearer image.',
+          errorCode: 'TIMEOUT',
+        };
+      }
+
       return {
         success: false,
         confidence: 0,

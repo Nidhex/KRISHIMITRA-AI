@@ -7,6 +7,7 @@ export interface EnvironmentConfig {
   baseUrl: string;
   timeoutMs: number;
   healthTimeoutMs: number;
+  visionTimeoutMs: number;
   environmentName: 'development' | 'staging' | 'production';
 }
 
@@ -18,6 +19,7 @@ export const ApiConfig: EnvironmentConfig = {
   baseUrl: process.env.EXPO_PUBLIC_API_URL || PRODUCTION_URL,
   timeoutMs: 30000,       // 30-second timeout for AI inference & model calls
   healthTimeoutMs: 8000,  // 8-second timeout for health check ping
+  visionTimeoutMs: 120000, // 120-second dedicated timeout for Vision AI crop & soil scans
   environmentName: (process.env.EXPO_PUBLIC_ENV as any) || 'production',
 };
 

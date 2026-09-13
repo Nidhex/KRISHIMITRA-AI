@@ -87,6 +87,8 @@ export interface VisionResponseData {
   probabilities: Record<string, number>;
   imagePath: string;
   error?: string;
+  userError?: string;
+  errorCode?: string;
 }
 
 export interface WeatherDayForecast {

@@ -1,0 +1,8 @@
+ai/ export-ignore
+ai/** export-ignore
+backend/uploads/ export-ignore
+*.keras export-ignore
+*.h5 export-ignore
+*.png export-ignore
+*.jpg export-ignore
+*.jpeg export-ignore
