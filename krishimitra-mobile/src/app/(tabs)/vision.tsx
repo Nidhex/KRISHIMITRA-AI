@@ -31,10 +31,10 @@ export default function VisionScreen() {
 
   useEffect(() => {
     const state = networkService.getState();
-    setIsOnline(state.isBackendReachable || state.status === 'ONLINE');
+    setIsOnline(state.isDeviceConnected);
 
     const unsubscribe = networkService.subscribe((s) => {
-      setIsOnline(s.isBackendReachable || s.status === 'ONLINE');
+      setIsOnline(s.isDeviceConnected);
     });
     return () => unsubscribe();
   }, []);
@@ -83,7 +83,7 @@ export default function VisionScreen() {
 
     setStatus('ANALYZING');
 
-    const response = await mobileVisionService.analyzeImage(selectedImage.uri, moduleType);
+    const response = await mobileVisionService.analyzeImage(selectedImage, moduleType);
 
     if (response.success && response.result) {
       setScanResult(response.result);

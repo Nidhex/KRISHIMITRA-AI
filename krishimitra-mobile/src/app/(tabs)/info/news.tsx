@@ -45,7 +45,7 @@ export default function NewsScreen() {
     setErrorMsg(null);
 
     const netState = networkService.getState();
-    const offline = !netState.isDeviceConnected || !netState.isBackendReachable;
+    const offline = !netState.isDeviceConnected;
     setIsOffline(offline);
 
     if (offline) {
@@ -64,11 +64,21 @@ export default function NewsScreen() {
 
     try {
       const res: FeedResponseData = await apiClient.getFeed();
-      if (res.success && res.articles) {
-        setArticles(res.articles);
+      if (res.success && res.articles && res.articles.length > 0) {
+        const mappedArticles: FeedArticle[] = res.articles.map((a: any, idx: number) => ({
+          id: a.id || `news_${idx}`,
+          headline: a.headline || a.title || 'Agri News Update',
+          summary: a.summary || a.description || '',
+          category: a.category || 'General',
+          source: a.source || 'AgriNews',
+          publishedAt: a.publishedAt || a.publishedDate || a.date || new Date().toISOString(),
+          imageUrl: a.imageUrl || a.image || undefined,
+          url: a.url || a.readMoreURL || a.sourceUrl || undefined,
+        }));
+        setArticles(mappedArticles);
         setCachedTime(null);
         // Save to mobile cache
-        await cacheService.saveNewsCache(res.articles);
+        await cacheService.saveNewsCache(mappedArticles);
       } else {
         // Fallback to cache if API returns empty
         const cached = await cacheService.getNewsCache();

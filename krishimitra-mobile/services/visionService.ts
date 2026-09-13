@@ -93,11 +93,19 @@ class MobileVisionService {
    * Upload image scan to backend /api/vision
    */
   async analyzeImage(
-    imageUri: string,
+    imageInput: string | SelectedImage,
     moduleType: VisionModuleType
   ): Promise<{ success: boolean; result?: VisionScanResult; error?: string }> {
     try {
-      const response = await apiClient.scanVision(imageUri, moduleType);
+      const targetUri = typeof imageInput === 'string' ? imageInput : imageInput?.uri;
+      if (!targetUri) {
+        return {
+          success: false,
+          error: 'गैलरी या कैमरा से फोटो लोड नहीं हो सकी। (Invalid image URI)',
+        };
+      }
+
+      const response = await apiClient.scanVision(imageInput, moduleType);
 
       if (!response.success) {
         return {
@@ -133,7 +141,7 @@ class MobileVisionService {
           success: true,
           result: {
             moduleType: 'disease',
-            imageUri,
+            imageUri: targetUri,
             confidence: response.confidence || raw.confidence || 0,
             probabilities: response.probabilities,
             rawImagePath: response.imagePath,
@@ -156,7 +164,7 @@ class MobileVisionService {
           success: true,
           result: {
             moduleType: 'soil',
-            imageUri,
+            imageUri: targetUri,
             confidence: response.confidence || raw.confidence || 0,
             probabilities: response.probabilities,
             rawImagePath: response.imagePath,

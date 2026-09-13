@@ -1,31 +1,100 @@
 /* ==========================================================================
    KrishiMitra AI — Mobile Network Service
-   Monitors device connectivity & Render backend reachability separately.
+   Monitors device connectivity (NetInfo) & Render backend reachability separately.
+   Supports Expo Native runtime and Node CLI test execution gracefully.
    ========================================================================== */
 
-import { apiClient } from './apiClient';
+import { apiClient, HealthCheckResult } from './apiClient';
 
-export type NetworkStatusType = 'ONLINE' | 'OFFLINE' | 'DEGRADED' | 'UNKNOWN';
+export type NetworkStatusType = 'CHECKING' | 'ONLINE' | 'OFFLINE';
 
 export interface NetworkState {
   isDeviceConnected: boolean;
   isBackendReachable: boolean;
   status: NetworkStatusType;
   lastCheckedAt: string;
+  latencyMs?: number;
+}
+
+let NetInfo: any = null;
+let AppState: any = null;
+
+try {
+  NetInfo = require('@react-native-community/netinfo');
+  if (NetInfo.default) NetInfo = NetInfo.default;
+} catch (e) {
+  // NetInfo not available in Node CLI environment
+}
+
+try {
+  const RN = require('react-native');
+  AppState = RN ? RN.AppState : null;
+} catch (e) {
+  // AppState not available in Node CLI environment
 }
 
 class MobileNetworkService {
   private currentState: NetworkState = {
     isDeviceConnected: true,
     isBackendReachable: true,
-    status: 'UNKNOWN',
+    status: 'CHECKING',
     lastCheckedAt: new Date().toISOString(),
   };
 
   private listeners: Set<(state: NetworkState) => void> = new Set();
+  private netInfoUnsubscribe: (() => void) | null = null;
+  private appStateSubscription: any = null;
 
   constructor() {
+    this.init();
+  }
+
+  private init() {
+    // 1. Initial NetInfo fetch & listener setup
+    if (NetInfo && typeof NetInfo.fetch === 'function') {
+      NetInfo.fetch().then((state: any) => this.handleNetInfoChange(state)).catch(() => {});
+      if (typeof NetInfo.addEventListener === 'function') {
+        this.netInfoUnsubscribe = NetInfo.addEventListener((state: any) => this.handleNetInfoChange(state));
+      }
+    }
+
+    // 2. Refresh network state when app comes from background to foreground
+    if (AppState && typeof AppState.addEventListener === 'function') {
+      this.appStateSubscription = AppState.addEventListener('change', (nextAppState: string) => {
+        if (nextAppState === 'active') {
+          this.refreshNetworkState();
+        }
+      });
+    }
+
+    // 3. Perform initial backend health check
     this.checkReachability();
+  }
+
+  private handleNetInfoChange(netInfoState: any) {
+    // Rule: If isConnected === false -> OFFLINE
+    // Rule: If reachability is unknown/null -> treat device as CONNECTED/CHECKING, NOT OFFLINE.
+    const isConnected = netInfoState?.isConnected ?? true;
+
+    if (!isConnected) {
+      this.currentState = {
+        isDeviceConnected: false,
+        isBackendReachable: false,
+        status: 'OFFLINE',
+        lastCheckedAt: new Date().toISOString(),
+      };
+      this.notifyListeners();
+    } else {
+      this.currentState = {
+        ...this.currentState,
+        isDeviceConnected: true,
+        status: 'ONLINE',
+        lastCheckedAt: new Date().toISOString(),
+      };
+      this.notifyListeners();
+      // Re-check backend health asynchronously when device is connected
+      this.checkReachability();
+    }
   }
 
   /**
@@ -33,26 +102,39 @@ class MobileNetworkService {
    */
   async checkReachability(): Promise<NetworkState> {
     try {
-      const health = await apiClient.checkHealth();
-      const isReachable = health.success && health.data?.status === 'running';
+      const health: HealthCheckResult = await apiClient.checkBackendHealth();
 
       this.currentState = {
-        isDeviceConnected: true,
-        isBackendReachable: isReachable,
-        status: isReachable ? 'ONLINE' : 'DEGRADED',
+        isDeviceConnected: this.currentState.isDeviceConnected,
+        isBackendReachable: health.reachable,
+        status: this.currentState.isDeviceConnected ? 'ONLINE' : 'OFFLINE',
         lastCheckedAt: new Date().toISOString(),
+        latencyMs: health.latencyMs,
       };
     } catch (e) {
+      // If check health throws, keep isDeviceConnected state if NetInfo says connected
       this.currentState = {
-        isDeviceConnected: false,
+        ...this.currentState,
         isBackendReachable: false,
-        status: 'OFFLINE',
+        status: this.currentState.isDeviceConnected ? 'ONLINE' : 'OFFLINE',
         lastCheckedAt: new Date().toISOString(),
       };
     }
 
     this.notifyListeners();
     return this.currentState;
+  }
+
+  async refreshNetworkState(): Promise<NetworkState> {
+    if (NetInfo && typeof NetInfo.fetch === 'function') {
+      try {
+        const netState = await NetInfo.fetch();
+        this.handleNetInfoChange(netState);
+      } catch (e) {
+        // Fallback to checking reachability directly
+      }
+    }
+    return this.checkReachability();
   }
 
   getState(): NetworkState {
@@ -69,6 +151,17 @@ class MobileNetworkService {
 
   private notifyListeners() {
     this.listeners.forEach((listener) => listener(this.currentState));
+  }
+
+  destroy() {
+    if (this.netInfoUnsubscribe) {
+      this.netInfoUnsubscribe();
+      this.netInfoUnsubscribe = null;
+    }
+    if (this.appStateSubscription && typeof this.appStateSubscription.remove === 'function') {
+      this.appStateSubscription.remove();
+      this.appStateSubscription = null;
+    }
   }
 }
 

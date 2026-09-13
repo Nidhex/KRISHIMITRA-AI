@@ -80,7 +80,7 @@ export default function AssistantScreen() {
     if (!text) return;
 
     const netState = networkService.getState();
-    if (!netState.isBackendReachable && netState.status === 'OFFLINE') {
+    if (!netState.isDeviceConnected) {
       const offlineMsg: ChatMessageItem = {
         id: `sys_${Date.now()}`,
         role: 'system',

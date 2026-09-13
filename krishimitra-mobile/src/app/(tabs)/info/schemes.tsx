@@ -47,7 +47,7 @@ export default function SchemesScreen() {
       setErrorMsg(null);
 
       const netState = networkService.getState();
-      const offline = !netState.isDeviceConnected || !netState.isBackendReachable;
+      const offline = !netState.isDeviceConnected;
       setIsOffline(offline);
 
       if (offline) {
