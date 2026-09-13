@@ -29,11 +29,12 @@ async function analyseImage(imagePath, moduleType = 'disease') {
     // Python executable check
     let PYTHON = process.env.PYTHON_PATH || '';
     if (!PYTHON || !fs.existsSync(PYTHON)) {
-      if (process.platform === 'win32') {
-        const venvWin = path.join(AI_DIR, '.venv', 'Scripts', 'python.exe');
-        PYTHON = fs.existsSync(venvWin) ? venvWin : 'python';
-      } else {
-        PYTHON = 'python3';
+      PYTHON = path.join(AI_DIR, '.venv', 'Scripts', 'python.exe');
+      if (!fs.existsSync(PYTHON)) {
+        PYTHON = path.join(AI_DIR, '.venv', 'bin', 'python');
+        if (!fs.existsSync(PYTHON)) {
+          PYTHON = process.platform === 'win32' ? 'python' : 'python3';
+        }
       }
     }
 
@@ -44,12 +45,9 @@ async function analyseImage(imagePath, moduleType = 'disease') {
         cwd: AI_DIR,
         env: {
           ...process.env,
+          KERAS_BACKEND: 'tensorflow',
           TF_CPP_MIN_LOG_LEVEL: '3',
-          TF_ENABLE_ONEDNN_OPTS: '0',
-          OMP_NUM_THREADS: '1',
-          MKL_NUM_THREADS: '1',
-          TF_NUM_INTRAOP_THREADS: '1',
-          TF_NUM_INTEROP_THREADS: '1'
+          TF_ENABLE_ONEDNN_OPTS: '0'
         }
       }
     );

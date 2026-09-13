@@ -4,7 +4,7 @@
   "description": "KrishiMitra AI - Offline AI Backend (Ollama + Gemma 3)",
   "main": "server.js",
   "scripts": {
-    "start": "node --max-old-space-size=128 server.js",
+    "start": "node server.js",
     "dev": "node --watch server.js"
   },
   "keywords": [

@@ -1,15 +1,10 @@
 import os
 import sys
 
-# Suppress TensorFlow logging and reduce memory footprint
+# Set Keras Backend to TensorFlow and suppress logging
+os.environ.setdefault("KERAS_BACKEND", "tensorflow")
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
-os.environ.setdefault("OMP_NUM_THREADS", "1")
-os.environ.setdefault("MKL_NUM_THREADS", "1")
-os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
-os.environ.setdefault("TF_NUM_INTRAOP_THREADS", "1")
-os.environ.setdefault("TF_NUM_INTEROP_THREADS", "1")
-os.environ.setdefault("KERAS_BACKEND", "tensorflow")
 
 import json
 
@@ -21,6 +16,8 @@ if PARENT_DIR not in sys.path:
     sys.path.insert(0, PARENT_DIR)
 if CURRENT_DIR not in sys.path:
     sys.path.insert(0, CURRENT_DIR)
+
+from prediction.soil_predictor import predict_soil
 
 def main():
     try:
@@ -45,8 +42,7 @@ def main():
             return
             
         if mode == "soil":
-            # Call the soil predictor (lazy import to save RAM)
-            from prediction.soil_predictor import predict_soil
+            # Call the soil predictor
             soil, confidence, class_probs = predict_soil(image_path, verbose=False)
             
             # Build probabilities dictionary with numeric percentages
@@ -63,7 +59,7 @@ def main():
                 "probabilities": probabilities_dict
             }
         else:
-            # Call the plant disease predictor (lazy import to save RAM)
+            # Call the plant disease predictor
             from prediction.predictor import predict
             disease, confidence = predict(image_path)
             

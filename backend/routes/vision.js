@@ -37,23 +37,6 @@ const upload = multer({
 });
 
 // ======================================================
-// GET /api/vision/diag (Diagnostic)
-// ======================================================
-router.get('/diag', (_req, res) => {
-  const { exec } = require('child_process');
-  const AI_DIR = path.resolve(__dirname, '..', '..', 'ai');
-  const cmd = `python3 -c "import sys, tensorflow as tf, keras; print('PYTHON:', sys.version); print('TF:', tf.__version__); print('KERAS:', keras.__version__); print('BACKEND:', keras.backend.backend())"`;
-  
-  exec(cmd, { cwd: AI_DIR }, (err, stdout, stderr) => {
-    res.json({
-      error: err ? err.message : null,
-      stdout: stdout.trim(),
-      stderr: stderr.trim()
-    });
-  });
-});
-
-// ======================================================
 // POST /api/vision
 // ======================================================
 router.post('/', upload.single('image'), async (req, res, next) => {
