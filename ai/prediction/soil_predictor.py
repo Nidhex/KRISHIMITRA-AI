@@ -40,6 +40,33 @@ def preprocess_image(image_path):
     
     return img_array
 
+class FixedInputLayer(tf.keras.layers.InputLayer):
+    def __init__(self, *args, **kwargs):
+        if 'batch_shape' in kwargs and 'batch_input_shape' not in kwargs:
+            kwargs['batch_input_shape'] = kwargs.pop('batch_shape')
+        kwargs.pop('optional', None)
+        super().__init__(*args, **kwargs)
+
+    @classmethod
+    def from_config(cls, config):
+        config = config.copy()
+        if 'batch_shape' in config and 'batch_input_shape' not in config:
+            config['batch_input_shape'] = config.pop('batch_shape')
+        config.pop('optional', None)
+        return super().from_config(config)
+
+def _is_keras_deserialization_error(e):
+    msg = str(e)
+    signatures = [
+        "InputLayer",
+        "batch_shape",
+        "optional",
+        "keras.src.models",
+        "deserializ",
+        "Unrecognized keyword arguments"
+    ]
+    return any(sig in msg for sig in signatures)
+
 def predict_soil(image_path, verbose=False):
     # Load model and labels
     if not MODEL_PATH.exists() and not H5_PATH.exists():
@@ -48,8 +75,8 @@ def predict_soil(image_path, verbose=False):
     try:
         model = tf.keras.models.load_model(str(MODEL_PATH))
     except Exception as e:
-        if H5_PATH.exists():
-            model = tf.keras.models.load_model(str(H5_PATH))
+        if _is_keras_deserialization_error(e) and H5_PATH.exists():
+            model = tf.keras.models.load_model(str(H5_PATH), custom_objects={'InputLayer': FixedInputLayer})
         else:
             raise e
     labels_dict = load_labels()
