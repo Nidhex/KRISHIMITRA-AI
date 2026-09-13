@@ -5,8 +5,19 @@ import json
 import numpy as np
 
 os.environ.setdefault("KERAS_BACKEND", "tensorflow")
+os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
+os.environ.setdefault("OMP_NUM_THREADS", "1")
+os.environ.setdefault("TF_NUM_INTRAOP_THREADS", "1")
+os.environ.setdefault("TF_NUM_INTEROP_THREADS", "1")
+
 import keras
 import tensorflow as tf
+
+try:
+    tf.config.set_inter_op_parallelism_threads(1)
+    tf.config.set_intra_op_parallelism_threads(1)
+except Exception:
+    pass
 
 from prediction.image_utils import preprocess_image
 from pathlib import Path
