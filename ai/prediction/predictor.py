@@ -1,14 +1,16 @@
-# Predictor class
-
 import os
+import sys
 import json
+import gc
 import numpy as np
+from pathlib import Path
 
 os.environ.setdefault("KERAS_BACKEND", "tensorflow")
-os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
-os.environ.setdefault("OMP_NUM_THREADS", "1")
-os.environ.setdefault("TF_NUM_INTRAOP_THREADS", "1")
-os.environ.setdefault("TF_NUM_INTEROP_THREADS", "1")
+os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["TF_NUM_INTRAOP_THREADS"] = "1"
+os.environ["TF_NUM_INTEROP_THREADS"] = "1"
 
 import keras
 import tensorflow as tf
@@ -35,6 +37,7 @@ if not LABELS_PATH.exists():
 
 # Load model using native Keras 3 (compile=False for inference)
 model = keras.models.load_model(str(MODEL_PATH), compile=False)
+gc.collect()
 
 # Load labels
 with open(LABELS_PATH, "r", encoding="utf-8-sig") as file:
