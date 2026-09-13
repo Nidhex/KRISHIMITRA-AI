@@ -1,4 +1,4 @@
-﻿# Predictor class
+# Predictor class
 
 import os
 import json
@@ -7,20 +7,22 @@ import tensorflow as tf
 
 from prediction.image_utils import preprocess_image
 
-# Get project root folder
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from pathlib import Path
 
-# Paths
-MODEL_PATH = os.path.join(BASE_DIR, "models", "plant_disease_model.keras")
-LABELS_PATH = os.path.join(BASE_DIR, "models", "labels.json")
+# Determine paths relative to this script
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = BASE_DIR / "models" / "plant_disease_model.keras"
+LABELS_PATH = BASE_DIR / "models" / "labels.json"
 
+if not MODEL_PATH.exists():
+    raise FileNotFoundError(f"Plant disease model file not found at: {MODEL_PATH.resolve()}")
+if not LABELS_PATH.exists():
+    raise FileNotFoundError(f"Labels file not found at: {LABELS_PATH.resolve()}")
 
 # Load model
-model = tf.keras.models.load_model(MODEL_PATH)
+model = tf.keras.models.load_model(str(MODEL_PATH))
 
 # Load labels
-
-
 with open(LABELS_PATH, "r", encoding="utf-8-sig") as file:
     class_labels = json.load(file)
 

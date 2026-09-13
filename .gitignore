@@ -22,6 +22,8 @@ dataset/
 
 # Model Checkpoints & Large Weights (>100MB)
 *.keras
+!ai/models/plant_disease_model.keras
+!ai/models/soil_classifier_v4.keras
 *.h5
 *.pth
 *.onnx
