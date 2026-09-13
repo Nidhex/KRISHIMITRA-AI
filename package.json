@@ -4,7 +4,6 @@
   "description": "KrishiMitra AI Monorepo Deployment",
   "private": true,
   "scripts": {
-    "postinstall": "cd backend && npm install && python3 -m pip install -r ../requirements.txt",
     "start": "cd backend && npm start"
   }
 }
