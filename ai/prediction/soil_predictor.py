@@ -45,6 +45,8 @@ class FixedInputLayer(tf.keras.layers.InputLayer):
         if 'batch_shape' in kwargs and 'batch_input_shape' not in kwargs:
             kwargs['batch_input_shape'] = kwargs.pop('batch_shape')
         kwargs.pop('optional', None)
+        if isinstance(kwargs.get('dtype'), dict):
+            kwargs.pop('dtype')
         super().__init__(*args, **kwargs)
 
     @classmethod
@@ -53,17 +55,52 @@ class FixedInputLayer(tf.keras.layers.InputLayer):
         if 'batch_shape' in config and 'batch_input_shape' not in config:
             config['batch_input_shape'] = config.pop('batch_shape')
         config.pop('optional', None)
+        if isinstance(config.get('dtype'), dict):
+            config.pop('dtype')
+        return super().from_config(config)
+
+class FixedRescaling(tf.keras.layers.Rescaling):
+    def __init__(self, scale, offset=0.0, **kwargs):
+        if isinstance(kwargs.get('dtype'), dict):
+            kwargs.pop('dtype')
+        super().__init__(scale=scale, offset=offset, **kwargs)
+
+    @classmethod
+    def from_config(cls, config):
+        config = config.copy()
+        if isinstance(config.get('dtype'), dict):
+            config.pop('dtype')
+        return super().from_config(config)
+
+class FixedRandomFlip(tf.keras.layers.RandomFlip):
+    def __init__(self, mode='horizontal_and_vertical', seed=None, **kwargs):
+        kwargs.pop('data_format', None)
+        if isinstance(kwargs.get('dtype'), dict):
+            kwargs.pop('dtype')
+        super().__init__(mode=mode, seed=seed, **kwargs)
+
+    @classmethod
+    def from_config(cls, config):
+        config = config.copy()
+        config.pop('data_format', None)
+        if isinstance(config.get('dtype'), dict):
+            config.pop('dtype')
         return super().from_config(config)
 
 def _is_keras_deserialization_error(e):
     msg = str(e)
     signatures = [
         "InputLayer",
+        "Rescaling",
+        "RandomFlip",
         "batch_shape",
         "optional",
+        "DTypePolicy",
+        "data_format",
         "keras.src.models",
         "deserializ",
-        "Unrecognized keyword arguments"
+        "Unrecognized keyword argument",
+        "Keyword argument not understood"
     ]
     return any(sig in msg for sig in signatures)
 
@@ -76,7 +113,12 @@ def predict_soil(image_path, verbose=False):
         model = tf.keras.models.load_model(str(MODEL_PATH))
     except Exception as e:
         if _is_keras_deserialization_error(e) and H5_PATH.exists():
-            model = tf.keras.models.load_model(str(H5_PATH), custom_objects={'InputLayer': FixedInputLayer})
+            custom_objs = {
+                'InputLayer': FixedInputLayer,
+                'Rescaling': FixedRescaling,
+                'RandomFlip': FixedRandomFlip
+            }
+            model = tf.keras.models.load_model(str(H5_PATH), custom_objects=custom_objs)
         else:
             raise e
     labels_dict = load_labels()
