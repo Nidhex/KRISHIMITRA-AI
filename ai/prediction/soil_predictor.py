@@ -3,6 +3,9 @@ import sys
 import json
 import numpy as np
 from pathlib import Path
+
+os.environ.setdefault("KERAS_BACKEND", "tensorflow")
+import keras
 import tensorflow as tf
 
 # pyrefly: ignore [missing-import]
@@ -40,146 +43,21 @@ def preprocess_image(image_path):
     
     return img_array
 
-class FixedInputLayer(tf.keras.layers.InputLayer):
-    def __init__(self, *args, **kwargs):
-        if 'batch_shape' in kwargs and 'batch_input_shape' not in kwargs:
-            kwargs['batch_input_shape'] = kwargs.pop('batch_shape')
-        kwargs.pop('optional', None)
-        if isinstance(kwargs.get('dtype'), dict):
-            kwargs.pop('dtype')
-        super().__init__(*args, **kwargs)
+if not MODEL_PATH.exists() and not H5_PATH.exists():
+    raise FileNotFoundError(f"Trained model not found at: {MODEL_PATH.resolve()}")
 
-    @classmethod
-    def from_config(cls, config):
-        config = config.copy()
-        if 'batch_shape' in config and 'batch_input_shape' not in config:
-            config['batch_input_shape'] = config.pop('batch_shape')
-        config.pop('optional', None)
-        if isinstance(config.get('dtype'), dict):
-            config.pop('dtype')
-        return super().from_config(config)
+# Load model using native Keras 3 (compile=False for inference)
+try:
+    model = keras.models.load_model(str(MODEL_PATH), compile=False)
+except Exception as e:
+    if H5_PATH.exists():
+        model = keras.models.load_model(str(H5_PATH), compile=False)
+    else:
+        raise e
 
-class FixedRescaling(tf.keras.layers.Rescaling):
-    def __init__(self, scale, offset=0.0, **kwargs):
-        if isinstance(kwargs.get('dtype'), dict):
-            kwargs.pop('dtype')
-        super().__init__(scale=scale, offset=offset, **kwargs)
-
-    @classmethod
-    def from_config(cls, config):
-        config = config.copy()
-        if isinstance(config.get('dtype'), dict):
-            config.pop('dtype')
-        return super().from_config(config)
-
-class FixedRandomFlip(tf.keras.layers.RandomFlip):
-    def __init__(self, mode='horizontal_and_vertical', seed=None, **kwargs):
-        kwargs.pop('data_format', None)
-        if isinstance(kwargs.get('dtype'), dict):
-            kwargs.pop('dtype')
-        super().__init__(mode=mode, seed=seed, **kwargs)
-
-    @classmethod
-    def from_config(cls, config):
-        config = config.copy()
-        config.pop('data_format', None)
-        if isinstance(config.get('dtype'), dict):
-            config.pop('dtype')
-        return super().from_config(config)
-
-class FixedRandomRotation(tf.keras.layers.RandomRotation):
-    def __init__(self, factor, fill_mode='reflect', fill_value=0.0, interpolation='bilinear', seed=None, **kwargs):
-        kwargs.pop('data_format', None)
-        if isinstance(kwargs.get('dtype'), dict):
-            kwargs.pop('dtype')
-        super().__init__(factor=factor, fill_mode=fill_mode, fill_value=fill_value, interpolation=interpolation, seed=seed, **kwargs)
-
-    @classmethod
-    def from_config(cls, config):
-        config = config.copy()
-        config.pop('data_format', None)
-        if isinstance(config.get('dtype'), dict):
-            config.pop('dtype')
-        return super().from_config(config)
-
-class FixedGlorotUniform(tf.keras.initializers.GlorotUniform):
-    def __init__(self, seed=None, **kwargs):
-        kwargs.pop('input_axes', None)
-        kwargs.pop('output_axes', None)
-        super().__init__(seed=seed)
-
-    @classmethod
-    def from_config(cls, config):
-        config = config.copy()
-        config.pop('input_axes', None)
-        config.pop('output_axes', None)
-        return super().from_config(config)
-
-class FixedZeros(tf.keras.initializers.Zeros):
-    def __init__(self, **kwargs):
-        kwargs.pop('input_axes', None)
-        kwargs.pop('output_axes', None)
-        super().__init__()
-
-    @classmethod
-    def from_config(cls, config):
-        config = config.copy()
-        config.pop('input_axes', None)
-        config.pop('output_axes', None)
-        return super().from_config(config)
-
-class DTypePolicy:
-    @classmethod
-    def from_config(cls, config):
-        name = config.get('name', 'float32') if isinstance(config, dict) else 'float32'
-        return tf.keras.mixed_precision.Policy(name)
-
-def _is_keras_deserialization_error(e):
-    msg = str(e)
-    signatures = [
-        "InputLayer",
-        "Rescaling",
-        "RandomFlip",
-        "RandomRotation",
-        "GlorotUniform",
-        "Conv2D",
-        "batch_shape",
-        "optional",
-        "DTypePolicy",
-        "data_format",
-        "input_axes",
-        "output_axes",
-        "keras.src.models",
-        "deserializ",
-        "Unrecognized keyword argument",
-        "Keyword argument not understood",
-        "unexpected keyword argument"
-    ]
-    return any(sig in msg for sig in signatures)
+labels_dict = load_labels()
 
 def predict_soil(image_path, verbose=False):
-    # Load model and labels
-    if not MODEL_PATH.exists() and not H5_PATH.exists():
-        raise FileNotFoundError(f"Trained model not found at: {MODEL_PATH.resolve()}")
-        
-    try:
-        model = tf.keras.models.load_model(str(MODEL_PATH))
-    except Exception as e:
-        if _is_keras_deserialization_error(e) and H5_PATH.exists():
-            custom_objs = {
-                'InputLayer': FixedInputLayer,
-                'Rescaling': FixedRescaling,
-                'RandomFlip': FixedRandomFlip,
-                'RandomRotation': FixedRandomRotation,
-                'GlorotUniform': FixedGlorotUniform,
-                'Zeros': FixedZeros,
-                'DTypePolicy': DTypePolicy
-            }
-            model = tf.keras.models.load_model(str(H5_PATH), custom_objects=custom_objs)
-        else:
-            raise e
-    labels_dict = load_labels()
-    
     # Preprocess
     img_array = preprocess_image(image_path)
     
