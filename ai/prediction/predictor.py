@@ -67,6 +67,47 @@ class FixedRandomFlip(tf.keras.layers.RandomFlip):
             config.pop('dtype')
         return super().from_config(config)
 
+class FixedRandomRotation(tf.keras.layers.RandomRotation):
+    def __init__(self, factor, fill_mode='reflect', fill_value=0.0, interpolation='bilinear', seed=None, **kwargs):
+        kwargs.pop('data_format', None)
+        if isinstance(kwargs.get('dtype'), dict):
+            kwargs.pop('dtype')
+        super().__init__(factor=factor, fill_mode=fill_mode, fill_value=fill_value, interpolation=interpolation, seed=seed, **kwargs)
+
+    @classmethod
+    def from_config(cls, config):
+        config = config.copy()
+        config.pop('data_format', None)
+        if isinstance(config.get('dtype'), dict):
+            config.pop('dtype')
+        return super().from_config(config)
+
+class FixedGlorotUniform(tf.keras.initializers.GlorotUniform):
+    def __init__(self, seed=None, **kwargs):
+        kwargs.pop('input_axes', None)
+        kwargs.pop('output_axes', None)
+        super().__init__(seed=seed)
+
+    @classmethod
+    def from_config(cls, config):
+        config = config.copy()
+        config.pop('input_axes', None)
+        config.pop('output_axes', None)
+        return super().from_config(config)
+
+class FixedZeros(tf.keras.initializers.Zeros):
+    def __init__(self, **kwargs):
+        kwargs.pop('input_axes', None)
+        kwargs.pop('output_axes', None)
+        super().__init__()
+
+    @classmethod
+    def from_config(cls, config):
+        config = config.copy()
+        config.pop('input_axes', None)
+        config.pop('output_axes', None)
+        return super().from_config(config)
+
 class DTypePolicy:
     @classmethod
     def from_config(cls, config):
@@ -79,14 +120,20 @@ def _is_keras_deserialization_error(e):
         "InputLayer",
         "Rescaling",
         "RandomFlip",
+        "RandomRotation",
+        "GlorotUniform",
+        "Conv2D",
         "batch_shape",
         "optional",
         "DTypePolicy",
         "data_format",
+        "input_axes",
+        "output_axes",
         "keras.src.models",
         "deserializ",
         "Unrecognized keyword argument",
-        "Keyword argument not understood"
+        "Keyword argument not understood",
+        "unexpected keyword argument"
     ]
     return any(sig in msg for sig in signatures)
 
@@ -99,6 +146,9 @@ except Exception as e:
             'InputLayer': FixedInputLayer,
             'Rescaling': FixedRescaling,
             'RandomFlip': FixedRandomFlip,
+            'RandomRotation': FixedRandomRotation,
+            'GlorotUniform': FixedGlorotUniform,
+            'Zeros': FixedZeros,
             'DTypePolicy': DTypePolicy
         }
         model = tf.keras.models.load_model(str(H5_PATH), custom_objects=custom_objs)
