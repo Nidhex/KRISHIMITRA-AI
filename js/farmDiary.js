@@ -53,13 +53,19 @@
     const timelineContainer = document.getElementById('diary-timeline-list');
     if (!timelineContainer) return;
 
-    if (!events || events.length === 0) {
+    // Filter events if activeFilter is not 'all'
+    let filteredEvents = events || [];
+    if (activeFilter && activeFilter !== 'all') {
+      filteredEvents = filteredEvents.filter(e => e.eventType === activeFilter);
+    }
+
+    if (!filteredEvents || filteredEvents.length === 0) {
       timelineContainer.innerHTML = `
         <div class="diary-empty-card card" style="text-align:center; padding:32px 16px;">
           <span style="font-size:2.8rem; display:block; margin-bottom:8px;">🌱</span>
           <h3 style="margin:0 0 6px; color:var(--text-primary); font-size:1.1rem; font-weight:700;">No farm activities recorded yet.</h3>
           <p style="margin:0 0 16px; color:var(--text-secondary); font-size:0.9rem;">
-            Start building your Farm Memory.
+            ${activeFilter === 'all' ? 'Start building your Farm Memory by adding your first activity.' : `No activities found for category "${activeFilter.toUpperCase()}".`}
           </p>
           <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
             <button class="btn-primary" onclick="document.getElementById('btn-manual-diary').click()">➕ Add Activity</button>
@@ -85,12 +91,18 @@
       other: '📝'
     };
 
-    const cardsHtml = events.map(e => {
+    const cardsHtml = filteredEvents.map(e => {
       const icon = typeIcons[e.eventType] || '📝';
       const dateFormatted = e.date ? new Date(e.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Today';
-      const quantityBadge = e.quantity ? `<span class="diary-qty-tag">${e.quantity} ${e.unit || ''}</span>` : '';
-      const areaBadge = e.area ? `<span class="diary-area-tag" style="background:#FEF3C7; color:#92400E; font-weight:700; font-size:0.75rem; padding:2px 6px; border-radius:4px;">${e.area} ${e.areaUnit || 'acre'}</span>` : '';
+      const quantityBadge = (e.quantity !== null && e.quantity !== undefined) ? `<span class="diary-qty-tag">${e.quantity} ${e.unit || ''}</span>` : '';
+      
+      const rawAreaUnit = e.areaUnit || 'acre';
+      const cleanAreaUnit = rawAreaUnit.replace(/\/acre/gi, '').replace(/^acre$/gi, 'acre');
+      const areaBadge = (e.area !== null && e.area !== undefined) ? `<span class="diary-area-tag" style="background:#FEF3C7; color:#92400E; font-weight:700; font-size:0.75rem; padding:2px 6px; border-radius:4px;">${e.area} ${cleanAreaUnit}</span>` : '';
       const sourceBadge = `<span class="diary-source-tag">${(e.source || 'manual').toUpperCase()}</span>`;
+
+      // Prevent duplicated text when title and description are identical
+      const showDesc = e.description && e.description.trim() !== (e.title || '').trim();
 
       return `
         <div class="diary-event-card card" id="event-${e.id}">
@@ -107,9 +119,9 @@
           </div>
 
           <h4 class="diary-event-title">${e.title || 'Farm Activity'}</h4>
-          ${e.description ? `<p class="diary-event-desc">${e.description}</p>` : ''}
+          ${showDesc ? `<p class="diary-event-desc">${e.description}</p>` : ''}
 
-          <div class="diary-event-footer" style="display:flex; gap:6px; align-items:center; margin-top:8px;">
+          <div class="diary-event-footer" style="display:flex; gap:6px; align-items:center; margin-top:8px; flex-wrap:wrap;">
             ${quantityBadge}
             ${areaBadge}
             ${sourceBadge}
@@ -128,31 +140,59 @@
 
     try {
       const api = window.KrishiMitraAPI || window.KrishiAPI;
+      let r = null;
+
       if (api && typeof api.getDecisionEngine === 'function') {
         const res = await api.getDecisionEngine(farmerId);
         if (res && res.success && res.recommendation) {
-          const r = res.recommendation;
-          const basedOnList = (r.basedOn || []).map(b => `<li>✓ ${b.summary}</li>`).join('');
-
-          decisionContainer.innerHTML = `
-            <div class="decision-card card" style="background:#1E293B; color:#F8FAFC; border:1px solid #3B82F6; border-radius:12px; padding:18px; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,0,0,0.15);">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <span style="background:#2563EB; color:#FFF; font-size:0.75rem; font-weight:700; padding:4px 8px; border-radius:4px; letter-spacing:0.5px;">🌾 WHAT SHOULD I DO NEXT?</span>
-                <span style="font-size:0.8rem; color:#93C5FD; font-weight:600;">${r.crop || 'Crop Advisory'}</span>
-              </div>
-              <h3 style="margin:8px 0; color:#FFFFFF; font-size:1.1rem; font-weight:700; line-height:1.4;">${r.action}</h3>
-              <div style="background:rgba(255,255,255,0.07); padding:12px; border-radius:8px; margin-top:10px;">
-                <strong style="color:#93C5FD; font-size:0.85rem; display:block; margin-bottom:4px;">WHY?</strong>
-                <p style="margin:0 0 6px; font-size:0.85rem; color:#E2E8F0; line-height:1.4;">${r.reason}</p>
-                ${basedOnList ? `<div style="margin-top:6px; font-size:0.8rem; color:#CBD5E1;"><strong style="color:#93C5FD;">Based on:</strong><ul style="margin:4px 0 0; padding-left:18px;">${basedOnList}</ul></div>` : ''}
-              </div>
-              <div style="margin-top:10px; font-size:0.75rem; color:#94A3B8; text-align:right;">
-                ${r.disclaimer || 'Based on Farm Memory & Agricultural RAG'}
-              </div>
-            </div>
-          `;
-          return;
+          r = res.recommendation;
         }
+      }
+
+      // Fallback to local decision calculation if remote API unavailable
+      if (!r && typeof window.calculateLocalDecision === 'function') {
+        r = window.calculateLocalDecision(getOfflineEvents());
+      }
+
+      if (r) {
+        const basedOnList = (r.basedOn || []).map(b => `<li>✓ ${b.summary}</li>`).join('');
+
+        decisionContainer.innerHTML = `
+          <div class="decision-card card" style="background:#1E293B; color:#F8FAFC; border:1px solid #3B82F6; border-radius:12px; padding:18px; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,0,0,0.15);">
+            <div style="display:flex; justify-space-between; align-items:center; margin-bottom:8px;">
+              <span style="background:#2563EB; color:#FFF; font-size:0.75rem; font-weight:700; padding:4px 8px; border-radius:4px; letter-spacing:0.5px;">🌱 NEXT BEST ACTION</span>
+              <span style="font-size:0.8rem; color:#93C5FD; font-weight:600;">${r.crop || 'Crop Advisory'}</span>
+            </div>
+            
+            <div style="margin-bottom:10px;">
+              <strong style="color:#60A5FA; font-size:0.75rem; display:block; text-transform:uppercase; letter-spacing:0.5px;">WHAT:</strong>
+              <h3 style="margin:4px 0 8px; color:#FFFFFF; font-size:1.1rem; font-weight:700; line-height:1.4;">${r.action}</h3>
+            </div>
+
+            ${r.timing ? `
+              <div style="margin-bottom:10px;">
+                <strong style="color:#FBBF24; font-size:0.75rem; display:block; text-transform:uppercase; letter-spacing:0.5px;">WHEN:</strong>
+                <span style="font-size:0.9rem; color:#FEF3C7; font-weight:600;">⏱️ ${r.timing}</span>
+              </div>
+            ` : ''}
+
+            <div style="background:rgba(255,255,255,0.07); padding:12px; border-radius:8px; margin-top:6px;">
+              <strong style="color:#93C5FD; font-size:0.85rem; display:block; margin-bottom:4px;">WHY?</strong>
+              <p style="margin:0 0 6px; font-size:0.85rem; color:#E2E8F0; line-height:1.4;">${r.reason}</p>
+              ${basedOnList ? `
+                <div style="margin-top:6px; font-size:0.8rem; color:#CBD5E1;">
+                  <strong style="color:#93C5FD;">BASED ON:</strong>
+                  <ul style="margin:4px 0 0; padding-left:18px;">${basedOnList}</ul>
+                </div>
+              ` : ''}
+            </div>
+
+            <div style="margin-top:10px; font-size:0.75rem; color:#94A3B8; text-align:right;">
+              ${r.disclaimer || 'Based on Farm Memory & Agricultural Rules'}
+            </div>
+          </div>
+        `;
+        return;
       }
     } catch (err) {
       console.warn('[FarmDiary] Decision engine query error:', err);

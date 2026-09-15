@@ -44,36 +44,34 @@ const VALID_EVENT_TYPES = [
 
 // ── Deterministic Event Type Normalizer ─────────────────────────────────────────
 function normalizeEventType(rawType, title = '', description = '') {
-  // 1. Explicit user selection for financial & observational categories MUST be preserved
-  if (['expense', 'income', 'soil_test', 'disease', 'pest', 'labor', 'sale'].includes(rawType)) {
+  // 1. Explicit user selection MUST be strictly preserved if valid
+  if (VALID_EVENT_TYPES.includes(rawType) && rawType !== 'other') {
     return rawType;
   }
 
   const combined = `${rawType || ''} ${title || ''} ${description || ''}`.toLowerCase();
 
-  // 2. Strong keyword overrides for specific materials & operations
+  // 2. Keyword matching rules for unclassified ("other" or empty) events
+  if (/(pesticide|insecticide|fungicide|herbicide|dawai|spray|कीटनाशक|दवाई|छिड़काव|स्प्रे)/i.test(combined)) {
+    return 'pesticide';
+  }
   if (/(urea|dap|npk|nitrogen|potash|phosphate|fertilizer|khad|यूरिया|खाद|डीएपी)/i.test(combined)) {
     return 'fertilizer';
   }
-  if (/(irrigation|water|canal|tube-well|tubewell|पानी|सिंचाई)/i.test(combined)) {
+  if (/(irrigation|water|canal|tube-well|tubewell|पानी|सिंचाई|पानी दिया)/i.test(combined)) {
     return 'irrigation';
   }
-  if (/(pesticide|insecticide|fungicide|herbicide|dawai|spray|कीटनाशक|दवाई|छिड़काव)/i.test(combined)) {
-    return 'pesticide';
-  }
-  if (/(harvest|harvesting|reap|cut|cutting|कटाई|पैदावार)/i.test(combined)) {
+  if (/(harvest|harvesting|reap|cut|cutting|कटाई|पैदावार|फसल काटी)/i.test(combined)) {
     return 'harvest';
   }
-  if (/(sow|sowing|plant|planting|seeding|बुवाई|रोपाई)/i.test(combined)) {
+  if (/(sow|sowing|plant|planting|seeding|बुवाई|रोपाई|बीज बोया)/i.test(combined)) {
     return 'planting';
   }
-
-  // 3. Fallback to valid rawType if provided
-  if (VALID_EVENT_TYPES.includes(rawType) && rawType !== 'other') {
-    return rawType;
+  if (/(yellow|rust|blight|rot|spot|disease|symptom|रोग|पीले पत्ते|कीड़ा|बीमारी)/i.test(combined)) {
+    return 'disease';
   }
 
-  return 'other';
+  return rawType && VALID_EVENT_TYPES.includes(rawType) ? rawType : 'other';
 }
 
 // ── File I/O Helpers ──────────────────────────────────────────────────────────
@@ -151,12 +149,15 @@ function createEvent(eventData = {}) {
     date: dateStr,
     title: eventData.title ? eventData.title.trim() : `${normalizedType.toUpperCase()} Activity`,
     description: eventData.description ? eventData.description.trim() : '',
+    productName: eventData.productName || null,
     quantity: typeof eventData.quantity === 'number' && !isNaN(eventData.quantity) ? eventData.quantity : null,
     unit: eventData.unit ? eventData.unit.trim() : null,
     area: typeof eventData.area === 'number' && !isNaN(eventData.area) ? eventData.area : null,
     areaUnit: eventData.areaUnit ? eventData.areaUnit.trim() : 'acre',
     amount: typeof eventData.amount === 'number' && !isNaN(eventData.amount) ? eventData.amount : null,
     currency: eventData.currency || 'INR',
+    targetPest: eventData.targetPest || null,
+    diseaseName: eventData.diseaseName || null,
     createdBy: eventData.createdBy || 'farmer',
     source: eventData.source || 'manual',
     confidence: typeof eventData.confidence === 'number' ? eventData.confidence : 1.0,
@@ -217,16 +218,18 @@ Valid eventType options:
 
 Rules:
 1. Extract crop, eventType, title, description, quantity, unit, area, areaUnit, amount, and ISO date.
-2. If quantity/unit/area/amount is NOT mentioned, set them to null. DO NOT INVENT or guess missing numbers.
-3. Return ONLY a valid JSON object matching this schema:
+2. If quantity/unit/area/amount/productName is NOT mentioned, set them to null. DO NOT INVENT or guess missing numbers or products.
+3. If farmer mentions spraying pesticide/insecticide/fungicide/dawai, eventType MUST be "pesticide" (NOT fertilizer).
+4. Return ONLY a valid JSON object matching this schema:
 {
-  "eventType": "fertilizer",
+  "eventType": "pesticide",
   "crop": "Wheat",
-  "title": "Urea application",
-  "description": "Applied 40 kg urea to wheat field",
-  "quantity": 40,
-  "unit": "kg",
-  "area": null,
+  "title": "Pesticide application",
+  "description": "Sprayed neem pesticide on wheat",
+  "productName": "Neem pesticide",
+  "quantity": 500,
+  "unit": "ml",
+  "area": 2,
   "areaUnit": "acre",
   "amount": null,
   "date": "${new Date().toISOString().split('T')[0]}",
@@ -256,6 +259,7 @@ Farmer Input (${language}):
               crop: parsed.crop || null,
               title: parsed.title || `${normalizedType.toUpperCase()} recorded`,
               description: parsed.description || text.trim(),
+              productName: parsed.productName || null,
               quantity: typeof parsed.quantity === 'number' ? parsed.quantity : null,
               unit: parsed.unit || null,
               area: typeof parsed.area === 'number' ? parsed.area : null,
@@ -285,23 +289,41 @@ function fallbackHeuristicExtract(text, options = {}) {
   let unit = null;
   let area = null;
   let areaUnit = 'acre';
+  let productName = null;
 
   if (lower.includes('wheat') || lower.includes('गेहूं') || lower.includes('गेहूँ') || lower.includes('gehu') || lower.includes('gehun')) crop = 'Wheat';
   else if (lower.includes('paddy') || lower.includes('rice') || lower.includes('धान')) crop = 'Paddy';
   else if (lower.includes('tomato') || lower.includes('टमाटर')) crop = 'Tomato';
   else if (lower.includes('cotton') || lower.includes('कपास')) crop = 'Cotton';
 
-  const normalizedType = normalizeEventType('other', text, text);
+  let rawType = 'other';
+  if (/(pesticide|insecticide|fungicide|herbicide|dawai|spray|कीटनाशक|दवाई|छिड़काव|स्प्रे)/i.test(text)) {
+    rawType = 'pesticide';
+    if (lower.includes('neem') || lower.includes('नीम')) productName = 'Neem Pesticide';
+  } else if (/(urea|dap|npk|nitrogen|potash|phosphate|fertilizer|khad|यूरिया|खाद|डीएपी)/i.test(text)) {
+    rawType = 'fertilizer';
+    if (lower.includes('urea') || lower.includes('यूरिया')) productName = 'Urea';
+    else if (lower.includes('dap') || lower.includes('डीएपी')) productName = 'DAP';
+  } else if (/(irrigation|water|canal|tube-well|tubewell|पानी|सिंचाई)/i.test(text)) {
+    rawType = 'irrigation';
+  } else if (/(harvest|harvesting|reap|cut|cutting|कटाई|पैदावार)/i.test(text)) {
+    rawType = 'harvest';
+  } else if (/(yellow|rust|blight|rot|spot|disease|symptom|रोग|पीले)/i.test(text)) {
+    rawType = 'disease';
+  }
+
+  const normalizedType = normalizeEventType(rawType, text, text);
 
   // Extract Quantity & Unit
-  const numMatch = text.match(/(\d+(?:\.\d+)?)\s*(kg|kilo|किलो|लीटर|liter|l|बोरी|bag)?/i);
+  const numMatch = text.match(/(\d+(?:\.\d+)?)\s*(kg|kilo|किलो|लीटर|liter|ml|l|बोरी|bag)?/i);
   if (numMatch) {
     quantity = parseFloat(numMatch[1]);
-    const rawU = numMatch[2] ? numMatch[2].toLowerCase() : 'kg';
+    const rawU = numMatch[2] ? numMatch[2].toLowerCase() : null;
     if (rawU === 'किलो' || rawU === 'kilo') unit = 'kg';
-    else if (rawU === 'लीटर' || rawU === 'l') unit = 'liter';
+    else if (rawU === 'लीटर' || rawU === 'l' || rawU === 'liter') unit = 'liter';
+    else if (rawU === 'ml') unit = 'ml';
     else if (rawU === 'बोरी') unit = 'bag';
-    else unit = rawU;
+    else unit = rawU || 'kg';
   }
 
   // Extract Area
@@ -318,6 +340,7 @@ function fallbackHeuristicExtract(text, options = {}) {
       crop,
       title: `${normalizedType.toUpperCase()} recorded`,
       description: text.trim(),
+      productName,
       quantity,
       unit,
       area,
@@ -375,12 +398,13 @@ async function generateNextBestAction(farmerId = DEFAULT_FARMER_ID, cropFilter =
       success: true,
       recommendation: {
         action: "Start recording your daily farm activities in your Farm Diary.",
-        priority: "info",
-        reason: "Your Farm Memory is currently empty. Record your sowing, watering, fertilizer, or pest control activities so KrishiMitra AI can provide personalized Next Best Action recommendations tailored to your farm.",
+        priority: "low",
+        reason: "Your Farm Memory is currently empty. Record your sowing, watering, fertilizer, pest control, or harvest activities so KrishiMitra AI can provide personalized Next Best Action recommendations tailored to your farm.",
         crop: cropFilter || "All Crops",
         basedOn: [
           { type: "system", summary: "Empty Farm Memory state — awaiting farmer activity logs" }
         ],
+        timing: "When you perform farm activities",
         confidence: 1.0,
         disclaimer: "Record events to unlock AI context-aware advice."
       }
@@ -389,12 +413,12 @@ async function generateNextBestAction(farmerId = DEFAULT_FARMER_ID, cropFilter =
 
   const targetCrop = cropFilter || (events.find(e => e.crop)?.crop) || 'Wheat';
   const recentEvents = events.filter(e => !cropFilter || (e.crop || '').toLowerCase().includes(cropFilter.toLowerCase()));
-
   const newestEvent = recentEvents[0] || events[0];
 
   let action = '';
   let priority = 'medium';
   let reason = '';
+  let timing = 'Next 2–3 days';
   const basedOn = [];
 
   basedOn.push({
@@ -403,55 +427,72 @@ async function generateNextBestAction(farmerId = DEFAULT_FARMER_ID, cropFilter =
     summary: `Latest recorded event: ${newestEvent.eventType.toUpperCase()} (${newestEvent.title}) on ${newestEvent.date}`
   });
 
-  // Dynamic Decision Logic based on most recent event type & context
-  switch (newestEvent.eventType) {
-    case 'fertilizer':
-      action = `Monitor ${targetCrop} field soil moisture and allow nutrient absorption. Postpone additional top-dressing for 10-14 days.`;
+  // Check if a sequence of events exists (e.g. Fertilizer -> Irrigation -> Pesticide)
+  const hasPesticide = recentEvents.some(e => e.eventType === 'pesticide');
+  const hasIrrigation = recentEvents.some(e => e.eventType === 'irrigation');
+  const hasFertilizer = recentEvents.some(e => e.eventType === 'fertilizer');
+  const hasDisease = recentEvents.some(e => e.eventType === 'disease');
+  const hasHarvest = recentEvents.some(e => e.eventType === 'harvest');
+
+  // Dynamic Decision Logic driven by recent event history & event type
+  if (newestEvent.eventType === 'pesticide') {
+    action = `Monitor the ${targetCrop} field for 2–3 days before applying any further sprays or treatments.`;
+    priority = 'high';
+    reason = `Pesticide application (${newestEvent.title}${newestEvent.quantity ? `, ${newestEvent.quantity} ${newestEvent.unit || ''}` : ''}) was recently recorded on ${newestEvent.date}. Allow sufficient time to evaluate pest knockdown and prevent chemical toxicity.`;
+    timing = 'Next 2–3 days';
+  } else if (newestEvent.eventType === 'disease' || newestEvent.eventType === 'pest') {
+    action = `Inspect ${targetCrop} leaves for disease progression and apply organic or targeted fungicide if infection spreads.`;
+    priority = 'high';
+    reason = `A pest/disease observation (${newestEvent.title}) was recorded on ${newestEvent.date}. Early intervention stops pathogen spread across field boundaries.`;
+    timing = 'Immediate (Within 24 hours)';
+  } else if (newestEvent.eventType === 'harvest') {
+    action = `Ensure proper sun-drying of harvested ${targetCrop}${newestEvent.quantity ? ` (${newestEvent.quantity} ${newestEvent.unit || 'kg'})` : ''} to safe moisture levels (<12%) before Mandi sale.`;
+    priority = 'high';
+    reason = `Harvest was recorded on ${newestEvent.date}. Check current Mandi APMC prices to secure maximum crop return.`;
+    timing = 'Next 1–2 days';
+    basedOn.push({
+      type: 'mandi',
+      summary: 'Check government Mandi APMC prices before finalizing crop sale.'
+    });
+  } else if (newestEvent.eventType === 'irrigation') {
+    if (hasPesticide) {
+      action = `Inspect ${targetCrop} root zone moisture and verify that recent pesticide spray was not washed off.`;
       priority = 'medium';
-      reason = `You recently recorded fertilizer application (${newestEvent.title}${newestEvent.quantity ? `, ${newestEvent.quantity} ${newestEvent.unit || 'kg'}` : ''}) on ${newestEvent.date}. Allowing root intake ensures optimal nitrogen uptake without burning roots.`;
-      break;
-
-    case 'irrigation':
-      action = `Inspect ${targetCrop} root-zone soil moisture and monitor for early weed emergence following watering.`;
+      reason = `Irrigation was recorded on ${newestEvent.date} following recent pesticide application. Ensure adequate crop scouting.`;
+      timing = 'Next 2 days';
+    } else {
+      action = `Inspect ${targetCrop} soil moisture and monitor for early weed growth following irrigation.`;
       priority = 'medium';
-      reason = `You recorded irrigation on ${newestEvent.date}. Maintaining proper moisture balance prevents waterlogging while aiding crop growth.`;
-      break;
-
-    case 'pesticide':
-      action = `Evaluate ${targetCrop} crop for pest reduction and observe required Pre-Harvest Interval (PHI) safety rules.`;
-      priority = 'high';
-      reason = `You recorded pesticide application (${newestEvent.title}) on ${newestEvent.date}. Check crop health to assess spray efficacy and prevent chemical overuse.`;
-      break;
-
-    case 'disease':
-    case 'pest':
-      action = `Inspect ${targetCrop} leaves for disease progression and apply recommended organic or targeted treatment if needed.`;
-      priority = 'high';
-      reason = `A pest/disease observation (${newestEvent.title}) was recorded on ${newestEvent.date}. Early intervention prevents crop damage.`;
-      break;
-
-    case 'harvest':
-      action = `Ensure proper sun-drying of harvested ${targetCrop} to safe moisture levels (<12%) before storage or Mandi sale.`;
-      priority = 'high';
-      reason = `You recorded harvesting ${targetCrop} on ${newestEvent.date}. Proper post-harvest drying prevents fungal rot and improves market value.`;
-      break;
-
-    case 'planting':
-      action = `Ensure light irrigation and scout for uniform seedling germination in your ${targetCrop} field.`;
+      reason = `Irrigation was recorded on ${newestEvent.date}. Maintaining balanced moisture prevents waterlogging.`;
+      timing = 'Next 2–3 days';
+    }
+  } else if (newestEvent.eventType === 'fertilizer') {
+    if (hasIrrigation) {
+      action = `Allow root uptake of fertilizer in ${targetCrop} field. Postpone top-dressing for 10–14 days.`;
       priority = 'medium';
-      reason = `You recorded sowing/planting ${targetCrop} on ${newestEvent.date}. Early moisture management supports strong root establishment.`;
-      break;
-
-    default:
-      action = `Schedule regular field inspection for ${targetCrop} and verify soil moisture levels.`;
-      priority = 'low';
-      reason = `Based on your recent activity (${newestEvent.title}) on ${newestEvent.date}, standard field scouting and moisture checks are recommended.`;
-      break;
+      reason = `Fertilizer (${newestEvent.title}${newestEvent.quantity ? `, ${newestEvent.quantity} ${newestEvent.unit || 'kg'}` : ''}) and irrigation have been applied. Roots require time for nitrogen assimilation.`;
+      timing = 'Next 10–14 days';
+    } else {
+      action = `Schedule light irrigation for ${targetCrop} to assist fertilizer breakdown and root absorption.`;
+      priority = 'high';
+      reason = `Fertilizer (${newestEvent.title}) was recorded on ${newestEvent.date}. Light moisture prevents nitrogen volatilization.`;
+      timing = 'Next 24–48 hours';
+    }
+  } else if (newestEvent.eventType === 'planting') {
+    action = `Provide gentle moisture and monitor uniform seedling germination in ${targetCrop} field.`;
+    priority = 'medium';
+    reason = `Sowing/planting of ${targetCrop} was recorded on ${newestEvent.date}. Seedling establishment requires consistent soil moisture.`;
+    timing = 'Next 3–5 days';
+  } else {
+    action = `Schedule field scouting for ${targetCrop} and record any new farm operations.`;
+    priority = 'low';
+    reason = `Latest recorded activity is ${newestEvent.title} on ${newestEvent.date}. Regular monitoring maintains crop health.`;
+    timing = 'Next 3 days';
   }
 
   basedOn.push({
     type: 'weather',
-    summary: 'Current regional weather forecast indicates clear field operating conditions.'
+    summary: 'Weather forecast integrated into field operational advice.'
   });
 
   return {
@@ -462,8 +503,9 @@ async function generateNextBestAction(farmerId = DEFAULT_FARMER_ID, cropFilter =
       reason,
       crop: targetCrop,
       basedOn,
+      timing,
       confidence: 0.95,
-      disclaimer: 'Recommendations are generated using your Farm Memory events, weather forecasts, and agricultural best practices.'
+      disclaimer: 'Recommendations are derived strictly from your Farm Memory events, weather forecasts, and agricultural best practices.'
     }
   };
 }
@@ -480,3 +522,4 @@ module.exports = {
   queryFarmMemory,
   generateNextBestAction
 };
+
