@@ -488,12 +488,15 @@
   }
 
   // ── Play AI Response Audio ─────────────────────────────────────────────────
+  // ── Play AI Response Audio ─────────────────────────────────────────────────
   function playAIResponse(replyText, audioBase64, languageCode, ttsSupported = true) {
     if (currentState === CallState.CALL_ENDED || currentState === CallState.IDLE) return;
 
+    // Set state to AI_SPEAKING for UI consistency
+    setState(CallState.AI_SPEAKING);
+
     // If audio is available from Sarvam Bulbul TTS
     if (audioBase64) {
-      setState(CallState.AI_SPEAKING);
       console.log('[VOICE] Playing audio response via Sarvam Bulbul TTS');
       try {
         const audioSrc = `data:audio/wav;base64,${audioBase64}`;
@@ -506,14 +509,14 @@
         
         currentAudioPlayer.onended = () => {
           currentAudioPlayer = null;
-          if (currentState === CallState.AI_SPEAKING) {
-            console.log('[VOICE] Returning to listening');
-            setTimeout(startRecordingTurn, 500);
+          if (currentState === CallState.AI_SPEAKING || currentState === CallState.CONNECTING) {
+            console.log('[VOICE] Returning to listening state after TTS audio playback');
+            setTimeout(startRecordingTurn, 300);
           }
         };
 
         currentAudioPlayer.onerror = (e) => {
-          console.warn('[VOICE] Audio playback error, using Web Speech synthesis:', e);
+          console.warn('[VOICE] Audio playback error, using Web Speech synthesis fallback:', e);
           fallbackWebSpeech(replyText, languageCode);
         };
 
@@ -537,12 +540,12 @@
       if (els.statusText) els.statusText.innerText = '📝 Text Response Generated';
       if (els.subStatusText) els.subStatusText.innerText = 'Voice playback is unavailable for this language. Text response updated.';
 
-      // Allow 4 seconds for user to read text before resuming listening
+      // Allow 3.5 seconds for user to read text before resuming listening
       speechTimeout = setTimeout(() => {
-        if (currentState !== CallState.CALL_ENDED) {
+        if (currentState !== CallState.CALL_ENDED && currentState !== CallState.IDLE) {
           startRecordingTurn();
         }
-      }, 4000);
+      }, 3500);
       return;
     }
 
@@ -552,48 +555,58 @@
 
   // ── Fallback Browser Speech Synthesis ──────────────────────────────────────
   function fallbackWebSpeech(text, languageCode) {
-    if (clearTimeout) clearTimeout(speechTimeout);
+    if (clearTimeout && speechTimeout) clearTimeout(speechTimeout);
 
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
+    const onDone = () => {
+      if (clearTimeout && speechTimeout) clearTimeout(speechTimeout);
+      speechTimeout = null;
+      if (currentState === CallState.AI_SPEAKING || currentState === CallState.CONNECTING) {
+        console.log('[VOICE] Returning to listening state');
+        setTimeout(startRecordingTurn, 300);
+      }
+    };
 
-      // Clean text of markdown formatting
-      const clean = text
-        .replace(/[*#_~`]/g, '')
-        .replace(/[-•]\s+/g, ', ')
-        .trim();
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window && window.speechSynthesis) {
+      try {
+        window.speechSynthesis.cancel();
 
-      const utterance = new SpeechSynthesisUtterance(clean);
-      utterance.lang = languageCode || 'en-IN';
-      utterance.rate = 0.95;
+        // Clean text of markdown formatting
+        const clean = (text || '')
+          .replace(/[*#_~`]/g, '')
+          .replace(/[-•]\s+/g, ', ')
+          .trim();
 
-      let finished = false;
-      const onDone = () => {
-        if (finished) return;
-        finished = true;
-        if (clearTimeout) clearTimeout(speechTimeout);
-        if (currentState === CallState.AI_SPEAKING) {
-          console.log('[VOICE] Returning to listening');
-          setTimeout(startRecordingTurn, 500);
+        if (!clean) {
+          onDone();
+          return;
         }
-      };
 
-      utterance.onend = onDone;
-      utterance.onerror = onDone;
+        const utterance = new SpeechSynthesisUtterance(clean);
+        utterance.lang = languageCode || 'en-IN';
+        utterance.rate = 0.95;
 
-      // Safety timeout in case browser speech synthesis hangs without onend
-      const estDurationMs = Math.max(3000, Math.min(18000, clean.length * 75));
-      speechTimeout = setTimeout(onDone, estDurationMs);
+        let finished = false;
+        const handleEnd = () => {
+          if (finished) return;
+          finished = true;
+          onDone();
+        };
 
-      window.speechSynthesis.speak(utterance);
+        utterance.onend = handleEnd;
+        utterance.onerror = handleEnd;
+
+        // Safety timeout in case browser speech synthesis hangs without triggering onend
+        const estDurationMs = Math.max(2500, Math.min(12000, clean.length * 60));
+        speechTimeout = setTimeout(handleEnd, estDurationMs);
+
+        window.speechSynthesis.speak(utterance);
+      } catch (err) {
+        console.warn('[VOICE] SpeechSynthesis error:', err);
+        onDone();
+      }
     } else {
-      // If no speech synthesis support, wait 3 seconds and return to listening
-      speechTimeout = setTimeout(() => {
-        if (currentState === CallState.AI_SPEAKING) {
-          console.log('[VOICE] Returning to listening');
-          startRecordingTurn();
-        }
-      }, 3500);
+      // If no speech synthesis support in browser, transition after short delay
+      speechTimeout = setTimeout(onDone, 1200);
     }
   }
 
