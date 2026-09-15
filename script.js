@@ -2258,53 +2258,78 @@ const loadCropPriceDetails = async (cropQuery = 'wheat') => {
   const lowMandiEl = document.getElementById('market-low-mandi');
   const recText = document.getElementById('mandi-recommendation-text');
 
-  if (highMandiEl) highMandiEl.innerText = 'Fetching government records...';
-  if (lowMandiEl) lowMandiEl.innerText = 'Fetching government records...';
+  if (highMandiEl) highMandiEl.innerText = 'Fetching latest government records...';
+  if (lowMandiEl) lowMandiEl.innerText = 'Fetching latest government records...';
 
   const api = window.KrishiMitraAPI || window.KrishiAPI;
   let res = null;
 
-  if (api && typeof api.getMandiPrices === 'function') {
-    res = await api.getMandiPrices(cropQuery);
+  try {
+    if (api && typeof api.getMandiPrices === 'function') {
+      res = await api.getMandiPrices(cropQuery);
+    }
+  } catch (err) {
+    console.error('[MANDI UI Error] Failed to retrieve Mandi prices:', err);
+    res = { success: false, error: err.message };
   }
 
-  if (!res || !res.success || !res.records || res.records.length === 0) {
-    if (nameEl) nameEl.innerText = `${cropQuery.toUpperCase()} Prices`;
-    if (dateEl) dateEl.innerText = 'Government Data Status: No records found';
+  // Requirement 16: STATE 3 — SEARCH/API FAILURE
+  if (!res || res.success === false) {
+    if (nameEl) nameEl.innerText = `${cropQuery.toUpperCase()} PRICES`;
+    if (dateEl) dateEl.innerText = 'Unable to retrieve mandi data right now. Please try again.';
     if (highPriceEl) highPriceEl.innerText = 'N/A';
-    if (highMandiEl) highMandiEl.innerText = 'No current market records';
+    if (highMandiEl) highMandiEl.innerText = 'Search Service Unavailable';
     if (lowPriceEl) lowPriceEl.innerText = 'N/A';
-    if (lowMandiEl) lowMandiEl.innerText = 'No current market records';
-    if (recText) recText.innerHTML = `<strong>Government Market Advisory:</strong> No current government market data found for "${cropQuery}". Try searching another crop like Wheat, Paddy, Tomato, Potato, or Mustard.`;
+    if (lowMandiEl) lowMandiEl.innerText = 'Search Service Unavailable';
+    if (recText) recText.innerHTML = `<strong>Status:</strong> Unable to retrieve mandi data right now. Please check network connection and try again.`;
 
     renderMarketBars([]);
     renderMandiList([]);
     return;
   }
 
-  const { records, summary, dataDate, isCached, source } = res;
+  // Requirement 16: STATE 2 — NO DATA FOUND
+  if (!res.records || res.records.length === 0) {
+    if (nameEl) nameEl.innerText = `${cropQuery.toUpperCase()} PRICES`;
+    if (dateEl) dateEl.innerText = `No current/latest mandi record found for ${cropQuery}.`;
+    if (highPriceEl) highPriceEl.innerText = 'N/A';
+    if (highMandiEl) highMandiEl.innerText = 'No market record found';
+    if (lowPriceEl) lowPriceEl.innerText = 'N/A';
+    if (lowMandiEl) lowMandiEl.innerText = 'No market record found';
+    if (recText) recText.innerHTML = `<strong>Government Market Advisory:</strong> No current/latest mandi record found for <strong>"${cropQuery}"</strong>. Try searching another crop like Wheat, Paddy, Tomato, Potato, or Mustard.`;
 
-  if (nameEl) nameEl.innerText = `${res.commodity} Market Prices`;
+    renderMarketBars([]);
+    renderMandiList([]);
+    return;
+  }
+
+  // Requirement 16: STATE 1 — DATA FOUND
+  const { records, summary, dataDate, isCached, isExpiredCache, source, sourceUrl } = res;
+  const commodityName = res.commodity || cropQuery;
+
+  if (nameEl) nameEl.innerText = `${commodityName.toUpperCase()} PRICES`;
   if (emojiEl) {
     const emojis = { Wheat: '🌾', Paddy: '🌾', Rice: '🌾', Tomato: '🍅', Potato: '🥔', Mustard: '🌱', Cotton: '☁️', Onion: '🧅' };
-    emojiEl.innerText = emojis[res.commodity] || '🌾';
+    emojiEl.innerText = emojis[commodityName] || '🌾';
   }
 
   if (dateEl) {
-    const cachedBadge = isCached ? ' (Cached Data)' : '';
-    dateEl.innerText = `Government Market Data — ${dataDate || '15 Sep 2026'}${cachedBadge}`;
+    const datePrefix = isExpiredCache ? 'Showing last verified mandi data' : 'Latest Available Mandi Data';
+    dateEl.innerText = `${datePrefix} — ${dataDate || 'Current'}`;
   }
 
   const high = summary.highest;
   const low = summary.lowest;
 
-  if (highPriceEl) highPriceEl.innerText = `₹${high.modalPrice.toLocaleString('en-IN')} / Qtl`;
+  if (highPriceEl) highPriceEl.innerText = `₹${high.modalPrice.toLocaleString('en-IN')} / quintal`;
   if (highMandiEl) highMandiEl.innerText = `${high.market} (${high.district}, ${high.state})`;
-  if (lowPriceEl) lowPriceEl.innerText = `₹${low.modalPrice.toLocaleString('en-IN')} / Qtl`;
+  if (lowPriceEl) lowPriceEl.innerText = `₹${low.modalPrice.toLocaleString('en-IN')} / quintal`;
   if (lowMandiEl) lowMandiEl.innerText = `${low.market} (${low.district}, ${low.state})`;
 
+  // Requirement 21 & 15: Source metadata & highest reported modal price advisory
   if (recText) {
-    recText.innerHTML = `<strong>Government Market Advisory:</strong> Highest reported modal price is <strong>₹${high.modalPrice.toLocaleString('en-IN')} / Quintal</strong> at <strong>${high.market}</strong> (${high.district}). Min–Max range: ₹${high.minPrice}–₹${high.maxPrice}. Source: ${source}.`;
+    const srcLink = sourceUrl ? `<a href="${sourceUrl}" target="_blank" style="color:#1E3A8A; text-decoration:underline;">View source</a>` : '';
+    recText.innerHTML = `Among the markets found, <strong>${high.market}</strong> (${high.district}) has the highest reported modal price for ${commodityName} at <strong>₹${high.modalPrice.toLocaleString('en-IN')} / quintal</strong> (Min ₹${high.minPrice} – Max ₹${high.maxPrice}). <br><small style="color:var(--text-secondary);">Source: ${source || 'Agmarknet'} | Data date: ${high.arrivalDate || dataDate} ${srcLink ? '| ' + srcLink : ''}</small>`;
   }
 
   renderMarketBars(records);
@@ -2331,8 +2356,8 @@ const renderMarketBars = (records = []) => {
 
     row.innerHTML = `
       <div class="chart-bar-info">
-        <span><strong>${r.market}</strong> (${r.district}) — ${r.variety}</span>
-        <span>₹${r.modalPrice.toLocaleString('en-IN')} / Qtl</span>
+        <span><strong>${r.market}</strong> (${r.district}, ${r.state}) — ${r.variety}</span>
+        <span>₹${r.modalPrice.toLocaleString('en-IN')} / quintal</span>
       </div>
       <div class="chart-bar-bg">
         <div class="chart-bar-fill ${isHighest ? 'highlight' : ''}" style="width: ${percentage}%"></div>
@@ -2356,13 +2381,16 @@ const renderMandiList = (records = []) => {
     const item = document.createElement('div');
     item.className = 'mandi-list-item card border-blue';
 
+    const sourceUrlHtml = r.sourceUrl ? `<a href="${r.sourceUrl}" target="_blank" style="color:#0277BD; text-decoration:underline; font-size:0.8rem; margin-left:6px;">View source</a>` : '';
+
     item.innerHTML = `
       <div class="mandi-meta-info">
         <h4 style="margin:0 0 4px; color:var(--text-primary); font-size:1.05rem;">${r.market}</h4>
-        <p style="margin:0; color:var(--text-secondary); font-size:0.85rem;">📍 ${r.district}, ${r.state} | Variety: ${r.variety} | Date: ${r.arrivalDate}</p>
+        <p style="margin:0 0 2px; color:var(--text-secondary); font-size:0.85rem;">📍 ${r.district}, ${r.state} | Variety: ${r.variety} (${r.grade || 'FAQ'})</p>
+        <p style="margin:0; color:var(--text-secondary); font-size:0.8rem;">📅 Data date: ${r.arrivalDate} | Source: ${r.source} ${sourceUrlHtml}</p>
       </div>
       <div class="mandi-price-badge" style="text-align:right;">
-        <span class="price-value" style="font-size:1.2rem; font-weight:700; color:#1E3A8A;">₹${r.modalPrice.toLocaleString('en-IN')} / Qtl</span>
+        <span class="price-value" style="font-size:1.2rem; font-weight:700; color:#1E3A8A;">₹${r.modalPrice.toLocaleString('en-IN')} / quintal</span>
         <span style="display:block; font-size:0.75rem; color:var(--text-secondary);">Min: ₹${r.minPrice} | Max: ₹${r.maxPrice}</span>
       </div>
     `;
