@@ -182,6 +182,13 @@
         openManualEntryModal();
       });
     }
+
+    // Keyboard shortcut (Escape key to close open modals)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModals();
+      }
+    });
   }
 
   // ── Voice Extraction Flow ───────────────────────────────────────────────────
@@ -335,7 +342,11 @@
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
   function closeModals() {
-    document.querySelectorAll('.diary-modal-backdrop').forEach(m => m.classList.add('hidden'));
+    const confirmModal = document.getElementById('modal-diary-confirm');
+    const manualModal = document.getElementById('modal-diary-manual');
+    if (confirmModal) confirmModal.classList.add('hidden');
+    if (manualModal) manualModal.classList.add('hidden');
+    currentDraftEvent = null;
   }
 
   function getOfflineEvents() {
