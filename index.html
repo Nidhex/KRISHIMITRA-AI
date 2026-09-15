@@ -241,6 +241,7 @@
         <div class="vision-upload-panel">
           <div class="upload-area" id="vision-dropzone">
             <input type="file" id="vision-file-input" accept="image/*" class="sr-only">
+            <input type="file" id="mobile-camera-input" accept="image/*" capture="environment" class="sr-only">
             
             <div id="upload-prompt" class="upload-prompt-content">
               <span class="upload-icon">📷</span>
@@ -1071,6 +1072,34 @@
       </div>
 
     </div>
+  </div>
+
+  <!-- Desktop Camera Modal -->
+  <div id="desktop-camera-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-camera-title">
+    <div class="modal-backdrop" id="camera-modal-backdrop"></div>
+    <div class="modal-content card camera-modal-content" style="max-width:540px; padding:20px; border-radius:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h3 id="modal-camera-title" style="margin:0; font-size:1.2rem; color:var(--text-primary);">📷 <span data-i18n="take_photo">Take Farm Photo</span></h3>
+        <button id="btn-close-camera-modal" class="btn-close-modal" aria-label="Close Camera">✕</button>
+      </div>
+      <div class="camera-video-container" style="position:relative; width:100%; aspect-ratio:4/3; background:#000; border-radius:12px; overflow:hidden;">
+        <video id="camera-video-preview" autoplay playsinline muted style="width:100%; height:100%; object-fit:cover;"></video>
+        <canvas id="camera-canvas-snapshot" style="display:none;"></canvas>
+        <div id="camera-status-msg" class="camera-status-overlay hidden" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); color:#fff; padding:16px; text-align:center;"></div>
+      </div>
+      <div class="camera-actions" style="display:flex; justify-content:center; gap:12px; margin-top:16px;">
+        <button id="btn-capture-frame" class="btn-primary btn-large" style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:1.2rem;">📸</span>
+          <span data-i18n="btn_capture_photo">Capture Photo</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Camera Diagnostics Overlay Box (Controlled by CAMERA_DEBUG flag) -->
+  <div id="camera-debug-panel" class="camera-debug-panel hidden" style="position:fixed; bottom:16px; right:16px; z-index:9999; background:rgba(15,23,42,0.92); color:#38bdf8; border:1px solid #0284c7; padding:12px 16px; border-radius:12px; font-family:monospace; font-size:11px; max-width:320px; max-height:220px; overflow-y:auto; box-shadow:0 10px 25px rgba(0,0,0,0.5);">
+    <div style="font-weight:bold; border-bottom:1px solid #0284c7; padding-bottom:4px; margin-bottom:6px; color:#38bdf8;">CAMERA DEBUG DIAGNOSTIC</div>
+    <div id="camera-debug-content">Initialising...</div>
   </div>
 
   <!-- Audio elements for assistive sound feedback -->

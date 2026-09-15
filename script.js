@@ -1124,56 +1124,56 @@ const populateSamplePills = (moduleId) => {
   });
 };
 
+// Global Camera State & Diagnostics Logger
+const CAMERA_DEBUG = true;
+let activeCameraStream = null;
+
+const updateCameraDebug = (info = {}) => {
+  if (!CAMERA_DEBUG) return;
+  const panel = document.getElementById('camera-debug-panel');
+  const content = document.getElementById('camera-debug-content');
+  if (!panel || !content) return;
+
+  panel.classList.remove('hidden');
+  const isMobileDev = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (window.innerWidth <= 768);
+  const browserName = (function() {
+    const ua = navigator.userAgent;
+    if (ua.includes("CriOS")) return "iPhone Chrome";
+    if (ua.includes("Chrome")) return "Android/Desktop Chrome";
+    if (ua.includes("Safari") && !ua.includes("Chrome")) return "iPhone Safari";
+    if (ua.includes("Edg")) return "Edge";
+    return "Browser";
+  })();
+
+  const lines = [
+    `<strong>Device:</strong> ${isMobileDev ? 'Mobile Phone' : 'Desktop/Tablet'}`,
+    `<strong>Browser:</strong> ${browserName}`,
+    `<strong>Secure Context:</strong> ${window.isSecureContext ? 'YES (HTTPS)' : 'NO (HTTP)'}`,
+    `<strong>MediaDevices:</strong> ${!!(navigator.mediaDevices) ? 'Available' : 'Unavailable'}`,
+    `<strong>getUserMedia:</strong> ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) ? 'Available' : 'Unavailable'}`,
+    `<strong>Camera Input:</strong> ${info.inputAvailable ? 'Ready' : 'Initialized'}`,
+    `<strong>Input Event:</strong> ${info.eventTriggered ? 'Triggered' : 'Waiting'}`,
+    `<strong>Selected File:</strong> ${info.hasFile ? 'YES' : 'None'}`,
+    info.fileType ? `<strong>File Type:</strong> ${info.fileType}` : null,
+    info.fileSize ? `<strong>File Size:</strong> ${(info.fileSize / 1024).toFixed(1)} KB` : null,
+    info.error ? `<strong style="color:#ef4444;">Error:</strong> ${info.error}` : null
+  ].filter(Boolean);
+
+  content.innerHTML = lines.join('<br>');
+};
+
 // Setup dropzone and input interactions
 const setupUploadListeners = () => {
   const dropzone = document.getElementById('vision-dropzone');
   const fileInput = document.getElementById('vision-file-input');
+  const mobileCameraInput = document.getElementById('mobile-camera-input');
   const btnUpload = document.getElementById('btn-upload');
   const btnCamera = document.getElementById('btn-camera');
   const btnRemove = document.getElementById('btn-remove-preview');
   const btnAnalyze = document.getElementById('btn-analyze');
 
-  btnUpload.addEventListener('click', () => {
-    playSound('snd-click');
-    fileInput.click();
-  });
-
-  btnCamera.addEventListener('click', () => {
-    playSound('snd-click');
-    // For local mock: simulate camera photo by auto selecting the first sample
-    const sampleBtn = document.querySelector('.sample-pill');
-    if (sampleBtn) sampleBtn.click();
-  });
-
-  fileInput.addEventListener('change', (e) => {
-    if (e.target.files && e.target.files[0]) {
-      loadUploadedImage(e.target.files[0]);
-    }
-  });
-
-  btnRemove.addEventListener('click', (e) => {
-    e.stopPropagation();
-    playSound('snd-click');
-    clearVisionWorkspace();
-  });
-
-  // Drag and drop
-  dropzone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    dropzone.classList.add('dragover');
-  });
-
-  dropzone.addEventListener('dragleave', () => {
-    dropzone.classList.remove('dragover');
-  });
-
-  dropzone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    dropzone.classList.remove('dragover');
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      loadUploadedImage(e.dataTransfer.files[0]);
-    }
-  });
+  // Initial debug log
+  updateCameraDebug({ inputAvailable: true });
 
   const loadUploadedImage = (file) => {
     const reader = new FileReader();
@@ -1188,6 +1188,205 @@ const setupUploadListeners = () => {
     };
     reader.readAsDataURL(file);
   };
+
+  const validateAndProcessFile = (file) => {
+    if (!file) {
+      alert("Please select or capture a valid image.");
+      updateCameraDebug({ error: "No file selected" });
+      return false;
+    }
+    if (file.size === 0) {
+      alert("Captured image file is empty. Please try taking the photo again.");
+      updateCameraDebug({ error: "File size is 0 bytes" });
+      return false;
+    }
+    const lowerName = (file.name || '').toLowerCase();
+    const isImageMime = file.type && file.type.startsWith('image/');
+    const isImageExt = /\.(jpg|jpeg|png|webp|heic|heif|bmp|gif)$/i.test(lowerName);
+
+    if (!isImageMime && !isImageExt) {
+      alert("Please select or capture a valid image (JPG, PNG, WEBP, HEIC).");
+      updateCameraDebug({ error: "Unsupported file type: " + file.type });
+      return false;
+    }
+
+    updateCameraDebug({
+      hasFile: true,
+      fileType: file.type || 'image/jpeg',
+      fileSize: file.size,
+      eventTriggered: true
+    });
+
+    loadUploadedImage(file);
+    return true;
+  };
+
+  // 1. Gallery Upload Button Listener
+  btnUpload.addEventListener('click', () => {
+    playSound('snd-click');
+    fileInput.click();
+  });
+
+  fileInput.addEventListener('change', (e) => {
+    if (e.target.files && e.target.files[0]) {
+      validateAndProcessFile(e.target.files[0]);
+    }
+  });
+
+  // 2. Mobile Camera Input Change Listener
+  if (mobileCameraInput) {
+    mobileCameraInput.addEventListener('change', (e) => {
+      updateCameraDebug({ inputAvailable: true, eventTriggered: true });
+      if (e.target.files && e.target.files[0]) {
+        validateAndProcessFile(e.target.files[0]);
+      }
+    });
+  }
+
+  // 3. Main Camera Button Listener (Mobile + Desktop strategy)
+  btnCamera.addEventListener('click', () => {
+    playSound('snd-click');
+    updateCameraDebug({ eventTriggered: true });
+
+    // Security context diagnostic check
+    if (!window.isSecureContext && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      console.warn('[Camera] Insecure context (HTTP) detected. Camera access may require HTTPS.');
+    }
+
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (window.innerWidth <= 768);
+
+    if (isMobileDevice) {
+      // MOBILE: Trigger native camera file input synchronously inside user gesture handler
+      if (mobileCameraInput) {
+        mobileCameraInput.click();
+      } else {
+        fileInput.click();
+      }
+    } else {
+      // DESKTOP: Attempt live webcam stream via getUserMedia
+      openDesktopCameraModal();
+    }
+  });
+
+  // 4. Desktop Webcam Modal Controller Functions
+  const openDesktopCameraModal = async () => {
+    const modal = document.getElementById('desktop-camera-modal');
+    const video = document.getElementById('camera-video-preview');
+    const statusMsg = document.getElementById('camera-status-msg');
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      console.warn('[Camera] getUserMedia not supported on this browser. Opening file input fallback.');
+      updateCameraDebug({ error: "getUserMedia unsupported on browser" });
+      if (mobileCameraInput) mobileCameraInput.click();
+      return;
+    }
+
+    try {
+      if (statusMsg) {
+        statusMsg.innerText = "Connecting to camera...";
+        statusMsg.classList.remove('hidden');
+      }
+      if (modal) modal.classList.remove('hidden');
+
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } },
+        audio: false
+      });
+
+      activeCameraStream = stream;
+      if (video) {
+        video.srcObject = stream;
+        await video.play();
+      }
+      if (statusMsg) statusMsg.classList.add('hidden');
+      updateCameraDebug({ inputAvailable: true, eventTriggered: true });
+    } catch (err) {
+      console.warn('[Camera] getUserMedia failed or permission denied:', err);
+      closeDesktopCameraModal();
+
+      let friendlyError = "Camera is blocked or unavailable.";
+      if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+        friendlyError = "Camera permission is blocked. Please allow camera access in your browser settings, then try again.";
+      } else if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
+        friendlyError = "No camera detected on this device. You can choose a photo from your gallery instead.";
+      } else if (err.name === 'NotReadableError' || err.name === 'TrackStartError') {
+        friendlyError = "Camera is currently being used by another application.";
+      }
+
+      alert(friendlyError);
+      updateCameraDebug({ error: err.name || err.message });
+
+      // Fallback to mobile camera input or standard file picker
+      if (mobileCameraInput) mobileCameraInput.click();
+    }
+  };
+
+  const closeDesktopCameraModal = () => {
+    const modal = document.getElementById('desktop-camera-modal');
+    const video = document.getElementById('camera-video-preview');
+    if (activeCameraStream) {
+      activeCameraStream.getTracks().forEach(track => track.stop());
+      activeCameraStream = null;
+    }
+    if (video) video.srcObject = null;
+    if (modal) modal.classList.add('hidden');
+  };
+
+  // Wire Desktop Modal Control Buttons
+  const btnCaptureFrame = document.getElementById('btn-capture-frame');
+  const btnCloseCamera = document.getElementById('btn-close-camera-modal');
+  const backdropCamera = document.getElementById('camera-modal-backdrop');
+
+  if (btnCloseCamera) btnCloseCamera.addEventListener('click', closeDesktopCameraModal);
+  if (backdropCamera) backdropCamera.addEventListener('click', closeDesktopCameraModal);
+
+  if (btnCaptureFrame) {
+    btnCaptureFrame.addEventListener('click', () => {
+      playSound('snd-click');
+      const video = document.getElementById('camera-video-preview');
+      const canvas = document.getElementById('camera-canvas-snapshot');
+      if (!video || !canvas || !activeCameraStream) return;
+
+      canvas.width = video.videoWidth || 640;
+      canvas.height = video.videoHeight || 480;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const capturedFile = new File([blob], `crop_photo_${Date.now()}.jpg`, { type: 'image/jpeg' });
+          validateAndProcessFile(capturedFile);
+          closeDesktopCameraModal();
+        } else {
+          alert("Failed to capture image. Please try taking the photo again.");
+        }
+      }, 'image/jpeg', 0.92);
+    });
+  }
+
+  // 5. Remove & Drag-and-Drop Listeners
+  btnRemove.addEventListener('click', (e) => {
+    e.stopPropagation();
+    playSound('snd-click');
+    clearVisionWorkspace();
+  });
+
+  dropzone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropzone.classList.add('dragover');
+  });
+
+  dropzone.addEventListener('dragleave', () => {
+    dropzone.classList.remove('dragover');
+  });
+
+  dropzone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      validateAndProcessFile(e.dataTransfer.files[0]);
+    }
+  });
 
   btnAnalyze.addEventListener('click', () => {
     triggerSimulatedAIAnalysis();
