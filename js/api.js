@@ -297,6 +297,107 @@ function showApiError(message, containerId = null) {
   }
 }
 
+// ── Farm Diary API Methods ───────────────────────────────────────────────────
+/**
+ * Fetch Farm Diary events and fields.
+ */
+async function getFarmDiary(farmerId = 'farmer_default', filters = {}) {
+  try {
+    const query = new URLSearchParams(filters).toString();
+    const url = `${API_BASE_URL}/farm-diary/${farmerId}${query ? '?' + query : ''}`;
+    const res = await fetchWithTimeout(url, { method: 'GET' }, 15000);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error('[KrishiMitra API] getFarmDiary error:', err);
+    return { success: false, events: [], fields: [], error: err.message };
+  }
+}
+
+/**
+ * Save a confirmed Farm Diary Event.
+ */
+async function saveDiaryEvent(eventData) {
+  try {
+    const res = await fetchWithTimeout(
+      `${API_BASE_URL}/farm-diary`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(eventData)
+      },
+      15000
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error('[KrishiMitra API] saveDiaryEvent error:', err);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
+ * Delete a Farm Diary Event.
+ */
+async function deleteDiaryEvent(farmerId, eventId) {
+  try {
+    const res = await fetchWithTimeout(
+      `${API_BASE_URL}/farm-diary/${farmerId}/${eventId}`,
+      { method: 'DELETE' },
+      15000
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error('[KrishiMitra API] deleteDiaryEvent error:', err);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
+ * Extract structured event from natural language text.
+ */
+async function extractDiaryEvent(text, language = 'hi', source = 'voice') {
+  try {
+    const res = await fetchWithTimeout(
+      `${API_BASE_URL}/farm-diary/extract`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, language, source })
+      },
+      25000
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error('[KrishiMitra API] extractDiaryEvent error:', err);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
+ * Run Next Best Action Decision Engine.
+ */
+async function getDecisionEngine(farmerId = 'farmer_default', crop = null) {
+  try {
+    const res = await fetchWithTimeout(
+      `${API_BASE_URL}/farm-diary/decision`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ farmerId, crop })
+      },
+      20000
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error('[KrishiMitra API] getDecisionEngine error:', err);
+    return { success: false, error: err.message };
+  }
+}
+
 // ── Exports (ES Module style for future bundler compat + plain <script> compat)
 if (typeof module !== 'undefined' && module.exports) {
   // Node / CommonJS (for testing)
@@ -306,6 +407,11 @@ if (typeof module !== 'undefined' && module.exports) {
     scanCrop,
     getWeather,
     getSchemes,
+    getFarmDiary,
+    saveDiaryEvent,
+    deleteDiaryEvent,
+    extractDiaryEvent,
+    getDecisionEngine,
     showApiError,
     API_BASE_URL,
     ERROR_MESSAGES
@@ -318,6 +424,11 @@ if (typeof module !== 'undefined' && module.exports) {
     scanCrop,
     getWeather,
     getSchemes,
+    getFarmDiary,
+    saveDiaryEvent,
+    deleteDiaryEvent,
+    extractDiaryEvent,
+    getDecisionEngine,
     showApiError,
     API_BASE_URL,
     ERROR_MESSAGES

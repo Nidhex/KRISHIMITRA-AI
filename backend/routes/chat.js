@@ -15,6 +15,7 @@ const rag = require('../services/ragService');
 const sarvam = require('../services/sarvamService');
 const ollama = require('../services/ollamaService');
 const textExtractor = require('../services/textExtractionService');
+const farmDiaryService = require('../services/farmDiaryService');
 
 /**
  * System prompt generator for KrishiMitra AI.
@@ -111,8 +112,12 @@ router.post('/', async (req, res, next) => {
 
     const detectedLang = ragResult.detectedLanguage || language || 'en';
 
-    // Merge extra client context if provided
-    const combinedContext = [ragResult.context, context].filter(Boolean).join('\n\n');
+    // Retrieve Farm Memory for the active farmer
+    const activeFarmerId = (farmerContext && farmerContext.id) ? farmerContext.id : farmDiaryService.DEFAULT_FARMER_ID;
+    const farmMemoryStr = farmDiaryService.queryFarmMemory(activeFarmerId, trimmedMessage);
+
+    // Merge extra client context & Farm Memory if provided
+    const combinedContext = [ragResult.context, farmMemoryStr, context].filter(Boolean).join('\n\n');
 
     // ── 3. Sanitise Conversation History (Sliding Window: last 6 turns) ───────
     const sanitisedHistory = Array.isArray(history)

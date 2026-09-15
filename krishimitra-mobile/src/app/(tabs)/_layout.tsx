@@ -50,6 +50,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="diary"
+        options={{
+          title: 'डायरी (Diary)',
+          tabBarIcon: () => <TabIcon emoji="🌾" />,
+        }}
+      />
+      <Tabs.Screen
         name="info"
         options={{
           title: 'जानकारी (Info)',

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "event_001",
+    "farmerId": "farmer_default",
+    "fieldId": "field_001",
+    "crop": "Wheat",
+    "eventType": "planting",
+    "date": "2026-09-01",
+    "title": "Wheat Sowing Completed",
+    "description": "Sowed PBW-343 wheat variety with 2.0 acre land preparation.",
+    "quantity": 40,
+    "unit": "kg/acre",
+    "createdBy": "farmer",
+    "source": "manual",
+    "confidence": 1,
+    "createdAt": "2026-09-01T08:30:00.000Z"
+  }
+]

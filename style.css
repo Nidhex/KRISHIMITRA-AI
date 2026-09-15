@@ -3065,3 +3065,204 @@ textarea {
   font-size: 1rem;
   z-index: 10;
 }
+
+/* ==========================================================================
+   AI Farm Diary & Decision Engine Styling
+   ========================================================================== */
+.decision-card {
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #3b82f6;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.3);
+}
+
+.decision-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.decision-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.decision-badge.priority-high {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.decision-badge.priority-medium {
+  background: #f59e0b;
+  color: #ffffff;
+}
+
+.decision-badge.priority-low {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.decision-crop {
+  font-size: 0.85rem;
+  color: #93c5fd;
+  font-weight: 600;
+}
+
+.decision-action-title {
+  font-size: 1.15rem;
+  margin: 0 0 12px 0;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+.decision-why-section {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.decision-why-section strong {
+  color: #60a5fa;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.decision-why-section p {
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.decision-based-list {
+  margin: 0;
+  padding-left: 16px;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+}
+
+.decision-based-list li {
+  margin-bottom: 3px;
+}
+
+.decision-footer {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.diary-filter-pill {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.diary-filter-pill.active {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.diary-event-card {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 16px;
+  border-left: 4px solid var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.diary-event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.diary-event-type {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.diary-type-icon {
+  font-size: 1.1rem;
+}
+
+.diary-crop-pill {
+  background: rgba(46, 125, 50, 0.1);
+  color: #2e7d32;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.diary-event-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.diary-date {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.btn-delete-event {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.diary-event-title {
+  margin: 4px 0;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.diary-event-desc {
+  margin: 0 0 8px 0;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.diary-event-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.diary-qty-tag {
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.diary-source-tag {
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 0.72rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}

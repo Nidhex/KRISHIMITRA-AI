@@ -218,6 +218,47 @@
       </div>
     </section>
 
+    <!-- TAB: FARM DIARY -->
+    <section id="view-diary" class="tab-view" aria-label="AI Farm Diary">
+      <div class="vision-header-card card">
+        <h2 class="section-main-title">🌾 AI Farm Diary & Memory</h2>
+        <p class="section-main-subtitle">Record daily farm activities, track field operations, and get personalized AI decision recommendations.</p>
+      </div>
+
+      <!-- Next Best Action Decision Engine Box -->
+      <div id="diary-decision-container" style="margin-bottom: 20px;">
+        <!-- Dynamically rendered decision recommendation card -->
+      </div>
+
+      <!-- Toolbar & Actions -->
+      <div class="diary-toolbar card" style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:16px; flex-wrap:wrap; padding:16px;">
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button id="btn-voice-diary" class="btn-primary" style="display:flex; align-items:center; gap:6px;">
+            <span>🎤</span> <span>Add Activity (Voice)</span>
+          </button>
+          <button id="btn-manual-diary" class="btn-outline-primary" style="display:flex; align-items:center; gap:6px;">
+            <span>➕</span> <span>Manual Entry</span>
+          </button>
+        </div>
+        <span style="font-size:0.85rem; color:var(--text-secondary);">Demo Farmer: <strong>Ramesh Prasad (Kishanpur, UP)</strong></span>
+      </div>
+
+      <!-- Filter Pills Row -->
+      <div class="diary-filter-row" style="display:flex; gap:8px; margin-bottom:16px; overflow-x:auto; padding-bottom:6px;">
+        <button class="diary-filter-pill active" data-filter="all">All Activities</button>
+        <button class="diary-filter-pill" data-filter="fertilizer">🧪 Fertilizer</button>
+        <button class="diary-filter-pill" data-filter="irrigation">💧 Irrigation</button>
+        <button class="diary-filter-pill" data-filter="disease">🔬 Disease / Pest</button>
+        <button class="diary-filter-pill" data-filter="harvest">🌾 Harvest</button>
+        <button class="diary-filter-pill" data-filter="expense">💰 Expenses</button>
+      </div>
+
+      <!-- Timeline List Container -->
+      <div id="diary-timeline-list" class="diary-timeline-container" style="display:flex; flex-direction:column; gap:12px;">
+        <!-- Dynamic event cards -->
+      </div>
+    </section>
+
     <!-- TAB 2: VISION LAB -->
     <section id="view-vision" class="tab-view" aria-label="AI Vision Lab">
       <div class="vision-header-card card">
@@ -903,6 +944,14 @@
         <span class="nav-label" data-i18n="nav_vision">Vision Lab</span>
       </button>
 
+      <!-- Farm Diary Link -->
+      <button class="nav-item" onclick="switchTab('diary')" id="nav-btn-diary" aria-label="Farm Diary">
+        <div class="nav-icon-container">
+          <svg class="icon-nav" viewBox="0 0 24 24"><path fill="currentColor" d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+        </div>
+        <span class="nav-label" data-i18n="nav_diary">Farm Diary</span>
+      </button>
+
       <!-- Voice Assistant Link -->
       <button class="nav-item" onclick="switchTab('voice')" id="nav-btn-voice" aria-label="Voice AI Assistant">
         <div class="nav-icon-container">
@@ -1096,6 +1145,135 @@
     </div>
   </div>
 
+  <!-- MODAL: Farm Diary AI Draft Confirmation -->
+  <div id="modal-diary-confirm" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop diary-modal-backdrop" onclick="window.KrishiFarmDiary.closeModals()"></div>
+    <div class="modal-content card" style="max-width:500px; padding:24px; border-radius:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h3 style="margin:0; font-size:1.2rem; color:var(--text-primary);">✨ Confirm Farm Diary Activity</h3>
+        <button class="btn-close-modal" onclick="window.KrishiFarmDiary.closeModals()">✕</button>
+      </div>
+      <p style="font-size:0.9rem; color:var(--text-secondary); margin-top:0;">AI extracted this activity from your input. Verify details before saving to your Farm Memory:</p>
+      
+      <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:16px;">
+        <div>
+          <label style="font-size:0.85rem; font-weight:600;">Activity Type:</label>
+          <select id="confirm-event-type" class="input-form-sm" style="width:100%;">
+            <option value="fertilizer">🧪 Fertilizer</option>
+            <option value="irrigation">💧 Irrigation</option>
+            <option value="pesticide">🛡️ Pesticide / Spray</option>
+            <option value="disease">🔬 Disease / Pest</option>
+            <option value="planting">🌱 Planting / Sowing</option>
+            <option value="harvest">🌾 Harvest</option>
+            <option value="expense">💰 Expense</option>
+            <option value="other">📝 Other</option>
+          </select>
+        </div>
+
+        <div style="display:flex; gap:10px;">
+          <div style="flex:1;">
+            <label style="font-size:0.85rem; font-weight:600;">Crop:</label>
+            <input type="text" id="confirm-crop" class="input-form-sm" placeholder="e.g. Wheat, Paddy" style="width:100%;">
+          </div>
+          <div style="flex:1;">
+            <label style="font-size:0.85rem; font-weight:600;">Date:</label>
+            <input type="date" id="confirm-date" class="input-form-sm" style="width:100%;">
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size:0.85rem; font-weight:600;">Activity Title:</label>
+          <input type="text" id="confirm-title" class="input-form-sm" placeholder="Title" style="width:100%;">
+        </div>
+
+        <div>
+          <label style="font-size:0.85rem; font-weight:600;">Description:</label>
+          <textarea id="confirm-desc" class="input-form-sm" rows="2" placeholder="Details" style="width:100%;"></textarea>
+        </div>
+
+        <div style="display:flex; gap:10px;">
+          <div style="flex:1;">
+            <label style="font-size:0.85rem; font-weight:600;">Quantity (Optional):</label>
+            <input type="number" id="confirm-quantity" class="input-form-sm" placeholder="e.g. 40" style="width:100%;">
+          </div>
+          <div style="flex:1;">
+            <label style="font-size:0.85rem; font-weight:600;">Unit:</label>
+            <input type="text" id="confirm-unit" class="input-form-sm" placeholder="kg / liters / acre" style="width:100%;">
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:10px;">
+        <button class="btn-outline-primary" onclick="window.KrishiFarmDiary.closeModals()">Cancel</button>
+        <button class="btn-primary" onclick="window.KrishiFarmDiary.saveConfirmedEvent()">Save to Farm Diary</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Farm Diary Manual Entry -->
+  <div id="modal-diary-manual" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop diary-modal-backdrop" onclick="window.KrishiFarmDiary.closeModals()"></div>
+    <div class="modal-content card" style="max-width:500px; padding:24px; border-radius:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h3 style="margin:0; font-size:1.2rem; color:var(--text-primary);">➕ Add Farm Activity</h3>
+        <button class="btn-close-modal" onclick="window.KrishiFarmDiary.closeModals()">✕</button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:16px;">
+        <div>
+          <label style="font-size:0.85rem; font-weight:600;">Activity Type:</label>
+          <select id="manual-event-type" class="input-form-sm" style="width:100%;">
+            <option value="fertilizer">🧪 Fertilizer</option>
+            <option value="irrigation">💧 Irrigation</option>
+            <option value="pesticide">🛡️ Pesticide / Spray</option>
+            <option value="disease">🔬 Disease / Pest</option>
+            <option value="planting">🌱 Planting / Sowing</option>
+            <option value="harvest">🌾 Harvest</option>
+            <option value="expense">💰 Expense</option>
+            <option value="other">📝 Other</option>
+          </select>
+        </div>
+
+        <div style="display:flex; gap:10px;">
+          <div style="flex:1;">
+            <label style="font-size:0.85rem; font-weight:600;">Crop:</label>
+            <input type="text" id="manual-crop" class="input-form-sm" placeholder="e.g. Wheat" style="width:100%;">
+          </div>
+          <div style="flex:1;">
+            <label style="font-size:0.85rem; font-weight:600;">Date:</label>
+            <input type="date" id="manual-date" class="input-form-sm" style="width:100%;">
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size:0.85rem; font-weight:600;">Title:</label>
+          <input type="text" id="manual-title" class="input-form-sm" placeholder="e.g. Applied 40kg urea" style="width:100%;">
+        </div>
+
+        <div>
+          <label style="font-size:0.85rem; font-weight:600;">Description:</label>
+          <textarea id="manual-desc" class="input-form-sm" rows="2" placeholder="Details" style="width:100%;"></textarea>
+        </div>
+
+        <div style="display:flex; gap:10px;">
+          <div style="flex:1;">
+            <label style="font-size:0.85rem; font-weight:600;">Quantity:</label>
+            <input type="number" id="manual-quantity" class="input-form-sm" placeholder="Amount" style="width:100%;">
+          </div>
+          <div style="flex:1;">
+            <label style="font-size:0.85rem; font-weight:600;">Unit:</label>
+            <input type="text" id="manual-unit" class="input-form-sm" placeholder="kg / acre" style="width:100%;">
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:10px;">
+        <button class="btn-outline-primary" onclick="window.KrishiFarmDiary.closeModals()">Cancel</button>
+        <button class="btn-primary" onclick="window.KrishiFarmDiary.saveManualEvent()">Save Activity</button>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Audio elements for assistive sound feedback -->
   <audio id="snd-click" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav" preload="auto"></audio>
@@ -1112,6 +1290,7 @@
   <script src="weatherService.js"></script>
   <script src="weatherAIService.js"></script>
   <script src="script.js"></script>
+  <script src="js/farmDiary.js"></script>
   <script src="js/offline-knowledge-bundle.js"></script>
   <script src="js/offlineRAG.js"></script>
   <script src="js/gemmaChat.js"></script>

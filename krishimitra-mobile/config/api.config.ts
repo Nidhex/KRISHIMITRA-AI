@@ -33,4 +33,5 @@ export const Endpoints = {
   voiceTranscribe: '/api/voice/transcribe',
   voiceSynthesize: '/api/voice/synthesize',
   voiceCallTurn: '/api/voice/call-turn',
+  farmDiary: '/api/farm-diary',
 };
