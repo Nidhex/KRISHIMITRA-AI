@@ -51,7 +51,7 @@ async function runFarmDiaryTestSuite() {
   const emptyDecision = await farmDiaryService.generateNextBestAction(TEST_FARMER_ID);
   assert(emptyDecision.success === true, 'Test 1b: Empty decision call returns success');
   assert(
-    emptyDecision.recommendation.action.includes('Start recording your daily farm activities'),
+    emptyDecision.recommendation.action.includes('Not enough farm information to provide a personalized next action yet.'),
     'Test 1c: Empty diary returns truthful empty-state recommendation without fake events'
   );
 

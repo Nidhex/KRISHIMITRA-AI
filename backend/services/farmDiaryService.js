@@ -392,14 +392,15 @@ async function generateNextBestAction(farmerId = DEFAULT_FARMER_ID, cropFilter =
   const events = getEvents(farmerId, { limit: 20 });
   const fields = getFields(farmerId);
 
-  // ── EMPTY STATE HANDLER ───────────────────────────────────────────────────
+  // ── STEP 7: TEST A — EMPTY FARM HANDLER ────────────────────────────────────
   if (events.length === 0) {
+    logger.info(`[FarmDecision] farmerId: ${farmerId}, recentEvents: 0, decision: empty state`);
     return {
       success: true,
       recommendation: {
-        action: "Start recording your daily farm activities in your Farm Diary.",
+        action: "Not enough farm information to provide a personalized next action yet.",
         priority: "low",
-        reason: "Your Farm Memory is currently empty. Record your sowing, watering, fertilizer, pest control, or harvest activities so KrishiMitra AI can provide personalized Next Best Action recommendations tailored to your farm.",
+        reason: "Add a crop or farm activity to build your farm memory.",
         crop: cropFilter || "All Crops",
         basedOn: [
           { type: "system", summary: "Empty Farm Memory state — awaiting farmer activity logs" }
@@ -415,6 +416,138 @@ async function generateNextBestAction(farmerId = DEFAULT_FARMER_ID, cropFilter =
   const recentEvents = events.filter(e => !cropFilter || (e.crop || '').toLowerCase().includes(cropFilter.toLowerCase()));
   const newestEvent = recentEvents[0] || events[0];
 
+  // Build Structured Farm Memory Context
+  const farmContext = {
+    farmer: { id: farmerId, name: 'Ramesh Prasad', location: 'Kishanpur, UP' },
+    crop: targetCrop,
+    field: fields[0] || { fieldId: 'field_001', area: 2, areaUnit: 'acre' },
+    recentEvents: recentEvents.slice(0, 10).map(e => ({
+      id: e.id,
+      eventType: e.eventType,
+      crop: e.crop,
+      title: e.title,
+      description: e.description,
+      productName: e.productName,
+      quantity: e.quantity,
+      unit: e.unit,
+      area: e.area,
+      areaUnit: e.areaUnit,
+      date: e.date
+    })),
+    weather: {
+      location: "Kishanpur, UP",
+      forecast: "Clear field working conditions"
+    }
+  };
+
+  logger.info(`[FarmDecision] farmerId: ${farmerId}, recentEvents: ${farmContext.recentEvents.length}, crop: ${targetCrop}, geminiConfigured: ${!!process.env.GEMINI_API_KEY}`);
+
+  // ── Attempt Server-Side Gemini Reasoning Layer ──────────────────────────────
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (apiKey) {
+    try {
+      const prompt = `You are KrishiMitra AI's farm decision assistant.
+You must analyze the farmer's actual recorded farm events and available current agricultural context.
+Your task is to identify the most useful next farming action.
+
+Never invent a farm activity that is not present in the supplied memory.
+Never claim that the farmer performed an activity unless it appears in the supplied events.
+Do not recommend repeating a treatment merely because it is common.
+Consider the chronological order of recent activities.
+Consider crop and field information.
+Consider weather and forecast when available.
+
+Return ONLY a valid JSON object matching:
+{
+  "action": "...",
+  "timing": "...",
+  "reason": "...",
+  "basedOn": [
+    "...",
+    "..."
+  ],
+  "priority": "high | medium | low",
+  "confidence": 0.95
+}
+
+FARMER CONTEXT:
+${JSON.stringify(farmContext, null, 2)}`;
+
+      const https = require('https');
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+      const payloadStr = JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }]
+      });
+
+      const geminiResText = await new Promise((resolve) => {
+        const urlObj = new URL(geminiUrl);
+        const reqOpts = {
+          hostname: urlObj.hostname,
+          path: urlObj.pathname + urlObj.search,
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(payloadStr)
+          },
+          timeout: 10000
+        };
+
+        const req = https.request(reqOpts, (res) => {
+          let body = '';
+          res.on('data', chunk => { body += chunk; });
+          res.on('end', () => {
+            if (res.statusCode === 200) {
+              try {
+                const parsed = JSON.parse(body);
+                const text = parsed.candidates?.[0]?.content?.parts?.[0]?.text;
+                resolve(text || null);
+              } catch (_) {
+                resolve(null);
+              }
+            } else {
+              resolve(null);
+            }
+          });
+        });
+
+        req.on('error', () => resolve(null));
+        req.on('timeout', () => { req.destroy(); resolve(null); });
+        req.write(payloadStr);
+        req.end();
+      });
+
+      if (geminiResText) {
+        const jsonMatch = geminiResText.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          const gData = JSON.parse(jsonMatch[0]);
+          if (gData.action && gData.reason) {
+            logger.info(`[FarmDecision] Gemini decision generated successfully: "${gData.action.substring(0, 40)}..."`);
+            const basedOnFormatted = Array.isArray(gData.basedOn) 
+              ? gData.basedOn.map(b => (typeof b === 'string' ? { type: 'farm_diary', summary: b } : b))
+              : [{ type: 'farm_diary', summary: `Based on ${farmContext.recentEvents.length} recorded farm events` }];
+
+            return {
+              success: true,
+              recommendation: {
+                action: gData.action,
+                priority: gData.priority || 'medium',
+                reason: gData.reason,
+                crop: targetCrop,
+                basedOn: basedOnFormatted,
+                timing: gData.timing || 'Next 2–3 days',
+                confidence: typeof gData.confidence === 'number' ? gData.confidence : 0.95,
+                disclaimer: 'Generated by KrishiMitra Gemini AI reasoning over your actual Farm Memory.'
+              }
+            };
+          }
+        }
+      }
+    } catch (gErr) {
+      logger.warn(`[FarmDecision] Gemini API call error: ${gErr.message}`);
+    }
+  }
+
+  // ── Deterministic Rule-Engine Fallback (Context-Aware) ────────────────────────
   let action = '';
   let priority = 'medium';
   let reason = '';
@@ -427,14 +560,10 @@ async function generateNextBestAction(farmerId = DEFAULT_FARMER_ID, cropFilter =
     summary: `Latest recorded event: ${newestEvent.eventType.toUpperCase()} (${newestEvent.title}) on ${newestEvent.date}`
   });
 
-  // Check if a sequence of events exists (e.g. Fertilizer -> Irrigation -> Pesticide)
   const hasPesticide = recentEvents.some(e => e.eventType === 'pesticide');
   const hasIrrigation = recentEvents.some(e => e.eventType === 'irrigation');
   const hasFertilizer = recentEvents.some(e => e.eventType === 'fertilizer');
-  const hasDisease = recentEvents.some(e => e.eventType === 'disease');
-  const hasHarvest = recentEvents.some(e => e.eventType === 'harvest');
 
-  // Dynamic Decision Logic driven by recent event history & event type
   if (newestEvent.eventType === 'pesticide') {
     action = `Monitor the ${targetCrop} field for 2–3 days before applying any further sprays or treatments.`;
     priority = 'high';
