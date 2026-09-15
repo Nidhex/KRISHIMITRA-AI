@@ -24,27 +24,73 @@ const TTS_MODEL = process.env.SARVAM_TTS_MODEL || 'bulbul:v3';
 const LANGUAGE_CODE_MAP = {
   en: 'en-IN',
   hi: 'hi-IN',
-  gu: 'gu-IN',
-  mr: 'mr-IN',
   bn: 'bn-IN',
   ta: 'ta-IN',
   te: 'te-IN',
+  mr: 'mr-IN',
+  gu: 'gu-IN',
   kn: 'kn-IN',
   ml: 'ml-IN',
   pa: 'pa-IN',
   or: 'od-IN',
-  od: 'od-IN'
+  od: 'od-IN',
+  as: 'as-IN',
+  ur: 'ur-IN',
+  sa: 'sa-IN',
+  ne: 'ne-IN',
+  kok: 'kok-IN',
+  ks: 'ks-IN',
+  sd: 'sd-IN',
+  brx: 'brx-IN',
+  mai: 'mai-IN',
+  doi: 'doi-IN',
+  mni: 'mni-IN',
+  sat: 'sat-IN'
 };
+
+// Sarvam Bulbul:v3 officially supports TTS for 10 Indian Languages + English
+const SUPPORTED_TTS_LANGUAGES = new Set([
+  'en-IN',
+  'hi-IN',
+  'bn-IN',
+  'ta-IN',
+  'te-IN',
+  'gu-IN',
+  'kn-IN',
+  'ml-IN',
+  'mr-IN',
+  'pa-IN',
+  'od-IN'
+]);
 
 /**
  * Convert simple ISO lang code to BCP-47 code (e.g. 'gu' -> 'gu-IN').
+ * Returns empty string for 'auto' detection mode.
  * @param {string} lang
  * @returns {string}
  */
 function toBCP47(lang) {
-  if (!lang) return 'en-IN';
-  if (lang.includes('-')) return lang;
-  return LANGUAGE_CODE_MAP[lang.toLowerCase()] || 'en-IN';
+  if (!lang || lang === 'auto') return '';
+  const lower = lang.toLowerCase();
+  const mapped = LANGUAGE_CODE_MAP[lower];
+  if (mapped) return mapped;
+
+  if (lower.includes('-')) {
+    const parts = lower.split('-');
+    return `${parts[0]}-${parts[1].toUpperCase()}`;
+  }
+  return lower + '-IN';
+}
+
+/**
+ * Check whether Sarvam Bulbul TTS supports audio generation for the given language.
+ * @param {string} lang
+ * @returns {boolean}
+ */
+function isTTSSupported(lang) {
+  if (!lang || lang === 'auto') return true; // Default auto to TTS check after detection
+  const bcp = toBCP47(lang);
+  return SUPPORTED_TTS_LANGUAGES.has(bcp);
 }
 
 /**
@@ -228,10 +274,8 @@ async function synthesizeSpeech(text, languageCode = 'en-IN', speaker = 'shubh',
   cleanSpeechText = cleanSpeechText.substring(0, 2000); // 2000 chars safety cap
 
   const payloadData = JSON.stringify({
-    text: cleanSpeechText,
     inputs: [cleanSpeechText],
     target_language_code: bcp,
-    language_code: bcp,
     speaker: speaker || 'shubh',
     model: TTS_MODEL,
     pace: pace || 0.95
@@ -566,15 +610,20 @@ ${ragResult.context}`;
     speechText = textExtractor.getLocalizedFallbackApology(detectedLang);
   }
 
-  if (sarvam.isConfigured()) {
+  const ttsSupported = isTTSSupported(detectedLang);
+
+  if (ttsSupported && sarvam.isConfigured()) {
     try {
-      const ttsRes = await synthesizeSpeech(speechText, bcp, 'shubh', 0.95);
+      const ttsRes = await synthesizeSpeech(speechText, bcp || 'en-IN', 'shubh', 0.95);
       audioBase64 = ttsRes.audioBase64;
       timings.ttsMs = ttsRes.durationMs;
     } catch (ttsErr) {
-      logger.warn(`[VOICE] TTS synthesis fallback to browser Web Speech: ${ttsErr.message}`);
+      logger.warn(`[VOICE] TTS synthesis notice for ${detectedLang}: ${ttsErr.message}`);
     }
+  } else {
+    logger.info(`[VOICE] Language "${detectedLang}" (${bcp || 'N/A'}) does not support Bulbul TTS audio playback. Returning text response.`);
   }
+
   timings.ttsMs = timings.ttsMs || (Date.now() - tTtsStart);
   timings.totalMs = Date.now() - t0;
 
@@ -586,7 +635,8 @@ ${ragResult.context}`;
     source: chatSource,
     model: chatModel,
     language: detectedLang,
-    bcp47: bcp,
+    bcp47: bcp || 'en-IN',
+    ttsSupported,
     domains: ragResult.domains,
     docCount: ragResult.docCount,
     timings
@@ -598,6 +648,8 @@ module.exports = {
   synthesizeSpeech,
   handleCallTurn,
   toBCP47,
+  isTTSSupported,
+  SUPPORTED_TTS_LANGUAGES,
   STT_MODEL,
   TTS_MODEL
 };

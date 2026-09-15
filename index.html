@@ -1061,18 +1061,35 @@
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
-          <select id="call-lang-select" class="call-lang-select" aria-label="Call Language" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.4);border-radius:14px;padding:5px 10px;font-size:13px;outline:none;cursor:pointer;">
-            <option value="en-IN" style="color:#000;">English</option>
-            <option value="hi-IN" style="color:#000;">हिन्दी (Hindi)</option>
-            <option value="gu-IN" style="color:#000;">ગુજરાતી (Gujarati)</option>
-            <option value="mr-IN" style="color:#000;">मराठी (Marathi)</option>
-            <option value="bn-IN" style="color:#000;">বাংলা (Bengali)</option>
-            <option value="ta-IN" style="color:#000;">தமிழ் (Tamil)</option>
-            <option value="te-IN" style="color:#000;">తెలుగు (Telugu)</option>
-            <option value="kn-IN" style="color:#000;">ಕನ್ನಡ (Kannada)</option>
-            <option value="ml-IN" style="color:#000;">മലയാളം (Malayalam)</option>
-            <option value="pa-IN" style="color:#000;">ਪੰਜਾਬੀ (Punjabi)</option>
-            <option value="od-IN" style="color:#000;">ଓଡ଼ିଆ (Odia)</option>
+          <select id="call-lang-select" class="call-lang-select" aria-label="Call Language" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.4);border-radius:14px;padding:5px 10px;font-size:13px;outline:none;cursor:pointer;max-width:210px;">
+            <option value="auto" style="color:#000;">🌐 Auto Detect Language</option>
+            <optgroup label="🎙️ Voice + Text Supported" style="color:#2e7d32;">
+              <option value="hi-IN" style="color:#000;">हिन्दी (Hindi) 🎙️</option>
+              <option value="en-IN" style="color:#000;">English 🎙️</option>
+              <option value="bn-IN" style="color:#000;">বাংলা (Bengali) 🎙️</option>
+              <option value="ta-IN" style="color:#000;">தமிழ் (Tamil) 🎙️</option>
+              <option value="te-IN" style="color:#000;">తెలుగు (Telugu) 🎙️</option>
+              <option value="mr-IN" style="color:#000;">मराठी (Marathi) 🎙️</option>
+              <option value="gu-IN" style="color:#000;">ગુજરાતી (Gujarati) 🎙️</option>
+              <option value="kn-IN" style="color:#000;">ಕನ್ನಡ (Kannada) 🎙️</option>
+              <option value="ml-IN" style="color:#000;">മലയാളം (Malayalam) 🎙️</option>
+              <option value="pa-IN" style="color:#000;">ਪੰਜਾਬੀ (Punjabi) 🎙️</option>
+              <option value="od-IN" style="color:#000;">ଓଡ଼ିଆ (Odia) 🎙️</option>
+            </optgroup>
+            <optgroup label="📝 Speech Input + Text Response" style="color:#e65100;">
+              <option value="as-IN" style="color:#000;">অসমীয়া (Assamese) 📝</option>
+              <option value="ur-IN" style="color:#000;">اردو (Urdu) 📝</option>
+              <option value="sa-IN" style="color:#000;">संस्कृतम् (Sanskrit) 📝</option>
+              <option value="ne-IN" style="color:#000;">नेपाली (Nepali) 📝</option>
+              <option value="kok-IN" style="color:#000;">कोंकणी (Konkani) 📝</option>
+              <option value="ks-IN" style="color:#000;">کٲشُر (Kashmiri) 📝</option>
+              <option value="sd-IN" style="color:#000;">سنڌي (Sindhi) 📝</option>
+              <option value="brx-IN" style="color:#000;">बड़ो (Bodo) 📝</option>
+              <option value="mai-IN" style="color:#000;">मैथिली (Maithili) 📝</option>
+              <option value="doi-IN" style="color:#000;">डोगरी (Dogri) 📝</option>
+              <option value="mni-IN" style="color:#000;">মৈতৈলোন্ (Manipuri) 📝</option>
+              <option value="sat-IN" style="color:#000;">সংথালী (Santali) 📝</option>
+            </optgroup>
           </select>
           <button class="btn-close-modal" onclick="window.SarvamCall && window.SarvamCall.endCall()" aria-label="End and close" style="color:#fff;background:rgba(0,0,0,0.25);border-radius:50%;width:32px;height:32px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;">✕</button>
         </div>

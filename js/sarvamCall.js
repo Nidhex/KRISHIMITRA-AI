@@ -16,6 +16,7 @@
     IDLE: 'IDLE',
     CONNECTING: 'CONNECTING',
     LISTENING: 'LISTENING',
+    TRANSCRIBING: 'TRANSCRIBING',
     PROCESSING: 'PROCESSING',
     AI_SPEAKING: 'AI_SPEAKING',
     CALL_ENDED: 'CALL_ENDED',
@@ -38,11 +39,9 @@
   function getApiBaseUrl() {
     if (typeof window !== 'undefined' && window.location) {
       const port = window.location.port;
-      // If served from backend server port 5001 or 5000
       if (port === '5001' || port === '5000') {
         return window.location.origin + '/api/voice';
       }
-      // If served from Live Server (5500) or other static dev server, target backend port 5001
       if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         return 'http://localhost:5001/api/voice';
       }
@@ -81,6 +80,7 @@
     if (els.speakerWave) els.speakerWave.classList.add('hidden');
     if (els.avatar) els.avatar.className = 'call-avatar-container';
     if (els.btnPushSpeak) els.btnPushSpeak.disabled = false;
+    if (els.callErrorBox && state !== CallState.ERROR) els.callErrorBox.classList.add('hidden');
 
     switch (state) {
       case CallState.IDLE:
@@ -109,13 +109,25 @@
         }
         break;
 
+      case CallState.TRANSCRIBING:
+        els.modal.classList.remove('hidden');
+        els.statusText.innerText = message || '⏳ Transcribing speech...';
+        els.subStatusText.innerText = submessage || 'Converting voice to text via Sarvam Saaras';
+        els.avatar.classList.add('pulse-processing');
+        if (els.btnPushSpeak) {
+          els.btnPushSpeak.innerHTML = '<span>⏳</span> <span>Transcribing...</span>';
+          els.btnPushSpeak.disabled = true;
+          els.btnPushSpeak.classList.remove('recording');
+        }
+        break;
+
       case CallState.PROCESSING:
         els.modal.classList.remove('hidden');
-        els.statusText.innerText = message || '🧠 Thinking & Analyzing...';
+        els.statusText.innerText = message || '🤖 KrishiMitra is thinking...';
         els.subStatusText.innerText = submessage || 'Checking agricultural knowledge base';
         els.avatar.classList.add('pulse-processing');
         if (els.btnPushSpeak) {
-          els.btnPushSpeak.innerHTML = '<span>⏳</span> <span>Processing...</span>';
+          els.btnPushSpeak.innerHTML = '<span>⏳</span> <span>Thinking...</span>';
           els.btnPushSpeak.disabled = true;
           els.btnPushSpeak.classList.remove('recording');
         }
@@ -128,8 +140,8 @@
         if (els.speakerWave) els.speakerWave.classList.remove('hidden');
         els.avatar.classList.add('pulse-speaking');
         if (els.btnPushSpeak) {
-          els.btnPushSpeak.innerHTML = '<span>🔊</span> <span>AI Speaking...</span>';
-          els.btnPushSpeak.disabled = false; // Allow tapping to interrupt and speak
+          els.btnPushSpeak.innerHTML = '<span>🔇</span> <span>Stop / Speak</span>';
+          els.btnPushSpeak.disabled = false;
           els.btnPushSpeak.classList.remove('recording');
         }
         break;
@@ -149,7 +161,7 @@
         els.statusText.innerText = '⚠️ Voice Call Alert';
         els.subStatusText.innerText = message || 'An issue occurred during voice processing.';
         if (els.callErrorBox) {
-          els.callErrorBox.innerText = message;
+          els.callErrorBox.innerHTML = `<div>${message}</div>`;
           els.callErrorBox.classList.remove('hidden');
         }
         if (els.btnPushSpeak) {
@@ -366,12 +378,17 @@
   async function processAudioTurn(audioBlob, mimeType, fallbackTranscript = '') {
     if (currentState === CallState.CALL_ENDED || currentState === CallState.IDLE) return;
 
-    setState(CallState.PROCESSING);
+    if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+      setState(CallState.ERROR, 'Voice AI requires an internet connection. You can use Offline AI text chat.');
+      return;
+    }
+
+    setState(CallState.TRANSCRIBING);
 
     const els = getElements();
-    const selectedLang = els.langSelect ? els.langSelect.value.split('-')[0] : 'en';
+    const selectedLang = els.langSelect ? els.langSelect.value : 'auto';
 
-    console.log('[VOICE] Sending audio to backend');
+    console.log('[VOICE] Sending audio to backend for processing (lang:', selectedLang, ')');
 
     const formData = new FormData();
     if (audioBlob && audioBlob.size > 0) {
@@ -386,6 +403,8 @@
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 40000);
+
+      setState(CallState.PROCESSING, '🤖 KrishiMitra is thinking...', 'Checking agricultural knowledge base');
 
       const apiUrl = `${getApiBaseUrl()}/call-turn`;
       const res = await fetch(apiUrl, {
@@ -408,13 +427,30 @@
       }
 
       console.log(`[VOICE] Transcript received: "${data.transcript}"`);
-      console.log('[VOICE] Sending transcript to AI');
-      console.log(`[VOICE] AI response received (${(data.reply || '').length} chars)`);
-      console.log('[VOICE] Requesting TTS');
+      console.log(`[VOICE] AI response received (${(data.reply || '').length} chars, lang: ${data.language})`);
 
-      if (data.audioBase64) {
-        console.log('[VOICE] Audio received');
+      const cleanReply = cleanAssistantText(data.reply, data.bcp47 || data.language);
+
+      // 1. Append user transcript to feed
+      appendCallTranscript('farmer', data.transcript);
+
+      // 2. Append AI response to feed
+      appendCallTranscript('ai', cleanReply);
+
+      // 3. Update conversation memory
+      callHistory.push({ role: 'user', content: data.transcript });
+      callHistory.push({ role: 'assistant', content: cleanReply });
+
+      // 4. Play spoken audio or present text response
+      playAIResponse(cleanReply, data.audioBase64, data.bcp47 || data.language, data.ttsSupported);
+
+    } catch (err) {
+      console.error('[VOICE] Error processing turn:', err);
+      if (currentState !== CallState.CALL_ENDED) {
+        setState(CallState.ERROR, err.message || 'Network issue during voice call. Tap to try again.');
       }
+    }
+  }
 
   // ── Helper: Extract & Sanitize Assistant Text (Browser Safety Layer) ─────────
   function cleanAssistantText(raw, languageCode = 'en') {
@@ -449,38 +485,14 @@
     return str;
   }
 
-      const cleanReply = cleanAssistantText(data.reply, data.bcp47 || data.language);
-
-      // 1. Append user transcript to feed
-      appendCallTranscript('farmer', data.transcript);
-
-      // 2. Append AI response to feed
-      appendCallTranscript('ai', cleanReply);
-
-      // 3. Update conversation memory
-      callHistory.push({ role: 'user', content: data.transcript });
-      callHistory.push({ role: 'assistant', content: cleanReply });
-
-      // 4. Play spoken audio
-      playAIResponse(cleanReply, data.audioBase64, data.bcp47 || data.language);
-
-    } catch (err) {
-      console.error('[VOICE] Error processing turn:', err);
-      if (currentState !== CallState.CALL_ENDED) {
-        setState(CallState.ERROR, err.message || 'Network issue during voice call. Tap to try again.');
-      }
-    }
-  }
-
   // ── Play AI Response Audio ─────────────────────────────────────────────────
-  function playAIResponse(replyText, audioBase64, languageCode) {
+  function playAIResponse(replyText, audioBase64, languageCode, ttsSupported = true) {
     if (currentState === CallState.CALL_ENDED || currentState === CallState.IDLE) return;
 
-    setState(CallState.AI_SPEAKING);
-    console.log('[VOICE] Playing response');
-
-    // 1. If Sarvam TTS returned audioBase64, play directly via HTML5 Audio
+    // If audio is available from Sarvam Bulbul TTS
     if (audioBase64) {
+      setState(CallState.AI_SPEAKING);
+      console.log('[VOICE] Playing audio response via Sarvam Bulbul TTS');
       try {
         const audioSrc = `data:audio/wav;base64,${audioBase64}`;
         if (currentAudioPlayer) {
@@ -499,7 +511,7 @@
         };
 
         currentAudioPlayer.onerror = (e) => {
-          console.warn('[VOICE] Audio playback failed, using Web Speech synthesis:', e);
+          console.warn('[VOICE] Audio playback error, using Web Speech synthesis:', e);
           fallbackWebSpeech(replyText, languageCode);
         };
 
@@ -516,8 +528,25 @@
       }
     }
 
-    // 2. Fallback: Browser Web Speech API (speechSynthesis)
+    // If language is not supported by Bulbul TTS (e.g. Assamese, Urdu, Sanskrit, etc.)
+    if (ttsSupported === false) {
+      console.log(`[VOICE] Voice playback unavailable for ${languageCode}. Displaying text answer.`);
+      const els = getElements();
+      if (els.statusText) els.statusText.innerText = '📝 Text Response Generated';
+      if (els.subStatusText) els.subStatusText.innerText = 'Voice playback is unavailable for this language. Text response updated.';
+
+      // Allow 4 seconds for user to read text before resuming listening
+      speechTimeout = setTimeout(() => {
+        if (currentState !== CallState.CALL_ENDED) {
+          startRecordingTurn();
+        }
+      }, 4000);
+      return;
+    }
+
+    // Fallback: Browser Web Speech API
     fallbackWebSpeech(replyText, languageCode);
+  }
   }
 
   // ── Fallback Browser Speech Synthesis ──────────────────────────────────────
@@ -575,6 +604,11 @@
 
     if (els.transcriptFeed) els.transcriptFeed.innerHTML = '';
     if (els.callErrorBox) els.callErrorBox.classList.add('hidden');
+
+    if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+      setState(CallState.ERROR, 'Voice AI requires an internet connection. You can use Offline AI text chat.');
+      return;
+    }
 
     setState(CallState.CONNECTING);
     startCallTimer();
