@@ -453,12 +453,56 @@ async function handleCallTurn(params = {}) {
   const detectedLang = ragResult.detectedLanguage || language || 'en';
 
   // ── Step 3: Conversational Sarvam Chat Completion (sarvam-105b) ───────────
-  logger.info(`[VOICE] Calling KrishiMitra/Sarvam chat (detectedLang: ${detectedLang})`);
+  const LANGUAGE_NAMES = {
+    en: 'English',
+    hi: 'Hindi',
+    bn: 'Bengali',
+    ta: 'Tamil',
+    te: 'Telugu',
+    mr: 'Marathi',
+    gu: 'Gujarati',
+    kn: 'Kannada',
+    ml: 'Malayalam',
+    pa: 'Punjabi',
+    or: 'Odia',
+    od: 'Odia',
+    as: 'Assamese',
+    ur: 'Urdu',
+    sa: 'Sanskrit',
+    ne: 'Nepali',
+    kok: 'Konkani',
+    ks: 'Kashmiri',
+    sd: 'Sindhi',
+    brx: 'Bodo',
+    mai: 'Maithili',
+    doi: 'Dogri',
+    mni: 'Manipuri',
+    sat: 'Santali'
+  };
+
+  const reqLangClean = (language || '').trim().toLowerCase();
+  const isAutoMode = !reqLangClean || reqLangClean === 'auto';
+
+  let targetLangCode = 'en';
+  if (!isAutoMode) {
+    targetLangCode = reqLangClean.split('-')[0];
+  } else {
+    targetLangCode = (ragResult.detectedLanguage || 'en').toLowerCase().split('-')[0];
+  }
+
+  const targetLangName = LANGUAGE_NAMES[targetLangCode] || 'English';
+
+  logger.info(`[VOICE] Calling KrishiMitra/Sarvam chat (targetLang: ${targetLangName} [${targetLangCode}], isAuto: ${isAutoMode})`);
   const tChatStart = Date.now();
+
   const systemPrompt = `You are KrishiMitra AI (कृषि मित्र) on a LIVE VOICE CALL with an Indian farmer.
-Speak naturally, kindly, and clearly in ${detectedLang.toUpperCase()}.
-Keep your answer conversational, direct, and concise (under 70-90 words so it is easy to listen to).
-Distinguish between Organic and Chemical remedies if discussing diseases.
+${!isAutoMode 
+  ? `CRITICAL MANDATE: The user explicitly selected ${targetLangName.toUpperCase()} for this voice session.
+Your entire response MUST BE WRITTEN 100% STRICTLY ONLY IN ${targetLangName.toUpperCase()} script/text.
+DO NOT output English or any other language. EVEN IF THE USER SPEAKS OR TRANSCRIPT IS IN ENGLISH OR ANOTHER DIALECT, YOUR RESPONSE MUST STRICTLY BE IN ${targetLangName.toUpperCase()}.`
+  : `Speak naturally, kindly, and clearly in ${targetLangName.toUpperCase()}.`}
+Keep your answer conversational, direct, and concise (under 60-80 words so it is easy to listen to on a voice call).
+Distinguish between Organic and Chemical remedies if discussing diseases or pests.
 Use the verified KrishiMitra data below as your ground truth:
 
 ${ragResult.context}`;
@@ -498,7 +542,7 @@ ${ragResult.context}`;
   // 3b. Fallback to Gemini if Sarvam unavailable
   if (!replyText && process.env.GEMINI_API_KEY) {
     try {
-      const geminiPrompt = `${systemPrompt}\n\nFarmer Question:\n${transcript}\n\nProvide a concise, direct voice response in ${detectedLang.toUpperCase()}:`;
+      const geminiPrompt = `${systemPrompt}\n\nFarmer Question:\n${transcript}\n\nCRITICAL: Provide a concise, direct voice response ONLY in ${targetLangName.toUpperCase()}:`;
       const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
       const geminiPayload = JSON.stringify({
         contents: [{ parts: [{ text: geminiPrompt }] }]

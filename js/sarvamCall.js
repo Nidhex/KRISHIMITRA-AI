@@ -597,6 +597,107 @@
   }
 
   // ── Start / End Call Handlers ──────────────────────────────────────────────
+  // ── Language Metadata & Localized Greetings ─────────────────────────────────
+  const VOICE_LANG_META = {
+    'auto': {
+      greeting: 'Namaste! I am KrishiMitra AI. Please tell me your farming question.',
+      substatus: 'Say your question in your native language'
+    },
+    'en-IN': {
+      greeting: 'Namaste! I am KrishiMitra AI. Please tell me your farming question.',
+      substatus: 'Say your question in English'
+    },
+    'hi-IN': {
+      greeting: 'नमस्ते! मैं कृषि मित्र AI हूँ। कृपया अपनी फसल या मौसम का प्रश्न पूछें।',
+      substatus: 'अपनी भाषा में अपना सवाल कहें'
+    },
+    'gu-IN': {
+      greeting: 'નમસ્તે! હું કૃષિમિત્ર AI છું. તમારી ખેતીનો પ્રશ્ન પૂછો.',
+      substatus: 'તમારી ભાષામાં તમારો પ્રશ્ન કહો'
+    },
+    'mr-IN': {
+      greeting: 'नमस्कार! मी कृषि मित्र AI आहे. आपला शेतीविषयक प्रश्न विचारा.',
+      substatus: 'तुमच्या भाषेत तुमचा प्रश्न सांगा'
+    },
+    'bn-IN': {
+      greeting: 'নমস্কার! আমি কৃষিমিত্র AI। আপনার প্রশ্ন বলুন।',
+      substatus: 'আপনার ভাষায় আপনার প্রশ্ন বলুন'
+    },
+    'ta-IN': {
+      greeting: 'வணக்கம்! நான் கிருஷிமித்ரா AI. உங்கள் விவசாயக் கேள்வியைக் கேளுங்கள்.',
+      substatus: 'உங்கள் மொழியில் கேள்வியைக் கூறுங்கள்'
+    },
+    'te-IN': {
+      greeting: 'నమస్కారం! నేను కృషిమిత్ర AI. మీ వ్యవసాయ ప్రశ్నను అడగండి.',
+      substatus: 'మీ భాషలో మీ ప్రశ్నను చెప్పండి'
+    },
+    'kn-IN': {
+      greeting: 'ನಮಸ್ಕಾರ! ನಾನು ಕೃಷಿಮಿತ್ರ AI. ನಿಮ್ಮ ಕೃಷಿ ಪ್ರಶ್ನೆಯನ್ನು ಕೇಳಿ.',
+      substatus: 'ನಿಮ್ಮ ಭಾಷೆಯಲ್ಲಿ ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಹೇಳಿ'
+    },
+    'ml-IN': {
+      greeting: 'നമസ്കാരം! ഞാൻ കൃഷിമിത്ര AI ആണ്. നിങ്ങളുടെ ചോദ്യം ചോദിക്കൂ.',
+      substatus: 'നിങ്ങളുടെ ഭാഷയിൽ ചോദ്യം പറയൂ'
+    },
+    'pa-IN': {
+      greeting: 'ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ ਕ੍ਰਿਸ਼ੀਮਿੱਤਰ AI ਹਾਂ। ਆਪਣਾ ਸਵਾਲ ਪੁੱਛੋ।',
+      substatus: 'ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ ਆਪਣਾ ਸਵਾਲ ਦੱਸੋ'
+    },
+    'od-IN': {
+      greeting: 'ନମସ୍କାର! ମୁଁ କୃଷିମିତ୍ର AI। ଆପଣଙ୍କ ପ୍ରଶ୍ନ ପଚାରନ୍ତୁ।',
+      substatus: 'ଆପଣଙ୍କ ଭାଷାରେ ପ୍ରଶ୍ନ କୁହନ୍ତୁ'
+    },
+    'as-IN': {
+      greeting: 'নমস্কাৰ! মই কৃষিমিত্ৰ AI। আপোনাৰ কৃষি সম্পৰ্কীয় প্ৰশ্নটো কওক।',
+      substatus: 'আপোনাৰ নিজৰ ভাষাত প্ৰশ্ন কওক'
+    },
+    'ur-IN': {
+      greeting: 'سلام! میں کرشی متر AI ہوں۔ براہ کرم اپنا زرعی سوال پوچھیں۔',
+      substatus: 'اپنی زبان میں اپنا سوال بتائیں'
+    },
+    'sa-IN': {
+      greeting: 'नमो नमः! अहं कृषि मित्र AI अस्मि। कृपया स्वकृषिविषयकं प्रश्नं पृच्छतु।',
+      substatus: 'स्वभाषया प्रश्नं वदतु'
+    },
+    'ne-IN': {
+      greeting: 'नमस्ते! म कृषि मित्र AI हुँ। कृपया आफ्नो कृषि सम्बन्धी प्रश्न सोध्नुहोस्।',
+      substatus: 'आफ्नो भाषामा प्रश्न भन्नुहोस्'
+    },
+    'kok-IN': {
+      greeting: 'नमस्कार! हांव कृषि मित्र AI. तुमचो शेताविशीं चलोवपी प्रश्न विचारात.',
+      substatus: 'तुमचे भाशेंत तुमचो प्रश्न सांगात'
+    },
+    'ks-IN': {
+      greeting: 'اسلام علیکم! بہٕ چھُس کٔرشی مِتر AI। مِہربٲنی کٔرِتھ تِہُند زٔری سَوال وُنِو।',
+      substatus: 'پَننہِ زَبانہِ مَنٛز سَوال وُنِو'
+    },
+    'sd-IN': {
+      greeting: 'اسلام عليڪم! مان ڪڙمي मित्र AI آهيان. مهرباني ڪري پنهنجو زرعي سوال پڇو.',
+      substatus: 'پنهنجي ٻوليءَ ۾ سوال ٻڌايو'
+    },
+    'brx-IN': {
+      greeting: 'खुलुमबाय! आं कृषि मित्र AI. अननानै नोंथांनि आबादनि सोंथि सों।',
+      substatus: 'गावनि रावजों सोंथि बुं'
+    },
+    'mai-IN': {
+      greeting: 'प्रणाम! हम कृषि मित्र AI छी। कृपया अपन खेतीबाड़ी सं जड़ल सवाल पूछू।',
+      substatus: 'अपन भाषा मे सवाल कहू'
+    },
+    'doi-IN': {
+      greeting: 'नमस्ते! मैं कृषि मित्र AI एं। कृपया अपना खेतीबाड़ी दा सवाल पुच्छो।',
+      substatus: 'अपनी बोली च सवाल दस्सो'
+    },
+    'mni-IN': {
+      greeting: 'খুরুমরজরী! ঐহাক কৃষ্ণিমিত্র AI নি। অদোমগী লৌউ-শিংউগী ৱাহং হংবীয়ু।',
+      substatus: 'অদোমগী লোন্ অমদগী ৱাহং হায়বীয়ু'
+    },
+    'sat-IN': {
+      greeting: 'ᱡᱚᱦᱟᱨ! ᱤᱧ ᱫᱚ ᱠᱨᱤᱥᱤᱢᱤᱛᱨᱚ AI ᱠᱟᱱᱟᱧ। ᱟᱯᱱᱟᱨᱟᱜ ᱪᱟᱥ ᱠᱩᱠᱞᱤ ᱞᱟᱹᱭ ᱵᱤᱱ।',
+      substatus: 'ᱟᱯᱱᱟᱨᱟᱜ ᱯᱟᱹᱨᱥᱤ ᱛᱮ ᱠᱩᱠᱞᱤ ᱞᱟᱹᱭ ᱵᱤᱱ'
+    }
+  };
+
+  // ── Start / End Call Handlers ──────────────────────────────────────────────
   async function startCall() {
     console.log('[VOICE] Call started');
     callHistory = [];
@@ -610,26 +711,27 @@
       return;
     }
 
-    setState(CallState.CONNECTING);
+    // Auto-select preferred language from localStorage or global app state if available
+    if (els.langSelect) {
+      const savedLang = localStorage.getItem('km_voice_lang');
+      if (savedLang) {
+        els.langSelect.value = savedLang;
+      } else if (window.appState && window.appState.currentLanguage) {
+        const globalCode = window.appState.currentLanguage;
+        const matched = Array.from(els.langSelect.options).find(opt => opt.value.startsWith(globalCode));
+        if (matched) {
+          els.langSelect.value = matched.value;
+        }
+      }
+    }
+
+    const selectedLang = els.langSelect ? els.langSelect.value : 'en-IN';
+    const langMeta = VOICE_LANG_META[selectedLang] || VOICE_LANG_META['en-IN'];
+
+    setState(CallState.CONNECTING, 'Connecting to KrishiMitra AI...', langMeta.substatus);
     startCallTimer();
 
-    // Initial greeting
-    const selectedLang = els.langSelect ? els.langSelect.value : 'en-IN';
-    const greetings = {
-      'en-IN': 'Namaste! I am KrishiMitra AI. Please tell me your farming question.',
-      'hi-IN': 'नमस्ते! मैं कृषि मित्र AI हूँ। कृपया अपनी फसल या मौसम का प्रश्न पूछें।',
-      'gu-IN': 'નમસ્તે! હું કૃષિમિત્ર AI છું. તમારી ખેતીનો પ્રશ્ન પૂછો.',
-      'mr-IN': 'नमस्कार! मी कृषि मित्र AI आहे. आपला प्रश्न विचारा.',
-      'bn-IN': 'নমস্কার! আমি কৃষিমিত্র AI। আপনার প্রশ্ন বলুন।',
-      'ta-IN': 'வணக்கம்! நான் கிருஷிமித்ரா AI. உங்கள் கேள்வியைக் கேளுங்கள்.',
-      'te-IN': 'నమస్కారం! నేను కృషిమిత్ర AI. మీ ప్రశ్న అడగండి.',
-      'kn-IN': 'ನಮಸ್ಕಾರ! ನಾನು ಕೃಷಿಮಿತ್ರ AI. ನಿಮ್ಮ ಪ್ರಶ್ನೆ ಕೇಳಿ.',
-      'ml-IN': 'നമസ്കാരം! ഞാൻ കൃഷിമിത്ര AI ആണ്. ചോദ്യം ചോദിക്കൂ.',
-      'pa-IN': 'ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ ਕ੍ਰਿਸ਼ੀਮਿੱਤਰ AI ਹਾਂ। ਆਪਣਾ ਸਵਾਲ ਪੁੱਛੋ।',
-      'od-IN': 'ନମସ୍କାର! ମୁଁ କୃଷିମିତ୍ର AI। ଆପଣଙ୍କ ପ୍ରଶ୍ନ ପଚାରନ୍ତୁ।'
-    };
-
-    const initialGreeting = greetings[selectedLang] || greetings['en-IN'];
+    const initialGreeting = langMeta.greeting;
     appendCallTranscript('ai', initialGreeting);
 
     try {
@@ -641,7 +743,7 @@
         console.log('[VOICE] Microphone permission granted');
       }
 
-      // Speak greeting, then start recording
+      // Speak greeting in selected language, then start recording
       playAIResponse(initialGreeting, null, selectedLang);
     } catch (e) {
       console.warn('[VOICE] Pre-call mic or greeting exception:', e);
@@ -724,12 +826,28 @@
       els.btnPushSpeak.onclick = togglePushToSpeak;
     }
 
-    // Sync call language selector with global language
+    // Dynamic Call Language Selector Listener
     if (els.langSelect) {
       els.langSelect.onchange = (e) => {
         const langCode = e.target.value;
+        localStorage.setItem('km_voice_lang', langCode);
+
         if (window.appState) {
           window.appState.currentLanguage = langCode.split('-')[0];
+        }
+
+        const langMeta = VOICE_LANG_META[langCode] || VOICE_LANG_META['en-IN'];
+        if (els.subStatusText) {
+          els.subStatusText.innerText = langMeta.substatus;
+        }
+
+        // If in an active call and in AI_SPEAKING or LISTENING state, update greeting & speak in selected language
+        if (currentState === CallState.LISTENING || currentState === CallState.AI_SPEAKING) {
+          if (currentAudioPlayer) currentAudioPlayer.pause();
+          if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+
+          appendCallTranscript('ai', langMeta.greeting);
+          playAIResponse(langMeta.greeting, null, langCode);
         }
       };
     }
