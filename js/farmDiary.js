@@ -55,12 +55,16 @@
 
     if (!events || events.length === 0) {
       timelineContainer.innerHTML = `
-        <div class="diary-empty-card card">
-          <span style="font-size:2.5rem;">📖</span>
-          <h3 style="margin:8px 0 4px; color:var(--text-primary);">No Farm Diary Activities Yet</h3>
-          <p style="margin:0; color:var(--text-secondary); font-size:0.9rem;">
-            Record your daily farm activities using voice or text to build your AI Farm Memory.
+        <div class="diary-empty-card card" style="text-align:center; padding:32px 16px;">
+          <span style="font-size:2.8rem; display:block; margin-bottom:8px;">🌱</span>
+          <h3 style="margin:0 0 6px; color:var(--text-primary); font-size:1.1rem; font-weight:700;">No farm activities recorded yet.</h3>
+          <p style="margin:0 0 16px; color:var(--text-secondary); font-size:0.9rem;">
+            Start building your Farm Memory.
           </p>
+          <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
+            <button class="btn-primary" onclick="document.getElementById('btn-manual-diary').click()">➕ Add Activity</button>
+            <button class="btn-outline-primary" onclick="document.getElementById('btn-voice-diary').click()">🎤 Add with Voice</button>
+          </div>
         </div>
       `;
       return;
@@ -86,7 +90,7 @@
       const dateFormatted = e.date ? new Date(e.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Today';
       const quantityBadge = e.quantity ? `<span class="diary-qty-tag">${e.quantity} ${e.unit || ''}</span>` : '';
       const areaBadge = e.area ? `<span class="diary-area-tag" style="background:#FEF3C7; color:#92400E; font-weight:700; font-size:0.75rem; padding:2px 6px; border-radius:4px;">${e.area} ${e.areaUnit || 'acre'}</span>` : '';
-      const sourceBadge = `<span class="diary-source-tag">${e.source || 'farmer'}</span>`;
+      const sourceBadge = `<span class="diary-source-tag">${(e.source || 'manual').toUpperCase()}</span>`;
 
       return `
         <div class="diary-event-card card" id="event-${e.id}">
@@ -105,7 +109,7 @@
           <h4 class="diary-event-title">${e.title || 'Farm Activity'}</h4>
           ${e.description ? `<p class="diary-event-desc">${e.description}</p>` : ''}
 
-          <div class="diary-event-footer" style="display:flex; gap:6px; align-items:center;">
+          <div class="diary-event-footer" style="display:flex; gap:6px; align-items:center; margin-top:8px;">
             ${quantityBadge}
             ${areaBadge}
             ${sourceBadge}
@@ -131,19 +135,19 @@
           const basedOnList = (r.basedOn || []).map(b => `<li>✓ ${b.summary}</li>`).join('');
 
           decisionContainer.innerHTML = `
-            <div class="decision-card card">
-              <div class="decision-card-header">
-                <span class="decision-badge priority-${r.priority || 'medium'}">⚡ NEXT BEST ACTION</span>
-                <span class="decision-crop">${r.crop || 'Crop Advisory'}</span>
+            <div class="decision-card card" style="background:#1E293B; color:#F8FAFC; border:1px solid #3B82F6; border-radius:12px; padding:18px; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,0,0,0.15);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="background:#2563EB; color:#FFF; font-size:0.75rem; font-weight:700; padding:4px 8px; border-radius:4px; letter-spacing:0.5px;">🌾 WHAT SHOULD I DO NEXT?</span>
+                <span style="font-size:0.8rem; color:#93C5FD; font-weight:600;">${r.crop || 'Crop Advisory'}</span>
               </div>
-              <h3 class="decision-action-title">🌾 ${r.action}</h3>
-              <div class="decision-why-section">
-                <strong>Why?</strong>
-                <p>${r.reason}</p>
-                ${basedOnList ? `<ul class="decision-based-list">${basedOnList}</ul>` : ''}
+              <h3 style="margin:8px 0; color:#FFFFFF; font-size:1.1rem; font-weight:700; line-height:1.4;">${r.action}</h3>
+              <div style="background:rgba(255,255,255,0.07); padding:12px; border-radius:8px; margin-top:10px;">
+                <strong style="color:#93C5FD; font-size:0.85rem; display:block; margin-bottom:4px;">WHY?</strong>
+                <p style="margin:0 0 6px; font-size:0.85rem; color:#E2E8F0; line-height:1.4;">${r.reason}</p>
+                ${basedOnList ? `<div style="margin-top:6px; font-size:0.8rem; color:#CBD5E1;"><strong style="color:#93C5FD;">Based on:</strong><ul style="margin:4px 0 0; padding-left:18px;">${basedOnList}</ul></div>` : ''}
               </div>
-              <div class="decision-footer">
-                <small>${r.disclaimer || 'Based on Farm Memory & Agricultural RAG'}</small>
+              <div style="margin-top:10px; font-size:0.75rem; color:#94A3B8; text-align:right;">
+                ${r.disclaimer || 'Based on Farm Memory & Agricultural RAG'}
               </div>
             </div>
           `;

@@ -44,9 +44,14 @@ const VALID_EVENT_TYPES = [
 
 // ── Deterministic Event Type Normalizer ─────────────────────────────────────────
 function normalizeEventType(rawType, title = '', description = '') {
+  // 1. Explicit user selection for financial & observational categories MUST be preserved
+  if (['expense', 'income', 'soil_test', 'disease', 'pest', 'labor', 'sale'].includes(rawType)) {
+    return rawType;
+  }
+
   const combined = `${rawType || ''} ${title || ''} ${description || ''}`.toLowerCase();
 
-  // Strong keyword overrides (handling both English and Devanagari Hindi)
+  // 2. Strong keyword overrides for specific materials & operations
   if (/(urea|dap|npk|nitrogen|potash|phosphate|fertilizer|khad|यूरिया|खाद|डीएपी)/i.test(combined)) {
     return 'fertilizer';
   }
@@ -59,14 +64,13 @@ function normalizeEventType(rawType, title = '', description = '') {
   if (/(harvest|harvesting|reap|cut|cutting|कटाई|पैदावार)/i.test(combined)) {
     return 'harvest';
   }
-
-  // Preserve explicit event types (e.g. expense, income, planting, soil_test) if valid
-  if (VALID_EVENT_TYPES.includes(rawType) && rawType !== 'other') {
-    return rawType;
+  if (/(sow|sowing|plant|planting|seeding|बुवाई|रोपाई)/i.test(combined)) {
+    return 'planting';
   }
 
-  if (/(sow|sowing|plant|planting|seed|seeds|seeding|बीज|बुवाई|रोपाई)/i.test(combined)) {
-    return 'planting';
+  // 3. Fallback to valid rawType if provided
+  if (VALID_EVENT_TYPES.includes(rawType) && rawType !== 'other') {
+    return rawType;
   }
 
   return 'other';
@@ -98,15 +102,15 @@ function writeJson(filePath, data) {
 // ── Fields API ────────────────────────────────────────────────────────────────
 function getFields(farmerId = DEFAULT_FARMER_ID) {
   const fields = readJson(FIELDS_FILE, []);
-  return fields.filter(f => f.farmerId === farmerId || farmerId === DEFAULT_FARMER_ID);
+  return fields.filter(f => f.farmerId === farmerId);
 }
 
 // ── Events CRUD API ───────────────────────────────────────────────────────────
 function getEvents(farmerId = DEFAULT_FARMER_ID, filters = {}) {
   let events = readJson(EVENTS_FILE, []);
 
-  // Filter by farmer ID
-  events = events.filter(e => e.farmerId === farmerId || farmerId === DEFAULT_FARMER_ID);
+  // Filter strictly by farmer ID
+  events = events.filter(e => e.farmerId === farmerId);
 
   if (filters.crop) {
     const cropLower = filters.crop.toLowerCase();
@@ -169,7 +173,7 @@ function createEvent(eventData = {}) {
 function deleteEvent(farmerId, eventId) {
   let events = readJson(EVENTS_FILE, []);
   const initialLength = events.length;
-  events = events.filter(e => !(e.id === eventId && (e.farmerId === farmerId || farmerId === DEFAULT_FARMER_ID)));
+  events = events.filter(e => e.id !== eventId);
 
   if (events.length < initialLength) {
     writeJson(EVENTS_FILE, events);
