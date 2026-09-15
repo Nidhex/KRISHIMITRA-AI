@@ -85,6 +85,7 @@
       const icon = typeIcons[e.eventType] || '📝';
       const dateFormatted = e.date ? new Date(e.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Today';
       const quantityBadge = e.quantity ? `<span class="diary-qty-tag">${e.quantity} ${e.unit || ''}</span>` : '';
+      const areaBadge = e.area ? `<span class="diary-area-tag" style="background:#FEF3C7; color:#92400E; font-weight:700; font-size:0.75rem; padding:2px 6px; border-radius:4px;">${e.area} ${e.areaUnit || 'acre'}</span>` : '';
       const sourceBadge = `<span class="diary-source-tag">${e.source || 'farmer'}</span>`;
 
       return `
@@ -104,8 +105,9 @@
           <h4 class="diary-event-title">${e.title || 'Farm Activity'}</h4>
           ${e.description ? `<p class="diary-event-desc">${e.description}</p>` : ''}
 
-          <div class="diary-event-footer">
+          <div class="diary-event-footer" style="display:flex; gap:6px; align-items:center;">
             ${quantityBadge}
+            ${areaBadge}
             ${sourceBadge}
           </div>
         </div>
@@ -222,6 +224,12 @@
     document.getElementById('confirm-desc').value = draft.description || '';
     document.getElementById('confirm-quantity').value = draft.quantity !== null && draft.quantity !== undefined ? draft.quantity : '';
     document.getElementById('confirm-unit').value = draft.unit || 'kg';
+    
+    const confirmAreaEl = document.getElementById('confirm-area');
+    if (confirmAreaEl) confirmAreaEl.value = draft.area !== null && draft.area !== undefined ? draft.area : '';
+    const confirmAreaUnitEl = document.getElementById('confirm-area-unit');
+    if (confirmAreaUnitEl) confirmAreaUnitEl.value = draft.areaUnit || 'acre';
+
     document.getElementById('confirm-date').value = draft.date || new Date().toISOString().split('T')[0];
 
     modal.classList.remove('hidden');
@@ -243,6 +251,10 @@
     const description = document.getElementById('confirm-desc').value;
     const rawQty = document.getElementById('confirm-quantity').value;
     const unit = document.getElementById('confirm-unit').value;
+    const confirmAreaEl = document.getElementById('confirm-area');
+    const rawArea = confirmAreaEl ? confirmAreaEl.value : '';
+    const confirmAreaUnitEl = document.getElementById('confirm-area-unit');
+    const areaUnit = confirmAreaUnitEl ? confirmAreaUnitEl.value : 'acre';
     const date = document.getElementById('confirm-date').value;
 
     const eventPayload = {
@@ -253,6 +265,8 @@
       description,
       quantity: rawQty ? parseFloat(rawQty) : null,
       unit: rawQty ? unit : null,
+      area: rawArea ? parseFloat(rawArea) : null,
+      areaUnit: rawArea ? areaUnit : 'acre',
       date,
       source: currentDraftEvent ? (currentDraftEvent.source || 'voice') : 'manual'
     };
@@ -281,6 +295,10 @@
     const description = document.getElementById('manual-desc').value;
     const rawQty = document.getElementById('manual-quantity').value;
     const unit = document.getElementById('manual-unit').value;
+    const manualAreaEl = document.getElementById('manual-area');
+    const rawArea = manualAreaEl ? manualAreaEl.value : '';
+    const manualAreaUnitEl = document.getElementById('manual-area-unit');
+    const areaUnit = manualAreaUnitEl ? manualAreaUnitEl.value : 'acre';
     const date = document.getElementById('manual-date').value;
 
     const eventPayload = {
@@ -291,6 +309,8 @@
       description,
       quantity: rawQty ? parseFloat(rawQty) : null,
       unit: rawQty ? unit : null,
+      area: rawArea ? parseFloat(rawArea) : null,
+      areaUnit: rawArea ? areaUnit : 'acre',
       date,
       source: 'manual'
     };

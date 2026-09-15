@@ -42,6 +42,36 @@ const VALID_EVENT_TYPES = [
   'other'
 ];
 
+// ── Deterministic Event Type Normalizer ─────────────────────────────────────────
+function normalizeEventType(rawType, title = '', description = '') {
+  const combined = `${rawType || ''} ${title || ''} ${description || ''}`.toLowerCase();
+
+  // Strong keyword overrides (handling both English and Devanagari Hindi)
+  if (/(urea|dap|npk|nitrogen|potash|phosphate|fertilizer|khad|यूरिया|खाद|डीएपी)/i.test(combined)) {
+    return 'fertilizer';
+  }
+  if (/(irrigation|water|canal|tube-well|tubewell|पानी|सिंचाई)/i.test(combined)) {
+    return 'irrigation';
+  }
+  if (/(pesticide|insecticide|fungicide|herbicide|dawai|spray|कीटनाशक|दवाई|छिड़काव)/i.test(combined)) {
+    return 'pesticide';
+  }
+  if (/(harvest|harvesting|reap|cut|cutting|कटाई|पैदावार)/i.test(combined)) {
+    return 'harvest';
+  }
+
+  // Preserve explicit event types (e.g. expense, income, planting, soil_test) if valid
+  if (VALID_EVENT_TYPES.includes(rawType) && rawType !== 'other') {
+    return rawType;
+  }
+
+  if (/(sow|sowing|plant|planting|seed|seeds|seeding|बीज|बुवाई|रोपाई)/i.test(combined)) {
+    return 'planting';
+  }
+
+  return 'other';
+}
+
 // ── File I/O Helpers ──────────────────────────────────────────────────────────
 function readJson(filePath, defaultVal = []) {
   try {
@@ -104,7 +134,7 @@ function getEvents(farmerId = DEFAULT_FARMER_ID, filters = {}) {
 function createEvent(eventData = {}) {
   const events = readJson(EVENTS_FILE, []);
 
-  const eventType = VALID_EVENT_TYPES.includes(eventData.eventType) ? eventData.eventType : 'other';
+  const normalizedType = normalizeEventType(eventData.eventType, eventData.title, eventData.description);
   const nowStr = new Date().toISOString();
   const dateStr = eventData.date || nowStr.split('T')[0];
 
@@ -113,12 +143,14 @@ function createEvent(eventData = {}) {
     farmerId: eventData.farmerId || DEFAULT_FARMER_ID,
     fieldId: eventData.fieldId || null,
     crop: eventData.crop ? eventData.crop.trim() : null,
-    eventType,
+    eventType: normalizedType,
     date: dateStr,
-    title: eventData.title ? eventData.title.trim() : 'Farm Activity',
+    title: eventData.title ? eventData.title.trim() : `${normalizedType.toUpperCase()} Activity`,
     description: eventData.description ? eventData.description.trim() : '',
     quantity: typeof eventData.quantity === 'number' && !isNaN(eventData.quantity) ? eventData.quantity : null,
     unit: eventData.unit ? eventData.unit.trim() : null,
+    area: typeof eventData.area === 'number' && !isNaN(eventData.area) ? eventData.area : null,
+    areaUnit: eventData.areaUnit ? eventData.areaUnit.trim() : 'acre',
     amount: typeof eventData.amount === 'number' && !isNaN(eventData.amount) ? eventData.amount : null,
     currency: eventData.currency || 'INR',
     createdBy: eventData.createdBy || 'farmer',
@@ -130,7 +162,7 @@ function createEvent(eventData = {}) {
 
   events.push(newEvent);
   writeJson(EVENTS_FILE, events);
-  logger.info(`[FARM_DIARY] Event created: ${newEvent.id} (${newEvent.title})`);
+  logger.info(`[FARM_DIARY] Event created: ${newEvent.id} (${newEvent.title}) [Type: ${newEvent.eventType}]`);
   return newEvent;
 }
 
@@ -180,8 +212,8 @@ Valid eventType options:
 - other
 
 Rules:
-1. Extract crop, eventType, title, description, quantity, unit, amount, and relative or ISO date.
-2. If quantity/unit/amount is NOT mentioned, set them to null. DO NOT INVENT or guess missing numbers.
+1. Extract crop, eventType, title, description, quantity, unit, area, areaUnit, amount, and ISO date.
+2. If quantity/unit/area/amount is NOT mentioned, set them to null. DO NOT INVENT or guess missing numbers.
 3. Return ONLY a valid JSON object matching this schema:
 {
   "eventType": "fertilizer",
@@ -190,6 +222,8 @@ Rules:
   "description": "Applied 40 kg urea to wheat field",
   "quantity": 40,
   "unit": "kg",
+  "area": null,
+  "areaUnit": "acre",
   "amount": null,
   "date": "${new Date().toISOString().split('T')[0]}",
   "confidence": 0.95
@@ -210,15 +244,18 @@ Farmer Input (${language}):
         const jsonMatch = result.reply.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
           const parsed = JSON.parse(jsonMatch[0]);
+          const normalizedType = normalizeEventType(parsed.eventType, parsed.title, text);
           return {
             success: true,
             draft: {
-              eventType: VALID_EVENT_TYPES.includes(parsed.eventType) ? parsed.eventType : 'other',
+              eventType: normalizedType,
               crop: parsed.crop || null,
-              title: parsed.title || 'Farm Event',
+              title: parsed.title || `${normalizedType.toUpperCase()} recorded`,
               description: parsed.description || text.trim(),
               quantity: typeof parsed.quantity === 'number' ? parsed.quantity : null,
               unit: parsed.unit || null,
+              area: typeof parsed.area === 'number' ? parsed.area : null,
+              areaUnit: parsed.areaUnit || 'acre',
               amount: typeof parsed.amount === 'number' ? parsed.amount : null,
               date: parsed.date || new Date().toISOString().split('T')[0],
               confidence: parsed.confidence || 0.9,
@@ -239,45 +276,51 @@ Farmer Input (${language}):
 
 function fallbackHeuristicExtract(text, options = {}) {
   const lower = text.toLowerCase();
-  let eventType = 'other';
   let crop = null;
   let quantity = null;
   let unit = null;
+  let area = null;
+  let areaUnit = 'acre';
 
-  if (lower.includes('urea') || lower.includes('यूरिया') || lower.includes('fertilizer') || lower.includes('खाद') || lower.includes('dap') || lower.includes('npk')) {
-    eventType = 'fertilizer';
-  } else if (lower.includes('water') || lower.includes('irrigation') || lower.includes('पानी') || lower.includes('सिंचाई')) {
-    eventType = 'irrigation';
-  } else if (lower.includes('spray') || lower.includes('pesticide') || lower.includes('दवाई') || lower.includes('कीटनाशक')) {
-    eventType = 'pesticide';
-  } else if (lower.includes('sow') || lower.includes('plant') || lower.includes('बोया') || lower.includes('रोपाई')) {
-    eventType = 'planting';
-  } else if (lower.includes('harvest') || lower.includes('कटाई')) {
-    eventType = 'harvest';
-  }
-
-  if (lower.includes('wheat') || lower.includes('गेहूं') || lower.includes('gehu')) crop = 'Wheat';
+  if (lower.includes('wheat') || lower.includes('गेहूं') || lower.includes('गेहूँ') || lower.includes('gehu') || lower.includes('gehun')) crop = 'Wheat';
   else if (lower.includes('paddy') || lower.includes('rice') || lower.includes('धान')) crop = 'Paddy';
   else if (lower.includes('tomato') || lower.includes('टमाटर')) crop = 'Tomato';
+  else if (lower.includes('cotton') || lower.includes('कपास')) crop = 'Cotton';
 
-  const numMatch = text.match(/(\d+(?:\.\d+)?)\s*(kg|kilo|लीटर|liter|l|एकड़|acre|बोरी|bag)?/i);
+  const normalizedType = normalizeEventType('other', text, text);
+
+  // Extract Quantity & Unit
+  const numMatch = text.match(/(\d+(?:\.\d+)?)\s*(kg|kilo|किलो|लीटर|liter|l|बोरी|bag)?/i);
   if (numMatch) {
     quantity = parseFloat(numMatch[1]);
-    unit = numMatch[2] ? numMatch[2].toLowerCase() : 'units';
+    const rawU = numMatch[2] ? numMatch[2].toLowerCase() : 'kg';
+    if (rawU === 'किलो' || rawU === 'kilo') unit = 'kg';
+    else if (rawU === 'लीटर' || rawU === 'l') unit = 'liter';
+    else if (rawU === 'बोरी') unit = 'bag';
+    else unit = rawU;
+  }
+
+  // Extract Area
+  const areaMatch = text.match(/(\d+(?:\.\d+)?)\s*(acre|acres|एकड़|bigha|बीघा)/i);
+  if (areaMatch) {
+    area = parseFloat(areaMatch[1]);
+    areaUnit = areaMatch[2].toLowerCase();
   }
 
   return {
     success: true,
     draft: {
-      eventType,
+      eventType: normalizedType,
       crop,
-      title: `${eventType.toUpperCase()} recorded`,
+      title: `${normalizedType.toUpperCase()} recorded`,
       description: text.trim(),
       quantity,
       unit,
+      area,
+      areaUnit,
       amount: null,
       date: new Date().toISOString().split('T')[0],
-      confidence: 0.8,
+      confidence: 0.85,
       source: options.source || 'manual'
     },
     inferenceMs: 10
@@ -286,15 +329,30 @@ function fallbackHeuristicExtract(text, options = {}) {
 
 // ── Farm Memory Query Layer for AI Chat ───────────────────────────────────────
 function queryFarmMemory(farmerId = DEFAULT_FARMER_ID, queryText = '') {
-  const events = getEvents(farmerId, { limit: 10 });
+  const events = getEvents(farmerId, { limit: 15 });
   if (events.length === 0) {
-    return 'No farm events recorded in Farm Diary yet.';
+    return 'NO RECORDED FARM DIARY EVENTS AVAILABLE. (Farmer has not recorded any activities yet)';
   }
 
-  const lines = events.map(e => {
+  const queryLower = (queryText || '').toLowerCase();
+  let relevantEvents = events;
+
+  if (queryLower.includes('fertilizer') || queryLower.includes('urea') || queryLower.includes('khad') || queryLower.includes('खाद') || queryLower.includes('यूरिया')) {
+    const fertEvents = events.filter(e => e.eventType === 'fertilizer');
+    if (fertEvents.length > 0) relevantEvents = fertEvents;
+  } else if (queryLower.includes('irrigation') || queryLower.includes('water') || queryLower.includes('पानी') || queryLower.includes('सिंचाई')) {
+    const irrEvents = events.filter(e => e.eventType === 'irrigation');
+    if (irrEvents.length > 0) relevantEvents = irrEvents;
+  } else if (queryLower.includes('spray') || queryLower.includes('pesticide') || queryLower.includes('कीटनाशक') || queryLower.includes('दवाई')) {
+    const pestEvents = events.filter(e => e.eventType === 'pesticide');
+    if (pestEvents.length > 0) relevantEvents = pestEvents;
+  }
+
+  const lines = relevantEvents.map(e => {
     let str = `• Date: ${e.date} | Type: ${e.eventType.toUpperCase()} | Crop: ${e.crop || 'General'}`;
     if (e.title) str += ` | Event: "${e.title}"`;
     if (e.quantity !== null && e.quantity !== undefined) str += ` | Quantity: ${e.quantity} ${e.unit || ''}`;
+    if (e.area !== null && e.area !== undefined) str += ` | Area: ${e.area} ${e.areaUnit || 'acre'}`;
     if (e.description) str += ` | Details: ${e.description}`;
     return str;
   });
@@ -304,60 +362,92 @@ function queryFarmMemory(farmerId = DEFAULT_FARMER_ID, queryText = '') {
 
 // ── Next Best Action Decision Engine ──────────────────────────────────────────
 async function generateNextBestAction(farmerId = DEFAULT_FARMER_ID, cropFilter = null) {
-  const events = getEvents(farmerId, { limit: 15 });
+  const events = getEvents(farmerId, { limit: 20 });
   const fields = getFields(farmerId);
+
+  // ── EMPTY STATE HANDLER ───────────────────────────────────────────────────
+  if (events.length === 0) {
+    return {
+      success: true,
+      recommendation: {
+        action: "Start recording your daily farm activities in your Farm Diary.",
+        priority: "info",
+        reason: "Your Farm Memory is currently empty. Record your sowing, watering, fertilizer, or pest control activities so KrishiMitra AI can provide personalized Next Best Action recommendations tailored to your farm.",
+        crop: cropFilter || "All Crops",
+        basedOn: [
+          { type: "system", summary: "Empty Farm Memory state — awaiting farmer activity logs" }
+        ],
+        confidence: 1.0,
+        disclaimer: "Record events to unlock AI context-aware advice."
+      }
+    };
+  }
 
   const targetCrop = cropFilter || (events.find(e => e.crop)?.crop) || 'Wheat';
   const recentEvents = events.filter(e => !cropFilter || (e.crop || '').toLowerCase().includes(cropFilter.toLowerCase()));
 
-  const latestFertilizer = recentEvents.find(e => e.eventType === 'fertilizer');
-  const latestIrrigation = recentEvents.find(e => e.eventType === 'irrigation');
-  const latestDisease = recentEvents.find(e => e.eventType === 'disease' || e.eventType === 'pest');
+  const newestEvent = recentEvents[0] || events[0];
 
   let action = '';
   let priority = 'medium';
   let reason = '';
   const basedOn = [];
 
-  if (latestFertilizer) {
-    basedOn.push({
-      type: 'farm_diary',
-      eventId: latestFertilizer.id,
-      summary: `Recorded ${latestFertilizer.title || 'fertilizer application'} on ${latestFertilizer.date}`
-    });
-  }
+  basedOn.push({
+    type: 'farm_diary',
+    eventId: newestEvent.id,
+    summary: `Latest recorded event: ${newestEvent.eventType.toUpperCase()} (${newestEvent.title}) on ${newestEvent.date}`
+  });
 
-  if (latestIrrigation) {
-    basedOn.push({
-      type: 'farm_diary',
-      eventId: latestIrrigation.id,
-      summary: `Recorded ${latestIrrigation.title || 'irrigation'} on ${latestIrrigation.date}`
-    });
-  }
+  // Dynamic Decision Logic based on most recent event type & context
+  switch (newestEvent.eventType) {
+    case 'fertilizer':
+      action = `Monitor ${targetCrop} field soil moisture and allow nutrient absorption. Postpone additional top-dressing for 10-14 days.`;
+      priority = 'medium';
+      reason = `You recently recorded fertilizer application (${newestEvent.title}${newestEvent.quantity ? `, ${newestEvent.quantity} ${newestEvent.unit || 'kg'}` : ''}) on ${newestEvent.date}. Allowing root intake ensures optimal nitrogen uptake without burning roots.`;
+      break;
 
-  // Decision logic rules
-  if (latestFertilizer && (Date.now() - new Date(latestFertilizer.date).getTime()) < 7 * 86400000) {
-    action = `Monitor ${targetCrop} field soil moisture and inspect crop health. Avoid another heavy fertilizer application for 2 weeks.`;
-    priority = 'medium';
-    reason = `You recently recorded applying fertilizer (${latestFertilizer.title || 'fertilizer'}) on ${latestFertilizer.date}. Allowing root absorption before adding more nutrients ensures optimal growth without root burn.`;
-  } else if (latestDisease) {
-    action = `Inspect ${targetCrop} leaves for disease/pest progression and apply organic or recommended crop protection if needed.`;
-    priority = 'high';
-    reason = `Your diary records a pest/disease observation (${latestDisease.title}) on ${latestDisease.date}. Early treatment prevents yield loss.`;
-    basedOn.push({
-      type: 'farm_diary',
-      eventId: latestDisease.id,
-      summary: `Disease/pest observation on ${latestDisease.date}`
-    });
-  } else {
-    action = `Schedule regular field inspection for ${targetCrop} and check soil moisture levels.`;
-    priority = 'low';
-    reason = `Based on your recent sowing/irrigation events for ${targetCrop}, maintaining proper soil moisture and scouting for early weed/pest growth is recommended.`;
+    case 'irrigation':
+      action = `Inspect ${targetCrop} root-zone soil moisture and monitor for early weed emergence following watering.`;
+      priority = 'medium';
+      reason = `You recorded irrigation on ${newestEvent.date}. Maintaining proper moisture balance prevents waterlogging while aiding crop growth.`;
+      break;
+
+    case 'pesticide':
+      action = `Evaluate ${targetCrop} crop for pest reduction and observe required Pre-Harvest Interval (PHI) safety rules.`;
+      priority = 'high';
+      reason = `You recorded pesticide application (${newestEvent.title}) on ${newestEvent.date}. Check crop health to assess spray efficacy and prevent chemical overuse.`;
+      break;
+
+    case 'disease':
+    case 'pest':
+      action = `Inspect ${targetCrop} leaves for disease progression and apply recommended organic or targeted treatment if needed.`;
+      priority = 'high';
+      reason = `A pest/disease observation (${newestEvent.title}) was recorded on ${newestEvent.date}. Early intervention prevents crop damage.`;
+      break;
+
+    case 'harvest':
+      action = `Ensure proper sun-drying of harvested ${targetCrop} to safe moisture levels (<12%) before storage or Mandi sale.`;
+      priority = 'high';
+      reason = `You recorded harvesting ${targetCrop} on ${newestEvent.date}. Proper post-harvest drying prevents fungal rot and improves market value.`;
+      break;
+
+    case 'planting':
+      action = `Ensure light irrigation and scout for uniform seedling germination in your ${targetCrop} field.`;
+      priority = 'medium';
+      reason = `You recorded sowing/planting ${targetCrop} on ${newestEvent.date}. Early moisture management supports strong root establishment.`;
+      break;
+
+    default:
+      action = `Schedule regular field inspection for ${targetCrop} and verify soil moisture levels.`;
+      priority = 'low';
+      reason = `Based on your recent activity (${newestEvent.title}) on ${newestEvent.date}, standard field scouting and moisture checks are recommended.`;
+      break;
   }
 
   basedOn.push({
     type: 'weather',
-    summary: 'Current regional weather forecast indicates normal field conditions.'
+    summary: 'Current regional weather forecast indicates clear field operating conditions.'
   });
 
   return {
@@ -368,8 +458,8 @@ async function generateNextBestAction(farmerId = DEFAULT_FARMER_ID, cropFilter =
       reason,
       crop: targetCrop,
       basedOn,
-      confidence: 0.92,
-      disclaimer: 'Recommendations are generated using your Farm Diary events, weather forecasts, and agricultural best practices.'
+      confidence: 0.95,
+      disclaimer: 'Recommendations are generated using your Farm Memory events, weather forecasts, and agricultural best practices.'
     }
   };
 }
@@ -377,6 +467,7 @@ async function generateNextBestAction(farmerId = DEFAULT_FARMER_ID, cropFilter =
 module.exports = {
   DEFAULT_FARMER_ID,
   VALID_EVENT_TYPES,
+  normalizeEventType,
   getFields,
   getEvents,
   createEvent,

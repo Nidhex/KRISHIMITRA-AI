@@ -1,155 +1,207 @@
 /* ==========================================================================
-   KrishiMitra AI — Farm Diary, Farm Memory & Decision Engine Test Suite
+   KrishiMitra AI — Complete Farm Diary, Memory & Decision Engine Test Suite
+   Run with: node tests/test_farm_diary_suite.js
    ========================================================================== */
 
 'use strict';
 
-const assert = require('assert');
-const path = require('path');
-const http = require('http');
-
-// Import Backend Modules directly
 const farmDiaryService = require('../backend/services/farmDiaryService');
-const ragService = require('../backend/services/ragService');
-
-console.log('===================================================================');
-console.log('  KRISHIMITRA AI — FARM DIARY & DECISION ENGINE TEST SUITE');
-console.log('===================================================================\n');
 
 async function runTests() {
+  console.log('====================================================');
+  console.log('  KRISHIMITRA AI — FARM DIARY TEST SUITE');
+  console.log('====================================================\n');
+
   let passed = 0;
   let failed = 0;
 
-  function logPass(testName) {
-    passed++;
-    console.log(`  🟢 [PASS] ${testName}`);
-  }
-
-  function logFail(testName, err) {
-    failed++;
-    console.error(`  🔴 [FAIL] ${testName}: ${err.message}`);
-  }
-
-  // TEST 1: Canonical Demo Farmer ID & Fields Retrieval
-  try {
-    const fields = farmDiaryService.getFields('farmer_default');
-    assert(Array.isArray(fields) && fields.length >= 2, 'Should return at least 2 fields for demo farmer');
-    assert.strictEqual(fields[0].farmerId, 'farmer_default');
-    logPass('1. Canonical Demo Farmer ID & Fields Retrieval');
-  } catch (e) {
-    logFail('1. Canonical Demo Farmer ID & Fields Retrieval', e);
-  }
-
-  // TEST 2: Event Creation (CRUD)
-  let createdEventId = null;
-  try {
-    const newEv = farmDiaryService.createEvent({
-      farmerId: 'farmer_default',
-      fieldId: 'field_001',
-      crop: 'Wheat',
-      eventType: 'fertilizer',
-      title: 'Applied 40 kg Urea',
-      description: 'Applied 40 kg urea to wheat field',
-      quantity: 40,
-      unit: 'kg',
-      date: new Date().toISOString().split('T')[0],
-      source: 'manual'
-    });
-
-    assert(newEv && newEv.id, 'Created event should have an ID');
-    assert.strictEqual(newEv.quantity, 40);
-    assert.strictEqual(newEv.crop, 'Wheat');
-    createdEventId = newEv.id;
-    logPass('2. Farm Diary Event Creation (CRUD)');
-  } catch (e) {
-    logFail('2. Farm Diary Event Creation (CRUD)', e);
-  }
-
-  // TEST 3: Events Retrieval & Filtering
-  try {
-    const events = farmDiaryService.getEvents('farmer_default', { eventType: 'fertilizer' });
-    assert(Array.isArray(events) && events.length > 0, 'Events array should not be empty');
-    assert(events.some(e => e.eventType === 'fertilizer'), 'Should contain fertilizer events');
-    logPass('3. Events Retrieval & Filter by EventType');
-  } catch (e) {
-    logFail('3. Events Retrieval & Filter by EventType', e);
-  }
-
-  // TEST 4: Natural Language AI Extraction (English)
-  try {
-    const res = await farmDiaryService.extractEventFromText('Today I applied 40 kg urea to my wheat field.', { language: 'en' });
-    assert(res.success && res.draft, 'Extraction should succeed');
-    assert.strictEqual(res.draft.eventType, 'fertilizer');
-    assert.strictEqual(res.draft.crop, 'Wheat');
-    assert.strictEqual(res.draft.quantity, 40);
-    logPass('4. Natural Language AI Extraction (English)');
-  } catch (e) {
-    logFail('4. Natural Language AI Extraction (English)', e);
-  }
-
-  // TEST 5: Natural Language AI Extraction (Hindi Devanagari)
-  try {
-    const res = await farmDiaryService.extractEventFromText('आज मैंने गेहूं के खेत में सिंचाई की है।', { language: 'hi' });
-    assert(res.success && res.draft, 'Extraction should succeed');
-    assert.strictEqual(res.draft.eventType, 'irrigation');
-    assert.strictEqual(res.draft.crop, 'Wheat');
-    assert.strictEqual(res.draft.quantity, null, 'Unmentioned quantity must remain null (no hallucination)');
-    logPass('5. Natural Language AI Extraction (Hindi Devanagari - No Quantity Hallucination)');
-  } catch (e) {
-    logFail('5. Natural Language AI Extraction (Hindi Devanagari - No Quantity Hallucination)', e);
-  }
-
-  // TEST 6: Natural Language AI Extraction (Hinglish)
-  try {
-    const res = await farmDiaryService.extractEventFromText('40 kg urea dala wheat me', { language: 'hi' });
-    assert(res.success && res.draft, 'Extraction should succeed');
-    assert.strictEqual(res.draft.eventType, 'fertilizer');
-    assert.strictEqual(res.draft.quantity, 40);
-    logPass('6. Natural Language AI Extraction (Hinglish)');
-  } catch (e) {
-    logFail('6. Natural Language AI Extraction (Hinglish)', e);
-  }
-
-  // TEST 7: Farm Memory Query Layer
-  try {
-    const memory = farmDiaryService.queryFarmMemory('farmer_default', 'fertilizer');
-    assert(typeof memory === 'string' && memory.includes('RECORDED FARM DIARY EVENTS'), 'Memory should format recorded events');
-    assert(memory.includes('Wheat'), 'Memory should reference Wheat crop');
-    logPass('7. Farm Memory Query Layer');
-  } catch (e) {
-    logFail('7. Farm Memory Query Layer', e);
-  }
-
-  // TEST 8: Next Best Action Decision Engine
-  try {
-    const decision = await farmDiaryService.generateNextBestAction('farmer_default', 'Wheat');
-    assert(decision.success && decision.recommendation, 'Decision generation should succeed');
-    const rec = decision.recommendation;
-    assert(rec.action && rec.reason, 'Recommendation must contain action and reason');
-    assert(Array.isArray(rec.basedOn) && rec.basedOn.length > 0, 'Recommendation must explain WHY with basedOn array');
-    logPass('8. Next Best Action Decision Engine & Rationale');
-  } catch (e) {
-    logFail('8. Next Best Action Decision Engine & Rationale', e);
-  }
-
-  // TEST 9: Delete Event (CRUD Cleanup)
-  try {
-    if (createdEventId) {
-      const deleted = farmDiaryService.deleteEvent('farmer_default', createdEventId);
-      assert.strictEqual(deleted, true, 'Event deletion should return true');
+  function assert(condition, message) {
+    if (condition) {
+      console.log(`  ✓ [PASS] ${message}`);
+      passed++;
+    } else {
+      console.error(`  ✕ [FAIL] ${message}`);
+      failed++;
     }
-    logPass('9. Event Deletion (CRUD Cleanup)');
-  } catch (e) {
-    logFail('9. Event Deletion (CRUD Cleanup)', e);
   }
 
-  console.log('\n===================================================================');
-  console.log(`  FARM DIARY TEST SUMMARY: ${passed} PASSED, ${failed} FAILED`);
-  console.log('===================================================================\n');
+  const TEST_FARMER = 'test_farmer_suite';
+
+  // Cleanup prior test events
+  const existingEvents = farmDiaryService.getEvents(TEST_FARMER);
+  existingEvents.forEach(e => farmDiaryService.deleteEvent(TEST_FARMER, e.id));
+
+  // 1. Classification & Normalization — Urea -> Fertilizer
+  const normFert = farmDiaryService.normalizeEventType('pesticide', 'Applied 40 kg urea', 'urea top dressing');
+  assert(normFert === 'fertilizer', 'Urea material strictly normalized to "fertilizer" eventType');
+
+  // 2. Classification & Normalization — Water -> Irrigation
+  const normIrr = farmDiaryService.normalizeEventType('other', 'Watered wheat field', 'irrigation given');
+  assert(normIrr === 'irrigation', 'Water/watering strictly normalized to "irrigation" eventType');
+
+  // 3. Classification & Normalization — Spray -> Pesticide
+  const normPest = farmDiaryService.normalizeEventType('other', 'Sprayed Neem Oil', 'pesticide application');
+  assert(normPest === 'pesticide', 'Spray/insecticide strictly normalized to "pesticide" eventType');
+
+  // 4. Classification & Normalization — Cutting -> Harvest
+  const normHarv = farmDiaryService.normalizeEventType('other', 'Wheat harvest', 'cut standing crop');
+  assert(normHarv === 'harvest', 'Harvest/cutting strictly normalized to "harvest" eventType');
+
+  // 5. Empty Diary Decision Engine State
+  const emptyDecision = await farmDiaryService.generateNextBestAction(TEST_FARMER);
+  assert(
+    emptyDecision.success && emptyDecision.recommendation.priority === 'info',
+    'Empty Farm Memory returns friendly initial recording prompt'
+  );
+
+  // 6. Manual Event Creation — Fertilizer
+  const e1 = farmDiaryService.createEvent({
+    farmerId: TEST_FARMER,
+    eventType: 'fertilizer',
+    crop: 'Wheat',
+    title: 'Applied 40kg Urea',
+    description: 'Applied 40 kg urea to main field',
+    quantity: 40,
+    unit: 'kg',
+    area: 2,
+    areaUnit: 'acre',
+    date: '2026-09-15',
+    source: 'manual'
+  });
+  assert(e1 && e1.eventType === 'fertilizer' && e1.quantity === 40 && e1.area === 2, 'Created structured Fertilizer event');
+
+  // 7. Manual Event Creation — Irrigation
+  const e2 = farmDiaryService.createEvent({
+    farmerId: TEST_FARMER,
+    eventType: 'irrigation',
+    crop: 'Wheat',
+    title: 'Canal Irrigation',
+    description: 'Irrigated wheat field with canal water',
+    date: '2026-09-16',
+    source: 'manual'
+  });
+  assert(e2 && e2.eventType === 'irrigation' && e2.crop === 'Wheat', 'Created structured Irrigation event');
+
+  // 8. Manual Event Creation — Pesticide
+  const e3 = farmDiaryService.createEvent({
+    farmerId: TEST_FARMER,
+    eventType: 'pesticide',
+    crop: 'Tomato',
+    title: 'Neem Oil Spray',
+    description: 'Sprayed organic neem biopesticide',
+    quantity: 500,
+    unit: 'ml',
+    date: '2026-09-17',
+    source: 'manual'
+  });
+  assert(e3 && e3.eventType === 'pesticide' && e3.crop === 'Tomato', 'Created structured Pesticide event');
+
+  // 9. Manual Event Creation — Harvest
+  const e4 = farmDiaryService.createEvent({
+    farmerId: TEST_FARMER,
+    eventType: 'harvest',
+    crop: 'Wheat',
+    title: 'Wheat Harvest',
+    description: 'Harvested 500 kg wheat',
+    quantity: 500,
+    unit: 'kg',
+    date: '2026-09-18',
+    source: 'manual'
+  });
+  assert(e4 && e4.eventType === 'harvest' && e4.quantity === 500, 'Created structured Harvest event');
+
+  // 10. Manual Event Creation — Expense
+  const e5 = farmDiaryService.createEvent({
+    farmerId: TEST_FARMER,
+    eventType: 'expense',
+    crop: 'Wheat',
+    title: 'Bought Seeds',
+    amount: 1500,
+    currency: 'INR',
+    date: '2026-09-10',
+    source: 'manual'
+  });
+  assert(e5 && e5.eventType === 'expense' && e5.amount === 1500, 'Created structured Expense event');
+
+  // 11. Event Retrieval & Filtering by Farmer
+  const events = farmDiaryService.getEvents(TEST_FARMER);
+  assert(events.length === 5, 'Retrieved all 5 stored events for test farmer');
+
+  // 12. Filtering by Crop
+  const wheatEvents = farmDiaryService.getEvents(TEST_FARMER, { crop: 'Wheat' });
+  assert(wheatEvents.length === 4, 'Filtered events by crop (Wheat)');
+
+  // 13. Filtering by Event Type
+  const fertEvents = farmDiaryService.getEvents(TEST_FARMER, { eventType: 'fertilizer' });
+  assert(fertEvents.length === 1 && fertEvents[0].id === e1.id, 'Filtered events by eventType (fertilizer)');
+
+  // 14. Fallback Extraction — Hindi Text
+  const exHindi = await farmDiaryService.extractEventFromText('आज मैंने गेहूं के खेत में 40 किलो यूरिया डाला', { language: 'hi' });
+  assert(
+    exHindi.success && exHindi.draft.eventType === 'fertilizer' && exHindi.draft.crop === 'Wheat' && exHindi.draft.quantity === 40,
+    'AI Extracted Hindi text: Wheat, Fertilizer, 40 kg'
+  );
+
+  // 15. Fallback Extraction — Hinglish Text
+  const exHinglish = await farmDiaryService.extractEventFromText('40 kg urea dala wheat me', { language: 'hi' });
+  assert(
+    exHinglish.success && exHinglish.draft.eventType === 'fertilizer' && exHinglish.draft.crop === 'Wheat' && exHinglish.draft.quantity === 40,
+    'AI Extracted Hinglish text: Wheat, Fertilizer, 40 kg'
+  );
+
+  // 16. Fallback Extraction — Missing Numbers (No Hallucination)
+  const exNoNum = await farmDiaryService.extractEventFromText('Watered wheat field today', { language: 'en' });
+  assert(
+    exNoNum.success && exNoNum.draft.quantity === null,
+    'Missing quantity is null (no hallucinated numbers)'
+  );
+
+  // 17. Farm Memory Prompt Formatting
+  const memoryPrompt = farmDiaryService.queryFarmMemory(TEST_FARMER, 'urea fertilizer');
+  assert(
+    memoryPrompt.includes('Applied 40kg Urea') && memoryPrompt.includes('FERTILIZER'),
+    'Farm Memory returns exact recorded events for AI prompt context'
+  );
+
+  // 18. Next Best Action Decision Engine — Harvest Scenario
+  const harvestDecision = await farmDiaryService.generateNextBestAction(TEST_FARMER, 'Wheat');
+  assert(
+    harvestDecision.success && harvestDecision.recommendation.action.includes('sun-drying'),
+    'Next Best Action dynamically adapts to latest Harvest event'
+  );
+
+  // 19. Next Best Action Decision Engine — Fertilizer Scenario
+  // Delete harvest so fertilizer becomes latest
+  farmDiaryService.deleteEvent(TEST_FARMER, e4.id);
+  farmDiaryService.deleteEvent(TEST_FARMER, e3.id);
+  farmDiaryService.deleteEvent(TEST_FARMER, e2.id);
+  const fertDecision = await farmDiaryService.generateNextBestAction(TEST_FARMER, 'Wheat');
+  assert(
+    fertDecision.success && fertDecision.recommendation.action.includes('Monitor') && fertDecision.recommendation.reason.includes('fertilizer'),
+    'Next Best Action dynamically adapts to latest Fertilizer event'
+  );
+
+  // 20. Event Deletion
+  const delRes = farmDiaryService.deleteEvent(TEST_FARMER, e1.id);
+  assert(delRes === true, 'Successfully deleted event from database');
+
+  // 21. Verify remaining count
+  const remaining = farmDiaryService.getEvents(TEST_FARMER);
+  assert(remaining.length === 1 && remaining[0].id === e5.id, 'Remaining event matches expected state');
+
+  // Cleanup test farmer
+  farmDiaryService.deleteEvent(TEST_FARMER, e5.id);
+
+  console.log('\n====================================================');
+  console.log(`  RESULTS: ${passed} PASSED | ${failed} FAILED`);
+  console.log('====================================================\n');
 
   if (failed > 0) {
     process.exit(1);
   }
 }
 
-runTests();
+runTests().catch(err => {
+  console.error('Test execution failed:', err);
+  process.exit(1);
+});
