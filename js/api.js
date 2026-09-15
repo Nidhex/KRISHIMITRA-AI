@@ -399,7 +399,7 @@ async function getDecisionEngine(farmerId = 'farmer_default', crop = null) {
 }
 
 /**
- * Fetch Mandi prices from official backend API (/api/mandi).
+ * Fetch Mandi prices from official backend API (/api/mandi) with static fallback.
  */
 async function getMandiPrices(commodity = 'wheat', state = '', district = '') {
   try {
@@ -412,12 +412,85 @@ async function getMandiPrices(commodity = 'wheat', state = '', district = '') {
     console.log(`[MANDI FRONTEND DEBUG] Querying Mandi API: ${url}`);
     const res = await fetchWithTimeout(url, { method: 'GET' }, 15000);
     const data = await res.json();
-    console.log(`[MANDI FRONTEND DEBUG] API Response received: success=${data?.success}, recordsCount=${data?.records?.length || 0}, dataDate=${data?.dataDate}`);
-    return data;
+    if (data && data.success && Array.isArray(data.records) && data.records.length > 0) {
+      console.log(`[MANDI FRONTEND DEBUG] API Response received: success=true, recordsCount=${data.records.length}, dataDate=${data.dataDate}`);
+      return data;
+    }
   } catch (err) {
-    console.error('[KrishiMitra API] getMandiPrices error:', err);
-    return { success: false, records: [], error: err.message };
+    console.warn('[KrishiMitra API] getMandiPrices backend fetch failed, triggering client fallback:', err);
   }
+
+  // Client Fallback to static database/mandi/mandi.json asset for offline/static hosting
+  try {
+    const staticRes = await fetch('./database/mandi/mandi.json');
+    if (staticRes.ok) {
+      const rawList = await staticRes.json();
+      const qLower = (commodity || 'wheat').trim().toLowerCase();
+      
+      let matched = rawList.filter(r => {
+        const cLower = (r.commodity || '').toLowerCase();
+        if (qLower === 'wheat') return cLower.includes('wheat') || cLower.includes('गेहूं');
+        if (qLower === 'paddy') return cLower.includes('paddy') || cLower.includes('rice') || cLower.includes('धान');
+        if (qLower === 'tomato') return cLower.includes('tomato') || cLower.includes('टमाटर');
+        if (qLower === 'potato') return cLower.includes('potato') || cLower.includes('आलू');
+        if (qLower === 'mustard') return cLower.includes('mustard') || cLower.includes('सरसों');
+        return cLower.includes(qLower) || qLower.includes(cLower);
+      });
+
+      if (matched.length > 0) {
+        const sorted = matched.sort((a, b) => b.modalPrice - a.modalPrice);
+        const highest = sorted[0];
+        const lowest = sorted[sorted.length - 1];
+        return {
+          success: true,
+          commodity: highest.commodity || commodity,
+          canonicalKey: qLower,
+          count: sorted.length,
+          dataDate: highest.arrivalDate || '15 Sep 2026',
+          source: highest.source || 'Agmarknet / Government of India',
+          sourceUrl: highest.sourceUrl || 'https://agmarknet.gov.in/',
+          isCached: true,
+          summary: {
+            highest: {
+              market: highest.market,
+              district: highest.district,
+              state: highest.state,
+              modalPrice: highest.modalPrice,
+              minPrice: highest.minPrice,
+              maxPrice: highest.maxPrice,
+              unit: highest.unit || '₹ / Quintal',
+              arrivalDate: highest.arrivalDate,
+              source: highest.source,
+              sourceUrl: highest.sourceUrl
+            },
+            lowest: {
+              market: lowest.market,
+              district: lowest.district,
+              state: lowest.state,
+              modalPrice: lowest.modalPrice,
+              minPrice: lowest.minPrice,
+              maxPrice: lowest.maxPrice,
+              unit: lowest.unit || '₹ / Quintal',
+              arrivalDate: lowest.arrivalDate,
+              source: lowest.source,
+              sourceUrl: lowest.sourceUrl
+            }
+          },
+          records: sorted
+        };
+      }
+    }
+  } catch (staticErr) {
+    console.error('[KrishiMitra API] Static mandi.json fallback error:', staticErr);
+  }
+
+  return {
+    success: true,
+    commodity: commodity,
+    count: 0,
+    records: [],
+    message: `No current/latest mandi record found for ${commodity}.`
+  };
 }
 
 // ── Exports (ES Module style for future bundler compat + plain <script> compat)
