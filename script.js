@@ -1125,7 +1125,7 @@ const populateSamplePills = (moduleId) => {
 };
 
 // Global Camera State & Diagnostics Logger
-const CAMERA_DEBUG = true;
+const CAMERA_DEBUG = false;
 let activeCameraStream = null;
 
 const updateCameraDebug = (info = {}) => {

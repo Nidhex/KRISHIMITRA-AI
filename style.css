@@ -3046,7 +3046,7 @@ textarea {
 }
 
 /* ==========================================================================
-   Camera Modal & Debug Diagnostics Styling
+   Camera Modal Styling
    ========================================================================== */
 .camera-modal-content {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
@@ -3064,13 +3064,4 @@ textarea {
   font-weight: 600;
   font-size: 1rem;
   z-index: 10;
-}
-
-.camera-debug-panel {
-  transition: all 0.3s ease;
-  line-height: 1.5;
-}
-
-.camera-debug-panel strong {
-  color: #7dd3fc;
 }
