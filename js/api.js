@@ -392,6 +392,12 @@ async function getDecisionEngine(farmerId = 'farmer_default', crop = null) {
     );
     const data = await res.json();
     return data;
+  } catch (err) {
+    console.error('[KrishiMitra API] getDecisionEngine error:', err);
+    return { success: false, error: err.message };
+  }
+}
+
 /**
  * Fetch Mandi prices from official backend API (/api/mandi).
  */
@@ -403,8 +409,10 @@ async function getMandiPrices(commodity = 'wheat', state = '', district = '') {
     if (district) params.append('district', district);
 
     const url = `${API_BASE_URL}/mandi?${params.toString()}`;
+    console.log(`[MANDI FRONTEND DEBUG] Querying Mandi API: ${url}`);
     const res = await fetchWithTimeout(url, { method: 'GET' }, 15000);
     const data = await res.json();
+    console.log(`[MANDI FRONTEND DEBUG] API Response received: success=${data?.success}, recordsCount=${data?.records?.length || 0}, dataDate=${data?.dataDate}`);
     return data;
   } catch (err) {
     console.error('[KrishiMitra API] getMandiPrices error:', err);
