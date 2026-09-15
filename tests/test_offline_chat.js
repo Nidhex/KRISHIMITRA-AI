@@ -184,6 +184,34 @@ async function main() {
     assert.ok(gemmaContent.includes('Bypassing backend'), 'Must bypass backend fetch when offline');
   });
 
+  // Test T: Crop Isolation & Wrong Crop Prevention
+  runTest('Test T: Crop Isolation & Wrong Crop Prevention (Tomato query must not return wheat)', () => {
+    const res = rag.answerQuestion('how to cure leaf curl in tomato crop?');
+    assert.strictEqual(res.success, true);
+    assert.ok(!res.reply.toLowerCase().includes('wheat yellow rust'), 'Tomato leaf curl answer MUST NOT return Wheat Yellow Rust');
+  });
+
+  // Test U: Non-Agricultural Query Rejection
+  runTest('Test U: Non-Agricultural Query Rejection ("repair motorcycle engine")', () => {
+    const res = rag.answerQuestion('how to repair a 150cc motorcycle engine');
+    assert.strictEqual(res.docCount, 0, 'Non-agricultural query must match 0 documents');
+    assert.ok(res.reply.includes("couldn't find enough information") || res.reply.includes('सटीक उत्तर नहीं मिला'), 'Must return honest non-ag error message');
+  });
+
+  // Test V: Chat Persistence & Offline Mic Warning Code Check
+  runTest('Test V: Chat Persistence & Offline Mic Warning Code Check', () => {
+    const gemmaPath = path.join(__dirname, '..', 'js', 'gemmaChat.js');
+    const gemmaContent = fs.readFileSync(gemmaPath, 'utf8');
+    assert.ok(gemmaContent.includes('km_chat_history'), 'Must use km_chat_history localStorage key');
+    assert.ok(gemmaContent.includes('clearKrishiChat'), 'Must export clearKrishiChat function');
+    assert.ok(gemmaContent.includes('Offline AI (Local Knowledge)'), 'Must badge offline answers cleanly');
+
+    const scriptPath = path.join(__dirname, '..', 'script.js');
+    const scriptContent = fs.readFileSync(scriptPath, 'utf8');
+    assert.ok(scriptContent.includes('mic_status_offline'), 'Must include mic_status_offline key');
+    assert.ok(scriptContent.includes('Voice AI requires internet'), 'Must inform user voice requires internet');
+  });
+
   console.log('\n--------------------------------------------------');
   console.log(`  AUTOMATED TEST SUMMARY: ${passCount} PASSED / ${failCount} FAILED`);
   console.log('--------------------------------------------------\n');

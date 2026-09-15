@@ -619,8 +619,187 @@ const i18n = {
     lbl_soil_type: "ਮਿੱਟੀ ਦੀ ਕਿਸਮ",
     lbl_active_crops: "ਬੀਜੀਆਂ ਫ਼ਸਲਾਂ",
     save_profile: "ਪ੍ਰੋਫਾਈਲ ਸੁਰੱਖਿਅਤ ਕਰੋ",
-    reports_history: "ਤੁਹਾਡੀਆਂ ਸੁਰੱਖਿਅਤ AI ਰਿਪੋਰਟਾਂ"
+    reports_history: "ਤੁਹਾਡੀਆਂ ਸੁਰੱਖਿਅਤ AI ਰਿਪੋਰਟਾਂ",
+    mic_status_offline: "ਵੌਇਸ AI ਲਈ ਇੰਟਰਨੈੱਟ ਜ਼ਰੂਰੀ ਹੈ। ਤੁਸੀਂ ਔਫਲਾਈਨ AI ਲਈ ਆਪਣਾ ਸਵਾਲ ਟਾਈਪ ਕਰ ਸਕਦੇ ਹੋ।",
+    chat_input_placeholder: "ਆਪਣਾ ਸਵਾਲ ਇੱਥੇ ਟਾਈਪ ਕਰੋ ਅਤੇ ਭੇਜੋ..."
+  },
+  bn: {
+    tagline: "প্রতিটি কৃষকের জন্য সহজ AI সহায়তা",
+    text_size: "লেখার আকার:",
+    high_contrast: "কন্ট্রাস্ট মোড",
+    welcome_greeting: "নমস্কার",
+    welcome_message: "আজ আপনি কোন কৃষি সেবা ব্যবহার করতে চান?",
+    quick_actions: "দ্রুত বিকল্প",
+    today_weather: "আজকের আবহাওয়া",
+    bot_welcome_msg: "নমস্কার! আমি আপনার কৃষিমিত্র সহকারী। আজ আপনার ফসল, আবহাওয়া বা বাজারের দাম নিয়ে কীভাবে সাহায্য করতে পারি?",
+    mic_status_idle: "প্রশ্ন জিজ্ঞাসা করতে মাইক্রোফোন চাপুন",
+    mic_status_listening: "শুনছি... বলুন",
+    mic_status_offline: "ভয়েস AI এর জন্য ইন্টারনেট প্রয়োজন। আপনি অফলাইন AI এর জন্য আপনার প্রশ্ন টাইপ করতে পারেন।",
+    chat_input_placeholder: "আপনার প্রশ্ন এখানে টাইপ করুন এবং পাঠান...",
+    suggested_questions: "এগুলি জিজ্ঞাসা করে দেখুন:",
+    voice_title: "কৃষিমিত্র ভয়েস AI কে জিজ্ঞাসা করুন",
+    voice_desc: "মাইক্রোফোন বোতাম চাপুন এবং প্রশ্ন জিজ্ঞাসা করুন। আপনার মাতৃভাষায় বলুন।",
+    speaking_in: "কথা বলার ভাষা:"
+  },
+  ta: {
+    tagline: "ஒவ்வொரு விவசாயிக்கும் எளிய AI உதவி",
+    text_size: "எழுத்து அளவு:",
+    high_contrast: "கான்ட்ராஸ்ட் பயன்முறை",
+    welcome_greeting: "வணக்கம்",
+    welcome_message: "இன்று நீங்கள் எந்த விவசாய சேவையை பயன்படுத்த விரும்புகிறீர்கள்?",
+    quick_actions: "விரைவு చర్యகள்",
+    today_weather: "இன்றைய வானிலை",
+    bot_welcome_msg: "வணக்கம்! நான் உங்கள் கிருஷ்மித்ரா உதவியாளர். இன்று உங்கள் பயிர்கள், வானிலை அல்லது சந்தை விலைகளில் நான் எவ்வாறு உதவ முடியும்?",
+    mic_status_idle: "கேள்வி கேட்க மைக்ரோஃபோனை அழுத்தவும்",
+    mic_status_listening: "கேட்கிறது... பேசுங்கள்",
+    mic_status_offline: "வாய்ஸ் AI க்கு இணையம் தேவை. ஆஃப்லைன் AI க்கு உங்கள் கேள்வியை தட்டச்சு செய்யலாம்.",
+    chat_input_placeholder: "உங்கள் கேள்வியை இங்கே தட்டச்சு செய்து அனுப்பவும்...",
+    suggested_questions: "இவற்றை கேட்டுப் பாருங்கள்:",
+    voice_title: "கிருஷ்மித்ரா வாய்ஸ் AI இடம் கேளுங்கள்",
+    voice_desc: "மைக்ரோஃபோனை அழுத்தி உங்கள் கேள்விகளைக் கேளுங்கள்.",
+    speaking_in: "பேசும் மொழி:"
+  },
+  te: {
+    tagline: "ప్రతి రైతుకు సరళమైన AI సహాయం",
+    text_size: "అక్షరాల పరిమాణం:",
+    high_contrast: "కాంట్రాస్ట్ మోడ్",
+    welcome_greeting: "నమస్కారం",
+    welcome_message: "ఈరోజు మీరు ఏ వ్యవసాయ సేవను ఉపయోగించాలనుకుంటున్నారు?",
+    quick_actions: "త్వరిత చర్యలు",
+    today_weather: "ఈరోజు వాతావరణం",
+    bot_welcome_msg: "నమస్కారం! నేను మీ కృషిమిత్ర సహాయకుడిని. ఈరోజు మీ పంటలు, వాతావరణం లేదా మార్కెట్ ధరలతో నేను ఎలా సహాయపడగలను?",
+    mic_status_idle: "ప్రశ్న అడగడానికి మైక్రోఫోన్‌ను నొక్కండి",
+    mic_status_listening: "వింటోంది... మాట్లాడండి",
+    mic_status_offline: "వాయిస్ AI కి ఇంటర్నెట్ అవసరం. మీరు ఆఫ్‌లైన్ AI కోసం మీ ప్రశ్నను టైప్ చేయవచ్చు.",
+    chat_input_placeholder: "మీ ప్రశ్నను ఇక్కడ టైప్ చేసి పంపండి...",
+    suggested_questions: "ఇవి అడిగి చూడండి:",
+    voice_title: "కృషిమిత్ర వాయిస్ AIని అడగండి",
+    voice_desc: "మైక్రోఫోన్‌ను పట్టుకుని మీ ప్రశ్నలను అడగండి.",
+    speaking_in: "మాట్లాడే భాష:"
+  },
+  kn: {
+    tagline: "ಪ್ರತಿಯೊಬ್ಬ ರೈತನಿಗೂ ಸರಳ AI ನೆರವು",
+    text_size: "ಅಕ್ಷರದ ಗಾತ್ರ:",
+    high_contrast: "ಕಾಂಟ್ರಾಸ್ಟ್ ಮೋಡ್",
+    welcome_greeting: "ನಮಸ್ಕಾರ",
+    welcome_message: "ಇಂದು ನೀವು ಯಾವ ಕೃಷಿ ಸೇವೆಯನ್ನು ಬಳಸಲು ಬಯಸುತ್ತೀರಿ?",
+    quick_actions: "ತ್ವರಿತ ಕ್ರಿಯೆಗಳು",
+    today_weather: "ಇಂದಿನ ಹವಾಮಾನ",
+    bot_welcome_msg: "ನಮಸ್ಕಾರ! ನಾನು ನಿಮ್ಮ ಕೃಷಿಮಿತ್ರ ಸಹಾಯಕ. ಇಂದು ನಿಮ್ಮ ಬೆಳೆಗಳು, ಹವಾಮಾನ ಅಥವಾ ಮಾರುಕಟ್ಟೆ ಬೆಲೆಗಳಲ್ಲಿ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಲ್ಲೆ?",
+    mic_status_idle: "ಪ್ರಶ್ನೆ ಕೇಳಲು ಮೈಕ್ರೋಫೋನ್ ಒತ್ತಿ",
+    mic_status_listening: "ಕೇಳುತ್ತಿದೆ... ಮಾತನಾಡಿ",
+    mic_status_offline: "ವಾಯ್ಸ್ AI ಗಾಗಿ ಇಂಟರ್ನೆಟ್ ಅಗತ್ಯವಿದೆ. ಆಫ್‌ಲೈನ್ AI ಗಾಗಿ ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಟೈಪ್ ಮಾಡಬಹುದು.",
+    chat_input_placeholder: "ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ ಮತ್ತು ಕಳುಹಿಸಿ...",
+    suggested_questions: "ಇವುಗಳನ್ನು ಕೇಳಿ ನೋಡಿ:",
+    voice_title: "ಕೃಷಿಮಿತ್ರ ವಾಯ್ಸ್ AI ಅನ್ನು ಕೇಳಿ",
+    voice_desc: "ಮೈಕ್ರೋಫೋನ್ ಹಿಡಿದು ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಿ.",
+    speaking_in: "ಮಾತನಾಡುವ ಭಾಷೆ:"
+  },
+  ml: {
+    tagline: "ഓരോ കർഷകനും ലളിതമായ AI സഹായം",
+    text_size: "അക്ഷര വലിപ്പം:",
+    high_contrast: "കോൺട്രാസ്റ്റ് മോഡ്",
+    welcome_greeting: "നമസ്കാരം",
+    welcome_message: "ഇന്ന് നിങ്ങൾക്ക് ഏത് കാർഷിക സേവനമാണ് ഉപയോഗിക്കേണ്ടത്?",
+    quick_actions: "ദ്രുത പ്രവർത്തനങ്ങൾ",
+    today_weather: "ഇന്നത്തെ കാലാവസ്ഥ",
+    bot_welcome_msg: "നമസ്കാരം! ഞാൻ നിങ്ങളുടെ കൃഷിമിത്ര സഹായിയാണ്. ഇന്ന് നിങ്ങളുടെ വിളകൾ, കാലാവസ്ഥ അല്ലെങ്കിൽ വിപണി വിലകൾ എന്നിവയിൽ എനിക്ക് എങ്ങനെ സഹായിക്കാനാകും?",
+    mic_status_idle: "ചോദ്യം ചോദിക്കാൻ മൈക്രോഫോൺ അമർത്തുക",
+    mic_status_listening: "കേൾക്കുന്നു... സംസാരിക്കൂ",
+    mic_status_offline: "വോയ്‌സ് AI-യ്‌ക്ക് ഇന്റർനെറ്റ് ആവശ്യമാണ്. ഓഫ്‌ലൈൻ AI-യ്‌ക്കായി നിങ്ങൾക്ക് ചോദ്യം ടൈപ്പ് ചെയ്യാം.",
+    chat_input_placeholder: "നിങ്ങളുടെ ചോദ്യം ഇവിടെ ടൈപ്പ് ചെയ്ത് അയയ്ക്കുക...",
+    suggested_questions: "ഇവ ചോദിച്ചു നോക്കൂ:",
+    voice_title: "കൃഷിമിത്ര വോയ്‌സ് AI-യോട് ചോദിക്കൂ",
+    voice_desc: "മൈക്രോഫോൺ പിടിച്ച് നിങ്ങളുടെ ചോദ്യങ്ങൾ ചോദിക്കുക.",
+    speaking_in: "സംസാരിക്കുന്ന ഭാഷ:"
+  },
+  or: {
+    tagline: "ପ୍ରତ୍ୟେକ କୃଷକଙ୍କ ପାଇଁ ସରଳ AI ସହାୟତା",
+    text_size: "ଅକ୍ଷର ଆକାର:",
+    high_contrast: "କଣ୍ଟ୍ରାଷ୍ଟ ମୋଡ୍",
+    welcome_greeting: "ନମସ୍କାର",
+    welcome_message: "ଆଜି ଆପଣ କେଉଁ କୃଷି ସେବା ବ୍ୟବହାର କରିବାକୁ ଚାହାଁନ୍ତି?",
+    quick_actions: "ଦ୍ରୁତ ବିକଳ୍ପ",
+    today_weather: "ଆଜିର ପାଣିପାଗ",
+    bot_welcome_msg: "ନମସ୍କାର! ମୁଁ ଆପଣଙ୍କର କୃଷିମିତ୍ର ସହାୟକ। ଆଜି ଆପଣଙ୍କ ଫସଲ, ପାଣିପାଗ କିମ୍ବା ମଣ୍ଡି ଦରରେ ମୁଁ କିପରି ସାହାଯ୍ୟ କରିପାରିବି?",
+    mic_status_idle: "ପ୍ରଶ୍ନ ପଚାରିବାକୁ ମାଇକ୍ରୋଫୋନ୍ ଦବାନ୍ତୁ",
+    mic_status_listening: "ଶୁଣୁଛି... କୁହନ୍ତୁ",
+    mic_status_offline: "ଭଏସ୍ AI ପାଇଁ ଇଣ୍ଟରନେଟ୍ ଆବଶ୍ୟକ। ଆପଣ ଅଫଲାଇନ୍ AI ପାଇଁ ପ୍ରଶ୍ନ ଟାଇପ୍ କରିପାରିବେ।",
+    chat_input_placeholder: "ଆପଣଙ୍କ ପ୍ରଶ୍ନ ଏଠାରେ ଟାଇପ୍ କରନ୍ତୁ ଏବଂ ପଠାନ୍ତୁ...",
+    suggested_questions: "ଏଗୁଡ଼ିକ ପଚାରି ଦେଖନ୍ତୁ:",
+    voice_title: "କୃଷିମିତ୍ର ଭଏସ୍ AI କୁ ପଚାରନ୍ତୁ",
+    voice_desc: "ମାଇକ୍ରୋଫୋନ୍ ଧରି ଆପଣଙ୍କର ପ୍ରଶ୍ନ ପଚାରନ୍ତୁ।",
+    speaking_in: "କହିବାର ଭାଷା:"
   }
+};
+
+const SUGGESTED_QUESTIONS_I18N = {
+  en: [
+    "What crops are best for black soil?",
+    "Why are my rice crop leaves turning yellow?",
+    "What is the wheat price in Mandi today?",
+    "How do I apply for PM-KISAN?"
+  ],
+  hi: [
+    "काली मिट्टी में कौन सी फसल अच्छी होती है?",
+    "धान के पत्ते पीले क्यों पड़ रहे हैं?",
+    "आज गेहूं का मंडी भाव क्या है?",
+    "पीएम किसान योजना में आवेदन कैसे करें?"
+  ],
+  gu: [
+    "કાળી જમીનમાં કયો પાક સારો થાય છે?",
+    "ડાંગરના પાકના પાંદડા પીળા કેમ પડી રહ્યા છે?",
+    "આજે ઘઉંનો મંડી ભાવ શું છે?",
+    "પીએમ કિસાન યોજનામાં અરજી કેવી રીતે કરવી?"
+  ],
+  mr: [
+    "काळ्या मातीत कोणते पीक चांगले येते?",
+    "तांदळाची पाने पिवळी का पडत आहेत?",
+    "आज गव्हाचा बाजार भाव काय आहे?",
+    "पीएम किसान योजनेत अर्ज कसा करावा?"
+  ],
+  pa: [
+    "ਕਾਲੀ ਮਿੱਟੀ ਵਿੱਚ ਕਿਹੜੀ ਫ਼ਸਲ ਚੰਗੀ ਹੁੰਦੀ ਹੈ?",
+    "ਝੋਨੇ ਦੇ ਪੱਤੇ ਪੀਲੇ ਕਿਉਂ ਹੋ ਰਹੇ ਹਨ?",
+    "ਅੱਜ ਕਣਕ ਦਾ ਮੰਡੀ ਭਾਅ ਕੀ ਹੈ?",
+    "ਪੀਐਮ ਕਿਸਾਨ ਯੋਜਨਾ ਵਿੱਚ ਅਰਜ਼ੀ ਕਿਵੇਂ ਦੇਣੀ ਹੈ?"
+  ],
+  bn: [
+    "কালো মাটিতে কোন ফসল ভালো হয়?",
+    "ধানের পাতা হলুদ হয়ে যাচ্ছে কেন?",
+    "আজ গমের মণ্ডির দাম কত?",
+    "পিএম কিষাণ যোজনায় আবেদন করবেন কীভাবে?"
+  ],
+  ta: [
+    "கரிசல் மண்ணில் எந்த பயிர் சிறந்தது?",
+    "நெல் இலைகள் ஏன் மஞ்சளாக மாறுகின்றன?",
+    "இன்று கோதுமை சந்தை விலை என்ன?",
+    "பிஎம் கிசான் திட்டத்திற்கு எவ்வாறு விண்ணப்பிப்பது?"
+  ],
+  te: [
+    "నల్ల నేలల్లో ఏ పంటలు మంచివి?",
+    "వరి ఆకులు పసుపు రంగులోకి ఎందుకు మారుతున్నాయి?",
+    "ఈరోజు గోధుమ మార్కెట్ ధర ఎంత?",
+    "పిఎం కిసాన్ పథకానికి ఎలా దరఖాస్తు చేయాలి?"
+  ],
+  kn: [
+    "ಕಪ್ಪು ಮಣ್ಣಿನಲ್ಲಿ ಯಾವ ಬೆಳೆ ಉತ್ತಮ?",
+    "ಭತ್ತದ ಎಲೆಗಳು ಹಳದಿಯಾಗುತ್ತಿರುವುದು ಏಕೆ?",
+    "ಇಂದು ಗೋಧಿ ಮಾರುಕಟ್ಟೆ ಬೆಲೆ ఎంత?",
+    "ಪಿಎಂ ಕಿಸಾನ್ ಯೋಜನೆಗೆ ಅರ್ಜಿ ಸಲ್ಲಿಸುವುದು ಹೇಗೆ?"
+  ],
+  ml: [
+    "കറുത്ത മണ്ണിൽ ഏത് വിളയാണ് നല്ലത്?",
+    "നെല്ലിന്റെ ഇല മഞ്ഞയാകുന്നതും എന്തുകൊണ്ട്?",
+    "ഇന്ന് ഗോതമ്പിന്റെ മണ്ടി വില എത്രയാണ്?",
+    "പിഎം കിസാൻ പദ്ധതിക്ക് എങ്ങനെ അപേക്ഷിക്കാം?"
+  ],
+  or: [
+    "କଳା ମାଟିରେ କେଉଁ ଫସଲ ଭଲ ହୁଏ?",
+    "ଧାନ ପତ୍ର ହଳଦିଆ ହେଉଛି କାହିଁକି?",
+    "ଆଜି ଗହମର ମଣ୍ଡି ଦର କେତେ?",
+    "ପିଏମ୍ କିଷାନ ଯୋଜନାରେ କିପରି ଆବେଦନ କରିବେ?"
+  ]
 };
 
 // --------------------------------------------------------------------------
@@ -775,7 +954,40 @@ const translateUI = () => {
     else if (lang === 'kn') searchInput.placeholder = "ಬೆಳೆಯನ್ನು ಹುಡುಕಿ (ಉದಾ: ಭತ್ತ, ಗೋಧಿ)...";
     else if (lang === 'ml') searchInput.placeholder = "വിള തിരയുക (ഉദാ: നെല്ല്, ഗോതമ്പ്)...";
     else if (lang === 'or') searchInput.placeholder = "ଫସଲ ଖୋଜନ୍ତୁ (ଯେପରି ଧାନ, ଗହମ)...";
-    else searchInput.placeholder = "Search crop (e.g. Paddy, Wheat, Tomato, Potato)...";
+  // Update Voice & Text AI UI components
+  const voiceSuggestionsContainer = document.getElementById('voice-suggestions-list');
+  if (voiceSuggestionsContainer && typeof SUGGESTED_QUESTIONS_I18N !== 'undefined') {
+    const currentQuestions = SUGGESTED_QUESTIONS_I18N[lang] || SUGGESTED_QUESTIONS_I18N.en;
+    voiceSuggestionsContainer.innerHTML = currentQuestions.map(q => 
+      `<button class="btn-suggestion" onclick="askPresetQuestion(this.innerText)">"${q}"</button>`
+    ).join('');
+  }
+
+  const kmChatInput = document.getElementById('km-chat-input');
+  if (kmChatInput) {
+    kmChatInput.placeholder = trans.chat_input_placeholder || "Type your question here and press Send...";
+  }
+
+  const micStatusLabel = document.getElementById('mic-status-label');
+  if (micStatusLabel) {
+    if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+      micStatusLabel.innerHTML = `<span style="color:#e65100;font-weight:600;">⚠️ ${trans.mic_status_offline || "Voice AI requires internet. You can type your question for Offline AI."}</span>`;
+    } else {
+      micStatusLabel.innerHTML = `<span data-i18n="mic_status_idle">${trans.mic_status_idle || "Tap the microphone to ask a question"}</span>`;
+    }
+  }
+
+  const voiceLangSelect = document.getElementById('voice-lang-select');
+  if (voiceLangSelect) {
+    const codeMap = {
+      hi: 'hi-IN', gu: 'gu-IN', mr: 'mr-IN', pa: 'pa-IN',
+      bn: 'bn-IN', ta: 'ta-IN', te: 'te-IN', kn: 'kn-IN',
+      ml: 'ml-IN', or: 'or-IN', en: 'en-IN'
+    };
+    const targetVal = codeMap[lang] || 'en-IN';
+    if (voiceLangSelect.value !== targetVal) {
+      voiceLangSelect.value = targetVal;
+    }
   }
 
   // Update active layouts translations dynamically if visible
@@ -2100,6 +2312,20 @@ const setupVoiceAssistant = () => {
   let recognition = null;
   let isListening = false;
 
+  if (langSelect) {
+    langSelect.addEventListener('change', (e) => {
+      const val = e.target.value;
+      const shortLang = val.split('-')[0];
+      appState.currentLanguage = shortLang;
+      localStorage.setItem('km_lang', shortLang);
+      const topLangSelect = document.getElementById('lang-select');
+      if (topLangSelect && topLangSelect.value !== shortLang) {
+        topLangSelect.value = shortLang;
+      }
+      translateUI();
+    });
+  }
+
   // Check if Web Speech API is supported
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (SpeechRecognition) {
@@ -2109,23 +2335,23 @@ const setupVoiceAssistant = () => {
 
     recognition.onstart = () => {
       isListening = true;
-      micBtn.classList.add('recording');
-      micLabel.innerHTML = `<span data-i18n="mic_status_listening">Listening... Speak now</span>`;
+      if (micBtn) micBtn.classList.add('recording');
+      if (micLabel) micLabel.innerHTML = `<span data-i18n="mic_status_listening">Listening... Speak now</span>`;
       translateUI();
     };
 
     recognition.onend = () => {
       isListening = false;
-      micBtn.classList.remove('recording');
-      micLabel.innerHTML = `<span data-i18n="mic_status_idle">Tap the microphone to ask a question</span>`;
+      if (micBtn) micBtn.classList.remove('recording');
+      if (micLabel) micLabel.innerHTML = `<span data-i18n="mic_status_idle">Tap the microphone to ask a question</span>`;
       translateUI();
     };
 
     recognition.onerror = (e) => {
       console.log("Speech recognition error", e);
       isListening = false;
-      micBtn.classList.remove('recording');
-      micLabel.innerText = "Error capturing voice. Try typing or tap suggestions.";
+      if (micBtn) micBtn.classList.remove('recording');
+      if (micLabel) micLabel.innerText = "Error capturing voice. Try typing or tap suggestions.";
     };
 
     recognition.onresult = (e) => {
@@ -2134,33 +2360,49 @@ const setupVoiceAssistant = () => {
     };
   }
 
-  micBtn.addEventListener('click', () => {
-    playSound('snd-click');
-    if (!SpeechRecognition) {
-      // Simulator for unsupported browsers (simulate random farmer question)
-      micBtn.classList.add('recording');
-      micLabel.innerText = "Simulating voice input...";
-      setTimeout(() => {
-        micBtn.classList.remove('recording');
-        const questions = [
-          "What is the wheat price in Mandi today?",
-          "How do I cure rice brown spots?",
-          "Show me details of PM Kusum Scheme",
-          "What is the weather advisory today?"
-        ];
-        const randomQ = questions[Math.floor(Math.random() * questions.length)];
-        handleFarmerVoiceQuestion(randomQ);
-      }, 1500);
-      return;
-    }
+  if (micBtn) {
+    micBtn.addEventListener('click', () => {
+      playSound('snd-click');
+      const trans = i18n[appState.currentLanguage] || i18n.en;
 
-    if (isListening) {
-      recognition.stop();
-    } else {
-      recognition.lang = langSelect.value;
-      recognition.start();
-    }
-  });
+      // Strict Offline check: Do NOT attempt SpeechRecognition network call when offline
+      if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+        if (micLabel) {
+          micLabel.innerHTML = `<span style="color:#e65100;font-weight:600;">⚠️ ${trans.mic_status_offline || "Voice AI requires internet. You can type your question for Offline AI."}</span>`;
+        }
+        return;
+      }
+
+      if (!SpeechRecognition) {
+        // Simulator for unsupported browsers (simulate random farmer question)
+        micBtn.classList.add('recording');
+        if (micLabel) micLabel.innerText = "Simulating voice input...";
+        setTimeout(() => {
+          micBtn.classList.remove('recording');
+          const questions = (typeof SUGGESTED_QUESTIONS_I18N !== 'undefined' && SUGGESTED_QUESTIONS_I18N[appState.currentLanguage]) || [
+            "What is the wheat price in Mandi today?",
+            "How do I cure rice brown spots?",
+            "Show me details of PM Kusum Scheme",
+            "What is the weather advisory today?"
+          ];
+          const randomQ = questions[Math.floor(Math.random() * questions.length)];
+          handleFarmerVoiceQuestion(randomQ);
+        }, 1500);
+        return;
+      }
+
+      if (isListening) {
+        recognition.stop();
+      } else {
+        recognition.lang = langSelect ? langSelect.value : 'en-IN';
+        try {
+          recognition.start();
+        } catch (err) {
+          console.warn("Speech recognition start failed:", err);
+        }
+      }
+    });
+  }
 };
 
 var handleFarmerVoiceQuestion = function (questionText) {

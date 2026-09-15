@@ -317,6 +317,81 @@
       };
     }
 
+    // ── Local Storage Chat Persistence Helpers ────────────────────────────
+    function saveToLocalStorage(content, typeClass, meta, timeStr) {
+      try {
+        let saved = JSON.parse(localStorage.getItem('km_chat_history') || '[]');
+        saved.push({
+          content: content,
+          typeClass: typeClass,
+          meta: meta,
+          time: timeStr || new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })
+        });
+        if (saved.length > 30) saved = saved.slice(-30);
+        localStorage.setItem('km_chat_history', JSON.stringify(saved));
+      } catch (e) {
+        console.warn('[KrishiMitra] Could not save chat history to localStorage', e);
+      }
+    }
+
+    function restoreFromLocalStorage() {
+      try {
+        const raw = localStorage.getItem('km_chat_history');
+        if (!raw) return;
+        const saved = JSON.parse(raw);
+        if (!Array.isArray(saved) || saved.length === 0) return;
+
+        const box = document.getElementById('chat-messages-box');
+        if (!box) return;
+
+        box.innerHTML = '';
+        conversationHistory = [];
+
+        saved.forEach(item => {
+          if (item.typeClass.includes('user-message')) {
+            conversationHistory.push({ role: 'user', content: item.content });
+          } else if (item.typeClass.includes('bot-message')) {
+            conversationHistory.push({ role: 'assistant', content: item.content });
+          }
+
+          const bubble = document.createElement('div');
+          bubble.className = `chat-bubble ${item.typeClass}`;
+          if (item.typeClass.includes('bot-message')) {
+            const htmlBody = formatMessageText(item.content);
+            let badgeHtml = '';
+            if (item.meta) {
+              if (item.meta.source === 'sarvam') {
+                badgeHtml = `<span class="chat-provider-badge">🟢 Online AI — Sarvam (${item.meta.model || 'sarvam-105b'})</span>`;
+              } else if (item.meta.source === 'gemini') {
+                badgeHtml = `<span class="chat-provider-badge">✨ Gemini (${item.meta.model || 'gemini-3.5-flash'})</span>`;
+              } else if (item.meta.source === 'offline_knowledge' || item.meta.source === 'offline_cache' || item.meta.source === 'offline_notice') {
+                badgeHtml = `<span class="chat-provider-badge" style="background:#fff3e0;color:#e65100;">🟠 Offline AI (Local Knowledge)</span>`;
+              } else if (item.meta.source === 'rag_direct') {
+                badgeHtml = `<span class="chat-provider-badge">📚 Krishi RAG</span>`;
+              }
+            }
+            bubble.innerHTML = `
+              <div>${htmlBody}</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;">
+                ${badgeHtml}
+                <span class="chat-time">${item.time || ''}</span>
+              </div>
+            `;
+          } else {
+            bubble.innerHTML = `
+              <p style="margin:0;">${item.content}</p>
+              <span class="chat-time">${item.time || ''}</span>
+            `;
+          }
+          box.appendChild(bubble);
+        });
+        box.scrollTop = box.scrollHeight;
+        logEntry('INFO', `Restored ${saved.length} messages from local history storage.`);
+      } catch (e) {
+        console.warn('[KrishiMitra] Could not restore chat history from localStorage', e);
+      }
+    }
+
     // ── Function to Add Chat Message with Markdown Formatting ──────────────
     function appendChatMessage(content, typeClass, meta = null) {
       if (typeof document === 'undefined') return;
@@ -332,11 +407,11 @@
         let badgeHtml = '';
         if (meta) {
           if (meta.source === 'sarvam') {
-            badgeHtml = `<span class="chat-provider-badge">🌾 Sarvam AI (${meta.model || 'sarvam-105b'})</span>`;
+            badgeHtml = `<span class="chat-provider-badge">🟢 Online AI — Sarvam (${meta.model || 'sarvam-105b'})</span>`;
           } else if (meta.source === 'gemini') {
             badgeHtml = `<span class="chat-provider-badge">✨ Gemini (${meta.model || 'gemini-3.5-flash'})</span>`;
           } else if (meta.source === 'offline_knowledge' || meta.source === 'offline_cache' || meta.source === 'offline_notice') {
-            badgeHtml = `<span class="chat-provider-badge" style="background:#fff3e0;color:#e65100;">📴 Offline AI (Local Knowledge)</span>`;
+            badgeHtml = `<span class="chat-provider-badge" style="background:#fff3e0;color:#e65100;">🟠 Offline AI (Local Knowledge)</span>`;
           } else if (meta.source === 'rag_direct') {
             badgeHtml = `<span class="chat-provider-badge">📚 Krishi RAG</span>`;
           }
@@ -357,23 +432,33 @@
 
       box.appendChild(bubble);
       box.scrollTop = box.scrollHeight;
+
+      // Save to local storage for persistent chat history across sessions
+      saveToLocalStorage(content, typeClass, meta, time);
     }
 
     // ── Clear Chat History Function ────────────────────────────────────────
     window.clearKrishiChat = function () {
       conversationHistory = [];
+      try {
+        localStorage.removeItem('km_chat_history');
+      } catch (_) {}
+
       if (typeof document !== 'undefined') {
         const box = document.getElementById('chat-messages-box');
         if (box) {
+          const currentLang = (typeof window !== 'undefined' && window.appState && window.appState.currentLanguage) || 'en';
+          const welcomeText = (window.i18n && window.i18n[currentLang] && window.i18n[currentLang].bot_welcome_msg) ||
+            "Namaste! I am your KrishiMitra assistant. How can I help you with your crops, weather, diseases, or market prices today?";
           box.innerHTML = `
             <div class="chat-bubble bot-message">
-              <p>Namaste! I am your KrishiMitra assistant. How can I help you with your crops, weather, diseases, or market prices today?</p>
+              <p>${welcomeText}</p>
               <span class="chat-time">${new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}</span>
             </div>
           `;
         }
       }
-      logEntry('INFO', 'Conversation memory cleared.');
+      logEntry('INFO', 'Conversation memory and local storage cleared.');
     };
 
     // ── Intercept and Patch handleFarmerVoiceQuestion ──────────────────────
@@ -446,6 +531,9 @@
       log: logEntry,
       clear: window.clearKrishiChat
     };
+
+    // ── Restore saved chat history on startup ─────────────────────────────
+    restoreFromLocalStorage();
 
     logEntry('INFO', 'KrishiMitra Multilingual Sarvam AI Chat ready.');
   }
