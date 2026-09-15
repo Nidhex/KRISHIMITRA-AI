@@ -17,7 +17,7 @@ const LOCAL_DEV_URL  = 'http://10.0.2.2:5000'; // Standard Android emulator loca
 export const ApiConfig: EnvironmentConfig = {
   // Default to production Render URL; easily overridden for dev/staging
   baseUrl: process.env.EXPO_PUBLIC_API_URL || PRODUCTION_URL,
-  timeoutMs: 30000,       // 30-second timeout for AI inference & model calls
+  timeoutMs: 45000,       // 45-second timeout for AI inference & Render cold starts
   healthTimeoutMs: 8000,  // 8-second timeout for health check ping
   visionTimeoutMs: 180000, // 180-second dedicated timeout for Vision AI crop & soil scans
   environmentName: (process.env.EXPO_PUBLIC_ENV as any) || 'production',

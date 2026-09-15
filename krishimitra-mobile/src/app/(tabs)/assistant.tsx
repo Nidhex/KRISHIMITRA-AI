@@ -79,20 +79,6 @@ export default function AssistantScreen() {
     const text = (textToSend || inputText).trim();
     if (!text) return;
 
-    const netState = networkService.getState();
-    if (!netState.isDeviceConnected) {
-      const offlineMsg: ChatMessageItem = {
-        id: `sys_${Date.now()}`,
-        role: 'system',
-        content: getTranslation(selectedLang, 'offlineNotice'),
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        status: 'sent',
-      };
-      setMessages((prev) => [...prev, offlineMsg]);
-      scrollToBottom();
-      return;
-    }
-
     const userMsgId = `user_${Date.now()}`;
     const userMsg: ChatMessageItem = {
       id: userMsgId,

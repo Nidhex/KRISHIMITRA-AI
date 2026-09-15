@@ -158,15 +158,33 @@ class MobileApiClient {
    * AI Multilingual Chat — POST /api/chat
    */
   async sendChat(payload: ChatRequestPayload): Promise<ChatResponseData> {
+    const startTime = Date.now();
+    const targetUrl = this.getUrl(Endpoints.chat);
     try {
-      const res = await fetchWithTimeout(this.getUrl(Endpoints.chat), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+      console.log(`[MOBILE_CHAT] Sending request to ${targetUrl}`, {
+        language: payload.language || 'hi',
+        messageLength: payload.message?.length || 0,
+        historyLength: Array.isArray(payload.history) ? payload.history.length : 0,
       });
 
+      const res = await fetchWithTimeout(
+        targetUrl,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        },
+        ApiConfig.timeoutMs
+      );
+
+      const latencyMs = Date.now() - startTime;
       const data = await res.json();
+
       if (!res.ok) {
+        console.warn(`[MOBILE_CHAT] HTTP ${res.status} returned from backend in ${latencyMs}ms`, data);
         return {
           success: false,
           reply: '',
@@ -174,15 +192,23 @@ class MobileApiClient {
           model: 'none',
           language: payload.language || 'hi',
           inferenceMs: 0,
-          totalMs: 0,
+          totalMs: latencyMs,
           error: data.error || `Server error ${res.status}`,
           userError: data.userError || 'एआई सेवा अभी व्यस्त है। कृपया पुनः प्रयास करें।',
           errorCode: data.errorCode || 'CHAT_FAILED',
         };
       }
 
+      console.log(`[MOBILE_CHAT] Response received successfully in ${latencyMs}ms`, {
+        source: data.source,
+        model: data.model,
+        replyLength: data.reply?.length || 0,
+      });
+
       return data;
     } catch (err: any) {
+      const latencyMs = Date.now() - startTime;
+      console.error(`[MOBILE_CHAT] Network/Request failed after ${latencyMs}ms:`, err.message);
       return {
         success: false,
         reply: '',
@@ -190,7 +216,7 @@ class MobileApiClient {
         model: 'none',
         language: payload.language || 'hi',
         inferenceMs: 0,
-        totalMs: 0,
+        totalMs: latencyMs,
         error: err.message,
         userError: err.userMessage || 'नेटवर्क समस्या के कारण मैसेज नहीं भेजा जा सका।',
         errorCode: err.errorCode || 'NETWORK_ERROR',

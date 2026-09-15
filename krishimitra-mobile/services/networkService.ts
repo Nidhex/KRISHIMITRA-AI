@@ -72,11 +72,11 @@ class MobileNetworkService {
   }
 
   private handleNetInfoChange(netInfoState: any) {
-    // Rule: If isConnected === false -> OFFLINE
-    // Rule: If reachability is unknown/null -> treat device as CONNECTED/CHECKING, NOT OFFLINE.
-    const isConnected = netInfoState?.isConnected ?? true;
+    // Rule: Treat device as disconnected ONLY if isConnected is explicitly false.
+    // Rule: If reachability or connection status is unknown/null (e.g. startup probe), treat device as connected.
+    const isDisconnected = netInfoState?.isConnected === false;
 
-    if (!isConnected) {
+    if (isDisconnected) {
       this.currentState = {
         isDeviceConnected: false,
         isBackendReachable: false,
