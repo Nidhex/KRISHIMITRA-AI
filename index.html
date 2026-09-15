@@ -599,34 +599,34 @@
       <div class="crop-analysis-card card" id="market-crop-details">
         <div class="crop-title-row">
           <div>
-            <h3 class="crop-selected-name" id="market-crop-name">Paddy (धान - Basmati)</h3>
-            <span class="price-update-time" data-i18n="rates_updated_today">Rates updated: Today, 10:00 AM</span>
+            <h3 class="crop-selected-name" id="market-crop-name">Wheat Market Prices</h3>
+            <span class="price-update-time" id="market-data-date">Latest Government Market Data</span>
           </div>
           <span class="crop-emoji-badge" id="market-crop-emoji">🌾</span>
         </div>
 
         <div class="mandi-highlight-grid">
           <div class="mandi-highlight-box border-green">
-            <span class="box-label" data-i18n="mandi_highest">Highest Price</span>
-            <span class="box-price text-green" id="market-high-price">₹2,350 / Qtl</span>
-            <span class="box-mandi-name" id="market-high-mandi">Laxmipur APMC (12km)</span>
+            <span class="box-label">Highest Modal Price</span>
+            <span class="box-price text-green" id="market-high-price">₹0 / Qtl</span>
+            <span class="box-mandi-name" id="market-high-mandi">Loading Mandi...</span>
           </div>
           <div class="mandi-highlight-box border-red">
-            <span class="box-label" data-i18n="mandi_lowest">Lowest Price</span>
-            <span class="box-price text-red" id="market-low-price">₹2,050 / Qtl</span>
-            <span class="box-mandi-name" id="market-low-mandi">Kishanpur Mandi (4km)</span>
+            <span class="box-label">Lowest Modal Price</span>
+            <span class="box-price text-red" id="market-low-price">₹0 / Qtl</span>
+            <span class="box-mandi-name" id="market-low-mandi">Loading Mandi...</span>
           </div>
         </div>
 
         <!-- Mandi Price Comparison Visual Bar Chart -->
         <div class="mandi-chart-container">
-          <h4 class="chart-title" data-i18n="price_comparison_chart">Price Comparison across Nearby Mandis</h4>
+          <h4 class="chart-title">Modal Price Comparison across Government Mandis</h4>
           <div class="mandi-chart-bars" id="mandi-chart-bars">
             <!-- Dynamic Chart Bars generated via Script -->
           </div>
-          <div class="best-market-recommendation alert-green">
+          <div class="best-market-recommendation alert-green" id="mandi-recommendation-box">
             <span>💡</span>
-            <p><strong><span data-i18n="recommendation_bold">Best Market recommendation:</span></strong> <span data-i18n="paddy_sell_advise">Selling at Laxmipur APMC gives ₹300/quintal more. Transport cost is ₹40, net profit is higher.</span></p>
+            <p id="mandi-recommendation-text"><strong>Government Market Advisory:</strong> Fetching verified Agmarknet daily price records...</p>
           </div>
         </div>
       </div>

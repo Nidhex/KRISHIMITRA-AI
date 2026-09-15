@@ -392,9 +392,23 @@ async function getDecisionEngine(farmerId = 'farmer_default', crop = null) {
     );
     const data = await res.json();
     return data;
+/**
+ * Fetch Mandi prices from official backend API (/api/mandi).
+ */
+async function getMandiPrices(commodity = 'wheat', state = '', district = '') {
+  try {
+    const params = new URLSearchParams();
+    if (commodity) params.append('commodity', commodity);
+    if (state) params.append('state', state);
+    if (district) params.append('district', district);
+
+    const url = `${API_BASE_URL}/mandi?${params.toString()}`;
+    const res = await fetchWithTimeout(url, { method: 'GET' }, 15000);
+    const data = await res.json();
+    return data;
   } catch (err) {
-    console.error('[KrishiMitra API] getDecisionEngine error:', err);
-    return { success: false, error: err.message };
+    console.error('[KrishiMitra API] getMandiPrices error:', err);
+    return { success: false, records: [], error: err.message };
   }
 }
 
@@ -412,6 +426,7 @@ if (typeof module !== 'undefined' && module.exports) {
     deleteDiaryEvent,
     extractDiaryEvent,
     getDecisionEngine,
+    getMandiPrices,
     showApiError,
     API_BASE_URL,
     ERROR_MESSAGES
@@ -429,6 +444,7 @@ if (typeof module !== 'undefined' && module.exports) {
     deleteDiaryEvent,
     extractDiaryEvent,
     getDecisionEngine,
+    getMandiPrices,
     showApiError,
     API_BASE_URL,
     ERROR_MESSAGES

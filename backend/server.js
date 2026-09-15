@@ -24,6 +24,7 @@ const weatherRoutes = require('./routes/weather');
 const schemesRoutes = require('./routes/schemes');
 const geminiRoutes  = require('./routes/gemini');
 const diaryRoutes   = require('./routes/diary');
+const mandiRoutes   = require('./routes/mandi');
 
 // ── App Setup ────────────────────────────────────────────────────────────────
 const app  = express();
@@ -88,6 +89,7 @@ app.use('/api/weather',    weatherRoutes);
 app.use('/api/schemes',    schemesRoutes);
 app.use('/api/gemini',     chatLimiter,   geminiRoutes);
 app.use('/api/farm-diary', diaryRoutes);
+app.use('/api/mandi',      mandiRoutes);
 
 // ── Feed Caching Routes ──────────────────────────────────────────────────────
 const NEWS_CACHE_FILE = path.join(__dirname, '..', 'database', 'news', 'news_cache.json');

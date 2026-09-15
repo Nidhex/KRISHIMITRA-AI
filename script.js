@@ -626,83 +626,7 @@ const i18n = {
 // --------------------------------------------------------------------------
 // 3. DATABASES (CROP PRICES & SCHEMES)
 // --------------------------------------------------------------------------
-const MANDI_DB = {
-  paddy: {
-    nameEN: "Paddy (Basmati)",
-    nameHI: "धान (बासमती)",
-    emoji: "🌾",
-    highest: 2350,
-    highestMandi: "Laxmipur APMC (12km)",
-    lowest: 2050,
-    lowestMandi: "Kishanpur Mandi (4km)",
-    recommendation: "Selling at Laxmipur APMC gives ₹300/quintal more. Transport cost is ₹40, net profit is higher.",
-    prices: [
-      { name: "Laxmipur APMC", price: 2350, distance: "12km", trend: "up" },
-      { name: "Gorakhpur Sadar Mandi", price: 2210, distance: "18km", trend: "up" },
-      { name: "Kishanpur Mandi", price: 2050, distance: "4km", trend: "down" }
-    ]
-  },
-  wheat: {
-    nameEN: "Wheat (Lokwan)",
-    nameHI: "गेहूं (लोकवान)",
-    emoji: "🌾",
-    highest: 2275,
-    highestMandi: "Gorakhpur Sadar Mandi (18km)",
-    lowest: 2150,
-    lowestMandi: "Laxmipur APMC (12km)",
-    recommendation: "Wheat rates are highest in Gorakhpur Sadar Mandi. We advise wait 3 days as prices are rising.",
-    prices: [
-      { name: "Gorakhpur Sadar Mandi", price: 2275, distance: "18km", trend: "up" },
-      { name: "Kishanpur Mandi", price: 2200, distance: "4km", trend: "stable" },
-      { name: "Laxmipur APMC", price: 2150, distance: "12km", trend: "down" }
-    ]
-  },
-  tomato: {
-    nameEN: "Tomato (Desi)",
-    nameHI: "टमाटर (देशी)",
-    emoji: "🍅",
-    highest: 1800,
-    highestMandi: "Kishanpur Mandi (4km)",
-    lowest: 1400,
-    lowestMandi: "Gorakhpur Sadar Mandi (18km)",
-    recommendation: "Tomato prices are highly volatile. Kishanpur Mandi is paying premium ₹1800/Qtl today due to low supply.",
-    prices: [
-      { name: "Kishanpur Mandi", price: 1800, distance: "4km", trend: "up" },
-      { name: "Laxmipur APMC", price: 1650, distance: "12km", trend: "up" },
-      { name: "Gorakhpur Sadar Mandi", price: 1400, distance: "18km", trend: "down" }
-    ]
-  },
-  potato: {
-    nameEN: "Potato (Jyoti)",
-    nameHI: "आलू (ज्योति)",
-    emoji: "🥔",
-    highest: 1350,
-    highestMandi: "Laxmipur APMC (12km)",
-    lowest: 1100,
-    lowestMandi: "Kishanpur Mandi (4km)",
-    recommendation: "Potatoes have solid storage lifetime. Consider storing in Cold Storage if you can't transport to Laxmipur.",
-    prices: [
-      { name: "Laxmipur APMC", price: 1350, distance: "12km", trend: "stable" },
-      { name: "Gorakhpur Sadar Mandi", price: 1280, distance: "18km", trend: "up" },
-      { name: "Kishanpur Mandi", price: 1100, distance: "4km", trend: "down" }
-    ]
-  },
-  mustard: {
-    nameEN: "Mustard Seed",
-    nameHI: "सरसों (पीली)",
-    emoji: "🌱",
-    highest: 5450,
-    highestMandi: "Gorakhpur Sadar Mandi (18km)",
-    lowest: 5100,
-    lowestMandi: "Kishanpur Mandi (4km)",
-    recommendation: "Government MSP is ₹5650. Mandi rates are lower; consider selling to government procurement centers directly.",
-    prices: [
-      { name: "Gorakhpur Sadar Mandi", price: 5450, distance: "18km", trend: "up" },
-      { name: "Laxmipur APMC", price: 5300, distance: "12km", trend: "stable" },
-      { name: "Kishanpur Mandi", price: 5100, distance: "4km", trend: "down" }
-    ]
-  }
-};
+// Real-time Mandi market rates are dynamically served via /api/mandi (Agmarknet)
 
 let SCHEMES_DB = [];
 
@@ -2291,116 +2215,155 @@ const addChatMessage = (text, typeClass) => {
 // --------------------------------------------------------------------------
 // 11. MARKET APMC PRICES SCREEN
 // --------------------------------------------------------------------------
+let mandiDebounceTimer = null;
+
 const setupMarketPage = () => {
   const searchInput = document.getElementById('market-search-input');
   const clearBtn = document.getElementById('btn-clear-search');
+  if (!searchInput) return;
 
   searchInput.addEventListener('input', (e) => {
-    const val = e.target.value.toLowerCase().trim();
+    const val = e.target.value.trim();
     if (val.length > 0) {
-      clearBtn.classList.remove('hidden');
+      if (clearBtn) clearBtn.classList.remove('hidden');
     } else {
-      clearBtn.classList.add('hidden');
+      if (clearBtn) clearBtn.classList.add('hidden');
     }
 
-    // Fuzzy match in database keys
-    let matchedKey = 'paddy'; // Default
-    Object.keys(MANDI_DB).forEach(key => {
-      const name = MANDI_DB[key].nameEN.toLowerCase();
-      const nameHI = MANDI_DB[key].nameHI.toLowerCase();
-      if (name.includes(val) || nameHI.includes(val) || val.includes(key)) {
-        matchedKey = key;
-      }
+    clearTimeout(mandiDebounceTimer);
+    mandiDebounceTimer = setTimeout(() => {
+      loadCropPriceDetails(val || 'wheat');
+    }, 300);
+  });
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      playSound('snd-click');
+      searchInput.value = '';
+      clearBtn.classList.add('hidden');
+      loadCropPriceDetails('wheat');
     });
+  }
 
-    loadCropPriceDetails(matchedKey);
-  });
-
-  clearBtn.addEventListener('click', () => {
-    playSound('snd-click');
-    searchInput.value = '';
-    clearBtn.classList.add('hidden');
-    loadCropPriceDetails('paddy'); // Reset to default
-  });
-
-  loadCropPriceDetails('paddy'); // Load default Paddy
+  loadCropPriceDetails('wheat');
 };
 
-const loadCropPriceDetails = (cropKey) => {
-  const data = MANDI_DB[cropKey];
-  const lang = appState.currentLanguage;
-
-  // Update crop name titles
+const loadCropPriceDetails = async (cropQuery = 'wheat') => {
   const nameEl = document.getElementById('market-crop-name');
+  const dateEl = document.getElementById('market-data-date');
   const emojiEl = document.getElementById('market-crop-emoji');
-  
-  emojiEl.innerText = data.emoji;
-  if (lang === 'hi') nameEl.innerText = data.nameHI;
-  else nameEl.innerText = data.nameEN;
+  const highPriceEl = document.getElementById('market-high-price');
+  const highMandiEl = document.getElementById('market-high-mandi');
+  const lowPriceEl = document.getElementById('market-low-price');
+  const lowMandiEl = document.getElementById('market-low-mandi');
+  const recText = document.getElementById('mandi-recommendation-text');
 
-  // Highlight Box prices
-  document.getElementById('market-high-price').innerText = `₹${data.highest.toLocaleString('en-IN')} / Qtl`;
-  document.getElementById('market-high-mandi').innerText = data.highestMandi;
-  document.getElementById('market-low-price').innerText = `₹${data.lowest.toLocaleString('en-IN')} / Qtl`;
-  document.getElementById('market-low-mandi').innerText = data.lowestMandi;
+  if (highMandiEl) highMandiEl.innerText = 'Fetching government records...';
+  if (lowMandiEl) lowMandiEl.innerText = 'Fetching government records...';
 
-  renderMarketBars(cropKey);
-  renderMandiList(cropKey);
+  const api = window.KrishiMitraAPI || window.KrishiAPI;
+  let res = null;
+
+  if (api && typeof api.getMandiPrices === 'function') {
+    res = await api.getMandiPrices(cropQuery);
+  }
+
+  if (!res || !res.success || !res.records || res.records.length === 0) {
+    if (nameEl) nameEl.innerText = `${cropQuery.toUpperCase()} Prices`;
+    if (dateEl) dateEl.innerText = 'Government Data Status: No records found';
+    if (highPriceEl) highPriceEl.innerText = 'N/A';
+    if (highMandiEl) highMandiEl.innerText = 'No current market records';
+    if (lowPriceEl) lowPriceEl.innerText = 'N/A';
+    if (lowMandiEl) lowMandiEl.innerText = 'No current market records';
+    if (recText) recText.innerHTML = `<strong>Government Market Advisory:</strong> No current government market data found for "${cropQuery}". Try searching another crop like Wheat, Paddy, Tomato, Potato, or Mustard.`;
+
+    renderMarketBars([]);
+    renderMandiList([]);
+    return;
+  }
+
+  const { records, summary, dataDate, isCached, source } = res;
+
+  if (nameEl) nameEl.innerText = `${res.commodity} Market Prices`;
+  if (emojiEl) {
+    const emojis = { Wheat: '🌾', Paddy: '🌾', Rice: '🌾', Tomato: '🍅', Potato: '🥔', Mustard: '🌱', Cotton: '☁️', Onion: '🧅' };
+    emojiEl.innerText = emojis[res.commodity] || '🌾';
+  }
+
+  if (dateEl) {
+    const cachedBadge = isCached ? ' (Cached Data)' : '';
+    dateEl.innerText = `Government Market Data — ${dataDate || '15 Sep 2026'}${cachedBadge}`;
+  }
+
+  const high = summary.highest;
+  const low = summary.lowest;
+
+  if (highPriceEl) highPriceEl.innerText = `₹${high.modalPrice.toLocaleString('en-IN')} / Qtl`;
+  if (highMandiEl) highMandiEl.innerText = `${high.market} (${high.district}, ${high.state})`;
+  if (lowPriceEl) lowPriceEl.innerText = `₹${low.modalPrice.toLocaleString('en-IN')} / Qtl`;
+  if (lowMandiEl) lowMandiEl.innerText = `${low.market} (${low.district}, ${low.state})`;
+
+  if (recText) {
+    recText.innerHTML = `<strong>Government Market Advisory:</strong> Highest reported modal price is <strong>₹${high.modalPrice.toLocaleString('en-IN')} / Quintal</strong> at <strong>${high.market}</strong> (${high.district}). Min–Max range: ₹${high.minPrice}–₹${high.maxPrice}. Source: ${source}.`;
+  }
+
+  renderMarketBars(records);
+  renderMandiList(records);
 };
 
-const renderMarketBars = (cropKey = 'paddy') => {
+const renderMarketBars = (records = []) => {
   const chart = document.getElementById('mandi-chart-bars');
   if (!chart) return;
-  
   chart.innerHTML = '';
-  const data = MANDI_DB[cropKey];
-  
-  // Calculate relative widths based on highest price
-  const maxPrice = Math.max(...data.prices.map(p => p.price));
 
-  data.prices.forEach(p => {
-    const percentage = Math.round((p.price / maxPrice) * 100);
+  if (!records || records.length === 0) {
+    chart.innerHTML = '<p style="color:var(--text-secondary); text-align:center; padding:16px;">No mandi market comparison available.</p>';
+    return;
+  }
+
+  const maxPrice = Math.max(...records.map(r => r.modalPrice));
+
+  records.forEach((r, idx) => {
+    const percentage = maxPrice > 0 ? Math.round((r.modalPrice / maxPrice) * 100) : 0;
     const row = document.createElement('div');
     row.className = 'chart-bar-row';
-
-    const isHighest = p.price === data.highest;
-    const fillClass = isHighest ? 'highlight' : '';
+    const isHighest = idx === 0;
 
     row.innerHTML = `
       <div class="chart-bar-info">
-        <span>${p.name} (${p.distance})</span>
-        <span>₹${p.price} / Qtl</span>
+        <span><strong>${r.market}</strong> (${r.district}) — ${r.variety}</span>
+        <span>₹${r.modalPrice.toLocaleString('en-IN')} / Qtl</span>
       </div>
       <div class="chart-bar-bg">
-        <div class="chart-bar-fill ${fillClass}" style="width: ${percentage}%"></div>
+        <div class="chart-bar-fill ${isHighest ? 'highlight' : ''}" style="width: ${percentage}%"></div>
       </div>
     `;
     chart.appendChild(row);
   });
 };
 
-const renderMandiList = (cropKey = 'paddy') => {
+const renderMandiList = (records = []) => {
   const container = document.getElementById('mandi-list-items');
   if (!container) return;
-
   container.innerHTML = '';
-  const data = MANDI_DB[cropKey];
 
-  data.prices.forEach(p => {
+  if (!records || records.length === 0) {
+    container.innerHTML = '<p style="color:var(--text-secondary); text-align:center; padding:16px;">No current government mandi listings available.</p>';
+    return;
+  }
+
+  records.forEach(r => {
     const item = document.createElement('div');
     item.className = 'mandi-list-item card border-blue';
 
-    const trendSymbol = p.trend === 'up' ? '▲' : p.trend === 'down' ? '▼' : '●';
-    const trendClass = p.trend === 'up' ? 'trend-up' : p.trend === 'down' ? 'trend-down' : 'trend-stable';
-
     item.innerHTML = `
       <div class="mandi-meta-info">
-        <h4>${p.name}</h4>
-        <p>📍 Distance: ${p.distance}</p>
+        <h4 style="margin:0 0 4px; color:var(--text-primary); font-size:1.05rem;">${r.market}</h4>
+        <p style="margin:0; color:var(--text-secondary); font-size:0.85rem;">📍 ${r.district}, ${r.state} | Variety: ${r.variety} | Date: ${r.arrivalDate}</p>
       </div>
-      <div class="mandi-price-badge">
-        <span class="price-value">₹${p.price}</span>
-        <span class="trend-indicator ${trendClass}">${trendSymbol} ${p.trend.toUpperCase()}</span>
+      <div class="mandi-price-badge" style="text-align:right;">
+        <span class="price-value" style="font-size:1.2rem; font-weight:700; color:#1E3A8A;">₹${r.modalPrice.toLocaleString('en-IN')} / Qtl</span>
+        <span style="display:block; font-size:0.75rem; color:var(--text-secondary);">Min: ₹${r.minPrice} | Max: ₹${r.maxPrice}</span>
       </div>
     `;
     container.appendChild(item);
