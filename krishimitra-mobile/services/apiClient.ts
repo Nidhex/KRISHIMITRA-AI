@@ -203,216 +203,206 @@ class MobileApiClient {
    * Uses native Expo FileSystem.uploadAsync on devices for maximum Android compatibility.
    * Configured with dedicated 120-second timeout (ApiConfig.visionTimeoutMs = 120000).
    */
+  /**
+   * Crop Disease / Soil Scan — POST /api/vision (Multipart)
+   * Modern Expo SDK 57 implementation with AbortController timeout,
+   * safe content:// URI copy, diagnostic logging, & distinct error categories.
+   */
+  /**
+   * Crop Disease / Soil Scan — POST /api/vision (Multipart)
+   * Modern Expo SDK 57 implementation with AbortController timeout,
+   * safe content:// URI copy, diagnostic logging, & distinct error categories.
+   */
   async scanVision(
     imageInput: string | { uri: string; name?: string; type?: string; fileName?: string; mimeType?: string },
     moduleType: 'disease' | 'soil' = 'disease'
   ): Promise<VisionResponseData> {
-    const visionTimeoutMs = ApiConfig.visionTimeoutMs || 120000;
+    const visionTimeoutMs = ApiConfig.visionTimeoutMs || 180000;
+    const startTime = Date.now();
 
-    try {
-      // 1. Extract and validate URI string
-      const rawUri = typeof imageInput === 'string' ? imageInput : imageInput?.uri;
-      if (!rawUri || typeof rawUri !== 'string') {
-        return {
-          success: false,
-          confidence: 0,
-          probabilities: {},
-          imagePath: '',
-          error: 'FORMDATA_ERROR: Selected image has no valid URI string.',
-        };
-      }
+    // Checkpoint 1: Image Picker URI Check
+    const rawUri = typeof imageInput === 'string' ? imageInput : imageInput?.uri;
+    if (!rawUri || typeof rawUri !== 'string') {
+      return {
+        success: false,
+        confidence: 0,
+        probabilities: {},
+        imagePath: '',
+        error: 'VISION_URI_ERROR: Selected image has no valid URI string.',
+        userError: 'Please select a clear crop or soil image.',
+        errorCode: 'VISION_URI_ERROR',
+        diagnostic: {
+          stage: '1. image_picker_returned_uri',
+          errorName: 'InvalidURIError',
+          errorMessage: 'Selected image has no valid URI string.',
+          errorCode: 'VISION_URI_ERROR',
+          uriType: 'none',
+        },
+      };
+    }
 
-      const cleanUri = String(rawUri).trim();
+    const cleanUri = String(rawUri).trim();
+    const uriScheme = cleanUri.split(':')[0] || 'unknown';
 
-      // 2. Determine safe MIME type & Filename
-      let safeMimeType = 'image/jpeg';
-      const inputObj = typeof imageInput === 'object' ? imageInput : null;
-      const givenType = inputObj?.type || inputObj?.mimeType;
+    // Determine MIME & Filename
+    let safeMimeType = 'image/jpeg';
+    const inputObj = typeof imageInput === 'object' ? imageInput : null;
+    const givenType = inputObj?.type || inputObj?.mimeType;
 
-      if (givenType && typeof givenType === 'string' && givenType.startsWith('image/')) {
-        safeMimeType = givenType;
-      } else if (cleanUri.endsWith('.png')) {
-        safeMimeType = 'image/png';
-      } else if (cleanUri.endsWith('.webp')) {
-        safeMimeType = 'image/webp';
-      }
+    if (givenType && typeof givenType === 'string' && givenType.startsWith('image/')) {
+      safeMimeType = givenType;
+    } else if (cleanUri.endsWith('.png')) {
+      safeMimeType = 'image/png';
+    } else if (cleanUri.endsWith('.webp')) {
+      safeMimeType = 'image/webp';
+    }
 
-      let safeFilename = 'crop_scan.jpg';
-      if (safeMimeType === 'image/png') safeFilename = 'crop_scan.png';
-      if (safeMimeType === 'image/webp') safeFilename = 'crop_scan.webp';
+    let safeFilename = inputObj?.name || inputObj?.fileName || 'crop_scan.jpg';
+    if (!safeFilename.includes('.')) {
+      const ext = safeMimeType.split('/')[1] || 'jpg';
+      safeFilename = `${safeFilename}.${ext}`;
+    }
 
-      // 120-second timeout promise controller
-      let timeoutId: any = null;
-      const timeoutPromise = new Promise<never>((_, reject) => {
-        timeoutId = setTimeout(() => {
-          reject(
-            new ApiError(
-              'Vision analysis timed out. Please try again with a clearer image.',
-              'Vision analysis timed out. Please try again with a clearer image.',
-              408,
-              'TIMEOUT'
-            )
-          );
-        }, visionTimeoutMs);
-      });
+    let targetFileUri = cleanUri;
 
+    // Checkpoint 2: URI Normalization & content:// resolution
+    if (cleanUri.startsWith('content://') && FileSystem && FileSystem.copyAsync && FileSystem.cacheDirectory) {
+      const ext = safeFilename.split('.').pop() || 'jpg';
+      const tempCacheUri = `${FileSystem.cacheDirectory}vision_upload_${Date.now()}.${ext}`;
       try {
-        // 3. Determine upload implementation: Native Expo FileSystem vs Fallback
-        if (FileSystem && typeof FileSystem.uploadAsync === 'function') {
-          let targetFileUri = cleanUri;
+        await FileSystem.copyAsync({
+          from: cleanUri,
+          to: tempCacheUri,
+        });
+        targetFileUri = tempCacheUri;
+      } catch (copyErr: any) {
+        console.warn('[VISION UPLOAD] Content URI copy warning:', copyErr);
+      }
+    }
 
-          // Copy content:// URIs to local cache directory if needed
-          if (cleanUri.startsWith('content://') && FileSystem.copyAsync && FileSystem.cacheDirectory) {
-            const tempCacheUri = `${FileSystem.cacheDirectory}vision_upload_${Date.now()}.${safeFilename.split('.').pop()}`;
-            try {
-              await FileSystem.copyAsync({
-                from: cleanUri,
-                to: tempCacheUri,
-              });
-              targetFileUri = tempCacheUri;
-            } catch (copyErr) {
-              console.warn('[VISION UPLOAD] Content URI copy warning, attempting direct URI:', copyErr);
-            }
-          }
+    // Checkpoint 3 & 4: Local file existence & size check
+    let fileExists = true;
+    let fileSize: number | undefined = undefined;
 
-          // Verify file existence before upload
-          if (FileSystem.getInfoAsync) {
-            try {
-              const fileInfo = await FileSystem.getInfoAsync(targetFileUri);
-              if (!fileInfo.exists) {
-                clearTimeout(timeoutId);
-                return {
-                  success: false,
-                  confidence: 0,
-                  probabilities: {},
-                  imagePath: '',
-                  error: 'IMAGE_FILE_UNREADABLE: Selected image file cannot be read from device storage.',
-                };
-              }
-            } catch (infoErr) {
-              // Ignore info check errors for virtual schemes
-            }
-          }
-
-          if (typeof __DEV__ !== 'undefined' && __DEV__) {
-            console.log('[VISION NATIVE UPLOAD]', {
-              platform: 'native_file_system',
-              uri: targetFileUri,
-              uriScheme: targetFileUri.split(':')[0],
-              mimeType: safeMimeType,
-              filename: safeFilename,
-              module: moduleType,
-              uploadMethod: 'FileSystem.uploadAsync',
-              timeoutMs: visionTimeoutMs,
-            });
-          }
-
-          const uploadTask = FileSystem.uploadAsync(
-            this.getUrl(Endpoints.vision),
-            targetFileUri,
-            {
-              httpMethod: 'POST',
-              uploadType: FileSystem.FileSystemUploadType.MULTIPART,
-              fieldName: 'image',
-              mimeType: safeMimeType,
-              parameters: {
-                module: String(moduleType),
-              },
-            }
-          );
-
-          const uploadResult: any = await Promise.race([uploadTask, timeoutPromise]);
-          clearTimeout(timeoutId);
-
-          let data: any = {};
-          try {
-            data = JSON.parse(uploadResult.body);
-          } catch (parseErr) {
-            data = { error: uploadResult.body };
-          }
-
-          if (typeof __DEV__ !== 'undefined' && __DEV__) {
-            console.log('[VISION RESPONSE]', {
-              status: uploadResult.status,
-              success: data?.success,
-              error: data?.error,
-            });
-          }
-
-          if (uploadResult.status !== 200 || !data.success) {
-            return {
-              success: false,
-              confidence: 0,
-              probabilities: {},
-              imagePath: '',
-              error: data.error || `Server error ${uploadResult.status}: Crop vision analysis failed`,
-            };
-          }
-
-          return data;
-        } else {
-          // --- FALLBACK FOR CLI NODE UNIT TEST ENVIRONMENT ---
-          const formData = new FormData();
-          const imagePart = {
-            uri: String(cleanUri),
-            name: String(safeFilename),
-            type: String(safeMimeType),
-          };
-          formData.append('image', imagePart as any);
-          formData.append('module', String(moduleType));
-
-          const fetchTask = fetchWithTimeout(
-            this.getUrl(Endpoints.vision),
-            {
-              method: 'POST',
-              body: formData,
-            },
-            visionTimeoutMs
-          );
-
-          const res: Response = await Promise.race([fetchTask, timeoutPromise]);
-          clearTimeout(timeoutId);
-
-          const data = await res.json();
-          if (!res.ok) {
-            return {
-              success: false,
-              confidence: 0,
-              probabilities: {},
-              imagePath: '',
-              error: data.error || `Server error ${res.status}: Crop vision analysis failed`,
-            };
-          }
+    if (FileSystem && FileSystem.getInfoAsync && targetFileUri.startsWith('file://')) {
+      try {
+        const fileInfo = await FileSystem.getInfoAsync(targetFileUri);
+        fileExists = Boolean(fileInfo.exists);
+        fileSize = (fileInfo as any).size;
+        if (!fileInfo.exists) {
           return {
-            success: data.success ?? true,
-            ...data,
+            success: false,
+            confidence: 0,
+            probabilities: {},
+            imagePath: '',
+            error: `VISION_FILE_ERROR: Local file does not exist at ${targetFileUri}`,
+            userError: 'Please select a clear crop or soil image.',
+            errorCode: 'VISION_FILE_ERROR',
+            diagnostic: {
+              stage: '3. local_file_existence_check',
+              errorName: 'FileNotFoundError',
+              errorMessage: `Local file does not exist at ${targetFileUri}`,
+              errorCode: 'VISION_FILE_ERROR',
+              originalUri: cleanUri,
+              resolvedUri: targetFileUri,
+              uriType: uriScheme,
+              fileExists: false,
+              mimeType: safeMimeType,
+            },
           };
         }
-      } catch (innerErr: any) {
-        clearTimeout(timeoutId);
-        throw innerErr;
+      } catch (infoErr) {
+        // Ignore virtual scheme info errors
       }
-    } catch (err: any) {
-      if (typeof __DEV__ !== 'undefined' && __DEV__) {
-        console.error('[VISION ERROR]', err);
-      }
+    }
 
-      const errStr = String(err?.message || err?.userMessage || err || '').toLowerCase();
-      if (
-        err?.errorCode === 'TIMEOUT' ||
-        err?.name === 'AbortError' ||
-        errStr.includes('timeout') ||
-        errStr.includes('timed out')
-      ) {
-        return {
-          success: false,
-          confidence: 0,
-          probabilities: {},
-          imagePath: '',
-          error: 'Vision analysis timed out. Please try again with a clearer image.',
-          userError: 'Vision analysis timed out. Please try again with a clearer image.',
-          errorCode: 'TIMEOUT',
-        };
+    if (fileSize === 0) {
+      return {
+        success: false,
+        confidence: 0,
+        probabilities: {},
+        imagePath: '',
+        error: `VISION_FILE_ERROR: Image file at ${targetFileUri} is 0 bytes.`,
+        userError: 'Please select a clear crop or soil image.',
+        errorCode: 'VISION_FILE_ERROR',
+        diagnostic: {
+          stage: '4. file_size_type_check',
+          errorName: 'ZeroByteFileError',
+          errorMessage: `Image file at ${targetFileUri} is 0 bytes.`,
+          errorCode: 'VISION_FILE_ERROR',
+          originalUri: cleanUri,
+          resolvedUri: targetFileUri,
+          uriType: uriScheme,
+          fileExists: true,
+          fileSize: 0,
+          mimeType: safeMimeType,
+        },
+      };
+    }
+
+    const targetUrl = this.getUrl(Endpoints.vision);
+    const abortController = new AbortController();
+    const timeoutId = setTimeout(() => {
+      abortController.abort();
+    }, visionTimeoutMs);
+
+    // Checkpoint 6, 7, 8: File object creation, FormData creation, FormData append
+    let formData: FormData;
+    try {
+      formData = new FormData();
+      const imagePart = {
+        uri: String(targetFileUri),
+        name: String(safeFilename),
+        type: String(safeMimeType),
+      };
+      formData.append('image', imagePart as any);
+      formData.append('module', String(moduleType));
+    } catch (formErr: any) {
+      clearTimeout(timeoutId);
+      return {
+        success: false,
+        confidence: 0,
+        probabilities: {},
+        imagePath: '',
+        error: `VISION_FILE_ERROR: FormData preparation failed: ${formErr.message}`,
+        userError: 'Unable to prepare image file for upload.',
+        errorCode: 'VISION_FILE_ERROR',
+        diagnostic: {
+          stage: '6. file_object_creation',
+          errorName: formErr?.name || 'FormDataError',
+          errorMessage: formErr?.message || String(formErr),
+          errorCode: 'VISION_FILE_ERROR',
+          originalUri: cleanUri,
+          resolvedUri: targetFileUri,
+          uriType: uriScheme,
+          fileExists,
+          fileSize,
+          mimeType: safeMimeType,
+        },
+      };
+    }
+
+    // Checkpoint 9 & 10: fetch() starts & fetch() completes
+    let res: Response;
+    try {
+      res = await fetch(targetUrl, {
+        method: 'POST',
+        body: formData,
+        signal: abortController.signal,
+      });
+    } catch (fetchErr: any) {
+      const isAborted = abortController.signal.aborted || fetchErr?.name === 'AbortError' || fetchErr?.errorCode === 'TIMEOUT';
+      const errStr = String(fetchErr?.message || '').toLowerCase();
+      const isNetwork = fetchErr?.name === 'TypeError' || errStr.includes('network') || errStr.includes('failed to fetch');
+
+      let actualCode = 'VISION_UPLOAD_ERROR';
+      let userMsg = 'Unable to upload the image. Please try again.';
+      if (isAborted) {
+        actualCode = 'VISION_TIMEOUT';
+        userMsg = 'AI analysis took too long. Please try again.';
+      } else if (isNetwork) {
+        actualCode = 'VISION_NETWORK_ERROR';
+        userMsg = 'Internet connection failed. Please check your connection.';
       }
 
       return {
@@ -420,9 +410,129 @@ class MobileApiClient {
         confidence: 0,
         probabilities: {},
         imagePath: '',
-        error: err.userMessage || err.message || 'Network error during image upload',
+        error: `${actualCode}: ${fetchErr?.name || 'FetchError'} — ${fetchErr?.message || 'fetch failed'}`,
+        userError: userMsg,
+        errorCode: actualCode,
+        diagnostic: {
+          stage: '10. fetch_completes',
+          errorName: fetchErr?.name || 'FetchError',
+          errorMessage: fetchErr?.message || String(fetchErr),
+          errorCode: actualCode,
+          originalUri: cleanUri,
+          resolvedUri: targetFileUri,
+          uriType: uriScheme,
+          fileExists,
+          fileSize,
+          mimeType: safeMimeType,
+        },
+      };
+    } finally {
+      clearTimeout(timeoutId);
+    }
+
+    // Checkpoint 11 & 12: HTTP status received & response body parsed
+    const responseText = await res.text();
+    let data: any = null;
+    try {
+      data = JSON.parse(responseText);
+    } catch (parseErr: any) {
+      return {
+        success: false,
+        confidence: 0,
+        probabilities: {},
+        imagePath: '',
+        error: `VISION_INVALID_RESPONSE: Server returned non-JSON response (HTTP ${res.status}).`,
+        userError: 'Vision server returned an error. Please try again.',
+        errorCode: 'VISION_INVALID_RESPONSE',
+        diagnostic: {
+          stage: '12. response_body_parsed',
+          errorName: parseErr?.name || 'JSONParseError',
+          errorMessage: parseErr?.message || 'Invalid JSON response',
+          errorCode: 'VISION_INVALID_RESPONSE',
+          originalUri: cleanUri,
+          resolvedUri: targetFileUri,
+          uriType: uriScheme,
+          fileExists,
+          fileSize,
+          mimeType: safeMimeType,
+          httpStatus: res.status,
+          backendResponse: responseText.slice(0, 300),
+        },
       };
     }
+
+    if (!res.ok) {
+      return {
+        success: false,
+        confidence: 0,
+        probabilities: {},
+        imagePath: '',
+        error: data?.error || `VISION_HTTP_ERROR: Server returned status ${res.status}`,
+        userError: 'Vision server returned an error. Please try again.',
+        errorCode: 'VISION_HTTP_ERROR',
+        diagnostic: {
+          stage: '11. http_status_received',
+          errorName: 'HTTPStatusError',
+          errorMessage: data?.error || `Server status ${res.status}`,
+          errorCode: 'VISION_HTTP_ERROR',
+          originalUri: cleanUri,
+          resolvedUri: targetFileUri,
+          uriType: uriScheme,
+          fileExists,
+          fileSize,
+          mimeType: safeMimeType,
+          httpStatus: res.status,
+          backendResponse: JSON.stringify(data).slice(0, 300),
+        },
+      };
+    }
+
+    // Checkpoint 13: Vision result validated
+    if (!data.success) {
+      return {
+        success: false,
+        confidence: 0,
+        probabilities: {},
+        imagePath: '',
+        error: data.error || 'VISION_BACKEND_ERROR: Vision analysis returned unsuccessful status.',
+        userError: data.error || 'Vision server returned an error. Please try again.',
+        errorCode: 'VISION_BACKEND_ERROR',
+        diagnostic: {
+          stage: '13. vision_result_validated',
+          errorName: 'BackendError',
+          errorMessage: data.error || 'Backend returned success: false',
+          errorCode: 'VISION_BACKEND_ERROR',
+          originalUri: cleanUri,
+          resolvedUri: targetFileUri,
+          uriType: uriScheme,
+          fileExists,
+          fileSize,
+          mimeType: safeMimeType,
+          httpStatus: res.status,
+          backendResponse: JSON.stringify(data).slice(0, 300),
+        },
+      };
+    }
+
+    return {
+      success: true,
+      disease: data.disease || null,
+      soil: data.soil || null,
+      confidence: data.confidence || 0,
+      probabilities: data.probabilities || {},
+      imagePath: data.imagePath || '',
+      diagnostic: {
+        stage: '13. vision_result_validated',
+        errorCode: 'SUCCESS',
+        originalUri: cleanUri,
+        resolvedUri: targetFileUri,
+        uriType: uriScheme,
+        fileExists,
+        fileSize,
+        mimeType: safeMimeType,
+        httpStatus: res.status,
+      },
+    };
   }
 
   /**

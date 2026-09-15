@@ -79,6 +79,21 @@ export interface VisionSoilResult {
   fertilizer_recommendation?: string[];
 }
 
+export interface VisionDiagnosticInfo {
+  stage: string;
+  errorName?: string;
+  errorMessage?: string;
+  errorCode?: string;
+  uriType?: string;
+  originalUri?: string;
+  resolvedUri?: string;
+  fileExists?: boolean;
+  fileSize?: number;
+  mimeType?: string;
+  httpStatus?: number;
+  backendResponse?: string;
+}
+
 export interface VisionResponseData {
   success: boolean;
   disease?: VisionDiseaseResult | null;
@@ -89,6 +104,7 @@ export interface VisionResponseData {
   error?: string;
   userError?: string;
   errorCode?: string;
+  diagnostic?: VisionDiagnosticInfo;
 }
 
 export interface WeatherDayForecast {

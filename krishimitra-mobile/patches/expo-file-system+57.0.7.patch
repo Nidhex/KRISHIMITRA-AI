@@ -1,0 +1,22 @@
+diff --git a/node_modules/expo-file-system/android/src/main/java/expo/modules/filesystem/legacy/FileSystemLegacyModule.kt b/node_modules/expo-file-system/android/src/main/java/expo/modules/filesystem/legacy/FileSystemLegacyModule.kt
+index 4626dac..690fc93 100644
+--- a/node_modules/expo-file-system/android/src/main/java/expo/modules/filesystem/legacy/FileSystemLegacyModule.kt
++++ b/node_modules/expo-file-system/android/src/main/java/expo/modules/filesystem/legacy/FileSystemLegacyModule.kt
+@@ -993,9 +993,9 @@ open class FileSystemLegacyModule : Module() {
+     get() {
+       if (client == null) {
+         val builder = OkHttpClient.Builder()
+-          .connectTimeout(60, TimeUnit.SECONDS)
+-          .readTimeout(60, TimeUnit.SECONDS)
+-          .writeTimeout(60, TimeUnit.SECONDS)
++          .connectTimeout(120, TimeUnit.SECONDS)
++          .readTimeout(120, TimeUnit.SECONDS)
++          .writeTimeout(120, TimeUnit.SECONDS)
+ 
+         client = builder.build()
+       }
+@@ -1103,3 +1103,4 @@ open class FileSystemLegacyModule : Module() {
+     return responseHeaders
+   }
+ }
++

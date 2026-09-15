@@ -1,6 +1,4 @@
-/* ==========================================================================
-   KrishiMitra AI — Mobile Vision Types & Data Models
-   ========================================================================== */
+import { VisionDiagnosticInfo } from './api.types';
 
 export type VisionModuleType = 'disease' | 'soil';
 
@@ -41,4 +39,5 @@ export interface VisionScanResult {
   confidence: number;
   probabilities?: Record<string, number>;
   rawImagePath?: string;
+  diagnostic?: VisionDiagnosticInfo;
 }

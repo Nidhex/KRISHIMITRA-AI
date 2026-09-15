@@ -6,6 +6,7 @@
 import * as ImagePicker from 'expo-image-picker';
 import { apiClient } from './apiClient';
 import { VisionModuleType, SelectedImage, VisionScanResult } from '../types/vision.types';
+import { VisionDiagnosticInfo } from '../types/api.types';
 
 class MobileVisionService {
   /**
@@ -95,13 +96,18 @@ class MobileVisionService {
   async analyzeImage(
     imageInput: string | SelectedImage,
     moduleType: VisionModuleType
-  ): Promise<{ success: boolean; result?: VisionScanResult; error?: string }> {
+  ): Promise<{ success: boolean; result?: VisionScanResult; error?: string; diagnostic?: VisionDiagnosticInfo }> {
     try {
       const targetUri = typeof imageInput === 'string' ? imageInput : imageInput?.uri;
       if (!targetUri) {
         return {
           success: false,
           error: 'गैलरी या कैमरा से फोटो लोड नहीं हो सकी। (Invalid image URI)',
+          diagnostic: {
+            stage: '1. image_picker_returned_uri',
+            errorCode: 'VISION_URI_ERROR',
+            errorMessage: 'Target image URI is missing or empty',
+          },
         };
       }
 
@@ -110,7 +116,8 @@ class MobileVisionService {
       if (!response.success) {
         return {
           success: false,
-          error: response.error || 'स्कैन विश्लेषण में समस्या हुई। कृपया पुनः प्रयास करें।',
+          error: response.userError || response.error || 'स्कैन विश्लेषण में समस्या हुई। कृपया पुनः प्रयास करें।',
+          diagnostic: response.diagnostic,
         };
       }
 
@@ -145,6 +152,7 @@ class MobileVisionService {
             confidence: response.confidence || raw.confidence || 0,
             probabilities: response.probabilities,
             rawImagePath: response.imagePath,
+            diagnostic: response.diagnostic,
             disease: {
               diseaseName: raw.disease_name || 'Unknown Disease',
               diseaseNameHi: raw.disease_name_hi || raw.disease_name,
@@ -168,6 +176,7 @@ class MobileVisionService {
             confidence: response.confidence || raw.confidence || 0,
             probabilities: response.probabilities,
             rawImagePath: response.imagePath,
+            diagnostic: response.diagnostic,
             soil: {
               soilType: raw.soil_type || 'Unknown Soil',
               soilTypeHi: raw.soil_type_hi || raw.soil_type,
@@ -183,11 +192,22 @@ class MobileVisionService {
       return {
         success: false,
         error: 'स्कैन परिणाम अस्पष्ट है। कृपया साफ़ फोटो लेकर दोबारा प्रयास करें।',
+        diagnostic: response.diagnostic || {
+          stage: '13. vision_result_validated',
+          errorCode: 'VISION_INVALID_RESPONSE',
+          errorMessage: 'Disease or soil payload missing in response',
+        },
       };
     } catch (err: any) {
       return {
         success: false,
         error: err.message || 'नेटवर्क त्रुटि के कारण स्कैन अपलोड नहीं हो सका।',
+        diagnostic: {
+          stage: '10. fetch_completes',
+          errorName: err?.name || 'ServiceError',
+          errorMessage: err?.message || String(err),
+          errorCode: 'VISION_UPLOAD_ERROR',
+        },
       };
     }
   }

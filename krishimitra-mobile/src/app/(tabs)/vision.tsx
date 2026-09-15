@@ -4,7 +4,7 @@
    ========================================================================== */
 
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Alert } from 'react-native';
 
 import { AppHeader } from '../../../components/AppHeader';
 import { ScreenContainer } from '../../../components/ScreenContainer';
@@ -18,8 +18,12 @@ import { VisionResultCard } from '../../../components/VisionResultCard';
 
 import { Colors, Typography, Spacing, BorderRadius } from '../../../constants/theme';
 import { VisionModuleType, VisionScanStatus, SelectedImage, VisionScanResult } from '../../../types/vision.types';
+import { VisionDiagnosticInfo } from '../../../types/api.types';
 import { mobileVisionService } from '../../../services/visionService';
 import { networkService } from '../../../services/networkService';
+
+// TEMPORARY DIAGNOSTIC FLAG FOR RELEASE APK QA — REMOVE AFTER DIAGNOSIS
+const VISION_DEBUG = true;
 
 export default function VisionScreen() {
   const [moduleType, setModuleType] = useState<VisionModuleType>('disease');
@@ -27,6 +31,7 @@ export default function VisionScreen() {
   const [selectedImage, setSelectedImage] = useState<SelectedImage | null>(null);
   const [scanResult, setScanResult] = useState<VisionScanResult | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [diagnosticInfo, setDiagnosticInfo] = useState<VisionDiagnosticInfo | null>(null);
   const [isOnline, setIsOnline] = useState<boolean>(true);
 
   useEffect(() => {
@@ -43,6 +48,7 @@ export default function VisionScreen() {
   const handleCameraCapture = async () => {
     try {
       setErrorMessage('');
+      setDiagnosticInfo(null);
       const img = await mobileVisionService.capturePhoto();
       if (img) {
         setSelectedImage(img);
@@ -50,6 +56,12 @@ export default function VisionScreen() {
       }
     } catch (err: any) {
       setErrorMessage(err.message || 'कैमरा खोलने में समस्या हुई। (Camera Error)');
+      setDiagnosticInfo({
+        stage: '5. image_resize_compression',
+        errorName: err?.name || 'CameraError',
+        errorMessage: err?.message || 'Camera capture failed',
+        errorCode: 'VISION_IMAGE_ERROR',
+      });
       setStatus('ERROR');
     }
   };
@@ -58,6 +70,7 @@ export default function VisionScreen() {
   const handleGallerySelect = async () => {
     try {
       setErrorMessage('');
+      setDiagnosticInfo(null);
       const img = await mobileVisionService.selectFromGallery();
       if (img) {
         setSelectedImage(img);
@@ -65,6 +78,12 @@ export default function VisionScreen() {
       }
     } catch (err: any) {
       setErrorMessage(err.message || 'गैलरी से फोटो चुनने में समस्या हुई। (Gallery Error)');
+      setDiagnosticInfo({
+        stage: '5. image_resize_compression',
+        errorName: err?.name || 'GalleryError',
+        errorMessage: err?.message || 'Gallery selection failed',
+        errorCode: 'VISION_IMAGE_ERROR',
+      });
       setStatus('ERROR');
     }
   };
@@ -75,8 +94,14 @@ export default function VisionScreen() {
 
     if (!isOnline) {
       setErrorMessage(
-        'आप अभी ऑफ़लाइन हैं। फसल बीमारी और मिट्टी परीक्षण के लिए इंटरनेट कनेक्शन उपलब्ध होने पर स्कैन करें। (Connect to internet for crop disease and soil diagnosis).'
+        'आप अभी ऑफ़लाइन हैं। फसल बीमारी और मिट्टी परीक्षण के लिए इंटरनेट कनेक्शन उपलब्ध होने पर स्कैन करें।'
       );
+      setDiagnosticInfo({
+        stage: '9. fetch_starts',
+        errorName: 'NetworkError',
+        errorMessage: 'Device is offline',
+        errorCode: 'VISION_NETWORK_ERROR',
+      });
       setStatus('ERROR');
       return;
     }
@@ -84,6 +109,10 @@ export default function VisionScreen() {
     setStatus('ANALYZING');
 
     const response = await mobileVisionService.analyzeImage(selectedImage, moduleType);
+
+    if (response.diagnostic) {
+      setDiagnosticInfo(response.diagnostic);
+    }
 
     if (response.success && response.result) {
       setScanResult(response.result);
@@ -99,8 +128,23 @@ export default function VisionScreen() {
     setSelectedImage(null);
     setScanResult(null);
     setErrorMessage('');
+    setDiagnosticInfo(null);
     setStatus('IDLE');
   };
+
+  const debugText = `VISION DEBUG
+Stage: ${diagnosticInfo?.stage || 'Unknown stage'}
+Error name: ${diagnosticInfo?.errorName || 'None'}
+Error message: ${diagnosticInfo?.errorMessage || errorMessage || 'None'}
+Error code: ${diagnosticInfo?.errorCode || 'None'}
+URI type: ${diagnosticInfo?.uriType || selectedImage?.uri?.split(':')[0] || 'Unknown'}
+Original URI: ${diagnosticInfo?.originalUri || selectedImage?.uri || 'N/A'}
+Resolved URI: ${diagnosticInfo?.resolvedUri || selectedImage?.uri || 'N/A'}
+File exists: ${diagnosticInfo?.fileExists !== undefined ? String(diagnosticInfo.fileExists) : 'Unknown'}
+File size: ${diagnosticInfo?.fileSize !== undefined ? `${diagnosticInfo.fileSize} bytes` : 'Unknown'}
+MIME type: ${diagnosticInfo?.mimeType || selectedImage?.mimeType || 'Unknown'}
+HTTP status: ${diagnosticInfo?.httpStatus !== undefined ? String(diagnosticInfo.httpStatus) : 'N/A'}
+Backend response: ${diagnosticInfo?.backendResponse || 'N/A'}`;
 
   return (
     <View style={styles.flexOne}>
@@ -219,6 +263,28 @@ export default function VisionScreen() {
               onRetry={handleReset}
               retryText="पुनः प्रयास करें (Try Again)"
             />
+
+            {/* TEMPORARY DEVELOPER DIAGNOSTICS CARD FOR APK QA */}
+            {VISION_DEBUG && (
+              <Card style={styles.debugCard}>
+                <Text style={styles.debugTitle}>🛠 VISION DEBUG DIAGNOSTICS</Text>
+                <TextInput
+                  style={styles.debugInput}
+                  multiline
+                  editable={false}
+                  selectTextOnFocus
+                  value={debugText}
+                />
+                <TouchableOpacity
+                  style={styles.copyBtn}
+                  onPress={() => {
+                    Alert.alert('Debug Info', 'Press and hold text above to select and copy.');
+                  }}
+                >
+                  <Text style={styles.copyBtnText}>📋 Select / Copy Debug Info</Text>
+                </TouchableOpacity>
+              </Card>
+            )}
           </View>
         )}
       </ScreenContainer>
@@ -299,5 +365,39 @@ const styles = StyleSheet.create({
   },
   actionBtn: {
     marginBottom: Spacing.sm,
+  },
+  debugCard: {
+    marginTop: Spacing.md,
+    padding: Spacing.md,
+    backgroundColor: '#1E1E1E',
+    borderRadius: BorderRadius.md,
+    borderWidth: 1,
+    borderColor: Colors.warning,
+  },
+  debugTitle: {
+    fontSize: Typography.fontSize.xs,
+    fontWeight: Typography.fontWeight.bold,
+    color: '#FFB74D',
+    marginBottom: Spacing.xs,
+  },
+  debugInput: {
+    fontFamily: Typography.fontFamily.regular,
+    fontSize: 11,
+    color: '#E0E0E0',
+    backgroundColor: '#121212',
+    padding: Spacing.sm,
+    borderRadius: BorderRadius.sm,
+    minHeight: 180,
+    textAlignVertical: 'top',
+  },
+  copyBtn: {
+    marginTop: Spacing.xs,
+    alignItems: 'center',
+    paddingVertical: Spacing.xs,
+  },
+  copyBtnText: {
+    fontSize: Typography.fontSize.xs,
+    fontWeight: Typography.fontWeight.bold,
+    color: Colors.warning,
   },
 });

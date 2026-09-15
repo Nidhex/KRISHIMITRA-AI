@@ -24,51 +24,55 @@ import { networkService } from '../services/networkService';
     }
 
     if (isSoil) {
+      const payload = {
+        success: true,
+        disease: null,
+        soil: {
+          soil_type: 'Black Soil',
+          soil_type_hi: 'काली मिट्टी (Regur)',
+          confidence: 0.965,
+          characteristics: 'उच्च जल धारण क्षमता, कपास व चना के लिए उपयुक्त',
+          suitable_crops: ['Cotton', 'Soybean', 'Chickpea'],
+          fertilizer_recommendation: ['नाइट्रोजन व फास्फोरस का प्रयोग करें'],
+        },
+        confidence: 0.965,
+        probabilities: { Black: 0.965, Alluvial: 0.025 },
+        imagePath: '/uploads/scan_soil.jpg',
+      };
       return {
         ok: true,
         status: 200,
-        json: async () => ({
-          success: true,
-          disease: null,
-          soil: {
-            soil_type: 'Black Soil',
-            soil_type_hi: 'काली मिट्टी (Regur)',
-            confidence: 0.965,
-            characteristics: 'उच्च जल धारण क्षमता, कपास व चना के लिए उपयुक्त',
-            suitable_crops: ['Cotton', 'Soybean', 'Chickpea'],
-            fertilizer_recommendation: ['नाइट्रोजन व फास्फोरस का प्रयोग करें'],
-          },
-          confidence: 0.965,
-          probabilities: { Black: 0.965, Alluvial: 0.025 },
-          imagePath: '/uploads/scan_soil.jpg',
-        }),
+        text: async () => JSON.stringify(payload),
+        json: async () => payload,
       };
     }
 
     // Default Disease Scan Response
+    const payload = {
+      success: true,
+      disease: {
+        disease_name: 'Tomato___Late_blight',
+        disease_name_hi: 'टमाटर का पछेती झुलसा रोग',
+        confidence: 0.942,
+        symptoms: ['पत्तियों पर गहरे भूरे रंग के धब्बे', 'फल सड़ना'],
+        organic_treatment: ['नीम के तेल का छिड़काव (5ml/L)'],
+        chemical_treatment: ['मैनकोज़ेब 75% WP @ 2g/L water'],
+        precautions: ['छिड़काव के समय मास्क पहनें'],
+      },
+      soil: null,
+      confidence: 0.942,
+      probabilities: { Tomato___Late_blight: 0.942, Tomato___healthy: 0.031 },
+      imagePath: '/uploads/scan_disease.jpg',
+    };
     return {
       ok: true,
       status: 200,
-      json: async () => ({
-        success: true,
-        disease: {
-          disease_name: 'Tomato___Late_blight',
-          disease_name_hi: 'टमाटर का पछेती झुलसा रोग',
-          confidence: 0.942,
-          symptoms: ['पत्तियों पर गहरे भूरे रंग के धब्बे', 'फल सड़ना'],
-          organic_treatment: ['नीम के तेल का छिड़काव (5ml/L)'],
-          chemical_treatment: ['मैनकोज़ेब 75% WP @ 2g/L water'],
-          precautions: ['छिड़काव के समय मास्क पहनें'],
-        },
-        soil: null,
-        confidence: 0.942,
-        probabilities: { Tomato___Late_blight: 0.942, Tomato___healthy: 0.031 },
-        imagePath: '/uploads/scan_disease.jpg',
-      }),
+      text: async () => JSON.stringify(payload),
+      json: async () => payload,
     };
   }
 
-  return { ok: true, json: async () => ({}) };
+  return { ok: true, text: async () => '{}', json: async () => ({}) };
 };
 
 async function runPhase3VisionTests() {
@@ -130,6 +134,7 @@ async function runPhase3VisionTests() {
     (global as any).fetch = async () => ({
       ok: false,
       status: 500,
+      text: async () => JSON.stringify({ error: 'Crop disease prediction failed.' }),
       json: async () => ({ error: 'Crop disease prediction failed.' }),
     });
 
@@ -140,13 +145,28 @@ async function runPhase3VisionTests() {
     (global as any).fetch = originalFetch;
   });
 
-  // 4. Network Offline Detection Guard
+  // 4. Network Failure Test
+  await testAsync('Network failure returns VISION_NETWORK_ERROR with clear user message', async () => {
+    const originalFetch = (global as any).fetch;
+    (global as any).fetch = async () => {
+      throw new TypeError('Failed to fetch');
+    };
+
+    const res = await apiClient.scanVision('file:///net_error.jpg', 'disease');
+    assert.strictEqual(res.success, false);
+    assert.strictEqual(res.errorCode, 'VISION_NETWORK_ERROR');
+    assert(res.userError?.includes('Internet connection failed'));
+
+    (global as any).fetch = originalFetch;
+  });
+
+  // 5. Network Offline Detection Guard
   await testAsync('Network state monitor correctly reports backend reachability for vision', async () => {
     const state = networkService.getState();
     assert.strictEqual(typeof state.isBackendReachable, 'boolean');
   });
 
-  // 5. Preprocessing Specs Verification
+  // 6. Preprocessing Specs Verification
   test('Image preprocessing settings specify 224x224 input resolution and 80% quality', () => {
     const targetSize = 224;
     const qualitySetting = 0.8;

@@ -45,24 +45,26 @@ import { MANDI_DATABASE } from '../services/mandiData';
   }
 
   if (url.includes('/api/vision')) {
+    const payload = {
+      success: true,
+      disease: {
+        disease_name: 'Wheat___yellow_rust',
+        disease_name_hi: 'गेहूं का पीला रतुआ',
+        confidence: 0.95,
+        symptoms: ['पत्तियों पर पीली धारियां'],
+        organic_treatment: ['नीम के तेल का छिड़काव'],
+        chemical_treatment: ['प्रोपीकोनाज़ोल 25% EC'],
+      },
+      soil: null,
+      confidence: 0.95,
+      probabilities: { Wheat___yellow_rust: 0.95 },
+      imagePath: '/uploads/scan.jpg',
+    };
     return {
       ok: true,
       status: 200,
-      json: async () => ({
-        success: true,
-        disease: {
-          disease_name: 'Wheat___yellow_rust',
-          disease_name_hi: 'गेहूं का पीला रतुआ',
-          confidence: 0.95,
-          symptoms: ['पत्तियों पर पीली धारियां'],
-          organic_treatment: ['नीम के तेल का छिड़काव'],
-          chemical_treatment: ['प्रोपीकोनाज़ोल 25% EC'],
-        },
-        soil: null,
-        confidence: 0.95,
-        probabilities: { Wheat___yellow_rust: 0.95 },
-        imagePath: '/uploads/scan.jpg',
-      }),
+      text: async () => JSON.stringify(payload),
+      json: async () => payload,
     };
   }
 

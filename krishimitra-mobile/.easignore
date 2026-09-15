@@ -12,9 +12,6 @@ dataset/*
 dataset/**/*
 *.keras
 *.h5
-*.png
-*.jpg
-*.jpeg
 node_modules
 node_modules/
 node_modules/*
@@ -27,3 +24,4 @@ node_modules/**/*
 ../ai/
 ../ai/*
 ../ai/**/*
+
