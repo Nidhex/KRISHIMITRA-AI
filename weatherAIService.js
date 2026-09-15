@@ -2,7 +2,7 @@
    weatherAIService.js - Crop-specific Farming Recommendations via Gemini AI
    ========================================================================== */
 
-const GEMINI_API_KEY = CONFIG.GEMINI_API_KEY;
+const GEMINI_API_KEY = (typeof KrishiMitraConfig !== 'undefined' && KrishiMitraConfig.GEMINI_API_KEY) || (typeof CONFIG !== 'undefined' ? CONFIG.GEMINI_API_KEY : '');
 
 const callGeminiWeatherAPI = async (prompt) => {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${GEMINI_API_KEY}`;

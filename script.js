@@ -15,6 +15,7 @@ let appState = {
   reportsHistory: [],
   bookmarkedSchemes: []
 };
+if (typeof window !== 'undefined') window.appState = appState;
 
 // Audio elements helper
 const playSound = (soundId) => {
@@ -954,6 +955,8 @@ const translateUI = () => {
     else if (lang === 'kn') searchInput.placeholder = "ಬೆಳೆಯನ್ನು ಹುಡುಕಿ (ಉದಾ: ಭತ್ತ, ಗೋಧಿ)...";
     else if (lang === 'ml') searchInput.placeholder = "വിള തിരയുക (ഉദാ: നെല്ല്, ഗോതമ്പ്)...";
     else if (lang === 'or') searchInput.placeholder = "ଫସଲ ଖୋଜନ୍ତୁ (ଯେପରି ଧାନ, ଗହମ)...";
+  }
+
   // Update Voice & Text AI UI components
   const voiceSuggestionsContainer = document.getElementById('voice-suggestions-list');
   if (voiceSuggestionsContainer && typeof SUGGESTED_QUESTIONS_I18N !== 'undefined') {
@@ -991,11 +994,13 @@ const translateUI = () => {
   }
 
   // Update active layouts translations dynamically if visible
-  renderMarketBars();
-  renderMandiList();
-  renderSchemes();
-  renderHistory();
+  if (typeof renderMarketBars === 'function') renderMarketBars();
+  if (typeof renderMandiList === 'function') renderMandiList();
+  if (typeof renderSchemes === 'function') renderSchemes();
+  else if (typeof applyAllFilters === 'function') applyAllFilters();
+  if (typeof renderHistory === 'function') renderHistory();
 };
+
 
 // --------------------------------------------------------------------------
 // 6. ACCESSIBILITY HANDLERS
@@ -3071,9 +3076,13 @@ const shareScheme = (schemeId, title, link) => {
 };
 
 // compatibility mapper for old tabs
-const renderSchemes = (filter = 'all') => {
-  filterSchemesCategory(filter);
-};
+function renderSchemes(filter = 'all') {
+  if (typeof filterSchemesCategory === 'function') {
+    filterSchemesCategory(filter);
+  } else if (typeof applyAllFilters === 'function') {
+    applyAllFilters();
+  }
+}
 
 // 12a. GEMINI AI CLIENT & FUNCTIONS
 // --------------------------------------------------------------------------

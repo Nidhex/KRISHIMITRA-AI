@@ -275,14 +275,16 @@
     try {
       // 1. Ensure active mediaStream
       if (!mediaStream || !mediaStream.active || mediaStream.getAudioTracks().every(t => t.readyState === 'ended')) {
-        mediaStream = await navigator.mediaDevices.getUserMedia({
-          audio: {
-            echoCancellation: true,
-            noiseSuppression: true,
-            autoGainControl: true
-          }
-        });
-        console.log('[VOICE] Microphone permission granted');
+        if (navigator && navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function') {
+          mediaStream = await navigator.mediaDevices.getUserMedia({
+            audio: {
+              echoCancellation: true,
+              noiseSuppression: true,
+              autoGainControl: true
+            }
+          });
+          console.log('[VOICE] Microphone permission granted');
+        }
       }
 
       audioChunks = [];
@@ -547,7 +549,6 @@
     // Fallback: Browser Web Speech API
     fallbackWebSpeech(replyText, languageCode);
   }
-  }
 
   // ── Fallback Browser Speech Synthesis ──────────────────────────────────────
   function fallbackWebSpeech(text, languageCode) {
@@ -718,7 +719,8 @@
         els.langSelect.value = savedLang;
       } else if (window.appState && window.appState.currentLanguage) {
         const globalCode = window.appState.currentLanguage;
-        const matched = Array.from(els.langSelect.options).find(opt => opt.value.startsWith(globalCode));
+        const options = els.langSelect.options ? Array.from(els.langSelect.options) : [];
+        const matched = options.find(opt => opt.value && opt.value.startsWith(globalCode));
         if (matched) {
           els.langSelect.value = matched.value;
         }
@@ -736,12 +738,12 @@
 
     try {
       // Pre-acquire microphone right on call start gesture
-      if (!mediaStream) {
-        mediaStream = await navigator.mediaDevices.getUserMedia({
-          audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
-        });
-        console.log('[VOICE] Microphone permission granted');
-      }
+        if (navigator && navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function') {
+          mediaStream = await navigator.mediaDevices.getUserMedia({
+            audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+          });
+          console.log('[VOICE] Microphone permission granted');
+        }
 
       // Speak greeting in selected language, then start recording
       playAIResponse(initialGreeting, null, selectedLang);
