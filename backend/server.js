@@ -242,6 +242,41 @@ if (require.main === module) {
     console.log(`TF.js Vision : ${tfjsShardsValid ? 'Ready & Validated ✅ (6/6 shards verified)' : 'Invalid ❌'}`);
     console.log(`Offline Mode : Ready ✅`);
 
+    // Auto-start warm Python Vision Daemon if Python environment is detected
+    try {
+      const { spawn } = require('child_process');
+      const AI_DIR = path.resolve(__dirname, '..', 'ai');
+      let PYTHON = process.env.PYTHON_PATH || '';
+      if (!PYTHON || !fs.existsSync(PYTHON)) {
+        PYTHON = path.join(AI_DIR, '.venv', 'Scripts', 'python.exe');
+        if (!fs.existsSync(PYTHON)) {
+          PYTHON = path.join(AI_DIR, '.venv', 'bin', 'python');
+          if (!fs.existsSync(PYTHON)) {
+            PYTHON = process.platform === 'win32' ? 'python' : 'python3';
+          }
+        }
+      }
+
+      const daemonScript = path.join(AI_DIR, 'prediction', 'daemon.py');
+      if (fs.existsSync(daemonScript)) {
+        console.log('[Vision Daemon] Spawning warm Python Vision Daemon process...');
+        const daemonProc = spawn(PYTHON, [daemonScript], {
+          cwd: AI_DIR,
+          env: {
+            ...process.env,
+            KERAS_BACKEND: 'tensorflow',
+            TF_CPP_MIN_LOG_LEVEL: '3',
+            TF_ENABLE_ONEDNN_OPTS: '0'
+          },
+          stdio: 'ignore'
+        });
+        daemonProc.unref(); // allow Node server to exit independently
+        console.log('[Vision Daemon] Warm Python Vision Daemon spawned in background on port 5001 ✅');
+      }
+    } catch (daemonErr) {
+      console.warn('[Vision Daemon] Could not auto-start Python daemon:', daemonErr.message);
+    }
+
     console.log('');
     console.log(`  Open your browser → http://localhost:${PORT}`);
     console.log('');
@@ -249,3 +284,4 @@ if (require.main === module) {
 }
 
 module.exports = app;
+

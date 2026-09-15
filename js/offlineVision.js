@@ -211,12 +211,19 @@
     const predictedClass = labels[String(maxIdx)] || labels[maxIdx] || 'Unknown';
     const confidence = parseFloat(maxProb.toFixed(4));
 
+    const probsDict = {};
+    for (let i = 0; i < probabilities.length; i++) {
+      const clsName = labels[String(i)] || labels[i] || `Class_${i}`;
+      probsDict[clsName] = parseFloat((probabilities[i] * 100).toFixed(2));
+    }
+
     console.log(`[OfflineVision] Disease Prediction: ${predictedClass} (${(confidence * 100).toFixed(2)}%)`);
 
     return {
       success: true,
       disease: predictedClass,
       confidence: confidence,
+      probabilities: probsDict,
       offline: true,
       source: 'Browser TensorFlow.js Model',
       detection: {
@@ -226,6 +233,7 @@
       }
     };
   }
+
 
   /**
    * Predict Soil Type from an HTML Image, Canvas, or Video element

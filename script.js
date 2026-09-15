@@ -1748,10 +1748,19 @@ The JSON object must have these exact keys:
     return;
   }
 
-  // Real TensorFlow CNN Inference via POST /api/vision
+  // Real TensorFlow CNN Inference via POST /api/vision or OfflineVision
+  const btnAnalyze = document.getElementById('btn_analyze_action');
+  if (btnAnalyze) {
+    btnAnalyze.disabled = true;
+    btnAnalyze.classList.add('opacity-50', 'cursor-not-allowed');
+  }
+
   if (loading) loading.classList.remove('hidden');
   if (uploadPanel) uploadPanel.classList.add('hidden');
-  if (resultsArea) resultsArea.classList.add('hidden');
+  if (resultsArea) {
+    resultsArea.classList.add('hidden');
+    resultsArea.innerHTML = ''; // clear stale UI state
+  }
 
   try {
     let imageFile = appState.selectedFile;
@@ -1795,7 +1804,7 @@ The JSON object must have these exact keys:
             success: true,
             disease: offlineRes.soilType,
             confidence: offlineRes.confidence * 100,
-            probabilities: offlineRes.classProbabilities ? Object.fromEntries(offlineRes.classProbabilities.map(cp => [cp.className, cp.probability * 100])) : null,
+            probabilities: offlineRes.probabilities || (offlineRes.classProbabilities ? Object.fromEntries(offlineRes.classProbabilities.map(cp => [cp.className, cp.probability * 100])) : null),
             offline: true
           };
         } else {
@@ -1804,6 +1813,7 @@ The JSON object must have these exact keys:
             success: true,
             disease: offlineRes.disease,
             confidence: offlineRes.confidence * 100,
+            probabilities: offlineRes.probabilities || null,
             offline: true
           };
         }
@@ -1811,7 +1821,6 @@ The JSON object must have these exact keys:
         throw netErr;
       }
     }
-
 
     const label = data.disease;
     const confValue = parseFloat(data.confidence) || 0;
@@ -1847,48 +1856,66 @@ The JSON object must have these exact keys:
         ]
       };
     } else {
-      // Calculate Severity for disease scanner:
-      let severityText = "Low";
-      let severityType = "green";
-      if (confValue >= 90) {
-        severityText = "Very High";
-        severityType = "red";
-      } else if (confValue >= 80) {
-        severityText = "High";
-        severityType = "red";
-      } else if (confValue >= 60) {
-        severityText = "Medium";
-        severityType = "yellow";
+      // Low confidence safeguard (< 40% confidence)
+      if (confValue < 40) {
+        report = {
+          id: "REP-" + Date.now().toString().slice(-6),
+          type: "Leaf Disease Scan (TensorFlow CNN)",
+          date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
+          img: previewImg ? previewImg.src : (data.imagePath || ''),
+          details: [
+            { label: "Diagnosis Status", value: "Uncertain / Low Confidence (अस्पष्ट पहचान)", isAccent: true, type: "yellow" },
+            { label: "AI Confidence Score", value: confValue.toFixed(1) + "% (Below Threshold)", type: "yellow" },
+            { label: "Observed Symptoms", value: "Confidence is too low to identify plant disease reliably.", type: "info" }
+          ],
+          recommendations: [
+            { title: "Photo Guidance (चित्र सलाह)", text: "Please take a clear, well-lit, close-up photo focused directly on the affected leaf area and scan again." },
+            { title: "Expert Consultation (विशेषज्ञ परामर्श)", text: "Contact your local Krishi Vigyan Kendra (KVK) or extension officer for manual field inspection." }
+          ]
+        };
       } else {
-        severityText = "Low";
-        severityType = "green";
+        // Clinical severity (disconnected from prediction certainty score)
+        let severityText = "Medium";
+        let severityType = "yellow";
+        const isHealthy = label.toLowerCase().includes('healthy');
+
+        if (isHealthy) {
+          severityText = "None (Healthy Crop)";
+          severityType = "green";
+        } else if (label.includes('Late_blight') || label.includes('Bacterial_spot') || label.includes('YellowLeaf_Curl')) {
+          severityText = "High Severity";
+          severityType = "red";
+        } else {
+          severityText = "Moderate Severity";
+          severityType = "yellow";
+        }
+
+        const diseaseInfo = DISEASE_DATABASE[label] || {
+          name: label.replace(/___/g, ' - ').replace(/_/g, ' '),
+          symptoms: "Foliage exhibits spots, discoloration, or structural changes typical of plant infection.",
+          organic: "Apply bio-fungicide Trichoderma viride or neem oil spray (3000 ppm).",
+          chemical: "Apply broad-spectrum copper fungicide or Mancozeb 75 WP at recommended dose.",
+          preventive: "Ensure field sanitation, balanced fertilization, and proper crop rotation."
+        };
+
+        report = {
+          id: "REP-" + Date.now().toString().slice(-6),
+          type: "Leaf Disease Scan (TensorFlow CNN)",
+          date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
+          img: previewImg ? previewImg.src : (data.imagePath || ''),
+          details: [
+            { label: "Detected Disease", value: diseaseInfo.name, isAccent: true, type: isHealthy ? "green" : "red" },
+            { label: "AI Confidence Score", value: confValue.toFixed(1) + "%", type: "green" },
+            { label: "Clinical Severity", value: severityText, type: severityType },
+            { label: "Observed Symptoms", value: diseaseInfo.symptoms, type: "info" }
+          ],
+          recommendations: [
+            { title: "Organic Treatment (जैविक समाधान)", text: diseaseInfo.organic },
+            { title: "Chemical Treatment (रासायनिक उपाय)", text: diseaseInfo.chemical },
+            { title: "Preventive Measures (बचाव कार्य)", text: diseaseInfo.preventive }
+          ]
+        };
       }
-
-      const diseaseInfo = DISEASE_DATABASE[label] || {
-        name: label.replace(/___/g, ' - ').replace(/_/g, ' '),
-        symptoms: "Foliage exhibits spots, discoloration, or structural changes typical of plant infection.",
-        organic: "Apply bio-fungicide Trichoderma viride or neem oil spray (3000 ppm).",
-        chemical: "Apply broad-spectrum copper fungicide or Mancozeb 75 WP at recommended dose.",
-        preventive: "Ensure field sanitation, balanced fertilization, and proper crop rotation."
-      };
-
-      report = {
-        id: "REP-" + Date.now().toString().slice(-6),
-        type: "Leaf Disease Scan (TensorFlow CNN)",
-        date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
-        img: previewImg ? previewImg.src : (data.imagePath || ''),
-        details: [
-          { label: "Detected Disease", value: diseaseInfo.name, isAccent: true, type: "red" },
-          { label: "AI Confidence Score", value: confValue.toFixed(1) + "%", type: "green" },
-          { label: "Severity Level", value: severityText, type: severityType },
-          { label: "Observed Symptoms", value: diseaseInfo.symptoms, type: "info" }
-        ],
-        recommendations: [
-          { title: "Organic Treatment (जैविक समाधान)", text: diseaseInfo.organic },
-          { title: "Chemical Treatment (रासायनिक उपाय)", text: diseaseInfo.chemical },
-          { title: "Preventive Measures (बचाव कार्य)", text: diseaseInfo.preventive }
-        ]
-      };
     }
 
     appState.reportsHistory.unshift(report);
@@ -1904,8 +1931,14 @@ The JSON object must have these exact keys:
     if (loading) loading.classList.add('hidden');
     if (uploadPanel) uploadPanel.classList.remove('hidden');
     alert(`AI Scan Error: ${err.message}`);
+  } finally {
+    if (btnAnalyze) {
+      btnAnalyze.disabled = false;
+      btnAnalyze.classList.remove('opacity-50', 'cursor-not-allowed');
+    }
   }
 };
+
 
 // Mock soil analyzer
 const mockAnalyzeSoil = (name, img) => {

@@ -2,18 +2,65 @@
 
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
 const { spawn } = require('child_process');
 
+const DAEMON_PORT = parseInt(process.env.VISION_DAEMON_PORT || '5005', 10);
+
+
 /**
- * Analyse a crop image using local TensorFlow model (prediction.api).
- *
- * @param {string} imagePath - absolute path to the uploaded image file
- * @returns {Promise<{
- *   success: boolean,
- *   disease?: string,
- *   confidence?: number,
- *   error?: string
- * }>}
+ * Attempt to query warm Python HTTP daemon running locally on port 5001.
+ */
+function tryDaemonInference(imagePath, moduleType) {
+  return new Promise((resolve, reject) => {
+    const postData = JSON.stringify({
+      image_path: imagePath,
+      mode: moduleType
+    });
+
+    const req = http.request({
+      hostname: '127.0.0.1',
+      port: DAEMON_PORT,
+      path: '/predict',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(postData)
+      },
+      timeout: 3000
+    }, (res) => {
+      let body = '';
+      res.on('data', chunk => { body += chunk; });
+      res.on('end', () => {
+        if (res.statusCode === 200) {
+          try {
+            const parsed = JSON.parse(body);
+            if (parsed && typeof parsed.success !== 'undefined') {
+              return resolve(parsed);
+            }
+          } catch (e) {}
+        }
+        reject(new Error(`Daemon returned status ${res.statusCode}`));
+      });
+    });
+
+    req.on('error', (err) => {
+      reject(err);
+    });
+
+    req.on('timeout', () => {
+      req.destroy();
+      reject(new Error('Daemon request timed out'));
+    });
+
+    req.write(postData);
+    req.end();
+  });
+}
+
+/**
+ * Analyse a crop image using local TensorFlow model.
+ * Uses warm HTTP daemon if available (< 200ms), otherwise spawns Python.
  */
 async function analyseImage(imagePath, moduleType = 'disease') {
   if (!imagePath || !fs.existsSync(imagePath)) {
@@ -23,10 +70,21 @@ async function analyseImage(imagePath, moduleType = 'disease') {
     };
   }
 
+  // 1. Try warm Python HTTP daemon
+  try {
+    const daemonResult = await tryDaemonInference(imagePath, moduleType);
+    if (daemonResult && daemonResult.success) {
+      daemonResult.source = 'warm-daemon';
+      return daemonResult;
+    }
+  } catch (daemonErr) {
+    // Warm daemon unavailable or timed out; falling back to process spawn
+  }
+
+  // 2. Fallback: Process spawn execution
   return new Promise((resolve) => {
     const AI_DIR = path.resolve(__dirname, '..', '..', 'ai');
 
-    // Python executable check
     let PYTHON = process.env.PYTHON_PATH || '';
     if (!PYTHON || !fs.existsSync(PYTHON)) {
       PYTHON = path.join(AI_DIR, '.venv', 'Scripts', 'python.exe');
@@ -55,13 +113,8 @@ async function analyseImage(imagePath, moduleType = 'disease') {
     let stdout = '';
     let stderr = '';
 
-    python.stdout.on('data', (data) => {
-      stdout += data.toString();
-    });
-
-    python.stderr.on('data', (data) => {
-      stderr += data.toString();
-    });
+    python.stdout.on('data', (data) => { stdout += data.toString(); });
+    python.stderr.on('data', (data) => { stderr += data.toString(); });
 
     python.on('error', (err) => {
       return resolve({
@@ -71,7 +124,6 @@ async function analyseImage(imagePath, moduleType = 'disease') {
     });
 
     python.on('close', (code) => {
-      // Extract JSON line from stdout
       const lines = stdout.trim().split('\n');
       const jsonLine = lines.find(line => line.trim().startsWith('{'));
 
@@ -81,12 +133,9 @@ async function analyseImage(imagePath, moduleType = 'disease') {
           if (parsed && typeof parsed.success !== 'undefined') {
             return resolve(parsed);
           }
-        } catch (e) {
-          // JSON parse fallback
-        }
+        } catch (e) {}
       }
 
-      // If no JSON or python error
       if (code !== 0) {
         return resolve({
           success: false,
@@ -110,4 +159,4 @@ function imageToBase64(imagePath) {
 module.exports = {
   analyseImage,
   imageToBase64
-};
+};
