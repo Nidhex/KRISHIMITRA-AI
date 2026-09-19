@@ -1,7 +1,6 @@
 {
   "expo": {
     "name": "KrishiMitra AI",
-    "displayName": "कृषि मित्र AI",
     "slug": "krishimitra-ai",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -47,7 +46,8 @@
           "imageWidth": 76
         }
       ],
-      "expo-audio"
+      "expo-audio",
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true,
