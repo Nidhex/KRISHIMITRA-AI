@@ -3,6 +3,7 @@
 # 🌾 KrishiMitra AI (कृषि मित्र)
 ### Autonomous Multilingual Agronomy Platform & Edge-Native Intelligence for Indian Agriculture
 
+[![Live Demo](https://img.shields.io/badge/🌐_LIVE_DEMO-ONLINE_RENDER-00e676.svg?style=for-the-badge&logo=render&logoColor=white&labelColor=0a401c)](https://krishimitra-ai-1-4gtj.onrender.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-10b981.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
 [![React Native](https://img.shields.io/badge/React_Native-0.86-61dafb.svg?style=for-the-badge&logo=react&logoColor=black)](https://reactnative.dev/)
 [![Expo SDK](https://img.shields.io/badge/Expo-SDK_57-000020.svg?style=for-the-badge&logo=expo&logoColor=white)](https://expo.dev/)
@@ -15,6 +16,23 @@
 
 <br/>
 
+<div align="center">
+
+### ⚡ [Try the Live Interactive Web Application Now](https://krishimitra-ai-1-4gtj.onrender.com) ⚡
+
+[![Launch Live App](https://img.shields.io/badge/👉_CLICK_TO_LAUNCH_LIVE_DEMO-krishimitra--ai.onrender.com-00E676?style=for-the-badge&logo=rocket&logoColor=003314&labelColor=00C853)](https://krishimitra-ai-1-4gtj.onrender.com)
+&nbsp;&nbsp;
+[![Open Web App](https://img.shields.io/badge/🌐_OPEN_IN_BROWSER-VISIT_WEBSITE-ff6d00?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=b23c00)](https://krishimitra-ai-1-4gtj.onrender.com)
+
+<br/>
+<p>
+  <b>🔗 Live Production URL:</b> <a href="https://krishimitra-ai-1-4gtj.onrender.com" target="_blank"><code>https://krishimitra-ai-1-4gtj.onrender.com</code></a>
+</p>
+
+</div>
+
+<br/>
+
 <p align="center">
   <b>Bridging technological divides for 140+ Million Indian Farmers</b><br/>
   Real-Time Conversational Voice Calls • In-Browser Edge Computer Vision • Autonomous Agentic Farm Diary<br/>
@@ -22,6 +40,7 @@
 </p>
 
 <p align="center">
+  <a href="https://krishimitra-ai-1-4gtj.onrender.com" target="_blank"><b>🚀 Live Website</b></a> •
   <a href="#-master-system-architecture"><b>Architecture</b></a> •
   <a href="#-key-feature-showcase--visual-diagrams"><b>Features</b></a> •
   <a href="#-offline-resilience--fallback-architecture"><b>Offline Engine</b></a> •
@@ -469,6 +488,9 @@ npm start
 ```
 Open your browser and navigate to **`http://localhost:5001`**. The platform will initialize in English or your preferred Indian language.
 
+> 🌐 **Prefer not to run locally?** You can access the fully deployed live production platform immediately:  
+> **👉 [https://krishimitra-ai-1-4gtj.onrender.com](https://krishimitra-ai-1-4gtj.onrender.com)**
+
 ---
 
 ### Step 4: Run the Mobile Application (Expo / React Native)
@@ -655,6 +677,10 @@ This project is open-source software licensed under the **[MIT License](LICENSE)
 ---
 
 <div align="center">
+
+[![Launch Live Demo](https://img.shields.io/badge/🚀_LAUNCH_LIVE_APP-krishimitra--ai.onrender.com-00E676?style=for-the-badge&logo=rocket&logoColor=003314&labelColor=00C853)](https://krishimitra-ai-1-4gtj.onrender.com)
+
+<br/><br/>
 
 **Developed with ❤️ for Indian Farmers & Sustainable Agriculture**<br/>
 *Empowering every Kisan with the intelligence of modern AI, directly in their native language.*
