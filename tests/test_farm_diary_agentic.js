@@ -17,6 +17,8 @@ const EVENTS_FILE = path.join(DB_DIR, 'diary_events.json');
 const TEST_FARMER_ID = 'test_farmer_agentic_001';
 
 function resetTestData() {
+  const existingEvents = farmDiaryService.getEvents(TEST_FARMER_ID);
+  existingEvents.forEach(e => farmDiaryService.deleteEvent(TEST_FARMER_ID, e.id));
   if (fs.existsSync(EVENTS_FILE)) {
     let events = JSON.parse(fs.readFileSync(EVENTS_FILE, 'utf8'));
     events = events.filter(e => e.farmerId !== TEST_FARMER_ID);

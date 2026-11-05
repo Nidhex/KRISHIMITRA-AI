@@ -104,59 +104,59 @@ async function main() {
     }
   });
 
-  // Test 4: Frontend Voice Controller State Machine in js/sarvamCall.js
-  runTest('Test 4: Frontend Voice Controller State Machine & Offline Safety', () => {
-    const callJsPath = path.join(__dirname, '..', 'js', 'sarvamCall.js');
-    const callJsContent = fs.readFileSync(callJsPath, 'utf8');
+// Test 4: Frontend Voice Controller State Machine in js/sarvamCall.js
+runTest('Test 4: Frontend Voice Controller State Machine & Offline Safety', () => {
+  const callJsPath = path.join(__dirname, '..', 'js', 'sarvamCall.js');
+  const callJsContent = fs.readFileSync(callJsPath, 'utf8');
 
-    assert.ok(callJsContent.includes('TRANSCRIBING'), 'State machine must include TRANSCRIBING state');
-    assert.ok(callJsContent.includes('ttsSupported'), 'Controller must check ttsSupported flag');
-    assert.ok(callJsContent.includes('navigator.onLine === false'), 'Controller must check offline status');
-    assert.ok(callJsContent.includes('Voice AI requires an internet connection'), 'Controller must show honest offline message');
-  });
+  assert.ok(callJsContent.includes('TRANSCRIBING'), 'State machine must include TRANSCRIBING state');
+  assert.ok(callJsContent.includes('ttsSupported'), 'Controller must check ttsSupported flag');
+  assert.ok(callJsContent.includes('navigator.onLine === false'), 'Controller must check offline status');
+  assert.ok(callJsContent.includes('Voice AI requires an internet connection'), 'Controller must show honest offline message');
+});
 
-  // Test 5: Security Audit — Zero Raw Secrets in Frontend Files
-  runTest('Test 5: Security Audit — Zero API Secrets in Frontend Files', () => {
-    const frontendFiles = [
-      'index.html',
-      'script.js',
-      'js/sarvamCall.js',
-      'js/gemmaChat.js',
-      'js/offlineRAG.js',
-      'service-worker.js'
-    ];
+// Test 5: Security Audit — Zero Raw Secrets in Frontend Files
+runTest('Test 5: Security Audit — Zero API Secrets in Frontend Files', () => {
+  const frontendFiles = [
+    'index.html',
+    'script.js',
+    'js/sarvamCall.js',
+    'js/gemmaChat.js',
+    'js/offlineRAG.js',
+    'service-worker.js'
+  ];
 
-    const forbiddenSecretPatterns = [
-      /AIzaSy[A-Za-z0-9_-]{33}/,
-      /api-subscription-key\s*[:=]\s*['"][A-Za-z0-9_-]{10,}['"]/i,
-      /SARVAM_API_KEY\s*[:=]\s*['"][A-Za-z0-9_-]{10,}['"]/i
-    ];
+  const forbiddenSecretPatterns = [
+    /AIzaSy[A-Za-z0-9_-]{33}/,
+    /api-subscription-key\s*[:=]\s*['"][A-Za-z0-9_-]{10,}['"]/i,
+    /SARVAM_API_KEY\s*[:=]\s*['"][A-Za-z0-9_-]{10,}['"]/i
+  ];
 
-    for (const file of frontendFiles) {
-      const filePath = path.join(__dirname, '..', file);
-      if (!fs.existsSync(filePath)) continue;
-      const content = fs.readFileSync(filePath, 'utf8');
+  for (const file of frontendFiles) {
+    const filePath = path.join(__dirname, '..', file);
+    if (!fs.existsSync(filePath)) continue;
+    const content = fs.readFileSync(filePath, 'utf8');
 
-      for (const pattern of forbiddenSecretPatterns) {
-        assert.ok(!pattern.test(content), `Security Violation: ${file} contains raw API secret matching ${pattern}`);
-      }
+    for (const pattern of forbiddenSecretPatterns) {
+      assert.ok(!pattern.test(content), `Security Violation: ${file} contains raw API secret matching ${pattern}`);
     }
-  });
-
-  // Test 6: Mobile Project Boundary Verification
-  runTest('Test 6: Mobile Project Boundary Verification (krishimitra-mobile/ untouched)', () => {
-    const mobilePath = path.join(__dirname, '..', 'krishimitra-mobile');
-    assert.strictEqual(fs.existsSync(mobilePath), true, 'krishimitra-mobile folder must exist');
-    assert.ok(fs.existsSync(path.join(mobilePath, 'package.json')), 'Mobile package.json intact');
-  });
-
-  console.log('\n--------------------------------------------------');
-  console.log(`  AUTOMATED TEST SUMMARY: ${passCount} PASSED / ${failCount} FAILED`);
-  console.log('--------------------------------------------------\n');
-
-  if (failCount > 0) {
-    process.exit(1);
   }
+});
+
+// Test 6: Mobile Project Boundary Verification
+runTest('Test 6: Mobile Project Boundary Verification (krishimitra-mobile/ untouched)', () => {
+  const mobilePath = path.join(__dirname, '..', 'krishimitra-mobile');
+  assert.strictEqual(fs.existsSync(mobilePath), true, 'krishimitra-mobile folder must exist');
+  assert.ok(fs.existsSync(path.join(mobilePath, 'package.json')), 'Mobile package.json intact');
+});
+
+console.log('\n--------------------------------------------------');
+console.log(`  AUTOMATED TEST SUMMARY: ${passCount} PASSED / ${failCount} FAILED`);
+console.log('--------------------------------------------------\n');
+
+if (failCount > 0) {
+  process.exit(1);
+}
 }
 
 main();
