@@ -14,6 +14,7 @@
 'use strict';
 
 const db = require('./databaseService');
+const pestSurge = require('./pestSurgeService');
 
 // ── Supported Language Definitions ──────────────────────────────────────────
 const SUPPORTED_LANGUAGES = {
@@ -596,6 +597,7 @@ module.exports = {
   extractKeywords: (q) => extractAndExpandKeywords(q).terms,
   extractAndExpandKeywords,
   detectDomains,
+  evaluatePestSurgeAlerts: pestSurge.evaluatePestSurgeAlerts,
   SUPPORTED_LANGUAGES,
   MULTILINGUAL_SYNONYMS
 };

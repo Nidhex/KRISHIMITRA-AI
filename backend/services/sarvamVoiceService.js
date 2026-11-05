@@ -529,7 +529,7 @@ ${ragResult.context}`;
       messages,
       model: process.env.SARVAM_MODEL || 'sarvam-105b',
       temperature: 0.35,
-      maxTokens: 400
+      maxTokens: 2048
     });
 
     if (chatRes.success && chatRes.reply) {

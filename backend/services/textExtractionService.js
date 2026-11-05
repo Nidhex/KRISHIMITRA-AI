@@ -43,13 +43,24 @@ const INTERNAL_LEAK_PATTERNS = [
   /===\s*KRISHIMITRA\s+VERIFIED/i,
   /Based\s+on\s+agricultural\s+recommendations\s+for/i,
   /Based\s+on\s+verified\s+KrishiMitra/i,
-  /किसान\s+को\s+सरल\s+और\s+व्यावहारिक/i,
   /Respond\s+in\s+clean,\s+simple/i,
   /Farmer\s+Name:\s*/i,
   /Land\s+Size:\s*/i,
   /system\s+prompt/i,
   /developer\s+message/i,
-  /You\s+are\s+KrishiMitra\s+AI\s+.*on\s+a\s+LIVE\s+VOICE\s+CALL/i
+  /You\s+are\s+KrishiMitra\s+AI\s+.*on\s+a\s+LIVE\s+VOICE\s+CALL/i,
+  /No\s+specific\s+local\s+record\s+matched/i,
+  // 11 Regional language developer instructions
+  /किसान\s+को\s+सरल\s+और\s+व्यावहारिक/i,
+  /ખેડૂતને\s+સરળ\s+અને\s+વ્યવહારુ/i,
+  /शेतकऱ्याला\s+सोप्या\s+आणि\s+व्यावहारिक/i,
+  /কৃষককে\s+সহজ\s+ও\s+ব্যবহারিক/i,
+  /விவசாயிக்கு\s+எளிய\s+மற்றும்\s+நடைமுறை/i,
+  /రైతుకు\s+సరళమైన\s+మరియు\s+ఆచరణాత్మక/i,
+  /ರೈತರಿಗೆ\s+ಸರಳ\s+ಮತ್ತು\s+ಪ್ರಾಯೋಗಿಕ/i,
+  /കർഷകന്\s+ലളിതവും\s+പ്രായോഗികവുമായ/i,
+  /ਕਿਸਾਨ\s+ਨੂੰ\s+ਸਰਲ\s+ਅਤੇ\s+ਵਿਹਾਰਕ/i,
+  /କୃଷକଙ୍କୁ\s+ସରଳ\s+ଏବଂ\s+ବ୍ୟବହାରିକ/i
 ];
 
 /**
@@ -151,8 +162,18 @@ function sanitizeAssistantText(text, options = {}) {
 
   clean = clean.replace(/Based\s+on\s+agricultural\s+recommendations\s+for\s+[A-Z]{2,5}:\s*/gi, '');
   clean = clean.replace(/Based\s+on\s+verified\s+KrishiMitra\s+agricultural\s+knowledge:\s*/gi, '');
-  clean = clean.replace(/किसान\s+को\s+सरल\s+और\s+व्यावहारिक[\s\S]*?उत्तर\s+दें[।\.]/g, '');
+  clean = clean.replace(/No\s+specific\s+local\s+record\s+matched[\s\S]*?\./gi, '');
   clean = clean.replace(/Respond\s+in\s+clean,\s+simple,\s+and\s+friendly[\s\S]*?\./g, '');
+  clean = clean.replace(/किसान\s+को\s+सरल\s+और\s+व्यावहारिक[\s\S]*?उत्तर\s+दें[।\.]/g, '');
+  clean = clean.replace(/ખેડૂતને\s+સરળ\s+અને\s+વ્યવહારુ[\s\S]*?આપો[।\.]/g, '');
+  clean = clean.replace(/શेतકऱ्याલા\s+સોप्या\s+આणि\s+વ્યાવહારિક[\s\S]*?द्या[।\.]/g, '');
+  clean = clean.replace(/কৃষককে\s+সহজ\s+ও\s+ব্যবহারিক[\s\S]*?দিন[।\.]/g, '');
+  clean = clean.replace(/விவசாயிக்கு\s+எளிய\s+மற்றும்\s+நடைமுறை[\s\S]*?பதிலளிக்கவும்[।\.]/g, '');
+  clean = clean.replace(/రైతుకు\s+సరళమైన\s+మరియు\s+ఆచరణాత్మక[\s\S]*?ఇవ్వండి[।\.]/g, '');
+  clean = clean.replace(/ರೈತರಿಗೆ\s+ಸರಳ\s+ಮತ್ತು\s+ಪ್ರಾಯೋಗಿಕ[\s\S]*?ಉತ್ತರಿಸಿ[।\.]/g, '');
+  clean = clean.replace(/കർഷകന്\s+ലളിതവും\s+പ്രായോഗികവുമായ[\s\S]*?നൽകുക[।\.]/g, '');
+  clean = clean.replace(/ਕਿਸਾਨ\s+ਨੂੰ\s+ਸਰਲ\s+ਅਤੇ\s+ਵਿਹਾਰਕ[\s\S]*?ਦਿਓ[।\.]/g, '');
+  clean = clean.replace(/କୃଷକଙ୍କୁ\s+ସରଳ\s+ଏବଂ\s+ବ୍ୟବହାରିକ[\s\S]*?ଦିଅନ୍ତୁ[।\.]/g, '');
   clean = clean.replace(/<ctrl42>call:.*$/gm, '');
   clean = clean.replace(/You\s+are\s+KrishiMitra\s+AI[\s\S]*?ground\s+truth:\s*/gi, '');
 

@@ -3,7 +3,7 @@
    Provides true offline shell capability and caches AI browser model assets.
    ========================================================================== */
 
-const CACHE_NAME_STATIC = 'krishimitra-static-v5';
+const CACHE_NAME_STATIC = 'krishimitra-static-v6';
 const CACHE_NAME_MODELS = 'krishimitra-models-v2';
 
 const STATIC_ASSETS = [
@@ -14,6 +14,11 @@ const STATIC_ASSETS = [
   '/script.js',
   '/weatherService.js',
   '/weatherAIService.js',
+  '/js/uiAccessibility.js',
+  '/js/uiNavigation.js',
+  '/js/uiPestSurge.js',
+  '/js/config.js',
+  '/js/farmDiary.js',
   '/js/api.js',
   '/js/offlineStorage.js',
   '/js/offlineStatus.js',

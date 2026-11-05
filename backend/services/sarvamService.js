@@ -110,7 +110,7 @@ function callSarvamHttp(payload, apiKey) {
  * @param {Array<{role: string, content: string}>} options.messages
  * @param {string} [options.model]
  * @param {number} [options.temperature=0.4]
- * @param {number} [options.maxTokens=1024]
+ * @param {number} [options.maxTokens=2048]
  * @returns {Promise<{
  *   success: boolean,
  *   reply?: string,
@@ -126,7 +126,7 @@ async function askSarvamChat(options = {}) {
     messages = [],
     model = DEFAULT_MODEL,
     temperature = 0.4,
-    maxTokens = 1024
+    maxTokens = 2048
   } = options;
 
   const startTime = Date.now();
@@ -157,11 +157,13 @@ async function askSarvamChat(options = {}) {
   }
 
   // 3. Prepare payload for OpenAI-compatible Sarvam endpoint
+  // Sarvam-105b reasoning tokens count against max_tokens; ensure minimum 2048
+  const resolvedMaxTokens = typeof maxTokens === 'number' ? Math.max(maxTokens, 2048) : 2048;
   const payload = {
     model: model,
     messages: messages,
     temperature: typeof temperature === 'number' ? temperature : 0.4,
-    max_tokens: typeof maxTokens === 'number' ? maxTokens : 1024
+    max_tokens: resolvedMaxTokens
   };
 
   logger.info(`[SARVAM] Requesting chat completion with model "${model}" (${messages.length} messages)...`);
@@ -181,14 +183,18 @@ async function askSarvamChat(options = {}) {
         const choices = response.data.choices;
         if (Array.isArray(choices) && choices.length > 0 && choices[0].message) {
           const content = choices[0].message.content || '';
-          logger.info(`[SARVAM] Response received successfully in ${inferenceMs}ms.`);
-          return {
-            success: true,
-            reply: content.trim(),
-            model: response.data.model || model,
-            usage: response.data.usage,
-            inferenceMs
-          };
+          if (content.trim()) {
+            logger.info(`[SARVAM] Response received successfully in ${inferenceMs}ms.`);
+            return {
+              success: true,
+              reply: content.trim(),
+              model: response.data.model || model,
+              usage: response.data.usage,
+              inferenceMs
+            };
+          }
+          const reasoningTokens = response.data.usage?.completion_tokens_details?.reasoning_tokens || 0;
+          logger.warn(`[SARVAM] Response had empty content (reasoning_tokens: ${reasoningTokens}, max_tokens: ${resolvedMaxTokens}).`);
         }
       }
 

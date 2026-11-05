@@ -9,6 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const { logger } = require('../middleware/logger');
 const sarvam = require('./sarvamService');
+const sqliteDb = require('./sqliteDbService');
 
 // ── Database Paths ────────────────────────────────────────────────────────────
 const DB_DIR = path.join(__dirname, '..', '..', 'database', 'farm_diary');
@@ -99,43 +100,15 @@ function writeJson(filePath, data) {
 
 // ── Fields API ────────────────────────────────────────────────────────────────
 function getFields(farmerId = DEFAULT_FARMER_ID) {
-  const fields = readJson(FIELDS_FILE, []);
-  return fields.filter(f => f.farmerId === farmerId);
+  return sqliteDb.getFields(farmerId);
 }
 
 // ── Events CRUD API ───────────────────────────────────────────────────────────
 function getEvents(farmerId = DEFAULT_FARMER_ID, filters = {}) {
-  let events = readJson(EVENTS_FILE, []);
-
-  // Filter strictly by farmer ID
-  events = events.filter(e => e.farmerId === farmerId);
-
-  if (filters.crop) {
-    const cropLower = filters.crop.toLowerCase();
-    events = events.filter(e => (e.crop || '').toLowerCase().includes(cropLower));
-  }
-
-  if (filters.eventType && filters.eventType !== 'all') {
-    events = events.filter(e => e.eventType === filters.eventType);
-  }
-
-  if (filters.fieldId) {
-    events = events.filter(e => e.fieldId === filters.fieldId);
-  }
-
-  // Sort by date descending (newest first)
-  events.sort((a, b) => new Date(b.date || b.createdAt).getTime() - new Date(a.date || a.createdAt).getTime());
-
-  if (filters.limit && typeof filters.limit === 'number') {
-    events = events.slice(0, filters.limit);
-  }
-
-  return events;
+  return sqliteDb.getEvents(farmerId, filters);
 }
 
 function createEvent(eventData = {}) {
-  const events = readJson(EVENTS_FILE, []);
-
   const normalizedType = normalizeEventType(eventData.eventType, eventData.title, eventData.description);
   const nowStr = new Date().toISOString();
   const dateStr = eventData.date || nowStr.split('T')[0];
@@ -165,23 +138,17 @@ function createEvent(eventData = {}) {
     updatedAt: nowStr
   };
 
-  events.push(newEvent);
-  writeJson(EVENTS_FILE, events);
+  sqliteDb.saveEvent(newEvent);
   logger.info(`[FARM_DIARY] Event created: ${newEvent.id} (${newEvent.title}) [Type: ${newEvent.eventType}]`);
   return newEvent;
 }
 
 function deleteEvent(farmerId, eventId) {
-  let events = readJson(EVENTS_FILE, []);
-  const initialLength = events.length;
-  events = events.filter(e => e.id !== eventId);
-
-  if (events.length < initialLength) {
-    writeJson(EVENTS_FILE, events);
+  const deleted = sqliteDb.deleteEvent(farmerId, eventId);
+  if (deleted) {
     logger.info(`[FARM_DIARY] Event deleted: ${eventId}`);
-    return true;
   }
-  return false;
+  return deleted;
 }
 
 // ── AI Event Extractor ────────────────────────────────────────────────────────
@@ -244,7 +211,7 @@ Farmer Input (${language}):
       const result = await sarvam.askSarvamChat({
         messages: [{ role: 'user', content: prompt }],
         temperature: 0.1,
-        maxTokens: 500
+        maxTokens: 2048
       });
 
       if (result.success && result.reply) {
@@ -522,7 +489,7 @@ ${JSON.stringify(farmContext, null, 2)}`;
           const gData = JSON.parse(jsonMatch[0]);
           if (gData.action && gData.reason) {
             logger.info(`[FarmDecision] Gemini decision generated successfully: "${gData.action.substring(0, 40)}..."`);
-            const basedOnFormatted = Array.isArray(gData.basedOn) 
+            const basedOnFormatted = Array.isArray(gData.basedOn)
               ? gData.basedOn.map(b => (typeof b === 'string' ? { type: 'farm_diary', summary: b } : b))
               : [{ type: 'farm_diary', summary: `Based on ${farmContext.recentEvents.length} recorded farm events` }];
 

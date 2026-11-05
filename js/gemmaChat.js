@@ -319,6 +319,7 @@
 
     // ── Local Storage Chat Persistence Helpers ────────────────────────────
     function saveToLocalStorage(content, typeClass, meta, timeStr) {
+      if (typeof localStorage === 'undefined') return;
       try {
         let saved = JSON.parse(localStorage.getItem('km_chat_history') || '[]');
         saved.push({
@@ -335,6 +336,7 @@
     }
 
     function restoreFromLocalStorage() {
+      if (typeof localStorage === 'undefined') return;
       try {
         const raw = localStorage.getItem('km_chat_history');
         if (!raw) return;

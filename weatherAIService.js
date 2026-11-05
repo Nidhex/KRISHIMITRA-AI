@@ -1,19 +1,27 @@
 /* ==========================================================================
    weatherAIService.js - Crop-specific Farming Recommendations via Gemini AI
+   Secured Production Architecture: All calls routed through backend API proxy.
    ========================================================================== */
 
-const GEMINI_API_KEY = (typeof KrishiMitraConfig !== 'undefined' && KrishiMitraConfig.GEMINI_API_KEY) || (typeof CONFIG !== 'undefined' ? CONFIG.GEMINI_API_KEY : '');
+'use strict';
 
+/**
+ * Execute AI weather generation securely through the backend proxy.
+ * Prevents any client-side credential exposure.
+ */
 const callGeminiWeatherAPI = async (prompt) => {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-  
+  const backendUrl = (typeof window !== 'undefined' && window.KrishiMitraConfig && window.KrishiMitraConfig.API_BASE_URL)
+    ? `${window.KrishiMitraConfig.API_BASE_URL}/gemini/generateContent`
+    : '/api/gemini/generateContent';
+
   try {
-    const response = await fetch(url, {
+    const response = await fetch(backendUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
+        model: 'gemini-3.5-flash',
         contents: [
           {
             parts: [
@@ -25,19 +33,19 @@ const callGeminiWeatherAPI = async (prompt) => {
         ]
       })
     });
-    
+
     if (!response.ok) {
-      throw new Error(`Gemini API HTTP error! Status: ${response.status}`);
+      throw new Error(`Weather AI proxy HTTP error! Status: ${response.status}`);
     }
-    
+
     const data = await response.json();
     if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
       return data.candidates[0].content.parts[0].text;
     } else {
-      throw new Error("Invalid Gemini API response structure");
+      throw new Error("Invalid Weather AI response structure");
     }
   } catch (error) {
-    console.error("Gemini Weather AI call failed:", error);
+    console.warn("[KrishiMitra] Weather AI server proxy failed, falling back to local advisory:", error.message);
     return null;
   }
 };
@@ -78,17 +86,16 @@ The JSON object must have these exact keys and values (written in ${langName} la
   "pesticide": "Pesticide spray recommendations (e.g. postpone if rain probability >50% or winds >15km/h; suggest humidity fungal controls) (1 sentence).",
   "fertilizer": "Fertilizer advice (e.g. avoid washing away during heavy downpours, or specify application in sunny breaks) (1 sentence).",
   "harvest": "Harvesting advice (e.g. harvest ready crops immediately if storm approaches, or delay if moisture is high) (1 sentence).",
-  "riskLevel": "Safe" or "Caution" or "Danger",
+  "riskLevel": "Safe or Caution or Danger",
   "riskReason": "One brief reason explaining why you assigned this risk level."
 }
 
 Ensure the values are clear, simple, and direct for a rural farmer. Do not output anything other than this JSON structure.`;
 
   const responseText = await callGeminiWeatherAPI(prompt);
-  
+
   if (responseText) {
     try {
-      // Clean up response text if it contains markdown code blocks
       const cleanJson = responseText
         .replace(/```json/g, '')
         .replace(/```/g, '')
@@ -98,7 +105,7 @@ Ensure the values are clear, simple, and direct for a rural farmer. Do not outpu
       console.warn("Failed to parse AI Weather advice JSON:", responseText, e);
     }
   }
-  
+
   // Return localized fallbacks if API fails
   return getFallbackAdvisory(crop, current.rainProb, current.humidity, langCode);
 };

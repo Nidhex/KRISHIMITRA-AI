@@ -150,7 +150,7 @@ router.post('/', async (req, res, next) => {
         messages,
         model: process.env.SARVAM_MODEL || 'sarvam-105b',
         temperature: 0.4,
-        maxTokens: 1000
+        maxTokens: 2048
       });
 
       if (sarvamResult.success && sarvamResult.reply) {

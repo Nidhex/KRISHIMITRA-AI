@@ -231,12 +231,26 @@ const saveWeatherToCache = (data, locationName) => {
     locationName,
     timestamp: new Date().getTime()
   };
-  localStorage.setItem('km_weather_cache', JSON.stringify(weatherCache));
+  try {
+    localStorage.setItem('km_weather_cache', JSON.stringify(weatherCache));
+  } catch (_) {}
+
+  // Trigger real-time micro-climate pest surge evaluation
+  if (typeof window !== 'undefined' && window.KrishiPestSurge && data && data.current) {
+    window.KrishiPestSurge.checkAlerts(data.current);
+  }
 };
 
 // Load weather details from cache
 const loadWeatherFromCache = () => {
-  const cached = localStorage.getItem('km_weather_cache');
+  let cached = null;
+  try { cached = localStorage.getItem('km_weather_cache'); } catch (_) {}
+  if (cached && typeof window !== 'undefined' && window.KrishiPestSurge) {
+    try {
+      const parsed = JSON.parse(cached);
+      if (parsed?.data?.current) window.KrishiPestSurge.checkAlerts(parsed.data.current);
+    } catch (_) {}
+  }
   if (cached) {
     weatherCache = JSON.parse(cached);
     return weatherCache;

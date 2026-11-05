@@ -11,12 +11,10 @@ const { logger } = require('../middleware/logger');
 const farmDiaryService = require('../services/farmDiaryService');
 
 /**
- * GET /api/farm-diary/:farmerId
- * Retrieve fields, timeline events, and current decision for a farmer.
+ * Helper to fetch diary events for a farmer
  */
-router.get('/:farmerId', (req, res) => {
+function handleGetEvents(req, res, farmerId) {
   try {
-    const { farmerId } = req.params;
     const { crop, eventType, fieldId, limit } = req.query;
 
     const fields = farmDiaryService.getFields(farmerId);
@@ -42,6 +40,23 @@ router.get('/:farmerId', (req, res) => {
       userError: 'फार्म डायरी डेटा लोड करने में समस्या हुई।'
     });
   }
+}
+
+/**
+ * GET /api/farm-diary
+ * Retrieve fields, timeline events, and current decision for default farmer.
+ */
+router.get('/', (req, res) => {
+  return handleGetEvents(req, res, farmDiaryService.DEFAULT_FARMER_ID);
+});
+
+/**
+ * GET /api/farm-diary/:farmerId
+ * Retrieve fields, timeline events, and current decision for a specific farmer.
+ */
+router.get('/:farmerId', (req, res) => {
+  const { farmerId } = req.params;
+  return handleGetEvents(req, res, farmerId);
 });
 
 /**

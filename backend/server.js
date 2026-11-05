@@ -92,6 +92,7 @@ app.use('/api/farm-diary', diaryRoutes);
 app.use('/api/mandi',      mandiRoutes);
 
 // ── Feed Caching Routes ──────────────────────────────────────────────────────
+const sqliteDb = require('./services/sqliteDbService');
 const NEWS_CACHE_FILE = path.join(__dirname, '..', 'database', 'news', 'news_cache.json');
 
 // Ensure news database folder exists
@@ -100,61 +101,29 @@ if (!fs.existsSync(newsDbDir)) {
   fs.mkdirSync(newsDbDir, { recursive: true });
 }
 
-// GET /api/feed/cache - Load cached articles (no-cache so updates are always served fresh)
+// GET /api/feed/cache - Load cached articles (from SQLite with JSON fallback sync)
 app.get('/api/feed/cache', (req, res) => {
   try {
-    // Disable ETag / 304 so the browser always gets the latest news_cache.json
     res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     res.setHeader('Pragma', 'no-cache');
     res.setHeader('Expires', '0');
 
-    if (fs.existsSync(NEWS_CACHE_FILE)) {
-      const data = fs.readFileSync(NEWS_CACHE_FILE, 'utf8');
-      const articles = JSON.parse(data);
-      return res.json({ success: true, articles });
-    }
-    return res.json({ success: true, articles: [] });
+    const articles = sqliteDb.getNewsArticles(500);
+    return res.json({ success: true, articles });
   } catch (err) {
     return res.status(500).json({ success: false, error: err.message });
   }
 });
 
-// POST /api/feed/cache - Save new articles to cache (keeping up to 500)
+// POST /api/feed/cache - Save new articles to cache (using SQLite + dual-sync JSON)
 app.post('/api/feed/cache', (req, res) => {
   try {
     const { articles } = req.body;
     if (!Array.isArray(articles)) {
       return res.status(400).json({ success: false, error: 'Articles must be an array.' });
     }
-
-    let existingArticles = [];
-    if (fs.existsSync(NEWS_CACHE_FILE)) {
-      try {
-        const raw = fs.readFileSync(NEWS_CACHE_FILE, 'utf8');
-        existingArticles = JSON.parse(raw);
-        if (!Array.isArray(existingArticles)) existingArticles = [];
-      } catch (e) {
-        existingArticles = [];
-      }
-    }
-
-    // Merge new articles with existing ones, avoiding duplicates by ID or Headline
-    const merged = [...articles];
-    existingArticles.forEach(existing => {
-      const isDuplicate = merged.some(item => 
-        (item.id && item.id === existing.id) || 
-        (item.headline.trim().toLowerCase() === existing.headline.trim().toLowerCase())
-      );
-      if (!isDuplicate) {
-        merged.push(existing);
-      }
-    });
-
-    // Keep latest 500 articles
-    const trimmed = merged.slice(0, 500);
-
-    fs.writeFileSync(NEWS_CACHE_FILE, JSON.stringify(trimmed, null, 2), 'utf8');
-    return res.json({ success: true, count: trimmed.length });
+    const count = sqliteDb.saveNewsArticles(articles);
+    return res.json({ success: true, count });
   } catch (err) {
     return res.status(500).json({ success: false, error: err.message });
   }
