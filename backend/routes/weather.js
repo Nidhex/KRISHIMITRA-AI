@@ -1,6 +1,7 @@
 /* ==========================================================================
    KrishiMitra AI — Weather & Micro-Climate Pest Surge Route
-   Endpoints: POST /api/weather, GET /api/weather, GET /api/weather/alerts
+   Endpoints: POST /api/weather, GET /api/weather, GET /api/weather/alerts,
+              GET /api/weather/live (Direct OpenWeatherMap + Open-Meteo Redundancy)
    ========================================================================== */
 
 'use strict';
@@ -12,6 +13,126 @@ const db = require('../services/databaseService');
 const rag = require('../services/ragService');
 const ollama = require('../services/ollamaService');
 const { evaluatePestSurgeAlerts } = require('../services/pestSurgeService');
+
+/**
+ * Weather condition to emoji mapping
+ */
+function mapWeatherConditionToEmoji(condition) {
+  const c = (condition || '').toLowerCase();
+  if (c.includes('thunder') || c.includes('storm')) return '⛈';
+  if (c.includes('heavy rain')) return '🌧';
+  if (c.includes('rain') || c.includes('drizzle') || c.includes('shower')) return '🌧';
+  if (c.includes('snow')) return '❄️';
+  if (c.includes('fog') || c.includes('mist') || c.includes('haze')) return '🌫';
+  if (c.includes('partly') || c.includes('cloud')) return '⛅';
+  if (c.includes('clear') || c.includes('sun')) return '☀️';
+  return '⛅';
+}
+
+/**
+ * Fetch live weather from OpenWeatherMap using coordinates
+ */
+async function fetchOpenWeatherMap(lat, lon, apiKey) {
+  const currentUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+  const [curRes, foreRes] = await Promise.all([
+    fetch(currentUrl),
+    fetch(forecastUrl)
+  ]);
+
+  if (!curRes.ok) {
+    throw new Error(`OpenWeatherMap Current error: ${curRes.statusText}`);
+  }
+
+  const curData = await curRes.json();
+  const foreData = foreRes.ok ? await foreRes.json() : { list: [] };
+
+  // Format hourly (next 24 hours in 3h blocks)
+  const hourly = (foreData.list || []).slice(0, 8).map(item => ({
+    time: new Date(item.dt * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    temp: Math.round(item.main?.temp || 0),
+    rainProb: Math.round((item.pop || 0) * 100),
+    humidity: item.main?.humidity || 0,
+    windSpeed: Math.round(item.wind?.speed || 0),
+    code: item.weather?.[0]?.id || 800
+  }));
+
+  // Format daily (next 5 days)
+  const dailyMap = {};
+  (foreData.list || []).forEach(item => {
+    const dStr = new Date(item.dt * 1000).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    if (!dailyMap[dStr]) {
+      dailyMap[dStr] = {
+        date: dStr,
+        tempMax: item.main.temp_max,
+        tempMin: item.main.temp_min,
+        rainProb: Math.round((item.pop || 0) * 100),
+        humidity: item.main.humidity,
+        windSpeed: Math.round(item.wind?.speed || 0),
+        code: item.weather?.[0]?.id || 800
+      };
+    } else {
+      if (item.main.temp_max > dailyMap[dStr].tempMax) dailyMap[dStr].tempMax = item.main.temp_max;
+      if (item.main.temp_min < dailyMap[dStr].tempMin) dailyMap[dStr].tempMin = item.main.temp_min;
+    }
+  });
+
+  const daily = Object.values(dailyMap).slice(0, 7);
+
+  const conditionText = curData.weather?.[0]?.main || 'Clear';
+  const emoji = mapWeatherConditionToEmoji(conditionText);
+
+  return {
+    source: 'OpenWeatherMap',
+    current: {
+      temp: Math.round(curData.main?.temp || 0),
+      feelsLike: Math.round(curData.main?.feels_like || 0),
+      humidity: curData.main?.humidity || 0,
+      rainProb: Math.round((foreData.list?.[0]?.pop || 0) * 100),
+      windSpeed: Math.round(curData.wind?.speed || 0),
+      windDirection: 'NE',
+      pressure: Math.round(curData.main?.pressure || 1013),
+      visibility: Math.round((curData.visibility || 10000) / 1000),
+      uvIndex: 4,
+      cloudCover: curData.clouds?.all || 0,
+      sunrise: new Date(curData.sys?.sunrise * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      sunset: new Date(curData.sys?.sunset * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      conditionText,
+      emoji,
+      aqi: null,
+      aqiText: 'Normal'
+    },
+    hourly,
+    daily
+  };
+}
+
+/**
+ * GET /api/weather/live
+ * Fetches real-time weather using OpenWeatherMap if key is valid, falling back to Open-Meteo
+ */
+router.get('/live', async (req, res) => {
+  const lat = parseFloat(req.query.lat) || 26.7606;
+  const lon = parseFloat(req.query.lon) || 83.3731;
+  const apiKey = (process.env.WEATHER_API_KEY || '').trim();
+
+  // Try OpenWeatherMap first if key configured
+  if (apiKey) {
+    try {
+      const data = await fetchOpenWeatherMap(lat, lon, apiKey);
+      return res.json({ success: true, ...data });
+    } catch (owmErr) {
+      console.warn('[WEATHER] OpenWeatherMap fetch failed, falling back to client Open-Meteo:', owmErr.message);
+    }
+  }
+
+  return res.json({
+    success: false,
+    useClientFallback: true,
+    message: 'OpenWeatherMap unavailable or key not set. Using Open-Meteo.'
+  });
+});
 
 /**
  * Common Weather Handler (supports GET and POST)

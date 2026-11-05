@@ -100,6 +100,26 @@ const getBrowserLocation = () => {
 
 // Fetch Live Weather & Air Quality from Open-Meteo
 const fetchLiveWeather = async (lat, lon) => {
+  // Strategy 1: Attempt Backend OpenWeatherMap live proxy endpoint first
+  try {
+    const backendUrl = '/api/weather/live?lat=' + lat + '&lon=' + lon;
+    const beRes = await fetch(backendUrl);
+    if (beRes.ok) {
+      const beData = await beRes.json();
+      if (beData && beData.success && beData.current) {
+        console.log('[Weather] Loaded live weather via ' + (beData.source || 'OpenWeatherMap') + ' backend proxy.');
+        return {
+          current: beData.current,
+          hourly: beData.hourly || [],
+          daily: beData.daily || []
+        };
+      }
+    }
+  } catch (backendErr) {
+    console.warn('[Weather] Backend OpenWeatherMap proxy bypassed or unavailable, using Open-Meteo direct:', backendErr.message);
+  }
+
+  // Strategy 2: High-resolution Open-Meteo direct fallback
   try {
     // Open-Meteo Forecast Endpoint (Weather, hourly forecast, 7-day forecast)
     const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,precipitation_probability,relative_humidity_2m,wind_speed_10m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_probability_max,relative_humidity_2m_max,wind_speed_10m_max&timezone=auto`;

@@ -2353,10 +2353,20 @@ const setupVoiceAssistant = () => {
     };
 
     recognition.onerror = (e) => {
-      console.log("Speech recognition error", e);
+      console.warn("[Voice] Speech recognition error:", e.error || e);
       isListening = false;
       if (micBtn) micBtn.classList.remove('recording');
-      if (micLabel) micLabel.innerText = "Error capturing voice. Try typing or tap suggestions.";
+      if (micLabel) {
+        if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
+          micLabel.innerHTML = '<span style="color:#c62828;font-weight:600;">⚠️ Microphone access required. Please click here to type instead or allow microphone in browser settings.</span>';
+        } else if (e.error === 'no-speech') {
+          micLabel.innerHTML = '<span style="color:#e65100;">⚠️ No speech detected. Tap the mic to try again or type below.</span>';
+        } else if (e.error === 'network') {
+          micLabel.innerHTML = '<span style="color:#c62828;">⚠️ Voice network issue. Please check connection or type below.</span>';
+        } else {
+          micLabel.innerHTML = '<span style="color:#c62828;font-weight:600;">⚠️ Microphone access required. Please click here to type instead or allow microphone in browser settings.</span>';
+        }
+      }
     };
 
     recognition.onresult = (e) => {
